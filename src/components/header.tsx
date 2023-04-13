@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({
   orgLogo = "./src/assets/logo.png",
 }) => {
   return (
-    <header className="bg-primary text-primary_text">
+    <header className="relative z-20 bg-primary text-primary_text">
       <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
         <Link to="/Home" className="flex items-center group gap-x-2 sm:gap-x-3">
           <img
