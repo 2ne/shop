@@ -1,4 +1,5 @@
 import React from "react";
+import Wrapper from "./wrapper";
 
 interface HeaderProps {
   loggedIn?: boolean;
@@ -19,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="bg-primary text-primary_text">
-      <div className="flex items-center w-full h-[5.25rem] px-3 mx-auto gap-x-2 max-w-screen-2xl">
+      <Wrapper className="flex items-center h-[5.25rem] gap-x-2">
         <img
           src={orgLogo}
           alt={orgName + " Logo"}
@@ -185,7 +186,7 @@ const Header: React.FC<HeaderProps> = ({
             <></>
           </div>
         )}
-      </div>
+      </Wrapper>
     </header>
   );
 };

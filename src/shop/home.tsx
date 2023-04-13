@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import Breadcrumb from "../components/breadcrumb";
 import Header from "../components/header";
+import Wrapper from "../components/wrapper";
 
 function Home(): ReactElement {
   const breadcrumbItems = [
@@ -9,11 +10,11 @@ function Home(): ReactElement {
   ];
 
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <main className="w-full p-3 mx-auto max-w-screen-2xl">HOME</main>
-    </div>
+      <Wrapper>HOME</Wrapper>
+    </>
   );
 }
 

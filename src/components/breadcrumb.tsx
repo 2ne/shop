@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Wrapper from "./wrapper";
 
 interface BreadcrumbItem {
   label?: string;
@@ -12,11 +13,11 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
-    <div className="bg-secondary text-secondary_text">
-      <nav className="w-full mx-auto overflow-hidden text-sm max-w-screen-2xl">
+    <Wrapper className="bg-secondary text-secondary_text !p-0">
+      <nav className="overflow-hidden text-sm">
         <ol
           role="list"
-          className="flex items-center h-10 px-3 space-x-1 overflow-x-auto"
+          className="flex items-center h-10 px-3 space-x-0.5 overflow-x-auto"
         >
           <li>
             <div className="flex items-center">
@@ -30,7 +31,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
               {items.map((item, index) => (
                 <li key={item.label}>
                   {index === items.length - 1 ? (
-                    <div className="flex items-center opacity-75 gap-x-1">
+                    <div className="flex items-center opacity-75 gap-x-0.5">
                       <svg
                         className="flex-shrink-0 w-4 h-4"
                         fill="currentColor"
@@ -44,7 +45,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
                       )}
                     </div>
                   ) : (
-                    <div className="flex items-center gap-x-1">
+                    <div className="flex items-center gap-x-0.5">
                       <svg
                         className="flex-shrink-0 w-4 h-4"
                         fill="currentColor"
@@ -66,7 +67,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
           )}
         </ol>
       </nav>
-    </div>
+    </Wrapper>
   );
 };
 
