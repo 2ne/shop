@@ -1,11 +1,12 @@
 import React from "react";
-import Breadcrumb from "./breadcrumb";
 
 interface HeaderProps {
   loggedIn?: boolean;
   checkout?: boolean;
   basketCount?: number;
   hideButtons?: boolean;
+  orgName?: string;
+  orgLogo?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -13,16 +14,21 @@ const Header: React.FC<HeaderProps> = ({
   checkout,
   basketCount,
   hideButtons,
+  orgName = "CG Swim School",
+  orgLogo = "./src/assets/logo.png",
 }) => {
   return (
     <header className="bg-primary text-primary_text">
       <div className="flex items-center w-full h-[5.25rem] px-3 mx-auto gap-x-2 max-w-screen-2xl">
         <img
-          src="./src/assets/logo.png"
-          alt="My Image"
+          src={orgLogo}
+          alt={orgName + " Logo"}
           className="block max-h-[3.5rem]"
+          loading="lazy"
         />
-        <h1 className="text-lg leading-5 font-display">CG Swim School</h1>
+        <h1 className="text-lg leading-5 tracking-tight font-display line-clamp-3">
+          {orgName}
+        </h1>
         {!hideButtons && (
           <div className="flex items-center gap-5 ml-auto">
             {!loggedIn && !checkout && (

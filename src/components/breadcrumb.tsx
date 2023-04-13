@@ -10,7 +10,7 @@ const Breadcrumb: React.FC = () => {
         >
           <li>
             <div className="flex items-center">
-              <a href="#" className="truncate">
+              <a href="/Home" className="truncate">
                 Home
               </a>
             </div>
