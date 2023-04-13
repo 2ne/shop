@@ -45,7 +45,7 @@ function BubbleTheSeahorse(): ReactElement {
                 >
                   <Radio.Button
                     value="a"
-                    className="w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-4 sm:py-5 px-3 sm:px-4"
+                    className="w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-3 sm:py-5 px-3 sm:px-4"
                   >
                     <div className="text-sm font-medium text-gray-900 sm:text-base">
                       Session · £16.00
@@ -60,7 +60,7 @@ function BubbleTheSeahorse(): ReactElement {
                   </Radio.Button>
                   <Radio.Button
                     value="b"
-                    className="w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-4 sm:py-5 px-3 sm:px-4"
+                    className="w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-3 sm:py-5 px-3 sm:px-4"
                   >
                     <div className="text-sm font-medium text-gray-900 sm:text-base">
                       Trial · £5.00
