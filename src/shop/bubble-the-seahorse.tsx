@@ -15,7 +15,7 @@ function BubbleTheSeahorse(): ReactElement {
     <>
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <Main className="space-y-5 sm:space-y-10">
+      <Main className="space-y-5 sm:space-y-9">
         <div className="space-y-1.5 sm:space-y-0 border-b border-neutral-200 pb-4">
           <h2 className="font-semibold leading-5 sm:text-lg text-neutral-800">
             Bubble the Seahorse
