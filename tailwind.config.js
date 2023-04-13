@@ -7,7 +7,7 @@ module.exports = {
         primary_text: "#005da2",
         secondary: "#005da2",
         secondary_text: "#ffffff",
-        button: "#005da2",
+        interactive: "#005da2",
       },
       fontFamily: {
         sans: [

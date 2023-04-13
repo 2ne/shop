@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="bg-primary text-primary_text">
-      <Wrapper className="flex items-center h-[5.25rem] gap-x-2">
+      <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
         <Link to="/Home" className="flex items-center group gap-x-2 sm:gap-x-3">
           <img
             src={orgLogo}
@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({
           </h1>
         </Link>
         {!hideButtons && (
-          <div className="flex items-center gap-5 ml-auto sm:gap-7">
+          <div className="flex items-center gap-5 ml-auto sm:gap-8">
             {!loggedIn && !checkout && (
               <>
                 <button
