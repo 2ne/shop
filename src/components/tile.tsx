@@ -19,7 +19,7 @@ const Tiles: React.FC<TileProps> = ({ items }) => {
           {items.map((item, index) => (
             <Link
               to={item.link}
-              className="md:max-w-[33vw] p-0.5 grid bg-white rounded-md shadow-lg shadow-slate-900/10 ring-1 ring-slate-600 ring-opacity-5 transition-transform origin-bottom hover:scale-[1.015]"
+              className="md:max-w-[33vw] p-0.5 grid bg-white rounded-md shadow-lg shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-5 sm:transition-transform sm:origin-bottom sm:hover:scale-[1.015]"
               key={index}
             >
               <img
@@ -29,7 +29,7 @@ const Tiles: React.FC<TileProps> = ({ items }) => {
                 loading="lazy"
               />
               <div className="relative px-3 py-2.5 bg-white">
-                <h2 className="leading-5 tracking-tight text-center sm:text-lg font-display line-clamp-2 text-primary_text">
+                <h2 className="leading-5 tracking-tight text-center sm:text-lg font-display line-clamp-2 text-neutral-800">
                   {item.label}
                 </h2>
               </div>

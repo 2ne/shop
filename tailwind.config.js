@@ -24,4 +24,5 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  plugins: [require("tailwind-scrollbar-hide")],
 };

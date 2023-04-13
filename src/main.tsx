@@ -10,7 +10,8 @@ ReactDOM.render(
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#007aff",
+          colorPrimary: "#005da2", //tailwind interactive branding colour
+          colorPrimaryBg: "#f1f5f9",
           fontFamily: "'Inter var', sans-serif",
           borderRadius: 6,
           boxShadow:

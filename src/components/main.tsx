@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface MainProps {
   children: React.ReactNode;
@@ -6,7 +6,13 @@ interface MainProps {
 }
 
 const Main: React.FC<MainProps> = ({ children, className }) => {
-  const baseClassNames = "min-h-screen w-full p-3 sm:py-6 mx-auto container";
+  useEffect(() => {
+    return () => {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
+  const baseClassNames = "min-h-screen w-full px-3 py-6 mx-auto container";
   const combinedClassNames = className
     ? `${baseClassNames} ${className}`
     : baseClassNames;
