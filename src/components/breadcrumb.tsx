@@ -39,7 +39,9 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
                       >
                         <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
                       </svg>
-                      <span className="truncate">{item.label}</span>
+                      {item.label && (
+                        <span className="truncate">{item.label}</span>
+                      )}
                     </div>
                   ) : (
                     <div className="flex items-center gap-x-1">
@@ -51,9 +53,11 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
                       >
                         <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
                       </svg>
-                      <Link className="truncate" to={item.link}>
-                        {item.label}
-                      </Link>
+                      {item.link && item.label && (
+                        <Link className="truncate" to={item.link}>
+                          {item.label}
+                        </Link>
+                      )}
                     </div>
                   )}
                 </li>
