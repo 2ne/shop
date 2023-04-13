@@ -6,7 +6,7 @@ interface WrapperProps {
 }
 
 const Wrapper: React.FC<WrapperProps> = ({ children, className }) => {
-  const baseClassNames = "w-full p-3 mx-auto max-w-screen-2xl";
+  const baseClassNames = "w-full p-3 mx-auto container";
   const combinedClassNames = className
     ? `${baseClassNames} ${className}`
     : baseClassNames;

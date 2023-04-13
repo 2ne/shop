@@ -1,5 +1,6 @@
 import React from "react";
 import Wrapper from "./wrapper";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
   loggedIn?: boolean;
@@ -21,22 +22,24 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="bg-primary text-primary_text">
       <Wrapper className="flex items-center h-[5.25rem] gap-x-2">
-        <img
-          src={orgLogo}
-          alt={orgName + " Logo"}
-          className="block max-h-[3.5rem]"
-          loading="lazy"
-        />
-        <h1 className="text-lg leading-5 tracking-tight font-display line-clamp-3">
-          {orgName}
-        </h1>
+        <Link to="/Home" className="flex items-center group gap-x-2 sm:gap-x-3">
+          <img
+            src={orgLogo}
+            alt={orgName + " Logo"}
+            className="block max-h-[3.5rem]"
+            loading="lazy"
+          />
+          <h1 className="text-lg leading-5 tracking-tight sm:text-xl font-display line-clamp-3 group-hover:underline decoration-2">
+            {orgName}
+          </h1>
+        </Link>
         {!hideButtons && (
-          <div className="flex items-center gap-5 ml-auto">
+          <div className="flex items-center gap-5 ml-auto sm:gap-7">
             {!loggedIn && !checkout && (
               <>
                 <button
                   type="button"
-                  className="grid text-center place-items-center"
+                  className="grid text-center group place-items-center"
                 >
                   <svg
                     width="24"
@@ -63,13 +66,13 @@ const Header: React.FC<HeaderProps> = ({
                       d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"
                     ></path>
                   </svg>
-                  <div className="text-xs font-medium whitespace-nowrap">
+                  <div className="text-xs font-medium sm:text-sm whitespace-nowrap group-hover:underline">
                     Sign in
                   </div>
                 </button>
                 <button
                   type="button"
-                  className="relative grid text-center place-items-center"
+                  className="relative grid text-center group place-items-center"
                 >
                   {basketCount && basketCount > 0 ? (
                     <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-600 rounded-full -top-2.5 right-0 place-items-center">
@@ -106,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({
                       d="M19.25 9.75H4.75"
                     ></path>
                   </svg>
-                  <div className="text-xs font-medium whitespace-nowrap">
+                  <div className="text-xs font-medium sm:text-sm whitespace-nowrap group-hover:underline">
                     Basket
                   </div>
                 </button>
@@ -116,7 +119,7 @@ const Header: React.FC<HeaderProps> = ({
               <>
                 <button
                   type="button"
-                  className="grid text-center place-items-center"
+                  className="grid text-center group place-items-center"
                 >
                   <svg
                     width="24"
@@ -143,17 +146,14 @@ const Header: React.FC<HeaderProps> = ({
                       d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"
                     ></path>
                   </svg>
-                  <div className="text-xs font-medium whitespace-nowrap">
+                  <div className="text-xs font-medium sm:text-sm whitespace-nowrap group-hover:underline">
                     Account
                   </div>
                 </button>
               </>
             )}
             {checkout && (
-              <button
-                type="button"
-                className="grid text-center place-items-center"
-              >
+              <div className="grid text-center place-items-center">
                 <svg
                   width="24"
                   height="24"
@@ -177,11 +177,11 @@ const Header: React.FC<HeaderProps> = ({
                   ></path>
                 </svg>
 
-                <div className="mt-0.5 text-xs font-medium leading-3">
+                <div className="mt-0.5 sm:text-sm text-xs font-medium leading-3">
                   Secure <br />
                   Checkout
                 </div>
-              </button>
+              </div>
             )}
             <></>
           </div>
