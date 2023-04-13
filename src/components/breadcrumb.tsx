@@ -15,7 +15,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
     <div className="relative z-10 bg-secondary text-secondary_text">
       <Wrapper className="!p-0">
-        <nav className="overflow-hidden text-sm">
+        <nav className="overflow-hidden text-sm tracking-normal">
           <ol
             role="list"
             className="flex items-center h-10 px-3 sm:space-x-0.5 overflow-x-auto"

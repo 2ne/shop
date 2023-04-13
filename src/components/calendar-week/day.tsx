@@ -28,7 +28,7 @@ const CalendarWeekDay: React.FC<CalendarWeekDayProps> = ({ day }) => {
           </svg>
         </Button>
         <div className="flex-grow text-center lg:text-left">
-          <span className="px-4 py-2 text-sm tracking-tight rounded-full sm:text-base text-neutral-700 bg-white/95 lg:p-0 lg:bg-transparent lg:rounded-none">
+          <span className="px-4 py-2 text-sm  rounded-full sm:text-base text-neutral-700 bg-white/95 lg:p-0 lg:bg-transparent lg:rounded-none">
             {day}
           </span>
         </div>

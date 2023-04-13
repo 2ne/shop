@@ -29,7 +29,7 @@ const Tiles: React.FC<TileProps> = ({ items }) => {
                 loading="lazy"
               />
               <div className="relative px-3 py-2.5 bg-white">
-                <h2 className="leading-5 tracking-tight text-center sm:text-lg font-display line-clamp-2 text-neutral-800">
+                <h2 className="font-semibold leading-5 text-center line-clamp-2 text-neutral-800">
                   {item.label}
                 </h2>
               </div>

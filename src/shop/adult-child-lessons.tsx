@@ -21,7 +21,7 @@ function AdultChildLessons(): ReactElement {
       <Breadcrumb items={breadcrumbItems} />
       <Main>
         <div className="pb-3 lg:pb-4 lg:mb-4 lg:flex lg:items-end lg:border-b lg:border-neutral-200">
-          <h2 className="mb-4 leading-5 tracking-tight sm:text-lg lg:mb-0 text-neutral-800 font-display">
+          <h2 className="mb-4 font-semibold leading-5 sm:text-lg lg:mb-0 text-neutral-800">
             Adult and Child Lessons
           </h2>
           <div className="flex items-center gap-2.5 ml-auto">

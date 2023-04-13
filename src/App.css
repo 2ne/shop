@@ -1,9 +1,3 @@
-@font-face {
-  font-family: "CircularStd";
-  src: url("./src/assets/CircularStd-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,19 +10,12 @@
   height: 100dvh;
 }
 
-h1.ant-typography,
-h2.ant-typography,
-h3.ant-typography,
-h4.ant-typography {
-  @apply font-display font-medium;
-}
-
-h5.ant-typography {
-  @apply font-medium;
-}
-
 .ant-btn {
-  @apply inline-flex items-center;
+  @apply inline-flex items-center !rounded-md;
+}
+
+.ant-btn-primary {
+  @apply bg-interactive font-medium;
 }
 
 .ant-btn-block {
@@ -57,4 +44,8 @@ h5.ant-typography {
 
 .ant-modal .ant-modal-header {
   @apply mb-6;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  @apply ring-1 ring-interactive font-medium;
 }
