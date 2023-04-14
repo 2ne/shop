@@ -16,7 +16,7 @@ function BubbleTheSeahorse(): ReactElement {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="space-y-4 sm:space-y-8">
-        <div className="lg:sticky lg:top-0 space-y-0.5 pb-4 border-b sm:space-y-0 border-neutral-200 lg:backdrop-blur lg:bg-blend-overlay lg:bg-white/75 lg:z-20 lg:-mt-3 lg:pt-3">
+        <div className="sticky top-0 space-y-0.5 pb-4 border-b sm:space-y-0 border-neutral-200 bg-white/95 z-20 -mt-3 pt-3">
           <h2 className="heading-lg">Bubble the Seahorse</h2>
           <h3 className="sub-heading">Every Tuesday at 11:30 - 12:00</h3>
         </div>
@@ -35,7 +35,7 @@ function BubbleTheSeahorse(): ReactElement {
                 <Radio.Group
                   defaultValue="a"
                   size="large"
-                  className="flex w-full gap-2 sm:gap-4"
+                  className="flex w-full gap-2 px-px sm:gap-4"
                 >
                   <Radio.Button value="a" className="radio-button-xl">
                     <div className="heading">Session · £16.00</div>
@@ -63,7 +63,7 @@ function BubbleTheSeahorse(): ReactElement {
                 <Radio.Group
                   size="large"
                   defaultValue="date-1"
-                  className="grid w-full grid-cols-3 gap-2 sm:gap-4 sm:grid-cols-4"
+                  className="grid w-full grid-cols-3 gap-2 px-px sm:gap-4 sm:grid-cols-4"
                 >
                   <Radio.Button value="date-1" className="radio-button-lg">
                     4th April
@@ -113,7 +113,7 @@ function BubbleTheSeahorse(): ReactElement {
               </div>
             </section>
             <section className="space-y-4 lg:contents">
-              <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:backdrop-blur max-lg:bg-blend-overlay max-lg:bg-white/75 lg:mt-6">
+              <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:bg-white/95 lg:mt-6">
                 <div className="container lg:p-0">
                   <Button
                     size="large"
