@@ -34,7 +34,7 @@ function BubbleTheSeahorse(): ReactElement {
           </div>
           <div className="space-y-6 sm:space-y-10">
             <section>
-              <div className="mb-2 text-sm font-medium text-gray-900 sm:-mt-2 sm:mb-3 sm:text-base">
+              <div className="mb-2 text-sm font-medium text-gray-900 sm:-mt-1.5 sm:mb-3 sm:text-base">
                 Purchase options
               </div>
               <div>
