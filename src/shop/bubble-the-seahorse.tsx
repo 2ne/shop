@@ -127,6 +127,82 @@ function BubbleTheSeahorse(): ReactElement {
               <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
                 Details
               </div>
+              <dl className="text-sm grid grid-cols-4 sm:grid-cols-5 [&>dt]:col-span-1 [&>dt]:text-neutral-500 [&>dd]:col-span-3 sm:[&>dd]:col-span-4 [&>dd]:text-neutral-800 gap-y-4">
+                <dt>Discounts</dt>
+                <dd>
+                  3 discounts are available.{" "}
+                  <a href="#" className="link">
+                    View options
+                  </a>
+                </dd>
+                <dt>Age</dt>
+                <dd>
+                  Suitable for babies ages up to 3 years with a parent/guardian
+                </dd>
+                <dt>Time</dt>
+                <dd>Every Tuesday @ 11:30 - 12:00</dd>
+                <dt>Address</dt>
+                <dd>Quarterway House, Ely Rd, Little Thetford</dd>
+                <dt>Billing</dt>
+                <dd>
+                  You will be billed every month on the 1st. This is an
+                  auto-renewing product.
+                </dd>
+                <dt>Pro rata</dt>
+                <dd>
+                  Final cost at checkout may vary depending on the time or
+                  sessions left in the period.
+                </dd>
+                <dt>Aprroval</dt>
+                <dd>
+                  This purchase requires approval by the organisation prior to
+                  the purchase proceeding.
+                </dd>
+              </dl>
+            </section>
+            <section className="space-y-4">
+              <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
+                Description
+              </div>
+              <p className="text-sm text-neutral-800">
+                This class is targeted at 12-18 month old children. We focus on
+                encouraging and supporting using short bursts of energy to play,
+                splash, kick, rotate, balance, crawl, float, and start to
+                interpret swimming cues through songs and phrases.
+              </p>
+            </section>
+            <section className="space-y-4">
+              <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
+                Coach Profile ·{" "}
+                <span className="sub-heading">Arsène Wenger</span>
+              </div>
+              <img
+                className="float-left aspect-[3/2] object-cover max-w-[25%] rounded-md mr-4 mb-3 relative -top-2"
+                src="https://m.media-amazon.com/images/M/MV5BMDUwNWI1NDktZTkyYS00NTgwLWI3YTAtNDM4YWNkNTU3ZTdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg"
+              />
+              <p className="text-sm text-neutral-800">
+                Arsène Charles Ernest Wenger OBE, born 22 October 1949 is a
+                French former football manager and player who is currently
+                serving as FIFA's Chief of Global Football Development. He was
+                the manager of Arsenal from 1996 to 2018, where he was the
+                longest-serving and most successful in the club's history. His
+                contribution to English football through changes to scouting,
+                players' training, and diet regimens revitalised Arsenal and
+                aided the globalisation of the sport in the 21st century. Born
+                in Strasbourg and raised in Duttlenheim to an entrepreneurial
+                family, Wenger was introduced to football by his father, the
+                manager of the local village team.
+              </p>
+              <p className="text-sm text-neutral-800">
+                After a modest playing career, in which he made appearances for
+                several amateur clubs, Wenger obtained a manager's diploma in
+                1981. Following an unsuccessful period at Nancy in 1987, Wenger
+                joined Monaco; the club won the league championship in 1988. In
+                1991, Wenger guided Monaco to victory in the Coupe de France. In
+                1995, he moved to Japan to coach J.League side Nagoya Grampus
+                Eight and won the Emperor's Cup and Japanese Super Cup in his
+                first and only year.
+              </p>
             </section>
           </div>
         </div>
