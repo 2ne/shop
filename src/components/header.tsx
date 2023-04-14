@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({
             className="block max-h-[3.5rem]"
             loading="lazy"
           />
-          <h1 className="text-lg font-semibold leading-5 sm:text-xl line-clamp-3 group-hover:underline decoration-2">
+          <h1 className="!text-primary_text heading-xl line-clamp-3 group-hover:underline">
             {orgName}
           </h1>
         </Link>
@@ -66,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({
                       d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"
                     ></path>
                   </svg>
-                  <div className="text-xs font-medium sm:text-sm whitespace-nowrap group-hover:underline">
+                  <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
                     Sign in
                   </div>
                 </button>
@@ -109,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({
                       d="M19.25 9.75H4.75"
                     ></path>
                   </svg>
-                  <div className="text-xs font-medium sm:text-sm whitespace-nowrap group-hover:underline">
+                  <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
                     Basket
                   </div>
                 </button>
@@ -146,7 +146,7 @@ const Header: React.FC<HeaderProps> = ({
                       d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"
                     ></path>
                   </svg>
-                  <div className="text-xs font-medium sm:text-sm whitespace-nowrap group-hover:underline">
+                  <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
                     Account
                   </div>
                 </button>
@@ -177,7 +177,7 @@ const Header: React.FC<HeaderProps> = ({
                   ></path>
                 </svg>
 
-                <div className="mt-0.5 sm:text-sm text-xs font-medium leading-3">
+                <div className="mt-0.5 heading-xs !text-primary_text leading-3">
                   Secure <br />
                   Checkout
                 </div>

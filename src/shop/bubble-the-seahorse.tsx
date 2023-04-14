@@ -17,12 +17,8 @@ function BubbleTheSeahorse(): ReactElement {
       <Breadcrumb items={breadcrumbItems} />
       <Main className="space-y-4 sm:space-y-8">
         <div className="space-y-0.5 sm:pb-4 sm:border-b sm:space-y-0 sm:border-neutral-200">
-          <h2 className="font-semibold leading-5 sm:text-lg text-neutral-800">
-            Bubble the Seahorse
-          </h2>
-          <h3 className="text-sm font-medium text-gray-500 sm:text-base">
-            Every Tuesday at 11:30 - 12:00
-          </h3>
+          <h2 className="heading-lg">Bubble the Seahorse</h2>
+          <h3 className="sub-heading">Every Tuesday at 11:30 - 12:00</h3>
         </div>
         <div className="space-y-4 sm:space-y-0 sm:grid sm:gap-10 lg:grid-cols-2">
           <div>
@@ -33,10 +29,8 @@ function BubbleTheSeahorse(): ReactElement {
             />
           </div>
           <div className="space-y-6 sm:space-y-10">
-            <section>
-              <div className="mb-2 text-sm font-medium text-gray-900 sm:-mt-1.5 sm:mb-3 sm:text-base">
-                Purchase options
-              </div>
+            <section className="sm:-mt-1.5">
+              <div className="mb-2 sm:mb-3 heading">Purchase options</div>
               <div>
                 <Radio.Group
                   defaultValue="a"
@@ -44,10 +38,8 @@ function BubbleTheSeahorse(): ReactElement {
                   className="flex w-full gap-2 sm:gap-4"
                 >
                   <Radio.Button value="a" className="radio-button-xl">
-                    <div className="text-sm font-medium text-gray-900 sm:text-base">
-                      Session · £16.00
-                    </div>
-                    <div className="mt-0.5 text-xs text-gray-500 sm:text-sm font-normal">
+                    <div className="heading">Session · £16.00</div>
+                    <div className="mt-0.5 sub-heading-sm">
                       Every Tuesday
                       <span className="hidden lg:inline">
                         {" "}
@@ -56,10 +48,8 @@ function BubbleTheSeahorse(): ReactElement {
                     </div>
                   </Radio.Button>
                   <Radio.Button value="b" className="radio-button-xl">
-                    <div className="text-sm font-medium text-gray-900 sm:text-base">
-                      Trial · £5.00
-                    </div>
-                    <div className="mt-0.5 text-xs text-gray-500 sm:text-sm font-normal">
+                    <div className="heading">Trial · £5.00</div>
+                    <div className="mt-0.5 sub-heading-sm">
                       Single session
                       <span className="hidden lg:inline"> on a Tuesday</span>
                     </div>
@@ -68,9 +58,7 @@ function BubbleTheSeahorse(): ReactElement {
               </div>
             </section>
             <section>
-              <div className="mb-2 -mt-1 text-sm font-medium text-gray-900 sm:mb-3 sm:text-base">
-                Select a date
-              </div>
+              <div className="mb-2 sm:mb-3 heading">Select a date</div>
               <div>
                 <Radio.Group
                   size="large"
@@ -131,12 +119,12 @@ function BubbleTheSeahorse(): ReactElement {
               <div className="flex justify-center">
                 <div className="px-4 py-1.5 text-sm text-neutral-800 rounded-full bg-neutral-100">
                   Estimated monthly total{" "}
-                  <span className="font-medium text-neutral-900">£64.00</span>
+                  <span className="heading-sm">£64.00</span>
                 </div>
               </div>
             </section>
             <section className="space-y-4">
-              <div className="pb-2 text-sm font-medium text-gray-900 border-b sm:mb-3 sm:text-base border-neutral-200">
+              <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
                 Details
               </div>
             </section>

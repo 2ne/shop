@@ -12,9 +12,7 @@ const CalendarWeekDayEvent: React.FC = () => {
         src="https://app.joinin.online/services/anonymous/photo/8b0f7a97-c07e-4fd3-ae37-f2fcc6ebff18"
       />
       <div className="space-y-0.5">
-        <h3 className="mb-1.5 font-medium text-neutral-900">
-          Smiley the Turtle
-        </h3>
+        <h3 className="mb-1.5 heading-sm">Smiley the Turtle</h3>
         <div className="flex items-center gap-1">
           <svg
             width="24"
