@@ -125,12 +125,12 @@ function BubbleTheSeahorse(): ReactElement {
                   </Button>
                 </div>
               </div>
-              <div className="flex justify-center">
+              {/* <div className="flex justify-center">
                 <div className="px-4 py-1.5 text-sm text-neutral-800 rounded-full bg-neutral-100">
                   Estimated monthly total{" "}
                   <span className="heading-sm">£64.00</span>
                 </div>
-              </div>
+              </div> */}
             </section>
             <section className="space-y-4">
               <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
