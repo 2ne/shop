@@ -43,10 +43,7 @@ function BubbleTheSeahorse(): ReactElement {
                   size="large"
                   className="flex w-full gap-3 sm:gap-4"
                 >
-                  <Radio.Button
-                    value="a"
-                    className="w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-3 sm:py-5 px-3 sm:px-4"
-                  >
+                  <Radio.Button value="a" className="radio-button-xl">
                     <div className="text-sm font-medium text-gray-900 sm:text-base">
                       Session · £16.00
                     </div>
@@ -58,10 +55,7 @@ function BubbleTheSeahorse(): ReactElement {
                       </span>
                     </div>
                   </Radio.Button>
-                  <Radio.Button
-                    value="b"
-                    className="w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-3 sm:py-5 px-3 sm:px-4"
-                  >
+                  <Radio.Button value="b" className="radio-button-xl">
                     <div className="text-sm font-medium text-gray-900 sm:text-base">
                       Trial · £5.00
                     </div>
@@ -83,78 +77,48 @@ function BubbleTheSeahorse(): ReactElement {
                   defaultValue="date-1"
                   className="grid w-full grid-cols-3 gap-3 sm:gap-4 sm:grid-cols-4"
                 >
-                  <Radio.Button
-                    value="date-1"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-1" className="radio-button-lg">
                     4th April
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-2"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-2" className="radio-button-lg">
                     11th April
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-3"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-3" className="radio-button-lg">
                     18th April
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-4"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-4" className="radio-button-lg">
                     25th April
                   </Radio.Button>
                   <Radio.Button
                     value="date-5"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
+                    className="radio-button-lg"
                     disabled
                   >
                     2nd May
                   </Radio.Button>
                   <Radio.Button
                     value="date-6"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
+                    className="radio-button-lg"
                     disabled
                   >
                     9th May
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-7"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-7" className="radio-button-lg">
                     16th May
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-8"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-8" className="radio-button-lg">
                     23rd May
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-9"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-9" className="radio-button-lg">
                     30th May
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-10"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-10" className="radio-button-lg">
                     4th June
                   </Radio.Button>
-                  <Radio.Button
-                    value="date-11"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Radio.Button value="date-11" className="radio-button-lg">
                     11th June
                   </Radio.Button>
-                  <Button
-                    size="large"
-                    className="w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm"
-                  >
+                  <Button size="large" className="radio-button-lg">
                     More <div className="hidden ml-1 md:inline">dates</div>...
                   </Button>
                 </Radio.Group>

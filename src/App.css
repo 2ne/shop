@@ -46,6 +46,14 @@
   @apply mb-6;
 }
 
+.radio-button-lg {
+  @apply w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm;
+}
+
+.radio-button-xl {
+  @apply w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-3 sm:py-5 px-3 sm:px-4;
+}
+
 .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
   @apply ring-1 ring-interactive font-medium;
 }
