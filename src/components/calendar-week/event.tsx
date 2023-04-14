@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 
 const CalendarWeekDayEvent: React.FC = () => {
   return (
-    <Link
-      to="/BubbleTheSeahorse"
-      className="p-3 text-sm lg:transition-transform lg:origin-bottom lg:hover:scale-[1.015] card"
-    >
+    <Link to="/BubbleTheSeahorse" className="p-3 text-sm card">
       <img
         className="aspect-[3/2] object-cover mx-auto"
         src="https://app.joinin.online/services/anonymous/photo/8b0f7a97-c07e-4fd3-ae37-f2fcc6ebff18"

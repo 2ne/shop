@@ -19,7 +19,7 @@ const Tiles: React.FC<TileProps> = ({ items }) => {
           {items.map((item, index) => (
             <Link
               to={item.link}
-              className="md:max-w-[33vw] p-0.5 grid sm:transition-transform sm:origin-bottom sm:hover:scale-[1.015] card"
+              className="md:max-w-[33vw] p-0.5 grid card"
               key={index}
             >
               <img
