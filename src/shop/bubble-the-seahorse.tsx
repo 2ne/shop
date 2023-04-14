@@ -113,10 +113,15 @@ function BubbleTheSeahorse(): ReactElement {
               </div>
             </section>
             <section className="space-y-4 lg:contents">
-              <div className="z-30 max-lg:py-3 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:backdrop-blur max-lg:bg-blend-overlay max-lg:bg-white/75 lg:mt-6">
+              <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:backdrop-blur max-lg:bg-blend-overlay max-lg:bg-white/75 lg:mt-6">
                 <div className="container lg:p-0">
-                  <Button size="large" type="primary" block className="!h-12">
-                    Add to basket
+                  <Button
+                    size="large"
+                    type="primary"
+                    block
+                    className="!h-10 lg:!h-12"
+                  >
+                    <div className="text-sm sm:text-base">Add to basket</div>
                   </Button>
                 </div>
               </div>
