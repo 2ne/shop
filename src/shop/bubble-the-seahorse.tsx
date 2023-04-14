@@ -112,10 +112,14 @@ function BubbleTheSeahorse(): ReactElement {
                 </Radio.Group>
               </div>
             </section>
-            <section className="space-y-4">
-              <Button size="large" type="primary" block className="!h-12">
-                Add to basket
-              </Button>
+            <section className="space-y-4 lg:contents">
+              <div className="z-30 max-lg:py-3 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:backdrop-blur max-lg:bg-blend-overlay max-lg:bg-white/75 lg:mt-6">
+                <div className="container lg:p-0">
+                  <Button size="large" type="primary" block className="!h-12">
+                    Add to basket
+                  </Button>
+                </div>
+              </div>
               <div className="flex justify-center">
                 <div className="px-4 py-1.5 text-sm text-neutral-800 rounded-full bg-neutral-100">
                   Estimated monthly total{" "}
