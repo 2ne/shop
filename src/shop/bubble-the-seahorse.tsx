@@ -32,7 +32,7 @@ function BubbleTheSeahorse(): ReactElement {
               loading="lazy"
             />
           </div>
-          <div className="space-y-6 sm:space-y-10">
+          <div className="space-y-8 sm:space-y-10">
             <section>
               <div className="mb-2 -mt-2 text-sm font-medium text-gray-900 sm:mb-3 sm:text-base">
                 Purchase options
