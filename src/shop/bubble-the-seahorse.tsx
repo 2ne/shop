@@ -15,8 +15,8 @@ function BubbleTheSeahorse(): ReactElement {
     <>
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <Main className="space-y-5 sm:space-y-8">
-        <div className="pb-4 space-y-1 border-b sm:space-y-0 border-neutral-200">
+      <Main className="space-y-4 sm:space-y-8">
+        <div className="space-y-0.5 sm:pb-4 sm:border-b sm:space-y-0 sm:border-neutral-200">
           <h2 className="font-semibold leading-5 sm:text-lg text-neutral-800">
             Bubble the Seahorse
           </h2>
@@ -24,7 +24,7 @@ function BubbleTheSeahorse(): ReactElement {
             Every Tuesday at 11:30 - 12:00
           </h3>
         </div>
-        <div className="grid gap-8 sm:gap-10 lg:grid-cols-2">
+        <div className="space-y-4 sm:space-y-0 sm:grid sm:gap-10 lg:grid-cols-2">
           <div>
             <img
               src="https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
@@ -32,16 +32,16 @@ function BubbleTheSeahorse(): ReactElement {
               loading="lazy"
             />
           </div>
-          <div className="space-y-8 sm:space-y-10">
+          <div className="space-y-6 sm:space-y-10">
             <section>
-              <div className="mb-2 -mt-2 text-sm font-medium text-gray-900 sm:mb-3 sm:text-base">
+              <div className="mb-2 text-sm font-medium text-gray-900 sm:-mt-2 sm:mb-3 sm:text-base">
                 Purchase options
               </div>
               <div>
                 <Radio.Group
                   defaultValue="a"
                   size="large"
-                  className="flex w-full gap-3 sm:gap-4"
+                  className="flex w-full gap-2 sm:gap-4"
                 >
                   <Radio.Button value="a" className="radio-button-xl">
                     <div className="text-sm font-medium text-gray-900 sm:text-base">
@@ -75,7 +75,7 @@ function BubbleTheSeahorse(): ReactElement {
                 <Radio.Group
                   size="large"
                   defaultValue="date-1"
-                  className="grid w-full grid-cols-3 gap-3 sm:gap-4 sm:grid-cols-4"
+                  className="grid w-full grid-cols-3 gap-2 sm:gap-4 sm:grid-cols-4"
                 >
                   <Radio.Button value="date-1" className="radio-button-lg">
                     4th April

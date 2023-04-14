@@ -47,7 +47,7 @@
 }
 
 .radio-button-lg {
-  @apply w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm;
+  @apply w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm px-2 sm:px-4;
 }
 
 .radio-button-xl {
