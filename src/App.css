@@ -10,6 +10,10 @@
   height: 100dvh;
 }
 
+.card {
+  @apply bg-white rounded-md shadow shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10;
+}
+
 .heading-xs {
   @apply text-neutral-900 text-xs sm:text-sm font-medium;
 }

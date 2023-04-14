@@ -5,7 +5,7 @@ const CalendarWeekDayEvent: React.FC = () => {
   return (
     <Link
       to="/BubbleTheSeahorse"
-      className="p-3 text-sm bg-white rounded-md shadow shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10 lg:transition-transform lg:origin-bottom lg:hover:scale-[1.015]"
+      className="p-3 text-sm lg:transition-transform lg:origin-bottom lg:hover:scale-[1.015] card"
     >
       <img
         className="aspect-[3/2] object-cover mx-auto"
