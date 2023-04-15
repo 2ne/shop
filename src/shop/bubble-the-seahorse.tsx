@@ -26,6 +26,7 @@ function BubbleTheSeahorse(): ReactElement {
               src="https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
               className="rounded-md aspect-[3/2] object-cover lg:sticky lg:top-28"
               loading="lazy"
+              alt="Product illustration"
             />
           </div>
           <div className="space-y-6 sm:space-y-10">
@@ -140,16 +141,16 @@ function BubbleTheSeahorse(): ReactElement {
                 <dt>Discounts</dt>
                 <dd>
                   3 discounts are available.{" "}
-                  <a href="#" className="link">
+                  <button type="button" className="link">
                     View options
-                  </a>
+                  </button>
                 </dd>
                 <dt>Age</dt>
                 <dd>
                   Suitable for babies ages up to 3 years with a parent/guardian
                 </dd>
                 <dt>Time</dt>
-                <dd>Every Tuesday @ 11:30 - 12:00</dd>
+                <dd>Every Tuesday at 11:30 - 12:00</dd>
                 <dt>Address</dt>
                 <dd>Quarterway House, Ely Rd, Little Thetford</dd>
                 <dt>Billing</dt>
@@ -161,6 +162,13 @@ function BubbleTheSeahorse(): ReactElement {
                 <dd>
                   Final cost at checkout may vary depending on the time or
                   sessions left in the period.
+                </dd>
+                <dt>Service fee</dt>
+                <dd>
+                  A service fee will be applied at checkout.{" "}
+                  <button type="button" className="link">
+                    View details
+                  </button>
                 </dd>
                 <dt>Aprroval</dt>
                 <dd>
@@ -188,6 +196,7 @@ function BubbleTheSeahorse(): ReactElement {
               <img
                 className="sm:float-left aspect-[3/2] object-cover sm:max-w-[25%] rounded-md sm:mr-4 sm:mb-3 relative sm:-top-2"
                 src="https://m.media-amazon.com/images/M/MV5BMDUwNWI1NDktZTkyYS00NTgwLWI3YTAtNDM4YWNkNTU3ZTdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg"
+                alt="Arsène Wenger"
               />
               <p className="text-sm text-neutral-800">
                 Arsène Charles Ernest Wenger OBE, born 22 October 1949 is a
