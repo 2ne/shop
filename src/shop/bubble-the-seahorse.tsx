@@ -137,7 +137,7 @@ function BubbleTheSeahorse(): ReactElement {
               <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
                 Details
               </div>
-              <dl className="text-sm grid grid-cols-4 sm:grid-cols-5 [&>dt]:col-span-1 [&>dt]:truncate [&>dt]:text-neutral-500 [&>dd]:col-span-3 sm:[&>dd]:col-span-4 [&>dd]:text-neutral-800 gap-y-4 gap-x-2">
+              <dl className="grid grid-cols-4 sm:grid-cols-5 [&>dt]:col-span-1 [&>dt]:truncate [&>dd]:col-span-3 sm:[&>dd]:col-span-4 gap-y-3 sm:gap-y-4 gap-x-2">
                 <dt>Discounts</dt>
                 <dd>
                   3 discounts are available.{" "}
@@ -181,7 +181,7 @@ function BubbleTheSeahorse(): ReactElement {
               <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
                 Description
               </div>
-              <p className="text-sm text-neutral-800">
+              <p>
                 This class is targeted at 12-18 month old children. We focus on
                 encouraging and supporting using short bursts of energy to play,
                 splash, kick, rotate, balance, crawl, float, and start to
@@ -194,11 +194,11 @@ function BubbleTheSeahorse(): ReactElement {
                 <span className="sub-heading">Arsène Wenger</span>
               </div>
               <img
-                className="sm:float-left aspect-[3/2] object-cover sm:max-w-[25%] rounded-md sm:mr-4 sm:mb-3 relative sm:-top-2"
+                className="sm:float-left aspect-[3/2] object-cover sm:max-w-[30%] rounded-md sm:mr-4 sm:mb-4 relative sm:-top-1"
                 src="https://m.media-amazon.com/images/M/MV5BMDUwNWI1NDktZTkyYS00NTgwLWI3YTAtNDM4YWNkNTU3ZTdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg"
                 alt="Arsène Wenger"
               />
-              <p className="text-sm text-neutral-800">
+              <p>
                 Arsène Charles Ernest Wenger OBE, born 22 October 1949 is a
                 French former football manager and player who is currently
                 serving as FIFA's Chief of Global Football Development. He was
@@ -211,7 +211,7 @@ function BubbleTheSeahorse(): ReactElement {
                 family, Wenger was introduced to football by his father, the
                 manager of the local village team.
               </p>
-              <p className="text-sm text-neutral-800">
+              <p>
                 After a modest playing career, in which he made appearances for
                 several amateur clubs, Wenger obtained a manager's diploma in
                 1981. Following an unsuccessful period at Nancy in 1987, Wenger

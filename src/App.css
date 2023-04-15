@@ -46,6 +46,15 @@
   @apply text-neutral-500 text-xs sm:text-sm font-normal;
 }
 
+p,
+dl {
+  @apply text-sm/6 sm:text-base/7 tracking-normal;
+}
+
+dt {
+  @apply text-gray-500;
+}
+
 .ant-btn {
   @apply inline-flex items-center !rounded-md;
 }
