@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { ConfigProvider } from "antd";
 import "./App.css";
 import App from "./App";
-import { orgColours } from "../src/org";
+import { orgColours } from "./org.js";
 
 ReactDOM.render(
   <React.StrictMode>
