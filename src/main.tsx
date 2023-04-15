@@ -11,7 +11,7 @@ ReactDOM.render(
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: orgColours.primary,
+          colorPrimary: orgColours.interactive,
           colorPrimaryBg: "#f1f5f9",
           fontFamily:
             "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
