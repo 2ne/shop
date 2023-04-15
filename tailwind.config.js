@@ -18,11 +18,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: orgColours.primary,
-        primary_text: orgColours.primary_text,
-        secondary: orgColours.secondary,
-        secondary_text: orgColours.secondary_text,
-        interactive: orgColours.interactive,
+        primary: orgColours?.primary ?? "#056eef",
+        primary_text: orgColours?.primary_text ?? "#fff",
+        secondary: orgColours?.secondary ?? "#0b58c2",
+        secondary_text: orgColours?.secondary_text ?? "#fff",
+        interactive: orgColours?.interactive ?? "#056eef",
       },
       fontFamily: {
         sans: [

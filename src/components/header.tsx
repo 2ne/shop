@@ -1,14 +1,15 @@
 import React from "react";
 import Wrapper from "./wrapper";
 import { Link } from "react-router-dom";
+import { orgLogo, orgName } from "../org";
 
 interface HeaderProps {
   loggedIn?: boolean;
   checkout?: boolean;
   basketCount?: number;
   hideButtons?: boolean;
-  orgName?: string;
-  orgLogo?: string;
+  name?: string;
+  logo?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -16,21 +17,21 @@ const Header: React.FC<HeaderProps> = ({
   checkout,
   basketCount,
   hideButtons,
-  orgName = "CG Swim School",
-  orgLogo = "./src/assets/logo.png",
+  name = orgName,
+  logo = orgLogo,
 }) => {
   return (
     <header className="relative z-20 bg-primary text-primary_text">
       <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
         <Link to="/Home" className="flex items-center group gap-x-2 sm:gap-x-3">
           <img
-            src={orgLogo}
-            alt={orgName + " Logo"}
+            src={logo}
+            alt={name + " Logo"}
             className="block max-h-[3.5rem]"
             loading="lazy"
           />
           <h1 className="!text-primary_text heading-xl line-clamp-3 group-hover:underline">
-            {orgName}
+            {name}
           </h1>
         </Link>
         {!hideButtons && (

@@ -4,14 +4,14 @@ import ReactDOM from "react-dom";
 import { ConfigProvider } from "antd";
 import "./App.css";
 import App from "./App";
-import { orgColours } from "./org.js";
+import { orgColours } from "./org";
 
 ReactDOM.render(
   <React.StrictMode>
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: orgColours.interactive,
+          colorPrimary: orgColours?.interactive ?? "#056eef",
           colorPrimaryBg: "#f1f5f9",
           fontFamily:
             "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
