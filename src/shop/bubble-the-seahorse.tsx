@@ -181,12 +181,12 @@ function BubbleTheSeahorse(): ReactElement {
               </p>
             </section>
             <section className="space-y-4">
-              <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
+              <div className="pb-2 mb-3 border-b border-neutral-200 heading">
                 Coach Profile ·{" "}
                 <span className="sub-heading">Arsène Wenger</span>
               </div>
               <img
-                className="float-left aspect-[3/2] object-cover max-w-[25%] rounded-md mr-4 mb-3 relative -top-2"
+                className="sm:float-left aspect-[3/2] object-cover sm:max-w-[25%] rounded-md sm:mr-4 sm:mb-3 relative sm:-top-2"
                 src="https://m.media-amazon.com/images/M/MV5BMDUwNWI1NDktZTkyYS00NTgwLWI3YTAtNDM4YWNkNTU3ZTdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg"
               />
               <p className="text-sm text-neutral-800">
