@@ -16,7 +16,7 @@ function BubbleTheSeahorse(): ReactElement {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="space-y-4 sm:space-y-8">
-        <div className="sticky top-0 space-y-0.5 pb-4 border-b sm:space-y-0 border-neutral-200 bg-white/95 z-20 -mt-3 pt-3">
+        <div className="sticky top-0 space-y-0.5 py-3 border-b sm:space-y-0 border-neutral-200 bg-white/95 z-20 -mt-3">
           <h2 className="heading-lg">Bubble the Seahorse</h2>
           <h3 className="sub-heading">Every Tuesday at 11:30 - 12:00</h3>
         </div>
@@ -24,7 +24,7 @@ function BubbleTheSeahorse(): ReactElement {
           <div className="grid rounded-md lg:sticky lg:top-28 place-items-center self-start aspect-[3/2] bg-neutral-100">
             <img
               src="https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
-              className="rounded-md aspect-[3/2] object-cover h-full w-full"
+              className="rounded-md aspect-[3/2] object-contain h-full w-full"
               loading="lazy"
               alt="Product illustration"
             />
@@ -114,7 +114,7 @@ function BubbleTheSeahorse(): ReactElement {
               </div>
             </section>
             <section className="space-y-4 lg:contents">
-              <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:bg-white/95 lg:mt-6">
+              <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-[.875rem] sm:max-lg:py-4 max-lg:bg-white/95 lg:mt-6">
                 <div className="container lg:p-0">
                   <Button
                     size="large"
@@ -142,7 +142,7 @@ function BubbleTheSeahorse(): ReactElement {
                 <dd>
                   3 discounts are available.{" "}
                   <button type="button" className="link">
-                    View options
+                    View
                   </button>
                 </dd>
                 <dt>Age</dt>
@@ -167,7 +167,7 @@ function BubbleTheSeahorse(): ReactElement {
                 <dd>
                   A service fee will be applied at checkout.{" "}
                   <button type="button" className="link">
-                    View details
+                    View
                   </button>
                 </dd>
                 <dt>Aprroval</dt>
