@@ -136,7 +136,7 @@ function BubbleTheSeahorse(): ReactElement {
               <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
                 Details
               </div>
-              <dl className="text-sm grid grid-cols-4 sm:grid-cols-5 [&>dt]:col-span-1 [&>dt]:text-neutral-500 [&>dd]:col-span-3 sm:[&>dd]:col-span-4 [&>dd]:text-neutral-800 gap-y-4">
+              <dl className="text-sm grid grid-cols-4 sm:grid-cols-5 [&>dt]:col-span-1 [&>dt]:truncate [&>dt]:text-neutral-500 [&>dd]:col-span-3 sm:[&>dd]:col-span-4 [&>dd]:text-neutral-800 gap-y-4 gap-x-2">
                 <dt>Discounts</dt>
                 <dd>
                   3 discounts are available.{" "}
