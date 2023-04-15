@@ -1,3 +1,4 @@
+import { orgColours } from "./src/org";
 module.exports = {
   content: ["./dist/**/*.html", "./src/**/*.{js,jsx,ts,tsx}", "./*.html"],
   theme: {
@@ -17,11 +18,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "#e4f7fb",
-        primary_text: "#005da2",
-        secondary: "#005da2",
-        secondary_text: "#ffffff",
-        interactive: "#005da2",
+        primary: orgColours.primary,
+        primary_text: orgColours.primary_text,
+        secondary: orgColours.secondary,
+        secondary_text: orgColours.secondary_text,
+        interactive: orgColours.interactive,
       },
       fontFamily: {
         sans: [

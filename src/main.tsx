@@ -4,13 +4,14 @@ import ReactDOM from "react-dom";
 import { ConfigProvider } from "antd";
 import "./App.css";
 import App from "./App";
+import { orgColours } from "../src/org";
 
 ReactDOM.render(
   <React.StrictMode>
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#005da2", //tailwind interactive branding colour
+          colorPrimary: orgColours.primary,
           colorPrimaryBg: "#f1f5f9",
           fontFamily:
             "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
