@@ -21,10 +21,10 @@ function BubbleTheSeahorse(): ReactElement {
           <h3 className="sub-heading">Every Tuesday at 11:30 - 12:00</h3>
         </div>
         <div className="space-y-4 sm:space-y-0 sm:grid sm:gap-10 lg:grid-cols-2">
-          <div>
+          <div className="grid rounded-md lg:sticky lg:top-28 place-items-center self-start aspect-[3/2] bg-neutral-100">
             <img
               src="https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
-              className="rounded-md aspect-[3/2] object-cover lg:sticky lg:top-28"
+              className="rounded-md aspect-[3/2] object-cover h-full w-full"
               loading="lazy"
               alt="Product illustration"
             />
