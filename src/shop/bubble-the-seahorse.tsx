@@ -194,7 +194,7 @@ function BubbleTheSeahorse(): ReactElement {
                 <span className="sub-heading">Arsène Wenger</span>
               </div>
               <img
-                className="sm:float-left aspect-[3/2] object-cover sm:max-w-[30%] rounded-md sm:mr-4 sm:mb-4 relative sm:-top-1"
+                className="sm:float-left aspect-[3/2] object-cover sm:max-w-[30%] rounded-md sm:mr-5 sm:mb-5 relative sm:-top-1"
                 src="https://m.media-amazon.com/images/M/MV5BMDUwNWI1NDktZTkyYS00NTgwLWI3YTAtNDM4YWNkNTU3ZTdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg"
                 alt="Arsène Wenger"
               />
