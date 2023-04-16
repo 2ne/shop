@@ -6,12 +6,13 @@ export interface OrgColours {
   interactive: string;
 }
 
-export interface OrgTile {
-  imgSrc: string;
+export interface OrgTiles {
+  img: string;
   title: string;
+  link: string;
 }
 
 export const orgName: string;
 export const orgLogo: string;
 export const orgColours: OrgColours;
-export const OrgTiles: OrgTile[];
+export const orgTiles: OrgTiles[];
