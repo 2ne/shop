@@ -22,9 +22,9 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
           >
             <li>
               <div className="flex items-center">
-                <a href="/Home" className="truncate hover:underline">
+                <Link to="/Home" className="truncate hover:underline">
                   Home
-                </a>
+                </Link>
               </div>
             </li>
             {items && (

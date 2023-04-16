@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({
           <img
             src={logo}
             alt={name + " Logo"}
-            className="block max-h-[3.5rem] sm:max-h-[4rem]"
+            className="block max-h-[3.5rem] sm:max-h-[4rem] rounded"
             loading="lazy"
           />
           <h1 className="!text-primary_text heading-xl line-clamp-3 group-hover:underline">

@@ -16,7 +16,7 @@ const Tiles: React.FC = () => {
               <img
                 src={item.img}
                 alt={item.title}
-                className={`block aspect-[3/2] object-cover ${
+                className={`block object-contain ${
                   item.title
                     ? "rounded-t-[calc(0.375rem-0.125rem)]"
                     : "rounded-[calc(0.375rem-0.125rem)]"
