@@ -267,7 +267,7 @@ const CalendarWeek: React.FC = () => {
           </Link>
         ))}
       </div>
-      <div className="flex w-full gap-3">
+      <div className="hidden w-full gap-3 lg:flex">
         {Object.entries(orgEvents).map(([day, events]) => (
           <div key={day} className="max-w-[25%] w-full min-w-0">
             <div className="hidden mb-2 lg:block">
