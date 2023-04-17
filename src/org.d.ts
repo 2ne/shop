@@ -12,7 +12,22 @@ export interface OrgTiles {
   link: string;
 }
 
+export interface Event {
+  img: string;
+  title: string;
+  link: string;
+  address: string;
+  startTime: string;
+  endTime: string;
+  price: string;
+}
+
+export interface OrgEvents {
+  [key: string]: Event[];
+}
+
 export const orgName: string;
 export const orgLogo: string;
 export const orgColours: OrgColours;
 export const orgTiles: OrgTiles[];
+export const orgEvents: OrgEvents;
