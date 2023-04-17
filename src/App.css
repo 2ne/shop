@@ -121,7 +121,7 @@ dt {
 }
 
 .ant-select-token {
-  @apply w-auto max-lg:[&>*]:!rounded-full lg:w-44;
+  @apply w-auto max-lg:[&>*]:!rounded-full lg:w-40;
 }
 
 .ant-select-token .ant-select-selection-placeholder,
