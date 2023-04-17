@@ -12,7 +12,7 @@ const Main: React.FC<MainProps> = ({ children, className }) => {
     };
   }, []);
 
-  const baseClassNames = "min-h-screen w-full px-3 py-6 mx-auto container";
+  const baseClassNames = "min-h-screen w-full py-6 mx-auto container";
   const combinedClassNames = className
     ? `${baseClassNames} ${className}`
     : baseClassNames;

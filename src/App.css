@@ -102,3 +102,31 @@ dt {
 .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
   @apply ring-1 ring-interactive font-medium;
 }
+
+.ant-select-mobile {
+  @apply max-lg:!fixed max-lg:!p-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bottom-0 max-lg:!top-auto max-lg:!w-full;
+}
+
+.ant-select-mobile:before {
+  @apply max-lg:content-[""] max-lg:fixed max-lg:inset-0 max-lg:bg-neutral-900/50 max-lg:!z-40 max-lg:!pointer-events-none;
+}
+
+.ant-select-mobile > div {
+  @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative;
+}
+
+.ant-select-mobile .ant-select-item {
+  @apply max-lg:!px-4;
+}
+
+.ant-select-token {
+  @apply w-auto max-lg:[&>*]:!rounded-full lg:w-44;
+}
+
+.ant-select-token .ant-select-selection-placeholder {
+  @apply max-lg:text-neutral-900 max-lg:font-medium;
+}
+
+.ant-select-token .ant-select-arrow {
+  @apply max-lg:text-neutral-900;
+}

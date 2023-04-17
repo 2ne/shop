@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 
 const CalendarWeekDayEvent: React.FC = () => {
   return (
-    <Link to="/BubbleTheSeahorse" className="p-3 text-sm card">
+    <Link
+      to="/BubbleTheSeahorse"
+      className="p-3 text-sm card max-lg:grid max-lg:gap-4 max-sm:grid-cols-5 max-lg:grid-cols-3 max-lg:items-center"
+    >
       <img
-        className="aspect-[3/2] object-cover mx-auto"
+        className="aspect-[3/2] object-cover mx-auto max-sm:col-span-2 max-lg:col-span-1"
         src="https://app.joinin.online/services/anonymous/photo/8b0f7a97-c07e-4fd3-ae37-f2fcc6ebff18"
       />
-      <div className="space-y-0.5">
+      <div className="space-y-0.5 max-sm:col-span-3 max-lg:col-span-2">
         <h3 className="mb-1.5 heading-sm">Smiley the Turtle</h3>
         <div className="flex items-center gap-1">
           <svg

@@ -9,7 +9,7 @@ interface CalendarWeekDayProps {
 const CalendarWeekDay: React.FC<CalendarWeekDayProps> = ({ day }) => {
   return (
     <section className="relative flex-grow w-full lg:w-auto lg:max-w-[25%] shrink-0 lg:shrink">
-      <div className="sticky top-0 z-20 flex items-center py-3 mb-3 lg:mb-0 lg:static backdrop-blur bg-blend-overlay bg-white/75">
+      <div className="sticky top-0 z-20 flex items-center gap-3 py-3.5 mb-2 sm:mb-3 lg:mb-0 lg:static bg-gradient-to-b from-white/95">
         <Button shape="circle" className="!rounded-md bg-white lg:hidden">
           <svg
             width="24"
@@ -28,9 +28,10 @@ const CalendarWeekDay: React.FC<CalendarWeekDayProps> = ({ day }) => {
           </svg>
         </Button>
         <div className="flex-grow text-center lg:text-left">
-          <span className="px-4 py-2 rounded-full lg:p-0 lg:bg-transparent lg:rounded-none heading">
-            {day}
-          </span>
+          <Button block={true} className="!bg-white lg:hidden">
+            <span className="font-medium">{day}</span>
+          </Button>
+          <span className="hidden lg:block heading">{day}</span>
         </div>
         <Button shape="circle" className="!rounded-md bg-white lg:hidden">
           <svg
