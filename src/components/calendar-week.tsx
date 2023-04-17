@@ -43,11 +43,10 @@ const CalendarWeek: React.FC = () => {
 
   return (
     <>
-      <div className="mb-0.5 lg:-mt-3 lg:py-3 lg:mb-8 lg:flex lg:items-end lg:border-b lg:border-neutral-200 lg:sticky lg:top-0 lg:z-20 lg:bg-white/95">
+      <div className="mb-0.5 lg:-mt-3 lg:py-3 lg:mb-8 lg:flex lg:items-end lg:border-b lg:border-neutral-200 lg:sticky lg:top-0 lg:z-20 lg:bg-white/95 ring-2 ring-white/95">
         <h2 className="heading-lg">Adult and Child Lessons</h2>
         <div className="max-lg:overflow-x-auto max-lg:z-30 max-lg:bg-white/95 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:ml-auto max-lg:py-2.5 max-lg:border-t max-lg:border-black/10">
-          <div className="container flex items-center gap-2 lg:gap-2.5 lg:p-0">
-            <span className="hidden lg:block heading-sm">Filter</span>
+          <div className="container flex lg:flex-wrap items-center gap-2 lg:gap-2.5 lg:p-0">
             <Select
               value={selectedValue}
               allowClear={true}
@@ -164,10 +163,8 @@ const CalendarWeek: React.FC = () => {
       <div className="items-start hidden w-full gap-3 -mt-2 lg:flex">
         {Object.entries(orgEvents).map(([day, events]) => (
           <div key={day} className="max-w-[25%] w-full min-w-0">
-            <div className="sticky z-10 hidden mb-2 text-center lg:block top-16">
-              <div className="inline-flex px-3 py-1 rounded-full bg-white/95 heading-sm">
-                {day}
-              </div>
+            <div className="sticky z-10 hidden pt-2.5 pb-2 text-center mb-1 lg:block top-14 bg-white/95 heading-sm ring-2 ring-white/95">
+              {day}
             </div>
             <div className="grid grid-cols-1 gap-3 p-px">
               {events.map((event: Event, index: number) => (

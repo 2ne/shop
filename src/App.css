@@ -16,7 +16,7 @@
 }
 
 .card {
-  @apply bg-white rounded-md shadow shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10 sm:transition-transform sm:origin-bottom sm:hover:scale-[1.015];
+  @apply bg-white rounded-md shadow shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10 sm:transition-transform sm:hover:scale-[1.015];
 }
 
 .heading-xs {
