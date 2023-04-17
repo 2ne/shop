@@ -6,15 +6,21 @@ type SelectedValue = string | undefined;
 
 const CalendarWeek: React.FC = () => {
   const [selectedValue, setSelectedValue] = useState<SelectedValue>(undefined);
+  const [selectedValue1, setSelectedValue1] =
+    useState<SelectedValue>(undefined);
 
   const handleReset = () => {
     setSelectedValue(undefined);
-    console.log(`unselect ${selectedValue}`);
+    setSelectedValue1(undefined);
   };
+
   const handleChange = (value: string) => {
     setSelectedValue(value);
-    console.log(`selected ${value}`);
   };
+  const handleChange1 = (value: string) => {
+    setSelectedValue1(value);
+  };
+
   return (
     <>
       <div className="mb-0.5 lg:pb-4 lg:mb-4 lg:flex lg:items-end lg:border-b lg:border-neutral-200">
@@ -46,7 +52,16 @@ const CalendarWeek: React.FC = () => {
                 },
               ]}
             />
-            {selectedValue && (
+            <Select
+              value={selectedValue1}
+              allowClear={true}
+              placeholder="Location"
+              onChange={handleChange1}
+              className="ant-select-token"
+              popupClassName="ant-select-mobile"
+              options={[{ value: "littleThetford", label: "Little Thetford" }]}
+            />
+            {(selectedValue || selectedValue1) && (
               <Button
                 type="link"
                 onClick={handleReset}

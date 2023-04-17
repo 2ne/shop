@@ -124,7 +124,8 @@ dt {
   @apply w-auto max-lg:[&>*]:!rounded-full lg:w-44;
 }
 
-.ant-select-token .ant-select-selection-placeholder {
+.ant-select-token .ant-select-selection-placeholder,
+.ant-select-token .ant-select-selection-item {
   @apply max-lg:text-neutral-900 max-lg:font-medium;
 }
 
