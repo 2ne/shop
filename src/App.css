@@ -105,7 +105,7 @@ dt {
 }
 
 .ant-select-mobile {
-  @apply max-lg:!fixed max-lg:!p-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bottom-0 max-lg:!top-auto max-lg:!w-full;
+  @apply max-lg:!rounded-t-md max-lg:!rounded-b-none max-lg:!fixed max-lg:!p-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bottom-0 max-lg:!top-auto max-lg:!w-full;
 }
 
 .ant-select-mobile:before {
@@ -113,11 +113,11 @@ dt {
 }
 
 .ant-select-mobile > div {
-  @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative;
+  @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative max-lg:!p-3;
 }
 
 .ant-select-mobile .ant-select-item {
-  @apply max-lg:!px-4;
+  @apply max-lg:!px-3;
 }
 
 .ant-select-token {

@@ -65,7 +65,7 @@ const CalendarWeek: React.FC = () => {
               <Button
                 type="link"
                 onClick={handleReset}
-                className="!bg-white !-ml-2"
+                className="!bg-white !-ml-2 lg:hidden"
                 title="Clear filters"
               >
                 <span className="font-medium">Clear</span>
