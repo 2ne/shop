@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import CalendarWeekDay from "./day";
-import { Select } from "antd";
+import { Button, Select } from "antd";
+
+type SelectedValue = string | undefined;
 
 const CalendarWeek: React.FC = () => {
+  const [selectedValue, setSelectedValue] = useState<SelectedValue>(undefined);
+
+  const handleReset = () => {
+    setSelectedValue(undefined);
+    console.log(`unselect ${selectedValue}`);
+  };
   const handleChange = (value: string) => {
+    setSelectedValue(value);
     console.log(`selected ${value}`);
   };
   return (
@@ -14,6 +23,7 @@ const CalendarWeek: React.FC = () => {
           <div className="container flex items-center gap-2 lg:gap-2.5 lg:p-0">
             <span className="hidden lg:block heading-sm">Filter</span>
             <Select
+              value={selectedValue}
               allowClear={true}
               placeholder="Class"
               onChange={handleChange}
@@ -36,6 +46,16 @@ const CalendarWeek: React.FC = () => {
                 },
               ]}
             />
+            {selectedValue && (
+              <Button
+                type="link"
+                onClick={handleReset}
+                className="!bg-white !-ml-2"
+                title="Clear filters"
+              >
+                <span className="font-medium">Clear</span>
+              </Button>
+            )}
           </div>
         </div>
       </div>

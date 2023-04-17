@@ -10,6 +10,7 @@
   height: 100dvh;
 }
 
+.ant-btn-link,
 .link {
   @apply font-medium text-interactive hover:underline;
 }
