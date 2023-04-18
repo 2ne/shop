@@ -7,7 +7,7 @@ function Checkout(): ReactElement {
   return (
     <>
       <Header checkout={true} />
-      <CheckoutTimer />
+      <CheckoutTimer timer={25} />
       <Main>YO</Main>
       <Footer />
     </>

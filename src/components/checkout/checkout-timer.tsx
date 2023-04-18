@@ -38,8 +38,4 @@ const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
   );
 };
 
-CheckoutTimer.defaultProps = {
-  timer: 25,
-};
-
 export default CheckoutTimer;
