@@ -23,8 +23,8 @@ function BubbleTheSeahorse(): ReactElement {
     title: "Bubble the Seahorse",
     subTitle: "Every Tuesday at 11:30 - 12:00",
     dates: "4th April - 25th April",
-    price: "£16.00 · per session",
-    cost: "£64.00 · per month",
+    price: "£16.00",
+    cost: "£64.00",
   };
 
   const handleBasketClick = () => {
@@ -32,7 +32,7 @@ function BubbleTheSeahorse(): ReactElement {
 
     setTimeout(() => {
       setBasketIsClicked(false);
-    }, 5000);
+    }, 4000);
   };
 
   const addToBasketAndOpen = () => {
