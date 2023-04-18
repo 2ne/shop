@@ -13,6 +13,9 @@ ReactDOM.render(
         token: {
           colorPrimary: orgColours?.interactive ?? "#1890ff",
           colorPrimaryBg: "#f5f5f5",
+          colorTextHeading: "#262626",
+          colorText: "#262626",
+          colorTextDescription: "#737373",
           fontFamily:
             "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
           borderRadius: 6,

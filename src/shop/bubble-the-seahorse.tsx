@@ -4,12 +4,15 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Main from "../components/main";
 import { Button, Radio } from "antd";
+import { useBasketContext } from "../components/basket/basket-context";
 
 function BubbleTheSeahorse(): ReactElement {
   const breadcrumbItems = [
     { label: "Adult and Child Lessons", link: "/AdultChildLessons" },
     { label: "Bubble the Seahorse", link: "/BubbleTheSeahorse" },
   ];
+
+  const { openBasket } = useBasketContext();
 
   return (
     <>
@@ -121,6 +124,7 @@ function BubbleTheSeahorse(): ReactElement {
                     type="primary"
                     block
                     className="!h-10 lg:!h-12"
+                    onClick={openBasket}
                   >
                     <div className="text-sm sm:text-base">Add to basket</div>
                   </Button>

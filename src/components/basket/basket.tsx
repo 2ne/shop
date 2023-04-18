@@ -15,7 +15,7 @@ const Basket: React.FC = () => {
       onClose={closeBasket}
       open={isOpen}
     >
-      <p>Some contents...</p>
+      <div>Some contents...</div>
     </Drawer>
   );
 };
