@@ -10,13 +10,11 @@ const Basket: React.FC = () => {
 
   return (
     <Drawer
-      title="Basic Drawer"
+      title="Basket"
       placement={drawerPlacement}
       onClose={closeBasket}
       open={isOpen}
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
       <p>Some contents...</p>
     </Drawer>
   );

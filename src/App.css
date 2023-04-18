@@ -132,3 +132,11 @@ dt {
 .ant-select-token .ant-select-arrow {
   @apply max-lg:text-neutral-900;
 }
+
+.ant-drawer-header-title {
+  @apply flex flex-row-reverse;
+}
+
+.ant-drawer-header-title .ant-drawer-close {
+  @apply !m-0;
+}

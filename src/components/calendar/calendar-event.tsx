@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Event } from "../org";
+import { Event } from "../../org";
 
 interface CalendarEventProps {
   key: string;
