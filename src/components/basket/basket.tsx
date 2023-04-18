@@ -69,9 +69,7 @@ const Basket: React.FC = () => {
                 />
                 <div className="grid flex-1 min-w-0 text-sm">
                   <div className="font-medium">{item.title}</div>
-                  <div className="-mt-1 font-medium text-neutral-500">
-                    {item.subTitle}
-                  </div>
+                  <div className="-mt-1 text-neutral-500">{item.subTitle}</div>
                   <div className="mt-auto mb-0.5">
                     <Tooltip title="Remove item" placement="right">
                       <button
