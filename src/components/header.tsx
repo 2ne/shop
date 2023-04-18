@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
           </h1>
         </Link>
         {!hideButtons && (
-          <div className="flex items-center gap-5 ml-auto sm:gap-8">
+          <div className="flex items-center gap-6 ml-auto sm:gap-8">
             {!loggedIn && !checkout && (
               <>
                 <button

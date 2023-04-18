@@ -21,7 +21,7 @@ const Basket: React.FC = () => {
     >
       <div className="divide-y">
         {items.length === 0 ? (
-          <div className="grid h-64 gap-4 text-center place-items-center text-neutral-400">
+          <div className="grid gap-4 text-center h-52 sm:h-64 place-items-center text-neutral-400">
             <div className="grid gap-2 place-items-center">
               <div>
                 <svg
