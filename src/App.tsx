@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./shop/home";
 import AdultChildLessons from "./shop/adult-child-lessons";
 import BubbleTheSeahorse from "./shop/bubble-the-seahorse";
-import { BasketProvider } from "./components/basket-context";
-import BasketLayout from "./components/basket-layout";
+import { BasketProvider } from "./components/basket/basket-context";
+import BasketLayout from "./components/basket/basket-layout";
 
 function App(): ReactElement {
   return (

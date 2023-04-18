@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Select } from "antd";
-import { orgEvents, Event } from "../org";
-import { Link } from "react-router-dom";
+import { orgEvents, Event } from "../../org";
 import CalendarEvent from "./calendar-event";
 
 type SelectedValue = string | undefined;

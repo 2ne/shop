@@ -2,8 +2,7 @@ import React from "react";
 import Wrapper from "./wrapper";
 import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
-import { useBasketContext } from "./basket-context";
-import Basket from "./basket";
+import { useBasketContext } from "./basket/basket-context";
 
 interface HeaderProps {
   loggedIn?: boolean;
