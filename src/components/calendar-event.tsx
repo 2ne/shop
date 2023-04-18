@@ -34,6 +34,45 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             viewBox="0 0 24 24"
             className="-ml-1 text-neutral-500 shrink-0"
           >
+            <circle
+              cx="12"
+              cy="12"
+              r="7.25"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            ></circle>
+            <path
+              stroke="currentColor"
+              strokeWidth="1.5"
+              d="M12 8V12L14 14"
+            ></path>
+          </svg>
+          <span>{event.startTime}</span>
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="w-6 h-6 -mx-1.5 text-neutral-500"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
+              d="M10.75 8.75L14.25 12L10.75 15.25"
+            ></path>
+          </svg>
+          <span>{event.endTime}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="-ml-1 text-neutral-500 shrink-0"
+          >
             <path
               stroke="currentColor"
               strokeLinecap="round"
@@ -52,46 +91,6 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             ></circle>
           </svg>
           <span className="truncate">{event.address}</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="-ml-1 text-neutral-500 shrink-0"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="7.25"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            ></circle>
-            <path
-              stroke="currentColor"
-              strokeWidth="1.5"
-              d="M12 8V12L14 14"
-            ></path>
-          </svg>
-
-          <span>{event.startTime}</span>
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="w-6 h-6 -mx-1.5 text-neutral-500"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1"
-              d="M10.75 8.75L14.25 12L10.75 15.25"
-            ></path>
-          </svg>
-          <span>{event.endTime}</span>
         </div>
         <div className="flex items-center gap-1">
           <svg
