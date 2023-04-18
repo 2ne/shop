@@ -12,7 +12,20 @@ function BubbleTheSeahorse(): ReactElement {
     { label: "Bubble the Seahorse", link: "/BubbleTheSeahorse" },
   ];
 
-  const { openBasket } = useBasketContext();
+  const { openBasket, addItem } = useBasketContext();
+
+  const sampleItem = {
+    id: Math.random().toString(36).substring(2, 15),
+    image:
+      "https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
+    title: "Bubble the Seahorse",
+    price: 16,
+  };
+
+  const addToBasketAndOpen = () => {
+    addItem(sampleItem);
+    openBasket();
+  };
 
   return (
     <>
@@ -124,7 +137,7 @@ function BubbleTheSeahorse(): ReactElement {
                     type="primary"
                     block
                     className="!h-10 lg:!h-12"
-                    onClick={openBasket}
+                    onClick={addToBasketAndOpen}
                   >
                     <div className="text-sm sm:text-base">Add to basket</div>
                   </Button>

@@ -137,10 +137,26 @@ dt {
   @apply max-lg:text-neutral-900;
 }
 
-.ant-drawer-header-title {
+.ant-drawer .ant-drawer-content-wrapper {
+  @apply max-sm:!h-[75vh] sm:h-screen;
+}
+
+.ant-drawer .ant-drawer-content {
+  @apply max-sm:rounded-t-md overscroll-contain;
+}
+
+.ant-drawer .ant-drawer-header {
+  @apply border-0 px-4 sm:px-5;
+}
+
+.ant-drawer .ant-drawer-header-title {
   @apply flex flex-row-reverse;
 }
 
-.ant-drawer-header-title .ant-drawer-close {
+.ant-drawer .ant-drawer-close {
   @apply !m-0;
+}
+
+.ant-drawer .ant-drawer-body {
+  @apply p-4 pt-0 sm:pt-2 sm:px-5 flex flex-col;
 }
