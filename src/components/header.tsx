@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
 import { useBasketContext } from "./basket/basket-context";
 
-interface HeaderProps {
+export interface HeaderProps {
   loggedIn?: boolean;
   checkout?: boolean;
   basketCount?: number;
@@ -21,7 +21,8 @@ const Header: React.FC<HeaderProps> = ({
   name = orgName,
   logo = orgLogo,
 }) => {
-  const { openBasket } = useBasketContext();
+  const { openBasket, itemCount } = useBasketContext();
+  basketCount = itemCount();
   return (
     <header className="relative z-20 bg-primary text-primary_text">
       <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
@@ -79,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({
                   onClick={openBasket}
                 >
                   {basketCount && basketCount > 0 ? (
-                    <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-600 rounded-full -top-2.5 right-0 place-items-center">
+                    <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-2.5 right-0 place-items-center">
                       <span>{basketCount}</span>
                     </div>
                   ) : null}

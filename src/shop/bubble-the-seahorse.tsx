@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import Breadcrumb from "../components/breadcrumb";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -7,6 +7,8 @@ import { Button, Radio } from "antd";
 import { useBasketContext } from "../components/basket/basket-context";
 
 function BubbleTheSeahorse(): ReactElement {
+  const [basketIsClicked, setBasketIsClicked] = useState(false);
+
   const breadcrumbItems = [
     { label: "Adult and Child Lessons", link: "/AdultChildLessons" },
     { label: "Bubble the Seahorse", link: "/BubbleTheSeahorse" },
@@ -19,13 +21,30 @@ function BubbleTheSeahorse(): ReactElement {
     image:
       "https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
     title: "Bubble the Seahorse",
-    price: 16,
+    subTitle: "Every Tuesday at 11:30 - 12:00",
+    dates: "4th April - 25th April",
+    price: "£16.00 · per session",
+    cost: "£64.00 · per month",
+  };
+
+  const handleBasketClick = () => {
+    setBasketIsClicked(true);
+
+    setTimeout(() => {
+      setBasketIsClicked(false);
+    }, 5000);
   };
 
   const addToBasketAndOpen = () => {
+    handleBasketClick();
     addItem(sampleItem);
     openBasket();
   };
+
+  const basketButtonClasses =
+    basketIsClicked && "pointer-events-none !bg-emerald-600";
+
+  const basketButtonText = basketIsClicked ? "Added" : "Add to basket";
 
   return (
     <>
@@ -136,10 +155,12 @@ function BubbleTheSeahorse(): ReactElement {
                     size="large"
                     type="primary"
                     block
-                    className="!h-10 lg:!h-12"
+                    className={`!transition-all !duration-500 !h-10 lg:!h-12 ${basketButtonClasses}`}
                     onClick={addToBasketAndOpen}
                   >
-                    <div className="text-sm sm:text-base">Add to basket</div>
+                    <div className="text-sm sm:text-base">
+                      {basketButtonText}
+                    </div>
                   </Button>
                 </div>
               </div>

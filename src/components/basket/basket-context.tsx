@@ -4,7 +4,10 @@ interface Item {
   id: string;
   image: string;
   title: string;
-  price: number;
+  subTitle: string;
+  dates: string;
+  price: string;
+  cost: string;
 }
 
 interface BasketContextValue {

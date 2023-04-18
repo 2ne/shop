@@ -4,7 +4,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Main from "../components/main";
 import CalendarWeek from "../components/calendar/calendar-week";
-
 function AdultChildLessons(): ReactElement {
   const breadcrumbItems = [
     { label: "Adult and Child Lessons", link: "/AdultChildLessons" },

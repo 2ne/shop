@@ -4,7 +4,6 @@ import Header from "../components/header";
 import Tiles from "../components/tile";
 import Footer from "../components/footer";
 import Main from "../components/main";
-
 function Home(): ReactElement {
   return (
     <>
