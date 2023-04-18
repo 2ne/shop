@@ -8,6 +8,11 @@ const Basket: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: 639 });
   const drawerPlacement = isMobile ? "bottom" : "right";
 
+  const goToCheckout = () => {
+    closeBasket();
+    window.location.href = "/Checkout";
+  };
+
   return (
     <Drawer
       title={
@@ -126,7 +131,7 @@ const Basket: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <dl className="grid grid-cols-[5rem,1fr] [&>dt]:truncate gap-y-2.5 gap-x-3.5 text-sm tracking-normal">
+              <dl className="grid grid-cols-[5rem,1fr] [&>dt]:truncate gap-y-2 gap-x-3.5 text-sm tracking-normal">
                 <dt>Dates</dt>
                 <dd>
                   {item.dates} ·{" "}
@@ -151,7 +156,13 @@ const Basket: React.FC = () => {
       </div>
       <div className="sticky z-10 px-4 py-4 mt-auto -mx-4 -mb-4 sm:px-5 sm:py-5 sm:-mx-5 -bottom-4 bg-white/95">
         {items.length !== 0 ? (
-          <Button size="large" type="primary" block className="!h-10 lg:!h-12">
+          <Button
+            onClick={goToCheckout}
+            size="large"
+            type="primary"
+            block
+            className="!h-10 lg:!h-12"
+          >
             <div className="text-sm sm:text-base">Checkout</div>
           </Button>
         ) : (

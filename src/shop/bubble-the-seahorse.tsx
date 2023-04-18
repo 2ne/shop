@@ -32,7 +32,7 @@ function BubbleTheSeahorse(): ReactElement {
 
     setTimeout(() => {
       setBasketIsClicked(false);
-    }, 4000);
+    }, 3500);
   };
 
   const addToBasketAndOpen = () => {

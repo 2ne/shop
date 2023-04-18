@@ -182,7 +182,7 @@ const Header: React.FC<HeaderProps> = ({
                   ></path>
                 </svg>
 
-                <div className="mt-0.5 heading-xs !text-primary_text leading-3">
+                <div className="mt-0.5 heading-xs !text-primary_text sm:!leading-4">
                   Secure <br />
                   Checkout
                 </div>
