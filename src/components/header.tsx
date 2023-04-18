@@ -2,6 +2,8 @@ import React from "react";
 import Wrapper from "./wrapper";
 import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
+import { useBasketContext } from "./basket-context";
+import Basket from "./basket";
 
 interface HeaderProps {
   loggedIn?: boolean;
@@ -20,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({
   name = orgName,
   logo = orgLogo,
 }) => {
+  const { openBasket } = useBasketContext();
   return (
     <header className="relative z-20 bg-primary text-primary_text">
       <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
@@ -74,6 +77,7 @@ const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   className="relative grid text-center group place-items-center"
+                  onClick={openBasket}
                 >
                   {basketCount && basketCount > 0 ? (
                     <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-600 rounded-full -top-2.5 right-0 place-items-center">
