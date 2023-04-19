@@ -8,7 +8,7 @@ import { useCheckoutContext } from "../checkout/checkout-context";
 const BasketDrawer: React.FC = () => {
   const { isCheckout } = useCheckoutContext();
   const { isOpen, closeBasket, items } = useBasketContext();
-  const isMobile = useMediaQuery({ maxWidth: 639 });
+  const isMobile = useMediaQuery({ maxWidth: 1023 });
   const drawerPlacement = isMobile ? "bottom" : "right";
 
   return (

@@ -142,11 +142,11 @@ dt {
 }
 
 .ant-drawer .ant-drawer-content-wrapper {
-  @apply max-sm:max-h-[calc(100%-5vh)];
+  @apply max-lg:max-h-[calc(100%-5vh)] max-lg:!h-[500px] max-w-[696px] mx-auto;
 }
 
 .ant-drawer .ant-drawer-content {
-  @apply max-sm:rounded-t-md;
+  @apply max-lg:rounded-t-md;
 }
 
 .ant-drawer .ant-drawer-body {

@@ -34,7 +34,7 @@ function Checkout(): ReactElement {
             <BasketTotals />
           </div>
         </aside>
-        <footer className="z-40 lg:hidden fixed bottom-0 left-0 right-0 py-4 shadow-[0_-1px_3px_0_rgb(0_0_0_/_0.1),_0_-1px_2px_-1px_rgb(0_0_0_/_0.1)] bg-white/95 ring-black/10">
+        <footer className="rounded-t-md z-40 lg:hidden fixed bottom-0 left-0 right-0 py-4 shadow-[0_-1px_3px_0_rgb(0_0_0_/_0.1),_0_-1px_2px_-1px_rgb(0_0_0_/_0.1)] bg-white/95 ring-black/10">
           <Wrapper>
             <Button
               onClick={isOpen ? closeBasket : openBasket}
