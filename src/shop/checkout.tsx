@@ -30,7 +30,7 @@ function Checkout(): ReactElement {
         </section>
         <aside className="hidden lg:pl-5 lg:block">
           <Basket />
-          <div className="pt-5 border-t border-neutral-200">
+          <div className="pt-5 mt-5 border-t border-neutral-200">
             <BasketTotals />
           </div>
         </aside>
