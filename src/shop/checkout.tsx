@@ -4,17 +4,20 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Main from "../components/main";
 import CheckoutSteps from "../components/checkout/checkout-steps";
+import Basket from "../components/basket/basket";
 function Checkout(): ReactElement {
   return (
     <>
       <Header checkout={true} />
       <CheckoutTimer timer={25} />
-      <Main className="grid sm:grid-cols-4 sm:[&>*]:px-4">
-        <div className="hidden sm:border-r sm:block">
-          <CheckoutSteps step={1} />
+      <Main className="gap-4 sm:divide-x sm:grid sm:grid-cols-4">
+        <div className="hidden sm:pr-4 sm:block">
+          <CheckoutSteps count={1} />
         </div>
-        <div className="col-span-2">2</div>
-        <div className="hidden sm:border-l sm:block">3</div>
+        <div className="sm:px-4 sm:col-span-2">2</div>
+        <div className="hidden sm:pl-4 sm:block">
+          <Basket />
+        </div>
       </Main>
       <Footer />
     </>
