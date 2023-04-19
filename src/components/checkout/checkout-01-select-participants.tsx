@@ -1,12 +1,14 @@
 import { Button, Form, Radio } from "antd";
 import React from "react";
-import Balancer from "react-wrap-balancer";
+import CheckoutStepHeader from "./checkout-step-header";
 
 const CheckoutSelectParticipants: React.FC = () => {
   return (
     <div className="space-y-4 lg:space-y-6 lg:max-w-xs lg:m-auto">
-      <header>
-        <div className="justify-center hidden mt-1 mb-3 lg:flex">
+      <CheckoutStepHeader
+        title="Select participants"
+        subtitle="Please select the participants that you are buying each product for."
+        icon={
           <svg
             width="24"
             height="24"
@@ -31,17 +33,8 @@ const CheckoutSelectParticipants: React.FC = () => {
               d="M12.25 19.25h-5.3c-1.18 0-2.06-1.04-1.46-2.055C6.363 15.723 8.24 14 12.25 14M17 14.75v4.5M19.25 17h-4.5"
             ></path>
           </svg>
-        </div>
-        <div>
-          <Balancer>
-            <div className="mb-2 heading-lg">Select participants</div>
-            <div className="sub-heading">
-              Please select the participants that you are buying each product
-              for.
-            </div>
-          </Balancer>
-        </div>
-      </header>
+        }
+      />
       <Form layout="vertical" className="space-y-6 text-left">
         <div className="p-3 space-y-3 border rounded-md border-neutral-200">
           <div className="flex gap-3.5 border-b pb-3">
@@ -52,12 +45,12 @@ const CheckoutSelectParticipants: React.FC = () => {
             />
             <div className="grid items-center flex-1 min-w-0 text-sm">
               <div>
-                <div className="-mt-1 font-medium">Bubble the Seahorse</div>
+                <div className="font-medium">Bubble the Seahorse</div>
                 <div className="text-neutral-500">
                   Every Tuesday at 11:30 - 12:00
                 </div>
               </div>
-              <div className="mt-auto text-xs text-neutral-400">
+              <div className="pt-1 mb-0.5 mt-auto text-xs text-neutral-400">
                 Participants must be 4 years or older.
               </div>
             </div>

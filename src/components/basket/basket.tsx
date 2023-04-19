@@ -80,7 +80,7 @@ const Basket: React.FC = () => {
                     <div className="text-neutral-500">{item.subTitle}</div>
                   </div>
                   {!isCheckout && (
-                    <div className="mt-auto mb-0.5">
+                    <div className="mt-auto mb-0.5 pt-1">
                       <Tooltip title="Remove item" placement="right">
                         <button
                           type="button"
