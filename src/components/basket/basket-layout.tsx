@@ -1,11 +1,11 @@
 import React from "react";
-import Basket from "./basket";
+import BasketDrawer from "./basket-drawer";
 
 const BasketLayout: React.FC = ({ children }) => {
   return (
     <>
       {children}
-      <Basket />
+      <BasketDrawer />
     </>
   );
 };

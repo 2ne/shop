@@ -3,10 +3,10 @@ import Wrapper from "./wrapper";
 import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
 import { useBasketContext } from "./basket/basket-context";
+import { useCheckoutContext } from "./checkout/checkout-context";
 
 export interface HeaderProps {
   loggedIn?: boolean;
-  checkout?: boolean;
   basketCount?: number;
   hideButtons?: boolean;
   name?: string;
@@ -15,13 +15,13 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({
   loggedIn,
-  checkout,
   basketCount,
   hideButtons,
   name = orgName,
   logo = orgLogo,
 }) => {
   const { openBasket, itemCount } = useBasketContext();
+  const { isCheckout } = useCheckoutContext();
   basketCount = itemCount();
   return (
     <header className="relative z-20 bg-primary text-primary_text">
@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({
         </Link>
         {!hideButtons && (
           <div className="flex items-center gap-6 ml-auto sm:gap-8">
-            {!loggedIn && !checkout && (
+            {!loggedIn && !isCheckout && (
               <>
                 <button
                   type="button"
@@ -120,7 +120,7 @@ const Header: React.FC<HeaderProps> = ({
                 </button>
               </>
             )}
-            {loggedIn && !checkout && (
+            {loggedIn && !isCheckout && (
               <>
                 <button
                   type="button"
@@ -157,7 +157,7 @@ const Header: React.FC<HeaderProps> = ({
                 </button>
               </>
             )}
-            {checkout && (
+            {isCheckout && (
               <div className="grid text-center place-items-center">
                 <svg
                   width="24"

@@ -86,7 +86,7 @@ const CalendarWeek: React.FC = () => {
                 className="!bg-white !-ml-2 lg:hidden"
                 title="Clear filters"
               >
-                <span className="font-medium">Clear</span>
+                Clear
               </Button>
             )}
           </div>
@@ -116,7 +116,7 @@ const CalendarWeek: React.FC = () => {
         </Button>
         <div className="flex-grow text-center">
           <Button block={true} className="!bg-white">
-            <span className="font-medium">{activeDay}</span>
+            {activeDay}
           </Button>
         </div>
         <Button

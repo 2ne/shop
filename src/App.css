@@ -61,7 +61,7 @@ dt {
 }
 
 .ant-btn {
-  @apply inline-flex items-center !rounded-md;
+  @apply inline-flex items-center !rounded-md font-medium;
 }
 
 .ant-btn-primary {
@@ -73,11 +73,11 @@ dt {
 }
 
 .ant-form-vertical .ant-form-item-label {
-  @apply pb-1;
+  @apply pb-1.5 font-medium text-sm;
 }
 
 .ant-form-vertical .ant-form-item-extra {
-  @apply pt-1;
+  @apply pt-1.5 text-sm;
 }
 
 .ant-form-item-required {
