@@ -25,6 +25,7 @@ function BubbleTheSeahorse(): ReactElement {
     dates: "4th April - 25th April",
     price: "£16.00",
     cost: "£64.00",
+    billing: "Monthly on the 1st",
   };
 
   const handleBasketClick = () => {
@@ -161,12 +162,10 @@ function BubbleTheSeahorse(): ReactElement {
                     size="large"
                     type="primary"
                     block
-                    className={`!transition-all !duration-500 !h-10 lg:!h-12 ${basketButtonClasses}`}
+                    className={`!transition-all !duration-500 ${basketButtonClasses}`}
                     onClick={addToBasketAndOpen}
                   >
-                    <div className="text-sm sm:text-base">
-                      {basketButtonText}
-                    </div>
+                    {basketButtonText}
                   </Button>
                 </div>
               </div>

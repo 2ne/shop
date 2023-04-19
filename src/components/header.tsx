@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({
   const { isCheckout } = useCheckoutContext();
   basketCount = itemCount();
   return (
-    <header className="relative z-20 bg-primary text-primary_text">
+    <header className="relative bg-primary text-primary_text">
       <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
         <Link to="/Home" className="flex items-center group gap-x-2 sm:gap-x-3">
           <img

@@ -61,7 +61,11 @@ dt {
 }
 
 .ant-btn {
-  @apply inline-flex items-center !rounded-md font-medium;
+  @apply inline-flex items-center font-medium;
+}
+
+.ant-btn:not([class*="rounded"]) {
+  @apply !rounded-md;
 }
 
 .ant-btn-primary {
@@ -70,6 +74,10 @@ dt {
 
 .ant-btn-block {
   @apply justify-center;
+}
+
+.ant-btn-lg {
+  @apply !h-10 lg:!h-[2.75rem] !text-sm sm:!text-base;
 }
 
 .ant-form-vertical .ant-form-item-label {
@@ -138,13 +146,7 @@ dt {
 }
 
 .ant-drawer .ant-drawer-content-wrapper {
-  @apply max-sm:min-h-[65vh] max-sm:max-h-[90vh];
-}
-
-@media (max-height: 720px) and (max-width: 767px) {
-  .ant-drawer .ant-drawer-content-wrapper {
-    min-height: 80vh;
-  }
+  @apply max-sm:max-h-[calc(100%-5vh)];
 }
 
 .ant-drawer .ant-drawer-content {
@@ -165,6 +167,10 @@ dt {
 
 .ant-drawer .ant-drawer-close {
   @apply !m-0;
+}
+
+.ant-drawer .hide--inside--drawer {
+  @apply hidden;
 }
 
 .min-h-screen-custom {

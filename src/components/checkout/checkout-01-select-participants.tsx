@@ -14,7 +14,7 @@ const CheckoutSelectParticipants: React.FC = () => {
             height="24"
             fill="none"
             viewBox="0 0 24 24"
-            className="w-14 h-14 p-[calc(0.5rem+1px)] rounded-full bg-primary text-primary_text border-[5px] border-white/75"
+            className="w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-primary text-primary_text border-[5px] border-white/75"
           >
             <circle
               cx="12"
@@ -50,8 +50,8 @@ const CheckoutSelectParticipants: React.FC = () => {
                   Every Tuesday at 11:30 - 12:00
                 </div>
               </div>
-              <div className="pt-1 mb-0.5 mt-auto text-xs text-neutral-400">
-                Participants must be 4 years or older.
+              <div className="pt-1.5 mt-auto text-neutral-500/75">
+                Participants must be 4 years or older
               </div>
             </div>
           </div>

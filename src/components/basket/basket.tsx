@@ -4,6 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useBasketContext } from "./basket-context";
 import { useCheckoutContext } from "../checkout/checkout-context";
 
+export const BasketTotals: React.FC = () => (
+  <div className="grid grid-cols-2 [&>*:nth-child(even)]:text-right gap-y-1.5 text-sm">
+    <div className="text-neutral-500">Monthly cost</div>
+    <div className="text-neutral-500">£48.00</div>
+    <div className="font-medium">Total due now</div>
+    <div className="font-medium">£48.00</div>
+  </div>
+);
+
 const Basket: React.FC = () => {
   const { isCheckout } = useCheckoutContext();
   const { closeBasket, items, removeItem } = useBasketContext();
@@ -17,7 +26,7 @@ const Basket: React.FC = () => {
   return (
     <>
       {isCheckout && (
-        <div className="mb-5 heading">
+        <div className="mb-5 heading hide--inside--drawer">
           Basket
           {items.length > 0 && (
             <span className="text-neutral-500">
@@ -28,7 +37,7 @@ const Basket: React.FC = () => {
       )}
       <div className="divide-y">
         {items.length === 0 ? (
-          <div className="grid gap-4 text-center h-52 sm:h-64 place-items-center text-neutral-400">
+          <div className="grid gap-4 text-center h-52 sm:h-64 place-items-center text-neutral-500/75">
             <div className="grid gap-2 place-items-center">
               <div>
                 <svg
@@ -67,7 +76,10 @@ const Basket: React.FC = () => {
           </div>
         ) : (
           items.map((item) => (
-            <div key={item.id} className="grid gap-4 py-6 first-of-type:pt-0">
+            <div
+              key={item.id}
+              className="grid gap-4 py-5 first-of-type:pt-0 only-of-type:py-0"
+            >
               <div className="flex gap-3.5">
                 <img
                   src={item.image}
@@ -137,7 +149,7 @@ const Basket: React.FC = () => {
                   )}
                 </div>
               </div>
-              <dl className="grid grid-cols-[4rem,1fr] [&>dt]:truncate gap-y-2 gap-x-3.5 text-sm tracking-normal">
+              <dl className="grid grid-cols-[4rem,1fr] [&>dt]:truncate gap-y-2.5 gap-x-3.5 text-sm tracking-normal">
                 <dt>Dates</dt>
                 <dd>
                   {item.dates} ·{" "}
@@ -145,6 +157,8 @@ const Basket: React.FC = () => {
                     View
                   </button>
                 </dd>
+                <dt>Billing</dt>
+                <dd>{item.billing}</dd>
                 <dt>Price</dt>
                 <dd>
                   <span className="tabular-nums">{item.price}</span>
@@ -152,8 +166,14 @@ const Basket: React.FC = () => {
                 </dd>
                 <dt>Cost</dt>
                 <dd>
-                  <span className="tabular-nums">{item.cost}</span>
-                  <span className="text-neutral-500"> · per month</span>
+                  <div>
+                    <span className="tabular-nums">{item.cost}</span>
+                    <span className="text-neutral-500"> · per month</span>
+                  </div>
+                  <div className="mt-1 text-xs text-neutral-500">
+                    Cost depends on 4 or 5 sessions in a month.
+                    <br className="lg:contents" /> Example based on 4 sessions.
+                  </div>
                 </dd>
               </dl>
             </div>
@@ -163,23 +183,12 @@ const Basket: React.FC = () => {
       {!isCheckout && (
         <div className="sticky z-10 px-4 py-4 mt-auto -mx-4 -mb-4 sm:px-5 sm:py-5 sm:-mx-5 -bottom-4 bg-white/95">
           {items.length !== 0 ? (
-            <Button
-              onClick={goToCheckout}
-              size="large"
-              type="primary"
-              block
-              className="!h-10 lg:!h-12"
-            >
-              <div className="text-sm sm:text-base">Checkout</div>
+            <Button onClick={goToCheckout} size="large" type="primary" block>
+              Checkout
             </Button>
           ) : (
-            <Button
-              size="large"
-              block
-              className="!h-10 lg:!h-12"
-              onClick={closeBasket}
-            >
-              <div className="text-sm sm:text-base">Continue shopping</div>
+            <Button size="large" block onClick={closeBasket}>
+              Continue shopping
             </Button>
           )}
         </div>

@@ -3,8 +3,10 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { useBasketContext } from "./basket-context";
 import Basket from "./basket";
+import { useCheckoutContext } from "../checkout/checkout-context";
 
 const BasketDrawer: React.FC = () => {
+  const { isCheckout } = useCheckoutContext();
   const { isOpen, closeBasket, items } = useBasketContext();
   const isMobile = useMediaQuery({ maxWidth: 639 });
   const drawerPlacement = isMobile ? "bottom" : "right";
@@ -19,6 +21,8 @@ const BasketDrawer: React.FC = () => {
       placement={drawerPlacement}
       onClose={closeBasket}
       open={isOpen}
+      zIndex={30}
+      rootClassName={isCheckout ? "max-lg:bottom-[8.35rem]" : " "}
     >
       <Basket />
     </Drawer>

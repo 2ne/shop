@@ -8,6 +8,7 @@ interface Item {
   dates: string;
   price: string;
   cost: string;
+  billing: string;
 }
 
 interface BasketContextValue {
