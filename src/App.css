@@ -97,11 +97,11 @@ dt {
 }
 
 .radio-button-lg {
-  @apply w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm px-2 sm:px-4;
+  @apply w-full !rounded-md before:!hidden !border flex justify-center items-center !text-sm px-2 sm:px-4 font-normal;
 }
 
 .radio-button-xl {
-  @apply w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-3 sm:py-5 px-3 sm:px-4;
+  @apply w-full !h-auto !rounded-md before:!hidden !border !leading-4 flex items-center py-3 sm:py-5 px-3 sm:px-4 font-normal;
 }
 
 .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
@@ -169,4 +169,20 @@ dt {
 
 .min-h-screen-custom {
   @apply min-h-[calc(100svh-8rem)];
+}
+
+.ant-steps.ant-steps-vertical {
+  @apply pl-[calc(0.25rem+1px)];
+}
+
+.ant-steps.ant-steps-vertical .ant-steps-icon-dot {
+  @apply relative before:absolute before:-inset-1 before:rounded-full before:border before:border-[rgba(0,0,0,0.25)];
+}
+
+.ant-steps.ant-steps-vertical .ant-steps-item.ant-steps-item-active .ant-steps-icon-dot:before {
+  @apply border-interactive;
+}
+
+.ant-steps.ant-steps-vertical .ant-steps-item.ant-steps-item-active .ant-steps-item-title {
+  @apply font-medium;
 }

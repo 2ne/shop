@@ -1,10 +1,10 @@
 import { Button, Form, Radio } from "antd";
 import React from "react";
-import CheckoutStepHeader from "./checkout-step-header";
+import CheckoutStepHeader from "./checkout-header";
 
 const CheckoutSelectParticipants: React.FC = () => {
   return (
-    <div className="space-y-4 lg:space-y-6 lg:max-w-xs lg:m-auto">
+    <>
       <CheckoutStepHeader
         title="Select participants"
         subtitle="Please select the participants that you are buying each product for."
@@ -14,7 +14,7 @@ const CheckoutSelectParticipants: React.FC = () => {
             height="24"
             fill="none"
             viewBox="0 0 24 24"
-            className="w-14 h-14 p-2 rounded-full bg-primary text-primary_text border-[5px] border-white/75"
+            className="w-14 h-14 p-[calc(0.5rem+1px)] rounded-full bg-primary text-primary_text border-[5px] border-white/75"
           >
             <circle
               cx="12"
@@ -58,9 +58,11 @@ const CheckoutSelectParticipants: React.FC = () => {
           <Form.Item name="radio-group" label="Select participant">
             <Radio.Group>
               <div className="grid gap-1.5">
-                <Radio value={1}>Option A</Radio>
-                <Radio value={2}>Option B</Radio>
-                <Radio value={3}>Option C</Radio>
+                <Radio value={1}>James Toone</Radio>
+                <Radio value={2}>Samantha Toone</Radio>
+                <Radio value={3} disabled>
+                  Jacob Toone · Below age limit
+                </Radio>
               </div>
             </Radio.Group>
           </Form.Item>
@@ -68,13 +70,8 @@ const CheckoutSelectParticipants: React.FC = () => {
             <Button block>Add new participant</Button>
           </div>
         </div>
-        <div className="pt-2">
-          <Button type="primary" size="large" block>
-            Continue
-          </Button>
-        </div>
       </Form>
-    </div>
+    </>
   );
 };
 
