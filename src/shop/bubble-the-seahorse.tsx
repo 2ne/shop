@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import Breadcrumb from "../components/breadcrumb";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -14,7 +14,7 @@ function BubbleTheSeahorse(): ReactElement {
     { label: "Bubble the Seahorse", link: "/BubbleTheSeahorse" },
   ];
 
-  const { openBasket, addItem } = useBasketContext();
+  const { openBasket, isOpen, addItem } = useBasketContext();
 
   const sampleItem = {
     id: Math.random().toString(36).substring(2, 15),
@@ -34,6 +34,12 @@ function BubbleTheSeahorse(): ReactElement {
       setBasketIsClicked(false);
     }, 3500);
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      setBasketIsClicked(false);
+    }
+  }, [isOpen]);
 
   const addToBasketAndOpen = () => {
     handleBasketClick();
