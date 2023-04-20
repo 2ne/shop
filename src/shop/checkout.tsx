@@ -17,13 +17,30 @@ import { CheckoutButton } from "../components/checkout/checkout-buttons";
 import CheckoutSelectParticipants, {
   CheckoutSelectParticipantsHandles,
 } from "../components/checkout/checkout-01-select-participants";
-import CheckoutAdditionalProducts from "../components/checkout/checkout-02-additional-products";
+
+import CheckoutAdditionalProducts, {
+  CheckoutAdditionalProductsHandles,
+} from "../components/checkout/checkout-02-additional-products";
 
 function Checkout(): ReactElement {
-  const { openBasket, closeBasket, isOpen } = useBasketContext();
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
+  const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
+  const { openBasket, closeBasket, isOpen } = useBasketContext();
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
+  const stepsComponents = [
+    <CheckoutSelectParticipants
+      ref={selectParticipantsRef}
+      onFormValidation={(isValid) => updateValidationStatus(0, isValid)}
+    />,
+    <CheckoutAdditionalProducts
+      ref={additionalProductsRef}
+      onFormValidation={(isValid) => updateValidationStatus(1, isValid)}
+    />,
+  ];
+  const [validationStatus, setValidationStatus] = useState<boolean[]>(
+    Array(stepsComponents.length).fill(false)
+  );
 
   useEffect(() => {
     if (currentStep > furthestStep) {
@@ -31,10 +48,27 @@ function Checkout(): ReactElement {
     }
   }, [currentStep]);
 
-  const stepsComponents = [
-    <CheckoutSelectParticipants ref={selectParticipantsRef} />,
-    <CheckoutAdditionalProducts />,
-  ];
+  const updateValidationStatus = (stepIndex: number, isValid: boolean) => {
+    setValidationStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[stepIndex] = isValid;
+      return newStatus;
+    });
+  };
+
+  const submitCurrentForm = async () => {
+    let result = false;
+
+    if (currentStep === 0 && selectParticipantsRef.current) {
+      result = await selectParticipantsRef.current.submitForm();
+    } else if (currentStep === 1 && additionalProductsRef.current) {
+      result = await additionalProductsRef.current.submitForm();
+    }
+
+    if (result) {
+      handleNext();
+    }
+  };
 
   const handleStepClick = (stepIndex: SetStateAction<number>) => {
     setCurrentStep(stepIndex);
@@ -44,11 +78,8 @@ function Checkout(): ReactElement {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleNext = async () => {
-    const isFormValid = await selectParticipantsRef.current?.submitForm();
-    if (isFormValid && currentStep < stepsComponents.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
+  const handleNext = () => {
+    setCurrentStep(currentStep + 1);
   };
 
   return (
@@ -93,10 +124,19 @@ function Checkout(): ReactElement {
           </div>
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
-          <div className="space-y-4 lg:space-y-6 lg:max-w-[22rem] lg:m-auto">
-            {stepsComponents[currentStep]}
+          <div className="lg:max-w-[22rem] lg:m-auto">
+            {stepsComponents.map((component, index) => (
+              <div
+                key={index}
+                className={
+                  currentStep === index ? "space-y-4 lg:space-y-6" : "hidden"
+                }
+              >
+                {component}
+              </div>
+            ))}
             <div className="hidden lg:block lg:pt-4">
-              <CheckoutButton onClick={handleNext} />
+              <CheckoutButton onClick={submitCurrentForm} />
             </div>
           </div>
         </section>
@@ -136,7 +176,7 @@ function Checkout(): ReactElement {
             </Button>
             <div className="space-y-4">
               <BasketTotals />
-              <CheckoutButton onClick={handleNext} />
+              <CheckoutButton onClick={submitCurrentForm} />
             </div>
           </Wrapper>
         </footer>

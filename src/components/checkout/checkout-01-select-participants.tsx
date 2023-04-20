@@ -23,15 +23,25 @@ export interface CheckoutSelectParticipantsHandles {
   submitForm: () => Promise<boolean>;
 }
 
-const CheckoutSelectParticipants = forwardRef((props, ref) => {
+interface CheckoutSelectParticipantsProps {
+  onFormValidation: (isValid: boolean) => void;
+}
+
+const CheckoutSelectParticipants = forwardRef<
+  CheckoutSelectParticipantsHandles,
+  CheckoutSelectParticipantsProps
+>((props, ref) => {
   useImperativeHandle(ref, () => ({
     submitForm: async () => {
       try {
         await selectParticipantForm.validateFields();
         selectParticipantForm.submit();
+        props.onFormValidation(true);
+        console.log("YO");
         return true;
       } catch (error) {
         console.log("Validation failed:", error);
+        props.onFormValidation(false);
         return false;
       }
     },
@@ -125,7 +135,8 @@ const CheckoutSelectParticipants = forwardRef((props, ref) => {
     if (newParticipant.meetsAgeCriteria) {
       // Find the index of the product that has no participant selected
       const emptyProductIndex = basketItems.findIndex(
-        (index) => !selectParticipantForm.getFieldValue(`participant_${index}`)
+        (item, index) =>
+          !selectParticipantForm.getFieldValue(`participant_${index}`)
       );
 
       if (emptyProductIndex !== -1) {
