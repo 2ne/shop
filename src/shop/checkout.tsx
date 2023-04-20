@@ -1,4 +1,10 @@
-import { ReactElement, useRef } from "react";
+import {
+  ReactElement,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import CheckoutTimer from "../components/checkout/checkout-timer";
 import Header from "../components/header";
 import Main from "../components/main";
@@ -15,11 +21,34 @@ import CheckoutAdditionalProducts from "../components/checkout/checkout-02-addit
 
 function Checkout(): ReactElement {
   const { openBasket, closeBasket, isOpen } = useBasketContext();
-
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [furthestStep, setFurthestStep] = useState(currentStep);
 
-  const handleSubmit = () => {
-    selectParticipantsRef.current?.submitForm();
+  useEffect(() => {
+    if (currentStep > furthestStep) {
+      setFurthestStep(currentStep);
+    }
+  }, [currentStep]);
+
+  const stepsComponents = [
+    <CheckoutSelectParticipants ref={selectParticipantsRef} />,
+    <CheckoutAdditionalProducts />,
+  ];
+
+  const handleStepClick = (stepIndex: SetStateAction<number>) => {
+    setCurrentStep(stepIndex);
+  };
+
+  const handlePrev = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+  const handleNext = async () => {
+    const isFormValid = await selectParticipantsRef.current?.submitForm();
+    if (isFormValid && currentStep < stepsComponents.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   return (
@@ -29,8 +58,33 @@ function Checkout(): ReactElement {
       <Main className="lg:divide-x lg:grid lg:grid-cols-4 max-lg:pb-[11rem]">
         <aside className="lg:pr-5">
           <div className="lg:sticky lg:top-4">
+            <div className="flex items-center justify-between -mt-1.5 lg:hidden h-6 mb-2">
+              {currentStep > 0 && (
+                <button
+                  type="button"
+                  className="flex items-center -ml-2 text-sm"
+                  onClick={handlePrev}
+                >
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.25"
+                      d="M13.25 8.75L9.75 12l3.5 3.25"
+                    ></path>
+                  </svg>
+                  <div className="-ml-0.5">Back</div>
+                </button>
+              )}
+              <div className="lg:hidden sub-heading">
+                Step {currentStep + 1} of {stepsComponents.length}
+              </div>
+            </div>
             <CheckoutSteps
-              currentStep={0}
+              currentStep={currentStep}
+              furthestStep={furthestStep}
+              handleStepClick={handleStepClick}
               steps={[
                 { title: "Select participants" },
                 { title: "Additional products" },
@@ -40,10 +94,9 @@ function Checkout(): ReactElement {
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
           <div className="space-y-4 lg:space-y-6 lg:max-w-[22rem] lg:m-auto">
-            <CheckoutSelectParticipants ref={selectParticipantsRef} />
-            <CheckoutAdditionalProducts />
+            {stepsComponents[currentStep]}
             <div className="hidden lg:block lg:pt-4">
-              <CheckoutButton onClick={handleSubmit} />
+              <CheckoutButton onClick={handleNext} />
             </div>
           </div>
         </section>
@@ -83,7 +136,7 @@ function Checkout(): ReactElement {
             </Button>
             <div className="space-y-4">
               <BasketTotals />
-              <CheckoutButton onClick={handleSubmit} />
+              <CheckoutButton onClick={handleNext} />
             </div>
           </Wrapper>
         </footer>

@@ -20,14 +20,20 @@ interface Participant {
 }
 
 export interface CheckoutSelectParticipantsHandles {
-  submitForm: () => void;
+  submitForm: () => Promise<boolean>;
 }
 
 const CheckoutSelectParticipants = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
-    submitForm: () => {
-      selectParticipantForm.submit();
-      console.log("yo");
+    submitForm: async () => {
+      try {
+        await selectParticipantForm.validateFields();
+        selectParticipantForm.submit();
+        return true;
+      } catch (error) {
+        console.log("Validation failed:", error);
+        return false;
+      }
     },
   }));
 
