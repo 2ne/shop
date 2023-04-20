@@ -3,14 +3,15 @@ import CheckoutTimer from "../components/checkout/checkout-timer";
 import Header from "../components/header";
 import Main from "../components/main";
 import Basket, { BasketTotals } from "../components/basket/basket";
-import CheckoutSelectParticipants, {
-  CheckoutSelectParticipantsHandles,
-} from "../components/checkout/checkout-01-select-participants";
 import CheckoutSteps from "../components/checkout/checkout-steps";
 import { Button } from "antd";
 import { useBasketContext } from "../components/basket/basket-context";
 import Wrapper from "../components/wrapper";
 import { CheckoutButton } from "../components/checkout/checkout-buttons";
+import CheckoutSelectParticipants, {
+  CheckoutSelectParticipantsHandles,
+} from "../components/checkout/checkout-01-select-participants";
+import CheckoutAdditionalProducts from "../components/checkout/checkout-02-additional-products";
 
 function Checkout(): ReactElement {
   const { openBasket, closeBasket, isOpen } = useBasketContext();
@@ -40,6 +41,7 @@ function Checkout(): ReactElement {
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
           <div className="space-y-4 lg:space-y-6 lg:max-w-[22rem] lg:m-auto">
             <CheckoutSelectParticipants ref={selectParticipantsRef} />
+            <CheckoutAdditionalProducts />
             <div className="hidden lg:block lg:pt-4">
               <CheckoutButton onClick={handleSubmit} />
             </div>
