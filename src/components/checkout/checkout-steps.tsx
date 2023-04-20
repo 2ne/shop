@@ -1,5 +1,5 @@
 import { Steps } from "antd";
-import React, { useState } from "react";
+import React from "react";
 
 interface CheckoutStepsProps {
   currentStep: number;
@@ -14,9 +14,7 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({
   steps,
   handleStepClick,
 }) => {
-  const [current, setCurrent] = useState(currentStep);
   const totalSteps = steps.length;
-
   const onStepClick = (stepIndex: number) => {
     if (stepIndex <= furthestStep) {
       handleStepClick(stepIndex);

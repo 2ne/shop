@@ -59,10 +59,10 @@ function Checkout(): ReactElement {
   const submitCurrentForm = async () => {
     let result = false;
 
-    if (currentStep === 0 && selectParticipantsRef.current) {
-      result = await selectParticipantsRef.current.submitForm();
-    } else if (currentStep === 1 && additionalProductsRef.current) {
-      result = await additionalProductsRef.current.submitForm();
+    const currentStepRef = stepsComponents[currentStep].ref;
+
+    if (currentStepRef && currentStepRef.current) {
+      result = await currentStepRef.current.submitForm();
     }
 
     if (result) {
