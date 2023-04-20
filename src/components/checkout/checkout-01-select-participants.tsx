@@ -78,7 +78,6 @@ const CheckoutSelectParticipants: React.FC = () => {
   });
 
   useEffect(() => {
-    // Update the participants and check age criteria
     setParticipants(
       participants.map((participant) => ({
         ...participant,
