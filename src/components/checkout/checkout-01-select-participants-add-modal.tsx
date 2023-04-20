@@ -66,24 +66,53 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
             <Form.Item
               name="dobDD"
               label="Day"
-              rules={[{ required: true, message: "" }]}
-              className="!mb-0"
+              rules={[
+                { required: true, message: "Please enter the day" },
+                {
+                  pattern: /^(0?[1-9]|[12][0-9]|3[01])$/,
+                  message: "Days · 1-31",
+                },
+              ]}
+              validateTrigger={false}
+              className="!mb-0 flex-1"
             >
               <Input inputMode="numeric" maxLength={2} placeholder="DD" />
             </Form.Item>
             <Form.Item
               name="dobMM"
               label="Month"
-              rules={[{ required: true, message: "" }]}
-              className="!mb-0"
+              rules={[
+                { required: true, message: "Please enter the month" },
+                {
+                  pattern: /^(0?[1-9]|1[012])$/,
+                  message: "Months · 1-12",
+                },
+              ]}
+              validateTrigger={false}
+              className="!mb-0 flex-1"
             >
               <Input inputMode="numeric" maxLength={2} placeholder="MM" />
             </Form.Item>
             <Form.Item
               name="dobYYYY"
               label="Year"
-              rules={[{ required: true, message: "" }]}
-              className="!mb-0"
+              rules={[
+                { required: true, message: "Please enter the year" },
+                {
+                  pattern: /^(19|20)\d{2}$/,
+                  message: "Years · 1900-2099",
+                },
+                {
+                  validator: (_, value) => {
+                    const currentYear = new Date().getFullYear();
+                    return value > currentYear
+                      ? Promise.reject("Year cannot be in the future")
+                      : Promise.resolve();
+                  },
+                },
+              ]}
+              validateTrigger={false}
+              className="!mb-0 flex-1"
             >
               <Input inputMode="numeric" maxLength={4} placeholder="YYYY" />
             </Form.Item>
