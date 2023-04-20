@@ -27,6 +27,7 @@ const CheckoutSelectParticipants = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     submitForm: () => {
       selectParticipantForm.submit();
+      console.log("yo");
     },
   }));
 
@@ -130,10 +131,16 @@ const CheckoutSelectParticipants = forwardRef((props, ref) => {
     setIsAddParticipantModalOpen(false);
   };
 
-  const onDetailsFinish = (values, participants, items) => {
-    const result = items.map((item, index) => {
+  const onDetailsFinish = (
+    values: { [x: string]: any },
+    participants: any[],
+    items: any[]
+  ) => {
+    const result = items.map((item: { id: any; title: any }, index: any) => {
       const participantId = values[`participant_${index}`];
-      const participant = participants.find((p) => p.id === participantId);
+      const participant = participants.find(
+        (p: { id: any }) => p.id === participantId
+      );
 
       return {
         itemId: item.id,

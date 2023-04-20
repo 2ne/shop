@@ -1,17 +1,26 @@
 import { Steps } from "antd";
 import React, { useState } from "react";
 
-const CheckoutSteps: React.FC = () => {
-  const [current, setCurrent] = useState(0);
-  const totalSteps = 8;
+interface CheckoutStepsProps {
+  currentStep: number;
+  steps: { title: string }[];
+}
+
+const CheckoutSteps: React.FC<CheckoutStepsProps> = ({
+  currentStep,
+  steps,
+}) => {
+  const [current, setCurrent] = useState(currentStep);
+  const totalSteps = steps.length;
+
+  const prevStep = () => {
+    setCurrent(current - 1);
+  };
 
   const nextStep = () => {
     setCurrent(current + 1);
   };
 
-  const prevStep = () => {
-    setCurrent(current - 1);
-  };
   return (
     <>
       <div className="flex items-center justify-between -mt-1.5 lg:hidden h-6 mb-2">
@@ -49,16 +58,7 @@ const CheckoutSteps: React.FC = () => {
           direction="vertical"
           size="small"
           current={current}
-          items={[
-            { title: "Select participants" },
-            { title: "Additional products" },
-            { title: "Medical info" },
-            { title: "Emergency contacts" },
-            { title: "Consents forms" },
-            { title: "Additional info" },
-            { title: "Upload files" },
-            { title: "Payment" },
-          ]}
+          items={steps}
         />
       </div>
     </>

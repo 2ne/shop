@@ -28,7 +28,13 @@ function Checkout(): ReactElement {
       <Main className="lg:divide-x lg:grid lg:grid-cols-4 max-lg:pb-[11rem]">
         <aside className="lg:pr-5">
           <div className="lg:sticky lg:top-4">
-            <CheckoutSteps />
+            <CheckoutSteps
+              currentStep={0}
+              steps={[
+                { title: "Select participants" },
+                { title: "Additional products" },
+              ]}
+            />
           </div>
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
