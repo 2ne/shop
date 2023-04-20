@@ -15,7 +15,7 @@ export const BasketTotals: React.FC = () => (
 
 const Basket: React.FC = () => {
   const { isCheckout } = useCheckoutContext();
-  const { closeBasket, items, removeItem } = useBasketContext();
+  const { closeBasket, basketItems, removeItem } = useBasketContext();
   const navigate = useNavigate();
 
   const goToCheckout = () => {
@@ -28,15 +28,17 @@ const Basket: React.FC = () => {
       {isCheckout && (
         <div className="mb-5 heading hide--inside--drawer">
           Basket
-          {items.length > 0 && (
+          {basketItems.length > 0 && (
             <span className="text-neutral-500">
-              {` · ${items.length} item${items.length > 1 ? "s" : ""}`}
+              {` · ${basketItems.length} item${
+                basketItems.length > 1 ? "s" : ""
+              }`}
             </span>
           )}
         </div>
       )}
       <div className="divide-y">
-        {items.length === 0 ? (
+        {basketItems.length === 0 ? (
           <div className="grid gap-4 text-center h-52 sm:h-64 place-items-center text-neutral-500/75">
             <div className="grid gap-2 place-items-center">
               <div>
@@ -75,7 +77,7 @@ const Basket: React.FC = () => {
             </div>
           </div>
         ) : (
-          items.map((item) => (
+          basketItems.map((item) => (
             <div
               key={item.id}
               className="grid gap-4 py-5 first-of-type:pt-0 only-of-type:py-0 last-of-type:pb-0"
@@ -182,7 +184,7 @@ const Basket: React.FC = () => {
       </div>
       {!isCheckout && (
         <div className="sticky z-10 px-4 py-4 mt-auto -mx-4 -mb-4 sm:px-5 sm:py-5 sm:-mx-5 -bottom-4 bg-white/95">
-          {items.length !== 0 ? (
+          {basketItems.length !== 0 ? (
             <Button onClick={goToCheckout} size="large" type="primary" block>
               Checkout
             </Button>

@@ -1,9 +1,15 @@
 import { Button, Form, Radio, Tooltip } from "antd";
-import React, { useEffect, useState } from "react";
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
 import CheckoutStepHeader from "./checkout-header";
 import AddParticipantModal, {
   AddParticipantValues,
 } from "./checkout-01-select-participants-add-modal";
+import { useBasketContext } from "../basket/basket-context";
 
 interface Participant {
   id: number;
@@ -13,7 +19,18 @@ interface Participant {
   meetsAgeCriteria?: boolean;
 }
 
-const CheckoutSelectParticipants: React.FC = () => {
+export interface CheckoutSelectParticipantsHandles {
+  submitForm: () => void;
+}
+
+const CheckoutSelectParticipants = forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => ({
+    submitForm: () => {
+      selectParticipantForm.submit();
+    },
+  }));
+
+  const { basketItems } = useBasketContext();
   const [selectParticipantForm] = Form.useForm();
   const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
     useState(false);
@@ -99,15 +116,36 @@ const CheckoutSelectParticipants: React.FC = () => {
     setParticipants([...participants, newParticipant]);
 
     if (newParticipant.meetsAgeCriteria) {
-      selectParticipantForm.setFieldsValue({
-        selectParticipant: newParticipantId,
-      });
+      // Find the index of the product that has no participant selected
+      const emptyProductIndex = basketItems.findIndex(
+        (index) => !selectParticipantForm.getFieldValue(`participant_${index}`)
+      );
+
+      if (emptyProductIndex !== -1) {
+        selectParticipantForm.setFieldsValue({
+          [`participant_${emptyProductIndex}`]: newParticipantId,
+        });
+      }
     }
     setIsAddParticipantModalOpen(false);
   };
 
-  const onDetailsFinish = (values: any) => {
-    console.log(values);
+  const onDetailsFinish = (values, participants, items) => {
+    const result = items.map((item, index) => {
+      const participantId = values[`participant_${index}`];
+      const participant = participants.find((p) => p.id === participantId);
+
+      return {
+        itemId: item.id,
+        itemName: item.title,
+        participantId: participant.id,
+        participantFirstName: participant.firstName,
+        participantLastName: participant.lastName,
+        participantDob: participant.dob,
+      };
+    });
+
+    console.log(result);
   };
 
   const onDetailsFinishFailed = (errorInfo: any) => {
@@ -150,87 +188,98 @@ const CheckoutSelectParticipants: React.FC = () => {
         layout="vertical"
         form={selectParticipantForm}
         name="selectParticipantForm"
-        onFinish={onDetailsFinish}
+        onFinish={(values) =>
+          onDetailsFinish(values, participants, basketItems)
+        }
         onFinishFailed={onDetailsFinishFailed}
         className="space-y-6 text-left hide-validation-asterix"
       >
-        <div className="p-3 space-y-3 border rounded-md border-neutral-200">
-          <div className="flex gap-3.5 border-b pb-3">
-            <img
-              src="https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
-              alt="Bubble the Seahorse"
-              className="object-cover w-16 h-16 rounded"
-            />
-            <div className="grid items-center flex-1 min-w-0 text-sm">
-              <div>
-                <div className="font-medium">Bubble the Seahorse</div>
-                <div className="text-neutral-500">
-                  Every Tuesday at 11:30 - 12:00
+        {basketItems.map((item, index) => (
+          <div
+            key={item.id}
+            className="p-3 space-y-3 border rounded-md border-neutral-200"
+          >
+            <div className="flex gap-3.5 border-b pb-3">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="object-cover w-16 h-16 rounded"
+              />
+              <div className="grid items-center flex-1 min-w-0 text-sm">
+                <div>
+                  <div className="font-medium">{item.title}</div>
+                  <div className="text-neutral-500">{item.subTitle}</div>
                 </div>
+                {Object.keys(ageCriteria).length > 0 && (
+                  <div className="pt-1.5 mt-auto text-neutral-500/75">
+                    {ageCriteria.min && ageCriteria.max
+                      ? `Participants must be between ${ageCriteria.min} and ${ageCriteria.max} years old`
+                      : ageCriteria.min
+                      ? `Participants must be ${ageCriteria.min} years or older`
+                      : ageCriteria.max
+                      ? `Participants must be ${ageCriteria.max} years or younger`
+                      : ""}
+                  </div>
+                )}
               </div>
-              {Object.keys(ageCriteria).length > 0 && (
-                <div className="pt-1.5 mt-auto text-neutral-500/75">
-                  {ageCriteria.min && ageCriteria.max
-                    ? `Participants must be between ${ageCriteria.min} and ${ageCriteria.max} years old`
-                    : ageCriteria.min
-                    ? `Participants must be ${ageCriteria.min} years or older`
-                    : ageCriteria.max
-                    ? `Participants must be ${ageCriteria.max} years or younger`
-                    : ""}
+            </div>
+            <Form.Item
+              name={`participant_${index}`}
+              label="Select a participant"
+              rules={[
+                { required: true, message: "Please select a participant" },
+              ]}
+              validateTrigger={false}
+            >
+              <Radio.Group>
+                <div className="grid gap-1.5">
+                  {participants.map((participant) => (
+                    <Tooltip
+                      key={`${item.id}_${participant.id}`}
+                      title={`Age: ${calculateAge(participant.dob)}`}
+                      placement="left"
+                    >
+                      <Radio
+                        value={participant.id}
+                        disabled={!participant.meetsAgeCriteria}
+                      >
+                        {participant.firstName} {participant.lastName}
+                        {!participant.meetsAgeCriteria && (
+                          <span>
+                            {calculateAge(participant.dob) <
+                            (ageCriteria.min ?? 0)
+                              ? " · Below age limit"
+                              : " · Above age limit"}
+                          </span>
+                        )}
+                      </Radio>
+                    </Tooltip>
+                  ))}
                 </div>
-              )}
+              </Radio.Group>
+            </Form.Item>
+            <div>
+              <Button
+                block
+                onClick={() => {
+                  setIsAddParticipantModalOpen(true);
+                }}
+              >
+                Add new participant
+              </Button>
+              <AddParticipantModal
+                openModal={isAddParticipantModalOpen}
+                onModalSave={onModalSave}
+                onModalCancel={() => {
+                  setIsAddParticipantModalOpen(false);
+                }}
+              />
             </div>
           </div>
-          <Form.Item name="selectParticipant" label="Select participant">
-            <Radio.Group>
-              <div className="grid gap-1.5">
-                {participants.map((participant) => (
-                  <Tooltip
-                    title={`Age: ${calculateAge(participant.dob)}`}
-                    placement="left"
-                  >
-                    <Radio
-                      key={participant.id}
-                      value={participant.id}
-                      disabled={!participant.meetsAgeCriteria}
-                    >
-                      {participant.firstName} {participant.lastName}
-                      {!participant.meetsAgeCriteria && (
-                        <span>
-                          {calculateAge(participant.dob) <
-                          (ageCriteria.min ?? 0)
-                            ? " · Below age limit"
-                            : " · Above age limit"}
-                        </span>
-                      )}
-                    </Radio>
-                  </Tooltip>
-                ))}
-              </div>
-            </Radio.Group>
-          </Form.Item>
-
-          <div>
-            <Button
-              block
-              onClick={() => {
-                setIsAddParticipantModalOpen(true);
-              }}
-            >
-              Add new participant
-            </Button>
-            <AddParticipantModal
-              openModal={isAddParticipantModalOpen}
-              onModalSave={onModalSave}
-              onModalCancel={() => {
-                setIsAddParticipantModalOpen(false);
-              }}
-            />
-          </div>
-        </div>
+        ))}
       </Form>
     </>
   );
-};
+});
 
 export default CheckoutSelectParticipants;

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
-interface Item {
+interface BasketItem {
   id: string;
   image: string;
   title: string;
@@ -15,8 +15,8 @@ interface BasketContextValue {
   isOpen: boolean;
   openBasket: () => void;
   closeBasket: () => void;
-  items: Item[];
-  addItem: (item: Item) => void;
+  basketItems: BasketItem[];
+  addItem: (item: BasketItem) => void;
   removeItem: (itemId: string) => void;
   itemCount: () => number;
 }
@@ -33,7 +33,7 @@ export const useBasketContext = () => {
 
 export const BasketProvider: React.FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<BasketItem[]>([]);
 
   const openBasket = () => {
     setIsOpen(true);
@@ -43,7 +43,7 @@ export const BasketProvider: React.FC = ({ children }) => {
     setIsOpen(false);
   };
 
-  const addItem = (item: Item) => {
+  const addItem = (item: BasketItem) => {
     setItems((prevItems) => [...prevItems, item]);
   };
 
@@ -61,7 +61,7 @@ export const BasketProvider: React.FC = ({ children }) => {
         isOpen,
         openBasket,
         closeBasket,
-        items,
+        basketItems: items,
         addItem,
         removeItem,
         itemCount,

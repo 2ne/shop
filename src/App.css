@@ -84,6 +84,10 @@ dt {
   @apply pt-1.5 text-sm;
 }
 
+.ant-form-vertical .ant-form-item-explain-error {
+  @apply mt-1;
+}
+
 .ant-form-item-required {
   @apply inline-flex flex-row-reverse gap-x-1;
 }
@@ -187,4 +191,8 @@ dt {
 
 .ant-steps.ant-steps-vertical .ant-steps-item.ant-steps-item-active .ant-steps-item-title {
   @apply font-medium;
+}
+
+.ant-tooltip {
+  @apply max-sm:hidden;
 }

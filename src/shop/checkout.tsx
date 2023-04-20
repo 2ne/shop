@@ -1,9 +1,11 @@
-import { ReactElement } from "react";
+import { ReactElement, useRef } from "react";
 import CheckoutTimer from "../components/checkout/checkout-timer";
 import Header from "../components/header";
 import Main from "../components/main";
 import Basket, { BasketTotals } from "../components/basket/basket";
-import CheckoutSelectParticipants from "../components/checkout/checkout-01-select-participants";
+import CheckoutSelectParticipants, {
+  CheckoutSelectParticipantsHandles,
+} from "../components/checkout/checkout-01-select-participants";
 import CheckoutSteps from "../components/checkout/checkout-steps";
 import { Button } from "antd";
 import { useBasketContext } from "../components/basket/basket-context";
@@ -12,6 +14,13 @@ import { CheckoutButton } from "../components/checkout/checkout-buttons";
 
 function Checkout(): ReactElement {
   const { openBasket, closeBasket, isOpen } = useBasketContext();
+
+  const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
+
+  const handleSubmit = () => {
+    selectParticipantsRef.current?.submitForm();
+  };
+
   return (
     <>
       <Header />
@@ -24,9 +33,9 @@ function Checkout(): ReactElement {
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
           <div className="space-y-4 lg:space-y-6 lg:max-w-[22rem] lg:m-auto">
-            <CheckoutSelectParticipants />
+            <CheckoutSelectParticipants ref={selectParticipantsRef} />
             <div className="hidden lg:block lg:pt-4">
-              <CheckoutButton />
+              <CheckoutButton onClick={handleSubmit} />
             </div>
           </div>
         </section>
@@ -66,7 +75,7 @@ function Checkout(): ReactElement {
             </Button>
             <div className="space-y-4">
               <BasketTotals />
-              <CheckoutButton />
+              <CheckoutButton onClick={handleSubmit} />
             </div>
           </Wrapper>
         </footer>

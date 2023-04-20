@@ -7,16 +7,18 @@ import { useCheckoutContext } from "../checkout/checkout-context";
 
 const BasketDrawer: React.FC = () => {
   const { isCheckout } = useCheckoutContext();
-  const { isOpen, closeBasket, items } = useBasketContext();
+  const { isOpen, closeBasket, basketItems } = useBasketContext();
   const isMobile = useMediaQuery({ maxWidth: 1023 });
   const drawerPlacement = isMobile ? "bottom" : "right";
 
   return (
     <Drawer
       title={
-        items.length === 0
+        basketItems.length === 0
           ? "Basket"
-          : `Basket · ${items.length} item${items.length > 1 ? "s" : ""}`
+          : `Basket · ${basketItems.length} item${
+              basketItems.length > 1 ? "s" : ""
+            }`
       }
       placement={drawerPlacement}
       onClose={closeBasket}
