@@ -29,6 +29,9 @@ module.exports = {
           "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
         ],
       },
+      boxShadow: {
+        t: "0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1)", // top shadow for footers
+      },
     },
   },
   future: {
