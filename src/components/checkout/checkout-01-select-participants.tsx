@@ -1,8 +1,120 @@
-import { Button, Form, Radio } from "antd";
-import React from "react";
+import { Button, Form, Radio, Tooltip } from "antd";
+import React, { useEffect, useState } from "react";
 import CheckoutStepHeader from "./checkout-header";
+import AddParticipantModal, {
+  AddParticipantValues,
+} from "./checkout-01-select-participants-add-modal";
+
+interface Participant {
+  id: number;
+  firstName: string;
+  lastName: string;
+  dob: Date;
+  meetsAgeCriteria?: boolean;
+}
 
 const CheckoutSelectParticipants: React.FC = () => {
+  const [selectParticipantForm] = Form.useForm();
+  const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
+    useState(false);
+
+  const calculateAge = (dob: Date, currentDate: Date = new Date()) => {
+    const birthDate = new Date(dob);
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
+    const monthDifference = currentDate.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && currentDate.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+
+    return age;
+  };
+
+  const [ageCriteria, setAgeCriteria] = useState<{
+    min?: number;
+    max?: number;
+  }>({
+    min: 4,
+    // max: 8,
+  });
+
+  const isAgeWithinRange = (dob: Date) => {
+    const participantAge = calculateAge(dob);
+    const isAboveMinAge =
+      ageCriteria.min === undefined || participantAge >= ageCriteria.min;
+    const isBelowMaxAge =
+      ageCriteria.max === undefined || participantAge <= ageCriteria.max;
+    return isAboveMinAge && isBelowMaxAge;
+  };
+
+  const [participants, setParticipants] = useState<Participant[]>(() => {
+    const loadParticipants: Participant[] = [
+      {
+        id: 1,
+        firstName: "James",
+        lastName: "Toone",
+        dob: new Date("1986-04-14"),
+      },
+      {
+        id: 2,
+        firstName: "Sam",
+        lastName: "Toone",
+        dob: new Date("1989-10-19"),
+      },
+      {
+        id: 3,
+        firstName: "Jacob",
+        lastName: "Toone",
+        dob: new Date("2021-12-06"),
+      },
+    ];
+    return loadParticipants.map((participant) => ({
+      ...participant,
+      meetsAgeCriteria: isAgeWithinRange(participant.dob),
+    }));
+  });
+
+  useEffect(() => {
+    // Update the participants and check age criteria
+    setParticipants(
+      participants.map((participant) => ({
+        ...participant,
+        meetsAgeCriteria: isAgeWithinRange(participant.dob),
+      }))
+    );
+  }, [ageCriteria]);
+
+  const onModalSave = (values: AddParticipantValues) => {
+    const dob = new Date(values.dobYYYY, values.dobMM - 1, values.dobDD);
+    const newParticipantId = participants.length + 1;
+    const newParticipant = {
+      id: newParticipantId,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      dob,
+      meetsAgeCriteria: isAgeWithinRange(dob),
+    };
+    setParticipants([...participants, newParticipant]);
+
+    if (newParticipant.meetsAgeCriteria) {
+      selectParticipantForm.setFieldsValue({
+        selectParticipant: newParticipantId,
+      });
+    }
+    setIsAddParticipantModalOpen(false);
+  };
+
+  const onDetailsFinish = (values: any) => {
+    console.log(values);
+  };
+
+  const onDetailsFinishFailed = (errorInfo: any) => {
+    console.log(errorInfo);
+  };
+
   return (
     <>
       <CheckoutStepHeader
@@ -35,7 +147,14 @@ const CheckoutSelectParticipants: React.FC = () => {
           </svg>
         }
       />
-      <Form layout="vertical" className="space-y-6 text-left">
+      <Form
+        layout="vertical"
+        form={selectParticipantForm}
+        name="selectParticipantForm"
+        onFinish={onDetailsFinish}
+        onFinishFailed={onDetailsFinishFailed}
+        className="space-y-6 text-left hide-validation-asterix"
+      >
         <div className="p-3 space-y-3 border rounded-md border-neutral-200">
           <div className="flex gap-3.5 border-b pb-3">
             <img
@@ -50,24 +169,64 @@ const CheckoutSelectParticipants: React.FC = () => {
                   Every Tuesday at 11:30 - 12:00
                 </div>
               </div>
-              <div className="pt-1.5 mt-auto text-neutral-500/75">
-                Participants must be 4 years or older
-              </div>
+              {Object.keys(ageCriteria).length > 0 && (
+                <div className="pt-1.5 mt-auto text-neutral-500/75">
+                  {ageCriteria.min && ageCriteria.max
+                    ? `Participants must be between ${ageCriteria.min} and ${ageCriteria.max} years old`
+                    : ageCriteria.min
+                    ? `Participants must be ${ageCriteria.min} years or older`
+                    : ageCriteria.max
+                    ? `Participants must be ${ageCriteria.max} years or younger`
+                    : ""}
+                </div>
+              )}
             </div>
           </div>
-          <Form.Item name="radio-group" label="Select participant">
+          <Form.Item name="selectParticipant" label="Select participant">
             <Radio.Group>
               <div className="grid gap-1.5">
-                <Radio value={1}>James Toone</Radio>
-                <Radio value={2}>Samantha Toone</Radio>
-                <Radio value={3} disabled>
-                  Jacob Toone · Below age limit
-                </Radio>
+                {participants.map((participant) => (
+                  <Tooltip
+                    title={`Age: ${calculateAge(participant.dob)}`}
+                    placement="left"
+                  >
+                    <Radio
+                      key={participant.id}
+                      value={participant.id}
+                      disabled={!participant.meetsAgeCriteria}
+                    >
+                      {participant.firstName} {participant.lastName}
+                      {!participant.meetsAgeCriteria && (
+                        <span>
+                          {calculateAge(participant.dob) <
+                          (ageCriteria.min ?? 0)
+                            ? " · Below age limit"
+                            : " · Above age limit"}
+                        </span>
+                      )}
+                    </Radio>
+                  </Tooltip>
+                ))}
               </div>
             </Radio.Group>
           </Form.Item>
+
           <div>
-            <Button block>Add new participant</Button>
+            <Button
+              block
+              onClick={() => {
+                setIsAddParticipantModalOpen(true);
+              }}
+            >
+              Add new participant
+            </Button>
+            <AddParticipantModal
+              openModal={isAddParticipantModalOpen}
+              onModalSave={onModalSave}
+              onModalCancel={() => {
+                setIsAddParticipantModalOpen(false);
+              }}
+            />
           </div>
         </div>
       </Form>
