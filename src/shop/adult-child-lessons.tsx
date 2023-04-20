@@ -13,7 +13,7 @@ function AdultChildLessons(): ReactElement {
     <>
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <Main>
+      <Main className="pb-20">
         <CalendarWeek />
       </Main>
       <div className="hidden sm:contents">

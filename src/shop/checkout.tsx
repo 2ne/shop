@@ -18,7 +18,9 @@ function Checkout(): ReactElement {
       <CheckoutTimer timer={25} />
       <Main className="lg:divide-x lg:grid lg:grid-cols-4 max-lg:pb-[11rem]">
         <aside className="lg:pr-5">
-          <CheckoutSteps />
+          <div className="lg:sticky lg:top-4">
+            <CheckoutSteps />
+          </div>
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
           <div className="space-y-4 lg:space-y-6 lg:max-w-[22rem] lg:m-auto">
@@ -29,9 +31,11 @@ function Checkout(): ReactElement {
           </div>
         </section>
         <aside className="hidden lg:pl-5 lg:block">
-          <Basket />
-          <div className="pt-5 mt-5 border-t border-neutral-200">
-            <BasketTotals />
+          <div className="lg:sticky lg:top-4">
+            <Basket />
+            <div className="pt-5 mt-5 border-t border-neutral-200">
+              <BasketTotals />
+            </div>
           </div>
         </aside>
         <footer className="rounded-t-md z-40 lg:hidden fixed bottom-0 left-0 right-0 py-4 shadow-[0_-1px_3px_0_rgb(0_0_0_/_0.1),_0_-1px_2px_-1px_rgb(0_0_0_/_0.1)] bg-white/95 ring-black/10">
