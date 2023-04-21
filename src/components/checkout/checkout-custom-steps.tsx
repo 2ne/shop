@@ -79,7 +79,11 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     </span>
                     <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
                       <span className="text-sm font-medium text-interactive">
-                        {step.title}
+                        <span
+                          className={isClickable ? "group-hover:underline" : ""}
+                        >
+                          {step.title}
+                        </span>
                       </span>
                     </span>
                   </a>
@@ -124,7 +128,13 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                       </span>
                     </span>
                     <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
-                      <span className="text-sm font-medium">{step.title}</span>
+                      <span className="text-sm font-medium">
+                        <span
+                          className={isClickable ? "group-hover:underline" : ""}
+                        >
+                          {step.title}
+                        </span>
+                      </span>
                     </span>
                   </a>
                 </>
@@ -154,7 +164,11 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     </span>
                     <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
                       <span className="text-sm font-medium text-interactive">
-                        {step.title}
+                        <span
+                          className={isClickable ? "group-hover:underline" : ""}
+                        >
+                          {step.title}
+                        </span>
                       </span>
                     </span>
                   </a>
@@ -184,7 +198,11 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     </span>
                     <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
                       <span className="text-sm font-medium text-neutral-500">
-                        {step.title}
+                        <span
+                          className={isClickable ? "group-hover:underline" : ""}
+                        >
+                          {step.title}
+                        </span>
                       </span>
                     </span>
                   </a>
