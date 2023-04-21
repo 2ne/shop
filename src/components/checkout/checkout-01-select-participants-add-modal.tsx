@@ -21,6 +21,18 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
   onModalCancel: onCancel,
 }) => {
   const [AddParticipantForm] = Form.useForm();
+
+  const handleFormSubmit = () => {
+    AddParticipantForm.validateFields()
+      .then((values) => {
+        onSave(values as AddParticipantValues);
+        AddParticipantForm.resetFields();
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
+  };
+
   return (
     <Modal
       width={364}
@@ -30,21 +42,12 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
       okText="Add"
       cancelText="Cancel"
       onCancel={onCancel}
-      onOk={() => {
-        AddParticipantForm.validateFields()
-          .then((values) => {
-            onSave(values as AddParticipantValues);
-            AddParticipantForm.resetFields();
-          })
-          .catch((info) => {
-            console.log("Validate Failed:", info);
-          });
-      }}
+      onOk={handleFormSubmit}
     >
       <Form
         form={AddParticipantForm}
-        layout="vertical"
         name="AddParticipantForm"
+        layout="vertical"
         className="hide-validation-asterix"
       >
         <Form.Item
