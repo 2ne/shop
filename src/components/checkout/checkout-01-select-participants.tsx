@@ -9,7 +9,7 @@ import CheckoutStepHeader from "./checkout-header";
 import AddParticipantModal, {
   AddParticipantValues,
 } from "./checkout-01-select-participants-add-modal";
-import { useBasketContext } from "../basket/basket-context";
+import { useBasketContext, BasketItem } from "../basket/basket-context";
 import { calculateAge } from "./checkout-utils";
 
 interface Participant {
@@ -139,7 +139,7 @@ const CheckoutSelectParticipants = forwardRef<
     const onDetailsFinish = (
       values: { [key: string]: number },
       participants: Participant[],
-      items: { id: number; title: string; subTitle: string; image: string }[]
+      items: BasketItem[]
     ) => {
       const result = items
         .map((item, index) => {

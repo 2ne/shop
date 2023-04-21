@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
-interface BasketItem {
+export interface BasketItem {
   id: string;
   image: string;
   title: string;
