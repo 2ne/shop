@@ -1,5 +1,5 @@
-import { Steps } from "antd";
 import React from "react";
+import CustomSteps from "./checkout-custom-steps";
 
 interface CheckoutStepsProps {
   currentStep: number;
@@ -30,17 +30,12 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({
             · Step {currentStep + 1} of {totalSteps}
           </span>
         </div>
-        <Steps
-          progressDot
-          direction="vertical"
-          size="small"
-          current={currentStep}
-          onChange={onStepClick}
-        >
-          {steps.map((step, index) => (
-            <Steps.Step key={index} title={step.title} />
-          ))}
-        </Steps>
+        <CustomSteps
+          currentStep={currentStep}
+          furthestStep={furthestStep}
+          steps={steps}
+          handleStepClick={handleStepClick}
+        />
       </div>
     </>
   );
