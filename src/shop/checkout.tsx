@@ -157,7 +157,7 @@ export const Checkout: React.FC = () => {
           </div>
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
-          <div className="lg:max-w-[22rem] lg:m-auto space-y-4 lg:space-y-6">
+          <div className="lg:max-w-[22rem] lg:m-auto">
             {activeSteps.map((stepIndex, index) => (
               <div
                 key={index}
@@ -169,7 +169,7 @@ export const Checkout: React.FC = () => {
                 {renderStepComponent(stepIndex)}
               </div>
             ))}
-            <div className="hidden pt-2 lg:block">
+            <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
               <CheckoutButton onClick={submitCurrentForm} />
             </div>
           </div>
