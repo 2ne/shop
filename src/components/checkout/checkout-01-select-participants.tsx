@@ -31,18 +31,18 @@ interface CheckoutSelectParticipantsProps {
 const CheckoutSelectParticipants = forwardRef<
   CheckoutSelectParticipantsHandles,
   CheckoutSelectParticipantsProps
->((props, ref) => {
+>(({ onFormValidation }, ref) => {
   useImperativeHandle(ref, () => ({
     submitForm: async () => {
       try {
         await selectParticipantForm.validateFields();
         selectParticipantForm.submit();
-        props.onFormValidation(true);
+        onFormValidation(true);
         console.log("YO");
         return true;
       } catch (error) {
         console.log("Validation failed:", error);
-        props.onFormValidation(false);
+        onFormValidation(false);
         return false;
       }
     },
