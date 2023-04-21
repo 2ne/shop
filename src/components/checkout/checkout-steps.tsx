@@ -15,11 +15,6 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({
   handleStepClick,
 }) => {
   const totalSteps = steps.length;
-  const onStepClick = (stepIndex: number) => {
-    if (stepIndex <= furthestStep) {
-      handleStepClick(stepIndex);
-    }
-  };
 
   return (
     <>

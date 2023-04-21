@@ -27,6 +27,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
         {steps.map((step, index) => {
           const isActive = index === currentStep;
           const isCompleted = index < furthestStep;
+          const isClickable = index <= furthestStep;
 
           return (
             <li
@@ -49,7 +50,9 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     className="relative flex items-start group"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleStepClick(index);
+                      if (isClickable) {
+                        handleStepClick(index);
+                      }
                     }}
                   >
                     <span className="flex items-center h-8">
@@ -90,6 +93,12 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     href="#"
                     className="relative flex items-start group"
                     aria-current="step"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (isClickable) {
+                        handleStepClick(index);
+                      }
+                    }}
                   >
                     <span className="flex items-center h-8" aria-hidden="true">
                       <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive">
@@ -111,7 +120,16 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                       aria-hidden="true"
                     />
                   ) : null}
-                  <a href="#" className="relative flex items-start group">
+                  <a
+                    href="#"
+                    className="relative flex items-start group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (isClickable) {
+                        handleStepClick(index);
+                      }
+                    }}
+                  >
                     <span className="flex items-center h-8" aria-hidden="true">
                       <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400">
                         <span className="h-2.5 w-2.5 rounded-full bg-transparent transition-colors group-hover:bg-neutral-300" />
