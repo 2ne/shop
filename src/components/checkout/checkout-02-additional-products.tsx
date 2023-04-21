@@ -79,13 +79,6 @@ const CheckoutAdditionalProducts = forwardRef<
       return (!min || participantAge >= min) && (!max || participantAge <= max);
     };
 
-    // Ensure the participant is only selected if they meet the age criteria for the product
-    const findFirstAvailableParticipant = (
-      participants: Participant[]
-    ): Participant | undefined => {
-      return participants.find((participant) => participant.meetsAgeCriteria);
-    };
-
     const [participants, setParticipants] = useState<Participant[]>(() => {
       const loadParticipants: Participant[] = [
         {
@@ -178,75 +171,87 @@ const CheckoutAdditionalProducts = forwardRef<
           onFinishFailed={onDetailsFinishFailed}
           className="space-y-6 text-left hide-validation-asterix"
         >
-          {basketItems.map((item, index) => (
-            <div
-              key={item.id}
-              className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
-            >
-              <div className="flex gap-3.5 border-b pb-3">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="object-cover w-16 h-16 rounded"
-                />
-                <div className="grid items-center flex-1 min-w-0 text-sm">
-                  <div>
-                    <div className="font-medium">{item.title}</div>
-                    <div className="text-neutral-500">{item.subTitle}</div>
-                  </div>
-                  {Object.keys(ageCriteria).length > 0 && (
-                    <div className="pt-1.5 mt-auto text-neutral-500/75">
-                      {ageCriteria.min && ageCriteria.max
-                        ? `Participants must be between ${ageCriteria.min} and ${ageCriteria.max} years old`
-                        : ageCriteria.min
-                        ? `Participants must be ${ageCriteria.min} years or older`
-                        : ageCriteria.max
-                        ? `Participants must be ${ageCriteria.max} years or younger`
-                        : ""}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <Form.Item
-                name={`participant_${index}`}
-                label="Participant"
-                rules={[
-                  { required: true, message: "Please select a participant" },
-                ]}
-                validateTrigger={false}
-              >
-                {/* Ensure the the radio item is selected if the participant meets the age criteria  */}
-                <Radio.Group
-                  defaultValue={findFirstAvailableParticipant(participants)?.id}
+          {basketItems
+            .filter((item) => item.requiredProduct)
+            .map((item, index) => {
+              if (!item.requiredProduct) {
+                return null;
+              }
+              const requiredProduct = item.requiredProduct;
+              return (
+                <div
+                  key={requiredProduct.id}
+                  className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
                 >
-                  <div className="grid gap-1.5">
-                    {participants.map((participant) => (
-                      <Tooltip
-                        key={`${item.id}_${participant.id}`}
-                        title={`Age: ${calculateAge(participant.dob)}`}
-                        placement="left"
-                      >
-                        <Radio
-                          value={participant.id}
-                          disabled={!participant.meetsAgeCriteria}
-                        >
-                          {participant.firstName} {participant.lastName}
-                          {!participant.meetsAgeCriteria && (
-                            <span>
-                              {calculateAge(participant.dob) <
-                              (ageCriteria.min ?? 0)
-                                ? " · Below age limit"
-                                : " · Above age limit"}
-                            </span>
-                          )}
-                        </Radio>
-                      </Tooltip>
-                    ))}
+                  <div className="flex gap-3.5 border-b pb-3">
+                    <img
+                      src={requiredProduct.image}
+                      alt={requiredProduct.title}
+                      className="object-cover w-16 h-16 rounded"
+                    />
+                    <div className="grid items-center flex-1 min-w-0 text-sm">
+                      <div>
+                        <div className="font-medium">
+                          {requiredProduct.title}
+                        </div>
+                        <div className="text-neutral-500">
+                          {requiredProduct.subTitle}
+                        </div>
+                      </div>
+                      {Object.keys(ageCriteria).length > 0 && (
+                        <div className="pt-1.5 mt-auto text-neutral-500/75">
+                          {ageCriteria.min && ageCriteria.max
+                            ? `Participants must be between ${ageCriteria.min} and ${ageCriteria.max} years old`
+                            : ageCriteria.min
+                            ? `Participants must be ${ageCriteria.min} years or older`
+                            : ageCriteria.max
+                            ? `Participants must be ${ageCriteria.max} years or younger`
+                            : ""}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </Radio.Group>
-              </Form.Item>
-            </div>
-          ))}
+                  <Form.Item
+                    name={`participant_${index}`}
+                    label="Participant"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please select a participant",
+                      },
+                    ]}
+                    validateTrigger={false}
+                  >
+                    <Radio.Group>
+                      <div className="grid gap-1.5">
+                        {participants.map((participant) => (
+                          <Tooltip
+                            key={`${requiredProduct.id}_${participant.id}`}
+                            title={`Age: ${calculateAge(participant.dob)}`}
+                            placement="left"
+                          >
+                            <Radio
+                              value={participant.id}
+                              disabled={!participant.meetsAgeCriteria}
+                            >
+                              {participant.firstName} {participant.lastName}
+                              {!participant.meetsAgeCriteria && (
+                                <span>
+                                  {calculateAge(participant.dob) <
+                                  (ageCriteria.min ?? 0)
+                                    ? " · Below age limit"
+                                    : " · Above age limit"}
+                                </span>
+                              )}
+                            </Radio>
+                          </Tooltip>
+                        ))}
+                      </div>
+                    </Radio.Group>
+                  </Form.Item>
+                </div>
+              );
+            })}
         </Form>
       </>
     );

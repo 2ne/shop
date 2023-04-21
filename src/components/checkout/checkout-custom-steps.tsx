@@ -28,6 +28,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
           const isActive = index === currentStep;
           const isCompleted = index < furthestStep;
           const isClickable = index <= furthestStep;
+          const isActiveAndCompleted = isActive && isCompleted;
 
           return (
             <li
@@ -37,7 +38,53 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                 "relative"
               )}
             >
-              {isCompleted ? (
+              {isActiveAndCompleted ? (
+                <>
+                  {index !== steps.length - 1 ? (
+                    <div
+                      className="absolute left-3.5 top-8 rounded-full -ml-px mt-0.5 bottom-0.5 w-0.5 bg-interactive"
+                      aria-hidden="true"
+                    />
+                  ) : null}
+                  <a
+                    href="#"
+                    className="relative flex items-start group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (isClickable) {
+                        handleStepClick(index);
+                      }
+                    }}
+                  >
+                    <span className="flex items-center h-8">
+                      <span className="relative z-10 flex items-center justify-center transition-colors rounded-full w-7 h-7 bg-interactive group-hover:bg-interactive/90">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="text-white w-7 h-7"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M7.75 12.75L10 15.25L16.25 8.75"
+                            stroke="currentColor"
+                            strokeWidth="1.75"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          ></path>
+                        </svg>
+                      </span>
+                    </span>
+                    <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
+                      <span className="text-sm font-medium text-interactive">
+                        {step.title}
+                      </span>
+                    </span>
+                  </a>
+                </>
+              ) : isCompleted ? (
                 <>
                   {index !== steps.length - 1 ? (
                     <div
