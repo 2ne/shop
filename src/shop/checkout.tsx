@@ -25,19 +25,34 @@ import CheckoutAdditionalProducts, {
 function Checkout(): ReactElement {
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
+
+  const stepsData = [
+    {
+      Component: CheckoutSelectParticipants,
+      title: "Select participants",
+      ref: selectParticipantsRef,
+    },
+    {
+      Component: CheckoutAdditionalProducts,
+      title: "Additional products",
+      ref: additionalProductsRef,
+    },
+  ];
+
   const { openBasket, closeBasket, isOpen } = useBasketContext();
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
-  const stepsComponents = [
-    <CheckoutSelectParticipants
-      ref={selectParticipantsRef}
-      onFormValidation={(isValid) => updateValidationStatus(0, isValid)}
-    />,
-    <CheckoutAdditionalProducts
-      ref={additionalProductsRef}
-      onFormValidation={(isValid) => updateValidationStatus(1, isValid)}
-    />,
-  ];
+
+  const stepsComponents = stepsData.map(({ Component, ref }, index) => (
+    <Component
+      key={index}
+      ref={ref}
+      onFormValidation={(isValid: boolean) =>
+        updateValidationStatus(index, isValid)
+      }
+    />
+  ));
+
   const [validationStatus, setValidationStatus] = useState<boolean[]>(
     Array(stepsComponents.length).fill(false)
   );
@@ -59,7 +74,7 @@ function Checkout(): ReactElement {
   const submitCurrentForm = async () => {
     let result = false;
 
-    const currentStepRef = stepsComponents[currentStep].ref;
+    const currentStepRef = stepsData[currentStep].ref;
 
     if (currentStepRef && currentStepRef.current) {
       result = await currentStepRef.current.submitForm();
@@ -116,10 +131,7 @@ function Checkout(): ReactElement {
               currentStep={currentStep}
               furthestStep={furthestStep}
               handleStepClick={handleStepClick}
-              steps={[
-                { title: "Select participants" },
-                { title: "Additional products" },
-              ]}
+              steps={stepsData.map((step) => ({ title: step.title }))}
             />
           </div>
         </aside>
