@@ -37,16 +37,23 @@ const CheckoutSelectParticipants = forwardRef<
     ref: React.Ref<CheckoutSelectParticipantsHandles>
   ) => {
     useImperativeHandle(ref, () => ({
+      // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
         try {
+          // Validate all form fields
           await selectParticipantForm.validateFields();
+          // If validation is successful, submit the form
           selectParticipantForm.submit();
+          // Notify the parent component that the form is valid
           onFormValidation(true);
-          console.log("YO");
+          // Return true to indicate that the form submission was successful
           return true;
         } catch (error) {
+          // Log the validation error
           console.log("Validation failed:", error);
+          // Notify the parent component that the form is not valid
           onFormValidation(false);
+          // Return false to indicate that the form submission failed
           return false;
         }
       },
@@ -61,8 +68,8 @@ const CheckoutSelectParticipants = forwardRef<
       min?: number;
       max?: number;
     }>({
-      min: 4,
-      // max: 8,
+      // min: 4,
+      max: 4,
     });
 
     const isAgeWithinRange = (dob: Date): boolean => {
@@ -100,6 +107,8 @@ const CheckoutSelectParticipants = forwardRef<
     });
 
     useEffect(() => {
+      // Update the 'meetsAgeCriteria' property for each participant in the 'participants' array
+      // based on the current 'ageCriteria'
       setParticipants(
         participants.map((participant) => ({
           ...participant,
@@ -109,8 +118,13 @@ const CheckoutSelectParticipants = forwardRef<
     }, [ageCriteria]);
 
     const onModalSave = (values: AddParticipantValues) => {
+      // Convert input values to a Date object
       const dob = new Date(values.dobYYYY, values.dobMM - 1, values.dobDD);
+
+      // Generate a new participant ID
       const newParticipantId = participants.length + 1;
+
+      // Create a new participant object
       const newParticipant = {
         id: newParticipantId,
         firstName: values.firstName,
@@ -118,8 +132,11 @@ const CheckoutSelectParticipants = forwardRef<
         dob,
         meetsAgeCriteria: isAgeWithinRange(dob),
       };
+
+      // Add the new participant to the participants array
       setParticipants([...participants, newParticipant]);
 
+      // If the new participant meets the age criteria, find the product and set the participant
       if (newParticipant.meetsAgeCriteria) {
         // Find the index of the product that has no participant selected
         const emptyProductIndex = basketItems.findIndex(
@@ -127,12 +144,15 @@ const CheckoutSelectParticipants = forwardRef<
             !selectParticipantForm.getFieldValue(`participant_${index}`)
         );
 
+        // If there is an empty product, set the new participant as the selected participant for that product
         if (emptyProductIndex !== -1) {
           selectParticipantForm.setFieldsValue({
             [`participant_${emptyProductIndex}`]: newParticipantId,
           });
         }
       }
+
+      // Close the add participant modal
       setIsAddParticipantModalOpen(false);
     };
 

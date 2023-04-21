@@ -39,10 +39,10 @@ function Checkout(): ReactElement {
     },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1]);
-  const { openBasket, closeBasket, isOpen } = useBasketContext();
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1]); // define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
+  const { openBasket, closeBasket, isOpen } = useBasketContext();
 
   const renderStepComponent = (stepIndex: number) => {
     const { Component, ref } = stepsData[stepIndex];
@@ -57,33 +57,47 @@ function Checkout(): ReactElement {
     );
   };
 
-  const [validationStatus, setValidationStatus] = useState<boolean[]>(
-    Array(activeSteps.length).fill(false)
-  );
-
+  // This useEffect hook updates the furthestStep state when the currentStep changes
+  // Checks if the current step is greater than the furthest step reached so far, if so it updates the furthestStep state to the currentStep value
   useEffect(() => {
     if (currentStep > furthestStep) {
       setFurthestStep(currentStep);
     }
   }, [currentStep]);
 
+  // Create a state to store the validation status of each step
+  // The initial state is an array of boolean values with the same length as 'activeSteps'
+  // Each step's initial validation status is set to 'false'
+  const [validationStatus, setValidationStatus] = useState<boolean[]>(
+    Array(activeSteps.length).fill(false)
+  );
+
   const updateValidationStatus = (stepIndex: number, isValid: boolean) => {
+    // Update the 'validationStatus' state based on the step index and validation status
     setValidationStatus((prevStatus) => {
+      // Create a new array from the previous validation status array
       const newStatus = [...prevStatus];
+      // Update the validation status of the specific step with the new validation status
       newStatus[stepIndex] = isValid;
+      // Return the updated validation status array
       return newStatus;
     });
   };
 
+  // This function submits the form for the current step
   const submitCurrentForm = async () => {
     let result = false;
 
+    // Retrieve the ref for the current step
     const currentStepRef = stepsData[currentStep].ref;
 
+    // Check if the ref and its current property exist
     if (currentStepRef && currentStepRef.current) {
+      // Call the submitForm function for the current step and store the result
       result = await currentStepRef.current.submitForm();
     }
 
+    // If the form submission was successful, move to the next step
     if (result) {
       handleNext();
     }
@@ -131,7 +145,7 @@ function Checkout(): ReactElement {
                   <div className="-ml-0.5">Back</div>
                 </button>
               )}
-              <div className="lg:hidden sub-heading">
+              <div className="text-sm lg:hidden sub-heading">
                 Step {currentStep + 1} of {activeSteps.length}
               </div>
             </div>
@@ -152,6 +166,7 @@ function Checkout(): ReactElement {
                   currentStep === index ? "space-y-4 lg:space-y-6" : "hidden"
                 }
               >
+                {/* hiding inactive components but rendering them to preserve state during inital dev JT */}
                 {renderStepComponent(stepIndex)}
               </div>
             ))}
