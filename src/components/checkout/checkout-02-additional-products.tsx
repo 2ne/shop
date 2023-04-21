@@ -170,6 +170,7 @@ const CheckoutAdditionalProducts = forwardRef<
           }
           onFinishFailed={onDetailsFinishFailed}
           className="space-y-6 text-left hide-validation-asterix"
+          initialValues={{ participant_0: participants[0].id }}
         >
           {basketItems
             .filter((item) => item.requiredProduct)
@@ -201,11 +202,11 @@ const CheckoutAdditionalProducts = forwardRef<
                       {Object.keys(ageCriteria).length > 0 && (
                         <div className="pt-1.5 mt-auto text-neutral-500/75">
                           {ageCriteria.min && ageCriteria.max
-                            ? `Participants must be between ${ageCriteria.min} and ${ageCriteria.max} years old`
+                            ? `Age limit · between ${ageCriteria.min} and ${ageCriteria.max} years old`
                             : ageCriteria.min
-                            ? `Participants must be ${ageCriteria.min} years or older`
+                            ? `Age limit · ${ageCriteria.min} years or older`
                             : ageCriteria.max
-                            ? `Participants must be ${ageCriteria.max} years or younger`
+                            ? `Age limit · ${ageCriteria.max} years or younger`
                             : ""}
                         </div>
                       )}
