@@ -196,13 +196,7 @@ const CheckoutSelectParticipants = forwardRef<
           title={title}
           subtitle={subtitle}
           icon={
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-primary text-primary_text border-[5px] border-white/75"
-            >
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
               <circle
                 cx="12"
                 cy="8"

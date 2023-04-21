@@ -14,7 +14,11 @@ const CheckoutStepHeader: React.FC<CheckoutStepHeaderProps> = ({
 }) => {
   return (
     <header>
-      <i className="justify-center hidden mb-3 lg:flex">{icon}</i>
+      <div className="justify-center hidden mb-3 lg:flex">
+        <i className="w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-primary text-primary_text border-[5px] border-white/75">
+          {icon}
+        </i>
+      </div>
       <div className="hidden lg:block">
         <Balancer>
           <div className="mb-2 heading-lg">{title}</div>
