@@ -65,7 +65,7 @@ const CheckoutSelectParticipants = forwardRef<
       // max: 8,
     });
 
-    const isAgeWithinRange = (dob: Date) => {
+    const isAgeWithinRange = (dob: Date): boolean => {
       const participantAge = calculateAge(dob);
       const { min, max } = ageCriteria;
 
@@ -137,25 +137,29 @@ const CheckoutSelectParticipants = forwardRef<
     };
 
     const onDetailsFinish = (
-      values: { [x: string]: any },
-      participants: any[],
-      items: any[]
+      values: { [key: string]: number },
+      participants: Participant[],
+      items: { id: number; title: string; subTitle: string; image: string }[]
     ) => {
-      const result = items.map((item: { id: any; title: any }, index: any) => {
-        const participantId = values[`participant_${index}`];
-        const participant = participants.find(
-          (p: { id: any }) => p.id === participantId
-        );
+      const result = items
+        .map((item, index) => {
+          const participantId = values[`participant_${index}`];
+          const participant = participants.find((p) => p.id === participantId);
 
-        return {
-          itemId: item.id,
-          itemName: item.title,
-          participantId: participant.id,
-          participantFirstName: participant.firstName,
-          participantLastName: participant.lastName,
-          participantDob: participant.dob,
-        };
-      });
+          if (!participant) {
+            return null;
+          }
+
+          return {
+            itemId: item.id,
+            itemName: item.title,
+            participantId: participant.id,
+            participantFirstName: participant.firstName,
+            participantLastName: participant.lastName,
+            participantDob: participant.dob,
+          };
+        })
+        .filter((value) => value !== null);
 
       console.log(result);
     };
