@@ -25,6 +25,8 @@ export interface CheckoutSelectParticipantsHandles {
 }
 
 interface CheckoutSelectParticipantsProps {
+  title: string;
+  subtitle: string;
   onFormValidation: (isValid: boolean) => void;
 }
 
@@ -33,7 +35,7 @@ const CheckoutSelectParticipants = forwardRef<
   CheckoutSelectParticipantsProps
 >(
   (
-    { onFormValidation }: CheckoutSelectParticipantsProps,
+    { onFormValidation, title, subtitle }: CheckoutSelectParticipantsProps,
     ref: React.Ref<CheckoutSelectParticipantsHandles>
   ) => {
     useImperativeHandle(ref, () => ({
@@ -191,8 +193,8 @@ const CheckoutSelectParticipants = forwardRef<
     return (
       <>
         <CheckoutStepHeader
-          title="Select participants"
-          subtitle="Please select the participants that you are buying each product for."
+          title={title}
+          subtitle={subtitle}
           icon={
             <svg
               width="24"

@@ -29,27 +29,33 @@ function Checkout(): ReactElement {
   const stepsData = [
     {
       Component: CheckoutSelectParticipants,
-      title: "Select participants",
       ref: selectParticipantsRef,
+      title: "Select participants",
+      subtitle:
+        "Please select the participants that you are buying each product for.",
     },
     {
       Component: CheckoutAdditionalProducts,
-      title: "Additional products",
       ref: additionalProductsRef,
+      title: "Additional products",
+      subtitle:
+        "Review the following required products and add participants as needed.",
     },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1]); // define which steps are required (stepData[index])
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
   const { openBasket, closeBasket, isOpen } = useBasketContext();
 
   const renderStepComponent = (stepIndex: number) => {
-    const { Component, ref } = stepsData[stepIndex];
+    const { Component, ref, title, subtitle } = stepsData[stepIndex];
     return (
       <Component
         key={stepIndex}
         ref={ref}
+        title={title}
+        subtitle={subtitle}
         onFormValidation={(isValid: boolean) =>
           updateValidationStatus(stepIndex, isValid)
         }
@@ -158,7 +164,7 @@ function Checkout(): ReactElement {
           </div>
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
-          <div className="lg:max-w-[22rem] lg:m-auto">
+          <div className="lg:max-w-[22rem] lg:m-auto space-y-4 lg:space-y-6">
             {activeSteps.map((stepIndex, index) => (
               <div
                 key={index}
@@ -170,7 +176,7 @@ function Checkout(): ReactElement {
                 {renderStepComponent(stepIndex)}
               </div>
             ))}
-            <div className="hidden lg:block lg:pt-4">
+            <div className="hidden pt-2 lg:block">
               <CheckoutButton onClick={submitCurrentForm} />
             </div>
           </div>
