@@ -5,10 +5,12 @@ export interface BasketItem {
   image: string;
   title: string;
   subTitle: string;
-  dates: string;
-  price: string;
-  cost: string;
-  billing: string;
+  dates?: string;
+  price?: string;
+  cost?: string;
+  billing?: string;
+  requiredProduct?: BasketItem;
+  isVisible?: boolean;
 }
 
 interface BasketContextValue {
@@ -18,7 +20,8 @@ interface BasketContextValue {
   basketItems: BasketItem[];
   addItem: (item: BasketItem) => void;
   removeItem: (itemId: string) => void;
-  itemCount: () => number;
+  basketItemsCount: () => number;
+  showRequiredProduct: (itemId: string) => void;
 }
 
 const BasketContext = createContext<BasketContextValue | null>(null);
@@ -44,15 +47,35 @@ export const BasketProvider: React.FC = ({ children }) => {
   };
 
   const addItem = (item: BasketItem) => {
-    setItems((prevItems) => [...prevItems, item]);
+    setItems((prevItems) => {
+      const newItems = [...prevItems, { ...item, isVisible: true }];
+      if (item.requiredProduct) {
+        newItems.push({ ...item.requiredProduct, isVisible: false });
+      }
+      return newItems;
+    });
   };
 
   const removeItem = (itemId: string) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
-  const itemCount = () => {
-    return items.length;
+  const basketItemsCount = () => {
+    return items.filter((item) => item.isVisible).length;
+  };
+
+  const showRequiredProduct = (itemId: string) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === itemId && item.requiredProduct) {
+          return {
+            ...item,
+            requiredProduct: { ...item.requiredProduct, isVisible: true },
+          };
+        }
+        return item;
+      })
+    );
   };
 
   return (
@@ -64,7 +87,8 @@ export const BasketProvider: React.FC = ({ children }) => {
         basketItems: items,
         addItem,
         removeItem,
-        itemCount,
+        basketItemsCount: basketItemsCount,
+        showRequiredProduct,
       }}
     >
       {children}

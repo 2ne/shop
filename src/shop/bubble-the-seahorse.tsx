@@ -26,6 +26,16 @@ function BubbleTheSeahorse(): ReactElement {
     price: "£16.00",
     cost: "£64.00",
     billing: "Monthly on the 1st",
+    requiredProduct: {
+      id: Math.random().toString(36).substring(2, 15),
+      image:
+        "https://images.unsplash.com/photo-1560089000-7433a4ebbd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+      dates: "April 2023 - April 2024",
+      title: "Swimming Membership",
+      subTitle: "12 months",
+      cost: "£20.00",
+      billing: "Monthly on the 1st",
+    },
   };
 
   const handleBasketClick = () => {
