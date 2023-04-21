@@ -1,28 +1,21 @@
-import {
-  ReactElement,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import CheckoutTimer from "../components/checkout/checkout-timer";
-import Header from "../components/header";
-import Main from "../components/main";
-import Basket, { BasketTotals } from "../components/basket/basket";
-import CheckoutSteps from "../components/checkout/checkout-steps";
 import { Button } from "antd";
-import { useBasketContext } from "../components/basket/basket-context";
-import Wrapper from "../components/wrapper";
-import { CheckoutButton } from "../components/checkout/checkout-buttons";
-import CheckoutSelectParticipants, {
-  CheckoutSelectParticipantsHandles,
-} from "../components/checkout/checkout-01-select-participants";
-
+import { useEffect, useRef, useState, SetStateAction } from "react";
+import Basket, { BasketTotals } from "../components/basket/basket";
 import CheckoutAdditionalProducts, {
   CheckoutAdditionalProductsHandles,
 } from "../components/checkout/checkout-02-additional-products";
+import CheckoutSelectParticipants, {
+  CheckoutSelectParticipantsHandles,
+} from "../components/checkout/checkout-01-select-participants";
+import CheckoutSteps from "../components/checkout/checkout-steps";
+import { CheckoutButton } from "../components/checkout/checkout-buttons";
+import CheckoutTimer from "../components/checkout/checkout-timer";
+import Header from "../components/header";
+import Main from "../components/main";
+import Wrapper from "../components/wrapper";
+import { useBasketContext } from "../components/basket/basket-context";
 
-function Checkout(): ReactElement {
+export const Checkout: React.FC = () => {
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
 
@@ -224,6 +217,6 @@ function Checkout(): ReactElement {
       </Main>
     </>
   );
-}
+};
 
 export default Checkout;

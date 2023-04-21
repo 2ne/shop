@@ -1,10 +1,10 @@
-import { Button, Form, Radio, Tooltip } from "antd";
 import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
   useState,
 } from "react";
+import { Button, Form, Radio, Tooltip } from "antd";
 import CheckoutStepHeader from "./checkout-header";
 import AddParticipantModal, {
   AddParticipantValues,
@@ -235,7 +235,7 @@ const CheckoutSelectParticipants = forwardRef<
           {basketItems.map((item, index) => (
             <div
               key={item.id}
-              className="p-3 space-y-3 border rounded-md border-neutral-200"
+              className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-rose-500"
             >
               <div className="flex gap-3.5 border-b pb-3">
                 <img

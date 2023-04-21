@@ -12,10 +12,14 @@ ReactDOM.render(
       theme={{
         token: {
           colorPrimary: orgColours?.interactive ?? "#1890ff",
-          colorPrimaryBg: "#f5f5f5",
-          colorTextHeading: "#262626",
-          colorText: "#262626",
-          colorTextDescription: "#737373",
+          colorPrimaryBg: "#f5f5f5", // tw neutral 100
+          colorTextHeading: "#262626", // tw neutral 800
+          colorText: "#262626", // tw neutral 800
+          colorTextDescription: "#737373", // tw neutral 500
+          colorSuccess: "#10b981", // tw emerald 500
+          colorWarning: "#f59e0b", // tw amber 500
+          colorError: "#f43f5e", // tw rose 500
+          colorInfo: orgColours?.interactive ?? "#1890ff",
           fontFamily:
             "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
           borderRadius: 6,
