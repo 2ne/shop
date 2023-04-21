@@ -39,22 +39,26 @@ function Checkout(): ReactElement {
     },
   ];
 
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1]);
   const { openBasket, closeBasket, isOpen } = useBasketContext();
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
 
-  const stepsComponents = stepsData.map(({ Component, ref }, index) => (
-    <Component
-      key={index}
-      ref={ref}
-      onFormValidation={(isValid: boolean) =>
-        updateValidationStatus(index, isValid)
-      }
-    />
-  ));
+  const renderStepComponent = (stepIndex: number) => {
+    const { Component, ref } = stepsData[stepIndex];
+    return (
+      <Component
+        key={stepIndex}
+        ref={ref}
+        onFormValidation={(isValid: boolean) =>
+          updateValidationStatus(stepIndex, isValid)
+        }
+      />
+    );
+  };
 
   const [validationStatus, setValidationStatus] = useState<boolean[]>(
-    Array(stepsComponents.length).fill(false)
+    Array(activeSteps.length).fill(false)
   );
 
   useEffect(() => {
@@ -90,11 +94,15 @@ function Checkout(): ReactElement {
   };
 
   const handlePrev = () => {
-    setCurrentStep(currentStep - 1);
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   const handleNext = () => {
-    setCurrentStep(currentStep + 1);
+    if (currentStep < activeSteps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   return (
@@ -124,7 +132,7 @@ function Checkout(): ReactElement {
                 </button>
               )}
               <div className="lg:hidden sub-heading">
-                Step {currentStep + 1} of {stepsComponents.length}
+                Step {currentStep + 1} of {activeSteps.length}
               </div>
             </div>
             <CheckoutSteps
@@ -137,14 +145,14 @@ function Checkout(): ReactElement {
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
           <div className="lg:max-w-[22rem] lg:m-auto">
-            {stepsComponents.map((component, index) => (
+            {activeSteps.map((stepIndex, index) => (
               <div
                 key={index}
                 className={
                   currentStep === index ? "space-y-4 lg:space-y-6" : "hidden"
                 }
               >
-                {component}
+                {renderStepComponent(stepIndex)}
               </div>
             ))}
             <div className="hidden lg:block lg:pt-4">
