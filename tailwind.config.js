@@ -23,6 +23,11 @@ module.exports = {
         secondary: orgColours?.secondary ?? "#0b58c2",
         secondary_text: orgColours?.secondary_text ?? "#fff",
         interactive: orgColours?.interactive ?? "#056eef",
+
+        success: "#10b981", // tw emerald 500
+        warning: "#f59e0b", // tw amber 500
+        error: "#f43f5e", // tw rose 500
+        info: orgColours?.interactive ?? "#056eef",
       },
       fontFamily: {
         sans: [
