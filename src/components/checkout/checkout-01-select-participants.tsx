@@ -10,6 +10,7 @@ import AddParticipantModal, {
   AddParticipantValues,
 } from "./checkout-01-select-participants-add-modal";
 import { useBasketContext } from "../basket/basket-context";
+import { calculateAge } from "./checkout-utils";
 
 interface Participant {
   id: number;
@@ -52,21 +53,6 @@ const CheckoutSelectParticipants = forwardRef<
   const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
     useState(false);
 
-  const calculateAge = (dob: Date, currentDate: Date = new Date()) => {
-    const birthDate = new Date(dob);
-    let age = currentDate.getFullYear() - birthDate.getFullYear();
-    const monthDifference = currentDate.getMonth() - birthDate.getMonth();
-
-    if (
-      monthDifference < 0 ||
-      (monthDifference === 0 && currentDate.getDate() < birthDate.getDate())
-    ) {
-      age--;
-    }
-
-    return age;
-  };
-
   const [ageCriteria, setAgeCriteria] = useState<{
     min?: number;
     max?: number;
@@ -77,11 +63,9 @@ const CheckoutSelectParticipants = forwardRef<
 
   const isAgeWithinRange = (dob: Date) => {
     const participantAge = calculateAge(dob);
-    const isAboveMinAge =
-      ageCriteria.min === undefined || participantAge >= ageCriteria.min;
-    const isBelowMaxAge =
-      ageCriteria.max === undefined || participantAge <= ageCriteria.max;
-    return isAboveMinAge && isBelowMaxAge;
+    const { min, max } = ageCriteria;
+
+    return (!min || participantAge >= min) && (!max || participantAge <= max);
   };
 
   const [participants, setParticipants] = useState<Participant[]>(() => {
