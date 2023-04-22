@@ -77,7 +77,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                         </svg>
                       </span>
                     </span>
-                    <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
+                    <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium text-interactive">
                         <span
                           className={isClickable ? "group-hover:underline" : ""}
@@ -127,7 +127,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                         </svg>
                       </span>
                     </span>
-                    <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
+                    <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium">
                         <span
                           className={isClickable ? "group-hover:underline" : ""}
@@ -162,7 +162,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                         <span className="h-2.5 w-2.5 rounded-full bg-interactive" />
                       </span>
                     </span>
-                    <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
+                    <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium text-interactive">
                         <span
                           className={isClickable ? "group-hover:underline" : ""}
@@ -196,7 +196,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                         <span className="h-2.5 w-2.5 rounded-full bg-transparent transition-colors group-hover:bg-neutral-300" />
                       </span>
                     </span>
-                    <span className="flex min-w-0 ml-3 items-center h-[calc(2rem-3px)]">
+                    <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium text-neutral-500">
                         <span
                           className={isClickable ? "group-hover:underline" : ""}
