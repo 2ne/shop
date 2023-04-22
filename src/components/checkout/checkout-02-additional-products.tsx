@@ -1,22 +1,7 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from "react";
-import { Form, Radio, Tooltip } from "antd";
+import React, { forwardRef, useImperativeHandle } from "react";
 import CheckoutStepHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
-import { BasketItem } from "../../types/types";
-import { calculateAge } from "./checkout-utils";
-
-interface Participant {
-  id: number;
-  firstName: string;
-  lastName: string;
-  dob: Date;
-  meetsAgeCriteria?: boolean;
-}
+import { Participant } from "../../types/types";
 
 export interface CheckoutAdditionalProductsHandles {
   submitForm: () => Promise<boolean>;
@@ -37,110 +22,21 @@ const CheckoutAdditionalProducts = forwardRef<
     ref: React.Ref<CheckoutAdditionalProductsHandles>
   ) => {
     const { basketItems, addRequiredProducts } = useBasketContext();
-    const [selectParticipantForm] = Form.useForm();
 
     useImperativeHandle(ref, () => ({
-      // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
-        try {
-          // Validate all form fields
-          await selectParticipantForm.validateFields();
-          // If validation is successful, submit the form
-          selectParticipantForm.submit();
-          // Notify the parent component that the form is valid
-          onFormValidation(true);
-          // Return true to indicate that the form submission was successful
-          addRequiredProducts();
-          // Add the linked required products from items already in the basket
-          return true;
-        } catch (error) {
-          // Log the validation error
-          console.log("Validation failed:", error);
-          // Notify the parent component that the form is not valid
-          onFormValidation(false);
-          // Return false to indicate that the form submission failed
-          return false;
-        }
+        // Notify the parent component that the form is valid
+        onFormValidation(true);
+
+        // Add the linked required products from items already in the basket
+        addRequiredProducts();
+
+        console.log("Add required products:", basketItems);
+
+        // Return true to indicate that the form submission was successful
+        return true;
       },
     }));
-
-    const [ageCriteria, setAgeCriteria] = useState<{
-      min?: number;
-      max?: number;
-    }>({
-      // min: 4,
-      max: 4,
-    });
-
-    const isAgeWithinRange = (dob: Date): boolean => {
-      const participantAge = calculateAge(dob);
-      const { min, max } = ageCriteria;
-
-      return (!min || participantAge >= min) && (!max || participantAge <= max);
-    };
-
-    const [participants, setParticipants] = useState<Participant[]>(() => {
-      const loadParticipants: Participant[] = [
-        {
-          id: 3,
-          firstName: "Jacob",
-          lastName: "Toone",
-          dob: new Date("2021-12-06"),
-        },
-      ];
-      return loadParticipants.map((participant) => ({
-        ...participant,
-        meetsAgeCriteria: isAgeWithinRange(participant.dob),
-      }));
-    });
-
-    useEffect(() => {
-      // Update the 'meetsAgeCriteria' property for each participant in the 'participants' array
-      // based on the current 'ageCriteria'
-      setParticipants(
-        participants.map((participant) => ({
-          ...participant,
-          meetsAgeCriteria: isAgeWithinRange(participant.dob),
-        }))
-      );
-    }, [ageCriteria]);
-
-    const onDetailsFinish = (
-      values: { [key: string]: number },
-      participants: Participant[],
-      items: BasketItem[]
-    ) => {
-      const result = items
-        .filter((item) => item.requiredProduct)
-        .map((item, index) => {
-          const requiredProduct = item.requiredProduct;
-          if (!requiredProduct) {
-            return null;
-          }
-          const participantId = values[`participant_${index}`];
-          const participant = participants.find((p) => p.id === participantId);
-
-          if (!participant) {
-            return null;
-          }
-
-          return {
-            itemId: requiredProduct.id,
-            itemName: requiredProduct.title,
-            participantId: participant.id,
-            participantFirstName: participant.firstName,
-            participantLastName: participant.lastName,
-            participantDob: participant.dob,
-          };
-        })
-        .filter((value) => value !== null);
-
-      console.log(result);
-    };
-
-    const onDetailsFinishFailed = (errorInfo: any) => {
-      console.log(errorInfo);
-    };
 
     return (
       <>
@@ -166,96 +62,52 @@ const CheckoutAdditionalProducts = forwardRef<
             </svg>
           }
         />
-        <Form
-          layout="vertical"
-          form={selectParticipantForm}
-          name="selectParticipantForm"
-          onFinish={(values) =>
-            onDetailsFinish(values, participants, basketItems)
+        {/* Look through basket items and show the required product for each */}
+        {basketItems.map((item) => {
+          const requiredProduct = item.requiredProduct;
+          const itemParticipants = item.participants || [];
+          if (!requiredProduct) {
+            return null;
           }
-          onFinishFailed={onDetailsFinishFailed}
-          className="space-y-6 text-left hide-validation-asterix"
-          initialValues={{ participant_0: participants[0].id }}
-        >
-          {/* Look through basket items and show the required product for each  */}
-          {basketItems.map((item, index) => {
-            const requiredProduct = item.requiredProduct;
-            if (!requiredProduct) {
-              return null;
-            }
-            return (
-              <div
-                key={requiredProduct.id}
-                className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
-              >
-                <div className="flex gap-3.5 border-b pb-3">
-                  <img
-                    src={requiredProduct.image}
-                    alt={requiredProduct.title}
-                    className="object-cover w-16 h-16 rounded"
-                  />
-                  <div className="grid items-center flex-1 min-w-0 text-sm">
-                    <div>
-                      <div className="font-medium">{requiredProduct.title}</div>
-                      <div className="text-neutral-500">
-                        {requiredProduct.subTitle}
-                      </div>
+          return (
+            <div
+              key={requiredProduct.id}
+              className="p-3 space-y-3 text-sm text-left border rounded-md border-neutral-200"
+            >
+              <div className="flex gap-3.5 border-b pb-3">
+                <img
+                  src={requiredProduct.image}
+                  alt={requiredProduct.title}
+                  className="object-cover w-16 h-16 rounded"
+                />
+                <div className="grid items-center flex-1 min-w-0">
+                  <div>
+                    <div className="font-medium">{requiredProduct.title}</div>
+                    <div className="text-neutral-500">
+                      {requiredProduct.subTitle}
                     </div>
-                    {Object.keys(ageCriteria).length > 0 && (
-                      <div className="pt-1.5 mt-auto text-neutral-500/75">
-                        {ageCriteria.min && ageCriteria.max
-                          ? `Age limit · between ${ageCriteria.min} and ${ageCriteria.max} years old`
-                          : ageCriteria.min
-                          ? `Age limit · ${ageCriteria.min} years or older`
-                          : ageCriteria.max
-                          ? `Age limit · ${ageCriteria.max} years or younger`
-                          : ""}
-                      </div>
-                    )}
                   </div>
                 </div>
-                <Form.Item
-                  name={`participant_${index}`}
-                  label="Participant"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please select a participant",
-                    },
-                  ]}
-                  validateTrigger={false}
-                >
-                  <Radio.Group>
-                    <div className="grid gap-1.5">
-                      {participants.map((participant) => (
-                        <Tooltip
-                          key={`${requiredProduct.id}_${participant.id}`}
-                          title={`Age: ${calculateAge(participant.dob)}`}
-                          placement="left"
-                        >
-                          <Radio
-                            value={participant.id}
-                            disabled={!participant.meetsAgeCriteria}
-                          >
-                            {participant.firstName} {participant.lastName}
-                            {!participant.meetsAgeCriteria && (
-                              <span>
-                                {calculateAge(participant.dob) <
-                                (ageCriteria.min ?? 0)
-                                  ? " · Below age limit"
-                                  : " · Above age limit"}
-                              </span>
-                            )}
-                          </Radio>
-                        </Tooltip>
-                      ))}
-                    </div>
-                  </Radio.Group>
-                </Form.Item>
               </div>
-            );
-          })}
-        </Form>
+              <div className="grid gap-1.5">
+                {itemParticipants.map((participant: Participant) => {
+                  return (
+                    <div
+                      key={`${requiredProduct.id}_${participant.id}`}
+                      className="flex items-center space-x-1.5"
+                    >
+                      <span className="text-neutral-500">Participant</span>
+                      <span className="text-neutral-500">·</span>
+                      <span className="font-medium">
+                        {participant.firstName} {participant.lastName}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </>
     );
   }

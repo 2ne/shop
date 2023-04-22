@@ -3,10 +3,10 @@ import React, { createContext, useContext, useState } from "react";
 import {
   Participant,
   BasketItem,
-  AdditionalForm,
-  ConsentForm,
-  EmergencyContact,
   medicalInfo,
+  EmergencyContact,
+  ConsentForm,
+  AdditionalForm,
   UploadedFile,
 } from "../../types/types";
 
@@ -81,10 +81,8 @@ export const BasketProvider: React.FC = ({ children }) => {
       const newItems = [...prevItems];
       const itemIndex = newItems.findIndex((item) => item.id === itemId);
       if (itemIndex >= 0) {
-        newItems[itemIndex].participants = [
-          ...(newItems[itemIndex].participants || []),
-          participant,
-        ];
+        // Replace the item's participants array with the new participant
+        newItems[itemIndex].participants = [participant];
       }
       return newItems;
     });

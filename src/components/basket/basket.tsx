@@ -83,15 +83,19 @@ const Basket: React.FC = () => {
               className="grid gap-4 py-5 first-of-type:pt-0 only-of-type:py-0 last-of-type:pb-0"
             >
               <div className="flex gap-3.5">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="object-cover w-16 h-16 rounded"
-                />
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="object-cover w-16 h-16 rounded"
+                  />
+                )}
                 <div className="grid items-center flex-1 min-w-0 text-sm">
                   <div>
                     <div className="font-medium">{item.title}</div>
-                    <div className="text-neutral-500">{item.subTitle}</div>
+                    {item.subTitle && (
+                      <div className="text-neutral-500">{item.subTitle}</div>
+                    )}
                   </div>
                   {!isCheckout && (
                     <div className="mt-auto mb-0.5 pt-1">
@@ -152,31 +156,48 @@ const Basket: React.FC = () => {
                 </div>
               </div>
               <dl className="grid grid-cols-[4rem,1fr] [&>dt]:truncate gap-y-2.5 gap-x-3.5 text-sm tracking-normal">
-                <dt>Dates</dt>
-                <dd>
-                  {item.dates} ·{" "}
-                  <button type="button" className="link">
-                    View
-                  </button>
-                </dd>
-                <dt>Billing</dt>
-                <dd>{item.billing}</dd>
-                <dt>Price</dt>
-                <dd>
-                  <span className="tabular-nums">{item.price}</span>
-                  <span className="text-neutral-500"> · per session</span>
-                </dd>
-                <dt>Cost</dt>
-                <dd>
-                  <div>
-                    <span className="tabular-nums">{item.cost}</span>
-                    <span className="text-neutral-500"> · per month</span>
-                  </div>
-                  <div className="mt-1 text-xs text-neutral-500">
-                    Cost depends on 4 or 5 sessions in a month.
-                    <br className="lg:contents" /> Example based on 4 sessions.
-                  </div>
-                </dd>
+                {item.dates && (
+                  <>
+                    <dt>Dates</dt>
+                    <dd>
+                      {item.dates} ·{" "}
+                      <button type="button" className="link">
+                        View
+                      </button>
+                    </dd>
+                  </>
+                )}
+                {item.billing && (
+                  <>
+                    <dt>Billing</dt>
+                    <dd>{item.billing}</dd>
+                  </>
+                )}
+                {item.price && (
+                  <>
+                    <dt>Price</dt>
+                    <dd>
+                      <span className="tabular-nums">{item.price}</span>
+                      <span className="text-neutral-500"> · per session</span>
+                    </dd>
+                  </>
+                )}
+                {item.cost && (
+                  <>
+                    <dt>Cost</dt>
+                    <dd>
+                      <div>
+                        <span className="tabular-nums">{item.cost}</span>
+                        <span className="text-neutral-500"> · per month</span>
+                      </div>
+                      <div className="mt-1 text-xs text-neutral-500">
+                        Cost depends on 4 or 5 sessions in a month.
+                        <br className="lg:contents" /> Example based on 4
+                        sessions.
+                      </div>
+                    </dd>
+                  </>
+                )}
               </dl>
             </div>
           ))

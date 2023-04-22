@@ -11,15 +11,7 @@ import AddParticipantModal, {
 } from "./checkout-01-select-participants-add-modal";
 import { useBasketContext } from "../basket/basket-context";
 import { calculateAge } from "./checkout-utils";
-import { BasketItem } from "../../types/types";
-
-interface Participant {
-  id: number;
-  firstName: string;
-  lastName: string;
-  dob: Date;
-  meetsAgeCriteria?: boolean;
-}
+import { BasketItem, Participant } from "../../types/types";
 
 export interface CheckoutSelectParticipantsHandles {
   submitForm: () => Promise<boolean>;
