@@ -42,7 +42,8 @@ export const Checkout: React.FC = () => {
       Component: CheckoutMedicalInfo,
       ref: checkoutMedicalInfoRef,
       title: "Medical info",
-      subtitle: "yoyo.",
+      subtitle:
+        "Review the following medical information for all of the participants.",
     },
   ];
 
