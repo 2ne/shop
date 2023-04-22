@@ -10,6 +10,7 @@ export interface BasketItem {
   cost?: string;
   billing?: string;
   requiredProduct?: BasketItem;
+  isRequiredProduct?: boolean;
 }
 
 interface BasketContextValue {
@@ -46,7 +47,20 @@ export const BasketProvider: React.FC = ({ children }) => {
   };
 
   const addItem = (item: BasketItem) => {
-    setItems((prevItems) => [...prevItems, item]);
+    setItems((prevItems) => {
+      // If the item has a required product, set its 'isRequiredProduct' property to true
+      const updatedItem = item.requiredProduct
+        ? {
+            ...item,
+            requiredProduct: {
+              ...item.requiredProduct,
+              isRequiredProduct: true,
+            },
+          }
+        : item;
+
+      return [...prevItems, updatedItem];
+    });
   };
 
   const removeItem = (itemId: string) => {

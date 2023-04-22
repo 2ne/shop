@@ -38,6 +38,14 @@ const CheckoutSelectParticipants = forwardRef<
     { onFormValidation, title, subtitle }: CheckoutSelectParticipantsProps,
     ref: React.Ref<CheckoutSelectParticipantsHandles>
   ) => {
+    const { basketItems } = useBasketContext();
+    const basketItemsExcludingRequired = basketItems.filter(
+      (item) => !item.isRequiredProduct
+    );
+    const [selectParticipantForm] = Form.useForm();
+    const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
+      useState(false);
+
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
@@ -60,11 +68,6 @@ const CheckoutSelectParticipants = forwardRef<
         }
       },
     }));
-
-    const { basketItems } = useBasketContext();
-    const [selectParticipantForm] = Form.useForm();
-    const [isAddParticipantModalOpen, setIsAddParticipantModalOpen] =
-      useState(false);
 
     const [ageCriteria, setAgeCriteria] = useState<{
       min?: number;
@@ -226,7 +229,8 @@ const CheckoutSelectParticipants = forwardRef<
           onFinishFailed={onDetailsFinishFailed}
           className="space-y-6 text-left hide-validation-asterix"
         >
-          {basketItems.map((item, index) => (
+          {/* Loop through basket items but don't show their linked required products */}
+          {basketItemsExcludingRequired.map((item, index) => (
             <div
               key={item.id}
               className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
