@@ -2,15 +2,14 @@ import React, { createContext, useContext, useState } from "react";
 
 export interface BasketItem {
   id: string;
-  image: string;
   title: string;
-  subTitle: string;
+  subTitle?: string;
+  image?: string;
   dates?: string;
   price?: string;
   cost?: string;
   billing?: string;
   requiredProduct?: BasketItem;
-  isVisible?: boolean;
 }
 
 interface BasketContextValue {
@@ -20,8 +19,8 @@ interface BasketContextValue {
   basketItems: BasketItem[];
   addItem: (item: BasketItem) => void;
   removeItem: (itemId: string) => void;
-  basketItemsCount: () => number;
-  showRequiredProduct: (itemId: string) => void;
+  itemCount: () => number;
+  addRequiredProducts: () => void;
 }
 
 const BasketContext = createContext<BasketContextValue | null>(null);
@@ -47,35 +46,36 @@ export const BasketProvider: React.FC = ({ children }) => {
   };
 
   const addItem = (item: BasketItem) => {
-    setItems((prevItems) => {
-      const newItems = [...prevItems, { ...item, isVisible: true }];
-      if (item.requiredProduct) {
-        newItems.push({ ...item.requiredProduct, isVisible: false });
-      }
-      return newItems;
-    });
+    setItems((prevItems) => [...prevItems, item]);
   };
 
   const removeItem = (itemId: string) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
-  const basketItemsCount = () => {
-    return items.filter((item) => item.isVisible).length;
+  const itemCount = () => {
+    return items.length;
   };
 
-  const showRequiredProduct = (itemId: string) => {
-    setItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === itemId && item.requiredProduct) {
-          return {
-            ...item,
-            requiredProduct: { ...item.requiredProduct, isVisible: true },
-          };
+  const addRequiredProducts = () => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+
+      prevItems.forEach((item) => {
+        if (item.requiredProduct) {
+          const requiredProductId = item.requiredProduct.id;
+          const isRequiredProductInBasket = newItems.some(
+            (basketItem) => basketItem.id === requiredProductId
+          );
+
+          if (!isRequiredProductInBasket) {
+            newItems.push(item.requiredProduct);
+          }
         }
-        return item;
-      })
-    );
+      });
+
+      return newItems;
+    });
   };
 
   return (
@@ -87,8 +87,8 @@ export const BasketProvider: React.FC = ({ children }) => {
         basketItems: items,
         addItem,
         removeItem,
-        basketItemsCount: basketItemsCount,
-        showRequiredProduct,
+        itemCount,
+        addRequiredProducts,
       }}
     >
       {children}

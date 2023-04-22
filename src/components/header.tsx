@@ -7,6 +7,7 @@ import { useCheckoutContext } from "./checkout/checkout-context";
 
 export interface HeaderProps {
   loggedIn?: boolean;
+  basketCount?: number;
   hideButtons?: boolean;
   name?: string;
   logo?: string;
@@ -14,12 +15,14 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({
   loggedIn,
+  basketCount,
   hideButtons,
   name = orgName,
   logo = orgLogo,
 }) => {
-  const { openBasket, basketItemsCount } = useBasketContext();
+  const { openBasket, itemCount } = useBasketContext();
   const { isCheckout } = useCheckoutContext();
+  basketCount = itemCount();
   return (
     <header className="relative bg-primary text-primary_text">
       <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
@@ -76,9 +79,9 @@ const Header: React.FC<HeaderProps> = ({
                   className="relative grid text-center group place-items-center"
                   onClick={openBasket}
                 >
-                  {basketItemsCount() && basketItemsCount() > 0 ? (
+                  {basketCount && basketCount > 0 ? (
                     <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-2.5 right-0 place-items-center">
-                      <span>{basketItemsCount()}</span>
+                      <span>{basketCount}</span>
                     </div>
                   ) : null}
                   <svg

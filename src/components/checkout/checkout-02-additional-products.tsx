@@ -4,11 +4,8 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import { Button, Form, Radio, Tooltip } from "antd";
+import { Form, Radio, Tooltip } from "antd";
 import CheckoutStepHeader from "./checkout-header";
-import AddParticipantModal, {
-  AddParticipantValues,
-} from "./checkout-01-select-participants-add-modal";
 import { useBasketContext, BasketItem } from "../basket/basket-context";
 import { calculateAge } from "./checkout-utils";
 
@@ -38,6 +35,9 @@ const CheckoutAdditionalProducts = forwardRef<
     { onFormValidation, title, subtitle }: CheckoutAdditionalProductsProps,
     ref: React.Ref<CheckoutAdditionalProductsHandles>
   ) => {
+    const { basketItems, addRequiredProducts } = useBasketContext();
+    const [selectParticipantForm] = Form.useForm();
+
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
@@ -49,6 +49,8 @@ const CheckoutAdditionalProducts = forwardRef<
           // Notify the parent component that the form is valid
           onFormValidation(true);
           // Return true to indicate that the form submission was successful
+          addRequiredProducts();
+          // Add the linked required products from items already in the basket
           return true;
         } catch (error) {
           // Log the validation error
@@ -60,9 +62,6 @@ const CheckoutAdditionalProducts = forwardRef<
         }
       },
     }));
-
-    const { basketItems } = useBasketContext();
-    const [selectParticipantForm] = Form.useForm();
 
     const [ageCriteria, setAgeCriteria] = useState<{
       min?: number;
@@ -111,7 +110,12 @@ const CheckoutAdditionalProducts = forwardRef<
       items: BasketItem[]
     ) => {
       const result = items
+        .filter((item) => item.requiredProduct)
         .map((item, index) => {
+          const requiredProduct = item.requiredProduct;
+          if (!requiredProduct) {
+            return null;
+          }
           const participantId = values[`participant_${index}`];
           const participant = participants.find((p) => p.id === participantId);
 
@@ -120,8 +124,8 @@ const CheckoutAdditionalProducts = forwardRef<
           }
 
           return {
-            itemId: item.id,
-            itemName: item.title,
+            itemId: requiredProduct.id,
+            itemName: requiredProduct.title,
             participantId: participant.id,
             participantFirstName: participant.firstName,
             participantLastName: participant.lastName,
