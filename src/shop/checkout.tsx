@@ -1,12 +1,15 @@
 import { Button } from "antd";
 import { useEffect, useRef, useState, SetStateAction } from "react";
 import Basket, { BasketTotals } from "../components/basket/basket";
-import CheckoutAdditionalProducts, {
-  CheckoutAdditionalProductsHandles,
-} from "../components/checkout/checkout-02-additional-products";
 import CheckoutSelectParticipants, {
   CheckoutSelectParticipantsHandles,
 } from "../components/checkout/checkout-01-select-participants";
+import CheckoutAdditionalProducts, {
+  CheckoutAdditionalProductsHandles,
+} from "../components/checkout/checkout-02-additional-products";
+import CheckoutMedicalInfo, {
+  CheckoutMedicalInfoHandles,
+} from "../components/checkout/checkout-03-medical-info";
 import CheckoutSteps from "../components/checkout/checkout-steps";
 import { CheckoutButton } from "../components/checkout/checkout-buttons";
 import CheckoutTimer from "../components/checkout/checkout-timer";
@@ -18,6 +21,7 @@ import { useBasketContext } from "../components/basket/basket-context";
 export const Checkout: React.FC = () => {
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
+  const checkoutMedicalInfoRef = useRef<CheckoutMedicalInfoHandles>(null);
 
   const stepsData = [
     {
@@ -34,9 +38,15 @@ export const Checkout: React.FC = () => {
       subtitle:
         "Review the following required products and add participants as needed.",
     },
+    {
+      Component: CheckoutMedicalInfo,
+      ref: checkoutMedicalInfoRef,
+      title: "Medical info",
+      subtitle: "yoyo.",
+    },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1]); // Define which steps are required (stepData[index])
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
   const { openBasket, closeBasket, isOpen } = useBasketContext();
