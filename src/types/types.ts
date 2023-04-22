@@ -46,8 +46,9 @@ interface BasketItem {
   price?: string;
   cost?: string;
   billing?: string;
-  participant?: Participant;
+  participants?: Participant[];
   requiredProduct?: BasketItem;
+  isRequiredProduct?: boolean;
   medicalInfo?: medicalInfo[];
   emergencyContact?: EmergencyContact[];
   consentForms?: ConsentForm[];
@@ -61,6 +62,8 @@ export type {
   medicalInfo,
   EmergencyContact,
   ConsentForm,
+  AdditionalForm,
   UploadedFile,
   BasketItem,
+  AgeCriteria,
 };

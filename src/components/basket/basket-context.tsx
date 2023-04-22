@@ -1,17 +1,14 @@
 import React, { createContext, useContext, useState } from "react";
 
-export interface BasketItem {
-  id: string;
-  title: string;
-  subTitle?: string;
-  image?: string;
-  dates?: string;
-  price?: string;
-  cost?: string;
-  billing?: string;
-  requiredProduct?: BasketItem;
-  isRequiredProduct?: boolean;
-}
+import {
+  Participant,
+  BasketItem,
+  AdditionalForm,
+  ConsentForm,
+  EmergencyContact,
+  medicalInfo,
+  UploadedFile,
+} from "../../types/types";
 
 interface BasketContextValue {
   isOpen: boolean;
@@ -21,7 +18,16 @@ interface BasketContextValue {
   addItem: (item: BasketItem) => void;
   removeItem: (itemId: string) => void;
   itemCount: () => number;
+  addParticipant: (itemId: string, participant: Participant) => void;
   addRequiredProducts: () => void;
+  addMedicalInfo: (itemId: string, medicalInfo: medicalInfo) => void;
+  addEmergencyContact: (
+    itemId: string,
+    emergencyContact: EmergencyContact
+  ) => void;
+  addConsentForm: (itemId: string, consentForm: ConsentForm) => void;
+  addAdditionalForm: (itemId: string, additionalForm: AdditionalForm) => void;
+  addUploadedFile: (itemId: string, uploadedFile: UploadedFile) => void;
 }
 
 const BasketContext = createContext<BasketContextValue | null>(null);
@@ -48,7 +54,6 @@ export const BasketProvider: React.FC = ({ children }) => {
 
   const addItem = (item: BasketItem) => {
     setItems((prevItems) => {
-      // If the item has a required product, set its 'isRequiredProduct' property to true
       const updatedItem = item.requiredProduct
         ? {
             ...item,
@@ -69,6 +74,20 @@ export const BasketProvider: React.FC = ({ children }) => {
 
   const itemCount = () => {
     return items.length;
+  };
+
+  const addParticipant = (itemId: string, participant: Participant) => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const itemIndex = newItems.findIndex((item) => item.id === itemId);
+      if (itemIndex >= 0) {
+        newItems[itemIndex].participants = [
+          ...(newItems[itemIndex].participants || []),
+          participant,
+        ];
+      }
+      return newItems;
+    });
   };
 
   const addRequiredProducts = () => {
@@ -92,6 +111,82 @@ export const BasketProvider: React.FC = ({ children }) => {
     });
   };
 
+  const addMedicalInfo = (itemId: string, medicalInfo: medicalInfo) => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const itemIndex = newItems.findIndex((item) => item.id === itemId);
+      if (itemIndex >= 0) {
+        newItems[itemIndex].medicalInfo = [
+          ...(newItems[itemIndex].medicalInfo || []),
+          medicalInfo,
+        ];
+      }
+      return newItems;
+    });
+  };
+
+  const addEmergencyContact = (
+    itemId: string,
+    emergencyContact: EmergencyContact
+  ) => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const itemIndex = newItems.findIndex((item) => item.id === itemId);
+      if (itemIndex >= 0) {
+        newItems[itemIndex].emergencyContact = [
+          ...(newItems[itemIndex].emergencyContact || []),
+          emergencyContact,
+        ];
+      }
+      return newItems;
+    });
+  };
+
+  const addConsentForm = (itemId: string, consentForm: ConsentForm) => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const itemIndex = newItems.findIndex((item) => item.id === itemId);
+      if (itemIndex >= 0) {
+        newItems[itemIndex].consentForms = [
+          ...(newItems[itemIndex].consentForms || []),
+          consentForm,
+        ];
+      }
+      return newItems;
+    });
+  };
+
+  const addAdditionalForm = (
+    itemId: string,
+    additionalForm: AdditionalForm
+  ) => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const itemIndex = newItems.findIndex((item) => item.id === itemId);
+      if (itemIndex >= 0) {
+        newItems[itemIndex].additionalForms = [
+          ...(newItems[itemIndex].additionalForms || []),
+          additionalForm,
+        ];
+      }
+      return newItems;
+    });
+  };
+
+  const addUploadedFile = (itemId: string, uploadedFile: UploadedFile) => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const itemIndex = newItems.findIndex((item) => item.id === itemId);
+      if (itemIndex >= 0) {
+        newItems[itemIndex].uploadedFiles = [
+          ...(newItems[itemIndex].uploadedFiles || []),
+          uploadedFile,
+        ];
+      }
+      return newItems;
+    });
+  };
+
   return (
     <BasketContext.Provider
       value={{
@@ -102,7 +197,13 @@ export const BasketProvider: React.FC = ({ children }) => {
         addItem,
         removeItem,
         itemCount,
+        addParticipant,
         addRequiredProducts,
+        addMedicalInfo,
+        addEmergencyContact,
+        addConsentForm,
+        addAdditionalForm,
+        addUploadedFile,
       }}
     >
       {children}

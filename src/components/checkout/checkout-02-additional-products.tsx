@@ -6,7 +6,8 @@ import React, {
 } from "react";
 import { Form, Radio, Tooltip } from "antd";
 import CheckoutStepHeader from "./checkout-header";
-import { useBasketContext, BasketItem } from "../basket/basket-context";
+import { useBasketContext } from "../basket/basket-context";
+import { BasketItem } from "../../types/types";
 import { calculateAge } from "./checkout-utils";
 
 interface Participant {

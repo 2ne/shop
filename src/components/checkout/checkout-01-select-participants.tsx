@@ -9,8 +9,9 @@ import CheckoutStepHeader from "./checkout-header";
 import AddParticipantModal, {
   AddParticipantValues,
 } from "./checkout-01-select-participants-add-modal";
-import { useBasketContext, BasketItem } from "../basket/basket-context";
+import { useBasketContext } from "../basket/basket-context";
 import { calculateAge } from "./checkout-utils";
+import { BasketItem } from "../../types/types";
 
 interface Participant {
   id: number;
@@ -38,7 +39,7 @@ const CheckoutSelectParticipants = forwardRef<
     { onFormValidation, title, subtitle }: CheckoutSelectParticipantsProps,
     ref: React.Ref<CheckoutSelectParticipantsHandles>
   ) => {
-    const { basketItems } = useBasketContext();
+    const { basketItems, addParticipant } = useBasketContext();
     const basketItemsExcludingRequired = basketItems.filter(
       (item) => !item.isRequiredProduct
     );
@@ -166,27 +167,18 @@ const CheckoutSelectParticipants = forwardRef<
       participants: Participant[],
       items: BasketItem[]
     ) => {
-      const result = items
-        .map((item, index) => {
-          const participantId = values[`participant_${index}`];
-          const participant = participants.find((p) => p.id === participantId);
+      items.forEach((item, index) => {
+        const participantId = values[`participant_${index}`];
+        const participant = participants.find((p) => p.id === participantId);
 
-          if (!participant) {
-            return null;
-          }
+        if (!participant) {
+          return;
+        }
 
-          return {
-            itemId: item.id,
-            itemName: item.title,
-            participantId: participant.id,
-            participantFirstName: participant.firstName,
-            participantLastName: participant.lastName,
-            participantDob: participant.dob,
-          };
-        })
-        .filter((value) => value !== null);
+        addParticipant(item.id, participant);
 
-      console.log(result);
+        console.log("Add participants:", basketItems);
+      });
     };
 
     const onDetailsFinishFailed = (errorInfo: any) => {
