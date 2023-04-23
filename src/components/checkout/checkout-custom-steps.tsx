@@ -57,7 +57,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8">
-                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
+                      <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
                         <svg
                           width="24"
                           height="24"
@@ -80,7 +80,11 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium text-interactive">
                         <span
-                          className={isClickable ? "group-hover:underline" : ""}
+                          className={
+                            isClickable
+                              ? "transition-colors group-hover:underline"
+                              : ""
+                          }
                         >
                           {step.title}
                         </span>
@@ -107,7 +111,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8">
-                      <span className="relative z-10 flex items-center justify-center rounded-full w-7 h-7 bg-interactive group-hover:bg-interactive/80">
+                      <span className="relative z-10 flex items-center justify-center transition-colors border-2 rounded-full w-7 h-7 border-interactive bg-interactive group-hover:bg-interactive/80">
                         <svg
                           width="24"
                           height="24"
@@ -130,7 +134,11 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium">
                         <span
-                          className={isClickable ? "group-hover:underline" : ""}
+                          className={
+                            isClickable
+                              ? "transition-colors group-hover:underline"
+                              : ""
+                          }
                         >
                           {step.title}
                         </span>
@@ -158,14 +166,18 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8" aria-hidden="true">
-                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
+                      <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
                         <span className="h-2.5 w-2.5 rounded-full bg-interactive" />
                       </span>
                     </span>
                     <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium text-interactive">
                         <span
-                          className={isClickable ? "group-hover:underline" : ""}
+                          className={
+                            isClickable
+                              ? "transition-colors group-hover:underline"
+                              : ""
+                          }
                         >
                           {step.title}
                         </span>
@@ -192,14 +204,18 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8" aria-hidden="true">
-                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400">
-                        <span className="h-2.5 w-2.5 rounded-full bg-transparent  group-hover:bg-neutral-300" />
+                      <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400">
+                        <span className="h-2.5 w-2.5 rounded-full bg-transparent  transition-colors group-hover:bg-neutral-300" />
                       </span>
                     </span>
                     <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium text-neutral-500">
                         <span
-                          className={isClickable ? "group-hover:underline" : ""}
+                          className={
+                            isClickable
+                              ? "transition-colors group-hover:underline"
+                              : ""
+                          }
                         >
                           {step.title}
                         </span>
