@@ -57,14 +57,14 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8">
-                      <span className="relative z-10 flex items-center justify-center transition-colors rounded-full w-7 h-7 bg-interactive group-hover:bg-interactive/90">
+                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive">
                         <svg
                           width="24"
                           height="24"
                           viewBox="0 0 24 24"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
-                          className="text-white w-7 h-7"
+                          className="text-interactive w-7 h-7"
                           aria-hidden="true"
                         >
                           <path
@@ -107,7 +107,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8">
-                      <span className="relative z-10 flex items-center justify-center transition-colors rounded-full w-7 h-7 bg-interactive group-hover:bg-interactive/90">
+                      <span className="relative z-10 flex items-center justify-center rounded-full w-7 h-7 bg-interactive group-hover:bg-interactive/90">
                         <svg
                           width="24"
                           height="24"
@@ -192,8 +192,8 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8" aria-hidden="true">
-                      <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400">
-                        <span className="h-2.5 w-2.5 rounded-full bg-transparent transition-colors group-hover:bg-neutral-300" />
+                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400">
+                        <span className="h-2.5 w-2.5 rounded-full bg-transparent  group-hover:bg-neutral-300" />
                       </span>
                     </span>
                     <span className="flex items-center h-8 min-w-0 ml-3">

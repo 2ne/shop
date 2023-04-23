@@ -76,35 +76,52 @@ export const BasketProvider: React.FC = ({ children }) => {
     return items.length;
   };
 
+  // This function adds a participant to an time in the basket
   const addParticipant = (itemId: string, participant: Participant) => {
+    // Update the basket items
     setItems((prevItems) => {
+      // Create a copy of the previous basket array
       const newItems = [...prevItems];
+      // Find the index of the item with the specified itemId in the new basket array
       const itemIndex = newItems.findIndex((item) => item.id === itemId);
+
+      // Check if the item with the specified itemId exists in the new basket array
       if (itemIndex >= 0) {
-        // Replace the item's participants array with the new participant
+        // Replace the item's participants array with an array containing the new participant
         newItems[itemIndex].participants = [participant];
       }
+
+      // Return the updated basket array
       return newItems;
     });
   };
 
+  // This function adds required products to the items list if they are not already present
   const addRequiredProducts = () => {
+    // Update the items state using a function
     setItems((prevItems) => {
+      // Create a copy of the previous items array
       const newItems = [...prevItems];
 
+      // Iterate through each item in the previous items array
       prevItems.forEach((item) => {
+        // Check if the current item has a required product
         if (item.requiredProduct) {
+          // Extract the ID of the required product
           const requiredProductId = item.requiredProduct.id;
+          // Check if the required product is already in the new items array
           const isRequiredProductInBasket = newItems.some(
             (basketItem) => basketItem.id === requiredProductId
           );
 
+          // If the required product is not in the new items array, add it
           if (!isRequiredProductInBasket) {
             newItems.push(item.requiredProduct);
           }
         }
       });
 
+      // Return the updated items array
       return newItems;
     });
   };
