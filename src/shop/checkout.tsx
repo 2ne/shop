@@ -28,21 +28,20 @@ export const Checkout: React.FC = () => {
       Component: CheckoutSelectParticipants,
       ref: selectParticipantsRef,
       title: "Select participants",
-      subtitle:
-        "Please select the participants that you are buying each product for.",
+      subtitle: "Please select who you are purchasing each product for",
     },
     {
       Component: CheckoutAdditionalProducts,
       ref: additionalProductsRef,
       title: "Additional products",
       subtitle:
-        "Review the following required products and add participants as needed.",
+        "Please review the required add-ons for the items in your basket.",
     },
     {
       Component: CheckoutMedicalInfo,
       ref: checkoutMedicalInfoRef,
       title: "Medical information",
-      subtitle: "Review the medical details for all participants.",
+      subtitle: "Please review the medical information for all participants",
     },
   ];
 
