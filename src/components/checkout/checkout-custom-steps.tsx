@@ -57,7 +57,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8">
-                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive">
+                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
                         <svg
                           width="24"
                           height="24"
@@ -107,7 +107,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8">
-                      <span className="relative z-10 flex items-center justify-center rounded-full w-7 h-7 bg-interactive group-hover:bg-interactive/90">
+                      <span className="relative z-10 flex items-center justify-center rounded-full w-7 h-7 bg-interactive group-hover:bg-interactive/80">
                         <svg
                           width="24"
                           height="24"
@@ -158,7 +158,7 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8" aria-hidden="true">
-                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive">
+                      <span className="relative z-10 flex items-center justify-center bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
                         <span className="h-2.5 w-2.5 rounded-full bg-interactive" />
                       </span>
                     </span>
