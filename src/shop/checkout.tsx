@@ -9,7 +9,7 @@ import CheckoutAdditionalProducts, {
 } from "../components/checkout/checkout-02-additional-products";
 import CheckoutMedicalInfo, {
   CheckoutMedicalInfoHandles,
-} from "../components/checkout/checkout-03-medical-info";
+} from "../components/checkout/checkout-03-medical-information";
 import CheckoutSteps from "../components/checkout/checkout-steps";
 import { CheckoutButton } from "../components/checkout/checkout-buttons";
 import CheckoutTimer from "../components/checkout/checkout-timer";
@@ -41,9 +41,8 @@ export const Checkout: React.FC = () => {
     {
       Component: CheckoutMedicalInfo,
       ref: checkoutMedicalInfoRef,
-      title: "Medical info",
-      subtitle:
-        "Review the following medical information for all of the participants.",
+      title: "Medical information",
+      subtitle: "Review the medical details for all participants.",
     },
   ];
 
