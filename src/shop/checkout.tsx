@@ -10,6 +10,9 @@ import CheckoutAdditionalProducts, {
 import CheckoutMedicalInfo, {
   CheckoutMedicalInfoHandles,
 } from "../components/checkout/checkout-03-medical-information";
+import CheckoutEmergencyContacts, {
+  CheckoutEmergencyContactsHandles,
+} from "../components/checkout/checkout-04-emergency-contacts";
 import CheckoutSteps from "../components/checkout/checkout-steps";
 import { CheckoutButton } from "../components/checkout/checkout-buttons";
 import CheckoutTimer from "../components/checkout/checkout-timer";
@@ -22,6 +25,8 @@ export const Checkout: React.FC = () => {
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
   const checkoutMedicalInfoRef = useRef<CheckoutMedicalInfoHandles>(null);
+  const checkoutEmergencyContactsRef =
+    useRef<CheckoutEmergencyContactsHandles>(null);
 
   const stepsData = [
     {
@@ -43,9 +48,15 @@ export const Checkout: React.FC = () => {
       title: "Medical information",
       subtitle: "Please review the medical information for all participants",
     },
+    {
+      Component: CheckoutEmergencyContacts,
+      ref: checkoutEmergencyContactsRef,
+      title: "Emergency contacts",
+      subtitle: "Review the emergency contacts and add them if required",
+    },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2]); // Define which steps are required (stepData[index])
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2, 3]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
   const { openBasket, closeBasket, isOpen } = useBasketContext();
