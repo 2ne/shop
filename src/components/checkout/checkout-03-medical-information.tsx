@@ -62,21 +62,6 @@ const CheckoutMedicalInfo = forwardRef<
       },
     }));
 
-    const [ageCriteria, setAgeCriteria] = useState<{
-      min?: number;
-      max?: number;
-    }>({
-      // min: 4,
-      max: 4,
-    });
-
-    const isAgeWithinRange = (dob: Date): boolean => {
-      const participantAge = calculateAge(dob);
-      const { min, max } = ageCriteria;
-
-      return (!min || participantAge >= min) && (!max || participantAge <= max);
-    };
-
     const [participants, setParticipants] = useState<Participant[]>(() => {
       const loadParticipants: Participant[] = [
         {
@@ -100,59 +85,8 @@ const CheckoutMedicalInfo = forwardRef<
       ];
       return loadParticipants.map((participant) => ({
         ...participant,
-        meetsAgeCriteria: isAgeWithinRange(participant.dob),
       }));
     });
-
-    useEffect(() => {
-      // Update the 'meetsAgeCriteria' property for each participant in the 'participants' array
-      // based on the current 'ageCriteria'
-      setParticipants(
-        participants.map((participant) => ({
-          ...participant,
-          meetsAgeCriteria: isAgeWithinRange(participant.dob),
-        }))
-      );
-    }, [ageCriteria]);
-
-    const onModalSave = (values: AddParticipantValues) => {
-      // Convert input values to a Date object
-      const dob = new Date(values.dobYYYY, values.dobMM - 1, values.dobDD);
-
-      // Generate a new participant ID
-      const newParticipantId = participants.length + 1;
-
-      // Create a new participant object
-      const newParticipant = {
-        id: newParticipantId,
-        firstName: values.firstName,
-        lastName: values.lastName,
-        dob,
-        meetsAgeCriteria: isAgeWithinRange(dob),
-      };
-
-      // Add the new participant to the participants array
-      setParticipants([...participants, newParticipant]);
-
-      // If the new participant meets the age criteria, find the product and set the participant
-      if (newParticipant.meetsAgeCriteria) {
-        // Find the index of the product that has no participant selected
-        const emptyProductIndex = basketItems.findIndex(
-          (item, index) =>
-            !selectParticipantForm.getFieldValue(`participant_${index}`)
-        );
-
-        // If there is an empty product, set the new participant as the selected participant for that product
-        if (emptyProductIndex !== -1) {
-          selectParticipantForm.setFieldsValue({
-            [`participant_${emptyProductIndex}`]: newParticipantId,
-          });
-        }
-      }
-
-      // Close the add participant modal
-      setIsAddParticipantModalOpen(false);
-    };
 
     const onDetailsFinish = (
       values: { [key: string]: number },
@@ -207,90 +141,36 @@ const CheckoutMedicalInfo = forwardRef<
           onFinishFailed={onDetailsFinishFailed}
           className="space-y-6 text-left hide-validation-asterix"
         >
-          {/* Loop through basket items but don't show their linked required products */}
-          {basketItemsExcludingRequired.map((item, index) => (
-            <div
-              key={item.id}
-              className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
-            >
-              <div className="flex gap-3.5 border-b pb-3">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="object-cover w-16 h-16 rounded"
-                />
-                <div className="grid items-center flex-1 min-w-0 text-sm">
-                  <div>
-                    <div className="font-medium">{item.title}</div>
-                    <div className="text-neutral-500">{item.subTitle}</div>
-                  </div>
-                  {Object.keys(ageCriteria).length > 0 && (
-                    <div className="pt-1.5 mt-auto text-neutral-500/75">
-                      {ageCriteria.min && ageCriteria.max
-                        ? `Age limit · between ${ageCriteria.min} and ${ageCriteria.max} years old`
-                        : ageCriteria.min
-                        ? `Age limit · ${ageCriteria.min} years or older`
-                        : ageCriteria.max
-                        ? `Age limit · ${ageCriteria.max} years or younger`
-                        : ""}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <Form.Item
-                name={`participant_${index}`}
-                label="Select a participant"
-                rules={[
-                  { required: true, message: "Please select a participant" },
-                ]}
-                validateTrigger={false}
-              >
-                <Radio.Group>
-                  <div className="grid gap-1.5">
-                    {participants.map((participant) => (
-                      <Tooltip
-                        key={`${item.id}_${participant.id}`}
-                        title={`Age: ${calculateAge(participant.dob)}`}
-                        placement="left"
+          {basketItems.map((item) => {
+            const itemParticipants = item.participants || [];
+            return (
+              <div key={item.id}>
+                {itemParticipants.map((participant, index) => {
+                  return (
+                    <div
+                      key={`participant_${item.id}_${index}`}
+                      className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
+                    >
+                      <div className="font-medium">
+                        {participant.firstName} {participant.lastName}
+                      </div>
+                      <Form.Item
+                        name={`participant_${index}`}
+                        label="Any known disabilities, medical/behavioural conditions, dietary needs or current medications?"
+                        validateTrigger={false}
+                        className="[&_.ant-form-item-label]:font-normal"
                       >
-                        <Radio
-                          value={participant.id}
-                          disabled={!participant.meetsAgeCriteria}
-                        >
-                          {participant.firstName} {participant.lastName}
-                          {!participant.meetsAgeCriteria && (
-                            <span>
-                              {calculateAge(participant.dob) <
-                              (ageCriteria.min ?? 0)
-                                ? " · Below age limit"
-                                : " · Above age limit"}
-                            </span>
-                          )}
-                        </Radio>
-                      </Tooltip>
-                    ))}
-                  </div>
-                </Radio.Group>
-              </Form.Item>
-              <div>
-                <Button
-                  block
-                  onClick={() => {
-                    setIsAddParticipantModalOpen(true);
-                  }}
-                >
-                  Add new participant
-                </Button>
-                <AddParticipantModal
-                  openModal={isAddParticipantModalOpen}
-                  onModalSave={onModalSave}
-                  onModalCancel={() => {
-                    setIsAddParticipantModalOpen(false);
-                  }}
-                />
+                        <Radio.Group className="flex text-center [&>*]:flex-1 mt-2">
+                          <Radio.Button value="no">No</Radio.Button>
+                          <Radio.Button value="yes">Yes</Radio.Button>
+                        </Radio.Group>
+                      </Form.Item>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </Form>
       </>
     );
