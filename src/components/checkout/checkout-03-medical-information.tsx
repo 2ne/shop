@@ -79,8 +79,11 @@ const CheckoutMedicalInfo = forwardRef<
         });
       });
 
-      // Log the basketItems to the console
-      console.log("Add medical information:", basketItems);
+      // Log the basketItems to the console. Don't show required products
+      console.log(
+        "Add medical information:",
+        basketItems.filter((item) => !item.requiredProduct?.isRequiredProduct)
+      );
     };
 
     const onDetailsFinishFailed = (errorInfo: any) => {
