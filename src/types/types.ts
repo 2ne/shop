@@ -4,11 +4,68 @@ interface Participant {
   lastName: string;
   dob: Date;
   meetsAgeCriteria?: boolean; // Used to cross-reference with BasketItem's ageCriteria
+  medicalInfo?: MedicalInfo;
+  emergencyContact?: EmergencyContact[];
+  consentForms?: ConsentForm[];
+  additionalForms?: AdditionalForm[];
+  uploadedFiles?: UploadedFile[];
 }
 
-interface medicalInfo {
-  id: number;
+interface MedicalInfo {
+  doctorsName?: string;
+  surgeryAddress?: string;
+  surgeryTelephone?: string;
+  medicalConditions?: string;
+  disabilities?: string;
+  behaviouralConditions?: string;
+  medicines?: string;
+  allergies?: string;
+  notes?: string;
 }
+
+type MedicalInfoFieldKey = keyof MedicalInfo;
+
+type MedicalInfoField = {
+  key: MedicalInfoFieldKey;
+  label: string;
+  group: string;
+};
+
+export const medicalInfoFields: MedicalInfoField[] = [
+  {
+    key: "doctorsName",
+    label: "Doctor's Name",
+    group: "doctorsDetails",
+  },
+  {
+    key: "surgeryAddress",
+    label: "Surgery Address",
+    group: "doctorsDetails",
+  },
+  {
+    key: "surgeryTelephone",
+    label: "Surgery Telephone",
+    group: "doctorsDetails",
+  },
+  {
+    key: "medicalConditions",
+    label: "Medical Conditions",
+    group: "medicalInformation",
+  },
+  {
+    key: "disabilities",
+    label: "Disabilities",
+    group: "medicalInformation",
+  },
+  {
+    key: "behaviouralConditions",
+    label: "Behavioural Conditions",
+    group: "medicalInformation",
+  },
+  { key: "medicines", label: "Medicines", group: "medications" },
+  { key: "allergies", label: "Allergies", group: "allergiesAndDietary" },
+  { key: "notes", label: "Notes", group: "allergiesAndDietary" },
+];
 
 interface EmergencyContact {
   id: number;
@@ -49,17 +106,12 @@ interface BasketItem {
   participants?: Participant[];
   requiredProduct?: BasketItem;
   isRequiredProduct?: boolean;
-  medicalInfo?: medicalInfo[];
-  emergencyContact?: EmergencyContact[];
-  consentForms?: ConsentForm[];
-  additionalForms?: AdditionalForm[];
-  uploadedFiles?: UploadedFile[];
   ageCriteria?: AgeCriteria;
 }
 
 export type {
   Participant,
-  medicalInfo,
+  MedicalInfo,
   EmergencyContact,
   ConsentForm,
   AdditionalForm,

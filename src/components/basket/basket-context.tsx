@@ -20,14 +20,17 @@ interface BasketContextValue {
   itemCount: () => number;
   addParticipant: (itemId: string, participant: Participant) => void;
   addRequiredProducts: () => void;
-  addMedicalInfo: (itemId: string, medicalInfo: medicalInfo) => void;
+  addMedicalInfo: (participantId: number, medicalInfo: medicalInfo) => void;
   addEmergencyContact: (
-    itemId: string,
+    participantId: number,
     emergencyContact: EmergencyContact
   ) => void;
-  addConsentForm: (itemId: string, consentForm: ConsentForm) => void;
-  addAdditionalForm: (itemId: string, additionalForm: AdditionalForm) => void;
-  addUploadedFile: (itemId: string, uploadedFile: UploadedFile) => void;
+  addConsentForm: (participantId: number, consentForm: ConsentForm) => void;
+  addAdditionalForm: (
+    participantId: number,
+    additionalForm: AdditionalForm
+  ) => void;
+  addUploadedFile: (participantId: number, uploadedFile: UploadedFile) => void;
 }
 
 const BasketContext = createContext<BasketContextValue | null>(null);
@@ -126,78 +129,126 @@ export const BasketProvider: React.FC = ({ children }) => {
     });
   };
 
-  const addMedicalInfo = (itemId: string, medicalInfo: medicalInfo) => {
+  const addMedicalInfo = (participantId: number, medicalInfo: medicalInfo) => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
-      const itemIndex = newItems.findIndex((item) => item.id === itemId);
-      if (itemIndex >= 0) {
-        newItems[itemIndex].medicalInfo = [
-          ...(newItems[itemIndex].medicalInfo || []),
-          medicalInfo,
-        ];
-      }
+
+      newItems.forEach((item) => {
+        if (item.participants) {
+          const participantIndex = item.participants.findIndex(
+            (p) => p.id === participantId
+          );
+
+          if (participantIndex >= 0) {
+            item.participants[participantIndex].medicalInfo = {
+              ...(item.participants[participantIndex].medicalInfo || {}),
+              ...medicalInfo,
+            };
+          }
+        }
+      });
+
       return newItems;
     });
   };
 
   const addEmergencyContact = (
-    itemId: string,
+    participantId: number,
     emergencyContact: EmergencyContact
   ) => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
-      const itemIndex = newItems.findIndex((item) => item.id === itemId);
-      if (itemIndex >= 0) {
-        newItems[itemIndex].emergencyContact = [
-          ...(newItems[itemIndex].emergencyContact || []),
-          emergencyContact,
-        ];
-      }
+
+      newItems.forEach((item) => {
+        if (item.participants) {
+          const participantIndex = item.participants.findIndex(
+            (p) => p.id === participantId
+          );
+
+          if (participantIndex >= 0) {
+            item.participants[participantIndex].emergencyContact = [
+              ...(item.participants[participantIndex].emergencyContact || []),
+              emergencyContact,
+            ];
+          }
+        }
+      });
+
       return newItems;
     });
   };
 
-  const addConsentForm = (itemId: string, consentForm: ConsentForm) => {
+  const addConsentForm = (participantId: number, consentForm: ConsentForm) => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
-      const itemIndex = newItems.findIndex((item) => item.id === itemId);
-      if (itemIndex >= 0) {
-        newItems[itemIndex].consentForms = [
-          ...(newItems[itemIndex].consentForms || []),
-          consentForm,
-        ];
-      }
+
+      newItems.forEach((item) => {
+        if (item.participants) {
+          const participantIndex = item.participants.findIndex(
+            (p) => p.id === participantId
+          );
+
+          if (participantIndex >= 0) {
+            item.participants[participantIndex].consentForms = [
+              ...(item.participants[participantIndex].consentForms || []),
+              consentForm,
+            ];
+          }
+        }
+      });
+
       return newItems;
     });
   };
 
   const addAdditionalForm = (
-    itemId: string,
+    participantId: number,
     additionalForm: AdditionalForm
   ) => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
-      const itemIndex = newItems.findIndex((item) => item.id === itemId);
-      if (itemIndex >= 0) {
-        newItems[itemIndex].additionalForms = [
-          ...(newItems[itemIndex].additionalForms || []),
-          additionalForm,
-        ];
-      }
+
+      newItems.forEach((item) => {
+        if (item.participants) {
+          const participantIndex = item.participants.findIndex(
+            (p) => p.id === participantId
+          );
+
+          if (participantIndex >= 0) {
+            item.participants[participantIndex].additionalForms = [
+              ...(item.participants[participantIndex].additionalForms || []),
+              additionalForm,
+            ];
+          }
+        }
+      });
+
       return newItems;
     });
   };
 
-  const addUploadedFile = (itemId: string, uploadedFile: UploadedFile) => {
+  const addUploadedFile = (
+    participantId: number,
+    uploadedFile: UploadedFile
+  ) => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
-      const itemIndex = newItems.findIndex((item) => item.id === itemId);
-      if (itemIndex >= 0) {
-        newItems[itemIndex].uploadedFiles = [
-          ...(newItems[itemIndex].uploadedFiles || []),
-          uploadedFile,
-        ];
-      }
+
+      newItems.forEach((item) => {
+        if (item.participants) {
+          const participantIndex = item.participants.findIndex(
+            (p) => p.id === participantId
+          );
+
+          if (participantIndex >= 0) {
+            item.participants[participantIndex].uploadedFiles = [
+              ...(item.participants[participantIndex].uploadedFiles || []),
+              uploadedFile,
+            ];
+          }
+        }
+      });
+
       return newItems;
     });
   };

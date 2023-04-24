@@ -116,6 +116,10 @@ dt {
   @apply ring-1 ring-interactive font-medium;
 }
 
+.ant-radio-button-wrapper.ant-radio-button-wrapper-checked:not(:first-child)::before {
+  @apply w-[2px];
+}
+
 .ant-select-mobile {
   @apply max-lg:!rounded-t-md max-lg:!rounded-b-none max-lg:!fixed max-lg:!p-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bottom-0 max-lg:!top-auto max-lg:!w-full;
 }
