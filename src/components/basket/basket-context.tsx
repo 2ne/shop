@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 import {
   Participant,
   BasketItem,
-  medicalInfo,
+  MedicalInfo,
   EmergencyContact,
   ConsentForm,
   AdditionalForm,
@@ -20,7 +20,7 @@ interface BasketContextValue {
   itemCount: () => number;
   addParticipant: (itemId: string, participant: Participant) => void;
   addRequiredProducts: () => void;
-  addMedicalInfo: (participantId: number, medicalInfo: medicalInfo) => void;
+  addMedicalInfo: (participantId: number, medicalInfo: MedicalInfo) => void;
   addEmergencyContact: (
     participantId: number,
     emergencyContact: EmergencyContact
@@ -129,7 +129,7 @@ export const BasketProvider: React.FC = ({ children }) => {
     });
   };
 
-  const addMedicalInfo = (participantId: number, medicalInfo: medicalInfo) => {
+  const addMedicalInfo = (participantId: number, medicalInfo: MedicalInfo) => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
 

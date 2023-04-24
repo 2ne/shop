@@ -191,23 +191,9 @@ const CheckoutMedicalInfo = forwardRef<
                                 </Form.Item>
                               ))}
                           </Collapse.Panel>
-                          <Collapse.Panel header="Medications" key="3">
-                            {medicalInfoFields
-                              .filter((field) => field.group === "medications")
-                              .map((field) => (
-                                <Form.Item
-                                  key={field.key}
-                                  name={`participant_${participant.id}_${field.key}`}
-                                  label={field.label}
-                                  className="last:!mb-1.5"
-                                >
-                                  <Input />
-                                </Form.Item>
-                              ))}
-                          </Collapse.Panel>
                           <Collapse.Panel
                             header="Allergies & dietary requirements"
-                            key="4"
+                            key="3"
                           >
                             {medicalInfoFields
                               .filter(

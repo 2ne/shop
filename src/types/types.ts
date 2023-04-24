@@ -34,24 +34,25 @@ type MedicalInfoField = {
 export const medicalInfoFields: MedicalInfoField[] = [
   {
     key: "doctorsName",
-    label: "Doctor's Name",
+    label: "Doctor's name",
     group: "doctorsDetails",
   },
   {
     key: "surgeryAddress",
-    label: "Surgery Address",
+    label: "Surgery address",
     group: "doctorsDetails",
   },
   {
     key: "surgeryTelephone",
-    label: "Surgery Telephone",
+    label: "Surgery telephone",
     group: "doctorsDetails",
   },
   {
     key: "medicalConditions",
-    label: "Medical Conditions",
+    label: "Medical conditions",
     group: "medicalInformation",
   },
+  { key: "medicines", label: "Medicines", group: "medicalInformation" },
   {
     key: "disabilities",
     label: "Disabilities",
@@ -59,10 +60,9 @@ export const medicalInfoFields: MedicalInfoField[] = [
   },
   {
     key: "behaviouralConditions",
-    label: "Behavioural Conditions",
+    label: "Behavioural conditions",
     group: "medicalInformation",
   },
-  { key: "medicines", label: "Medicines", group: "medications" },
   { key: "allergies", label: "Allergies", group: "allergiesAndDietary" },
   { key: "notes", label: "Notes", group: "allergiesAndDietary" },
 ];
