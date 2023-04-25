@@ -127,7 +127,7 @@ const CheckoutEmergencyContacts = forwardRef<
                         rules={[
                           {
                             required: field.required,
-                            message: `Please input your ${field.label.toLowerCase()}.`,
+                            message: `Please enter a ${field.label.toLowerCase()}.`,
                           },
                         ]}
                         required={field.required}
