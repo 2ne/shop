@@ -105,7 +105,7 @@ type ConsentFormField = {
   key: ConsentFormFieldKey;
   label: string;
   required?: boolean;
-  type: string;
+  value: boolean;
 };
 
 export const consentFormFields: ConsentFormField[] = [
@@ -113,19 +113,19 @@ export const consentFormFields: ConsentFormField[] = [
     key: "termsAndConditions",
     label: "Terms & conditions",
     required: true,
-    type: "switch",
+    value: false,
   },
   {
     key: "accessToMedicalInformation",
     label: "Access to medical information",
     required: true,
-    type: "switch",
+    value: false,
   },
   {
     key: "photography",
     label: "Photography",
     required: false,
-    type: "switch",
+    value: false,
   },
 ];
 

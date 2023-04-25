@@ -81,6 +81,7 @@ const CheckoutConsentForms = forwardRef<
         const consentForm: ConsentForm = {
           termsAndConditions: false,
           accessToMedicalInformation: false,
+          photography: false,
         };
 
         // Loop through each field in the consentFormFields array
@@ -95,7 +96,7 @@ const CheckoutConsentForms = forwardRef<
       });
 
       // Log the basketItems to the console. Show products that are not required
-      console.log("Add consent information:", basketItems);
+      console.log("Add consent information:", basketItems, values);
     };
 
     const onDetailsFinishFailed = (errorInfo: any) => {
@@ -151,6 +152,7 @@ const CheckoutConsentForms = forwardRef<
                   valuePropName="checked"
                   className="!mb-2 last:!mb-0"
                   required={field.required}
+                  initialValue={field.value}
                 >
                   <div className="flex items-center">
                     <div className="flex items-center flex-grow gap-x-1">
@@ -163,11 +165,18 @@ const CheckoutConsentForms = forwardRef<
                           </button>
                         </>
                       )}
-                      {field.key === "photography" && (
+                      {!field.required && (
                         <span className="text-neutral-500">(optional)</span>
                       )}
                     </div>
-                    <Switch />
+                    <Switch
+                      onChange={(checked: boolean) => {
+                        consentFormsForm.setFieldsValue({
+                          [`participant_${participant.id}_${field.key}`]:
+                            checked,
+                        });
+                      }}
+                    />
                   </div>
                 </Form.Item>
               ))}
