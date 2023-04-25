@@ -20,7 +20,7 @@ interface MedicalInfo {
   behaviouralConditions?: string;
   medicines?: string;
   allergies?: string;
-  notes?: string;
+  dietaryNeedsOrConditions?: string;
 }
 
 type MedicalInfoFieldKey = keyof MedicalInfo;
@@ -64,7 +64,11 @@ export const medicalInfoFields: MedicalInfoField[] = [
     group: "medicalInformation",
   },
   { key: "allergies", label: "Allergies", group: "allergiesAndDietary" },
-  { key: "notes", label: "Notes", group: "allergiesAndDietary" },
+  {
+    key: "dietaryNeedsOrConditions",
+    label: "Dietary needs or other conditions",
+    group: "allergiesAndDietary",
+  },
 ];
 
 interface EmergencyContact {
