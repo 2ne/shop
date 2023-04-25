@@ -1,5 +1,5 @@
-import React, { forwardRef, useImperativeHandle } from "react";
-import { Form, Switch } from "antd";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
+import { Form, Modal, Switch } from "antd";
 import CheckoutStepHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
 import { ConsentForm, Participant, consentFormFields } from "../../types/types";
@@ -24,6 +24,15 @@ const CheckoutConsentForms = forwardRef<
   ) => {
     const { basketItems, addConsentForm } = useBasketContext();
     const [consentFormsForm] = Form.useForm();
+    const [consentModal, setConsentModal] = useState(false);
+
+    const showConsentModal = () => {
+      setConsentModal(true);
+    };
+
+    const consentModalCancel = () => {
+      setConsentModal(false);
+    };
 
     // Create a Set to store unique participant IDs
     const participantIds = new Set<number>();
@@ -160,7 +169,11 @@ const CheckoutConsentForms = forwardRef<
                       {field.content && (
                         <>
                           <span>·</span>
-                          <button type="button" className="link">
+                          <button
+                            type="button"
+                            className="link"
+                            onClick={showConsentModal}
+                          >
                             View
                           </button>
                         </>
@@ -183,6 +196,17 @@ const CheckoutConsentForms = forwardRef<
             </div>
           ))}
         </Form>
+        <Modal
+          title="Terms and Conditions"
+          open={consentModal}
+          onCancel={consentModalCancel}
+          footer={null}
+        >
+          These terms and conditions apply to all members and guests of
+          [Gymnastics Club Name] ("the Club"). By joining the Club or
+          participating in any Club activities, you agree to be bound by these
+          terms and conditions.
+        </Modal>
       </>
     );
   }
