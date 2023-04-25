@@ -72,9 +72,9 @@ const CheckoutAdditionalProducts = forwardRef<
           return (
             <div
               key={requiredProduct.id}
-              className="p-3 space-y-3 text-sm text-left border rounded-md border-neutral-200"
+              className="p-4 space-y-4 text-sm text-left border rounded-md border-neutral-200"
             >
-              <div className="flex gap-3.5 border-b pb-3">
+              <div className="flex gap-3 pb-4 border-b">
                 <img
                   src={requiredProduct.image}
                   alt={requiredProduct.title}

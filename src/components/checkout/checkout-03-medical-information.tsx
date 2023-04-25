@@ -92,11 +92,8 @@ const CheckoutMedicalInfo = forwardRef<
         addMedicalInfo(participantId, medicalInfo);
       });
 
-      // Log the basketItems to the console. Don't show required products
-      console.log(
-        "Add medical information:",
-        basketItems.filter((item) => !item.requiredProduct?.isRequiredProduct)
-      );
+      // Log the basketItems to the console. Show products that are not required
+      console.log("Add medical information:", basketItems);
     };
 
     const onDetailsFinishFailed = (errorInfo: any) => {
@@ -144,14 +141,14 @@ const CheckoutMedicalInfo = forwardRef<
           {participants.map((participant, index) => (
             <div
               key={`participant_${index}`}
-              className="p-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
+              className="p-4 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
             >
               <div className="mb-2 font-medium">
                 {participant.firstName} {participant.lastName}
               </div>
               <Form.Item
                 name={`participant_${participant.id}`}
-                label="Any known disabilities, medical/behavioural conditions, dietary needs or current medications?"
+                label="Any known disabilities, behavioural conditions, dietary needs, or medications?"
                 className="!mb-0.5 [&_.ant-form-item-label]:font-normal"
                 rules={[
                   {
@@ -169,7 +166,7 @@ const CheckoutMedicalInfo = forwardRef<
                 </Radio.Group>
               </Form.Item>
               {medicalFields && (
-                <Collapse className="mt-4">
+                <Collapse className="mt-4 pt-0.5">
                   <Collapse.Panel header="Doctor's details" key="1">
                     {medicalInfoFields
                       .filter((field) => field.group === "doctorsDetails")

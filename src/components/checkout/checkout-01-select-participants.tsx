@@ -217,9 +217,9 @@ const CheckoutSelectParticipants = forwardRef<
           {basketItemsExcludingRequired.map((item, index) => (
             <div
               key={item.id}
-              className="p-3 space-y-3 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
+              className="p-4 space-y-4 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
             >
-              <div className="flex gap-3.5 border-b pb-3">
+              <div className="flex gap-3 pb-4 border-b">
                 <img
                   src={item.image}
                   alt={item.title}

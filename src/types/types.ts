@@ -94,10 +94,40 @@ export const emergencyContactFields: EmergencyContactField[] = [
 ];
 
 interface ConsentForm {
-  id: number;
-  title: string;
-  signed: boolean;
+  termsAndConditions: boolean;
+  accessToMedicalInformation: boolean;
+  photography?: boolean;
 }
+
+type ConsentFormFieldKey = keyof ConsentForm;
+
+type ConsentFormField = {
+  key: ConsentFormFieldKey;
+  label: string;
+  required?: boolean;
+  type: string;
+};
+
+export const consentFormFields: ConsentFormField[] = [
+  {
+    key: "termsAndConditions",
+    label: "Terms & conditions",
+    required: true,
+    type: "switch",
+  },
+  {
+    key: "accessToMedicalInformation",
+    label: "Access to medical information",
+    required: true,
+    type: "switch",
+  },
+  {
+    key: "photography",
+    label: "Photography",
+    required: false,
+    type: "switch",
+  },
+];
 
 interface AdditionalForm {
   id: number;
@@ -136,6 +166,7 @@ export type {
   EmergencyContact,
   EmergencyContactField,
   ConsentForm,
+  ConsentFormField,
   AdditionalForm,
   UploadedFile,
   BasketItem,
