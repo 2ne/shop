@@ -77,21 +77,25 @@ const CheckoutConsentForms = forwardRef<
         // Get the participant's ID
         const participantId = participant.id;
 
-        // Create an object to store the participant's consent form with the correct type
-        const consentForm = {} as ConsentForm;
+        // Create an object to store the participant's consent information with the correct type
+        const consentForm: ConsentForm = {
+          termsAndConditions: false,
+          accessToMedicalInformation: false,
+        };
 
         // Loop through each field in the consentFormFields array
         consentFormFields.forEach((field) => {
           // Get the value for the current field from the form values object
           consentForm[field.key as keyof ConsentForm] =
-            values[`${field.key}_${participantId}`];
+            values[`participant_${participantId}_${field.key}`];
         });
 
-        // Call the addConsentForm function with the participant's ID and the consent form object
+        // Call the addConsentForm function with the participant's ID and the consentForm object
         addConsentForm(participantId, consentForm);
       });
 
-      console.log("Add consent form:", basketItems);
+      // Log the basketItems to the console. Show products that are not required
+      console.log("Add consent information:", basketItems);
     };
 
     const onDetailsFinishFailed = (errorInfo: any) => {
