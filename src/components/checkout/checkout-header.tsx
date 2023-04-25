@@ -32,14 +32,14 @@ const CheckoutStepHeader: React.FC<CheckoutStepHeaderProps> = ({
         <div className="sub-heading">{subtitle}</div>
       </div>
       {requiredText && (
-        <div className="flex justify-center mt-3">
-          <div className="inline-flex items-center px-4 py-1 text-sm font-medium rounded-full bg-primary text-primary_text gap-x-1">
+        <div className="flex mt-2 lg:justify-center">
+          <div className="inline-flex items-center px-3 lg:px-4 py-1 text-xs font-medium rounded-full lg:text-sm bg-primary text-primary_text gap-x-0.5 lg:gap-x-1">
             <svg
               width="24"
               height="24"
               fill="none"
               viewBox="0 0 24 24"
-              className="-ml-2"
+              className="-ml-1.5 h-5 w-5 lg:h-6 lg:w-6 lg:-ml-2"
             >
               <path
                 stroke="currentColor"
