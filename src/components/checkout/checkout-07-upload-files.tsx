@@ -191,7 +191,7 @@ const CheckoutUploadFiles = forwardRef<
                             ></path>
                           </svg>
                         </div>
-                        <p className="text-sm">
+                        <p className="text-sm text-neutral-500">
                           <span className="font-medium text-interactive group-hover:underline">
                             Click to upload
                           </span>{" "}
@@ -233,7 +233,7 @@ const CheckoutUploadFiles = forwardRef<
                             ></path>
                           </svg>
                         </div>
-                        <p className="text-sm">
+                        <p className="text-sm text-neutral-500">
                           <span className="font-medium text-interactive group-hover:underline">
                             Click to upload
                           </span>{" "}
