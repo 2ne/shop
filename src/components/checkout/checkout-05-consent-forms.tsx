@@ -157,7 +157,7 @@ const CheckoutConsentForms = forwardRef<
                   <div className="flex items-center">
                     <div className="flex items-center flex-grow gap-x-1">
                       <span>{field.label}</span>
-                      {field.key === "termsAndConditions" && (
+                      {field.content && (
                         <>
                           <span>·</span>
                           <button type="button" className="link">
