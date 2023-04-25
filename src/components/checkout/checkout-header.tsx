@@ -5,12 +5,14 @@ type CheckoutStepHeaderProps = {
   icon: ReactNode;
   title: string;
   subtitle: string;
+  requiredText?: string;
 };
 
 const CheckoutStepHeader: React.FC<CheckoutStepHeaderProps> = ({
   icon,
   title,
   subtitle,
+  requiredText,
 }) => {
   return (
     <header>
@@ -29,6 +31,38 @@ const CheckoutStepHeader: React.FC<CheckoutStepHeaderProps> = ({
         <div className="mb-1 heading-lg">{title}</div>
         <div className="sub-heading">{subtitle}</div>
       </div>
+      {requiredText && (
+        <div className="flex justify-center mt-3">
+          <div className="inline-flex items-center px-4 py-1 text-sm font-medium rounded-full bg-primary text-primary_text gap-x-1">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="-ml-2"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 13v2"
+              ></path>
+              <circle cx="12" cy="9" r="1" fill="currentColor"></circle>
+              <circle
+                cx="12"
+                cy="12"
+                r="7.25"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              ></circle>
+            </svg>
+            <span>{requiredText}</span>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

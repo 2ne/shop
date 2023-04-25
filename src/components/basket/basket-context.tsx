@@ -21,10 +21,7 @@ interface BasketContextValue {
   addParticipant: (itemId: string, participant: Participant) => void;
   addRequiredProducts: () => void;
   addMedicalInfo: (participantId: number, medicalInfo: MedicalInfo) => void;
-  addEmergencyContact: (
-    participantId: number,
-    emergencyContact: EmergencyContact
-  ) => void;
+  addEmergencyContact: () => void; //TO DO
   addConsentForm: (participantId: number, consentForm: ConsentForm) => void;
   addAdditionalForm: (
     participantId: number,
