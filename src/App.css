@@ -61,7 +61,7 @@ dt {
 }
 
 .ant-btn:not([class*="rounded"]) {
-  @apply !rounded-md;
+  @apply rounded-md;
 }
 
 .ant-btn-primary {
@@ -199,4 +199,22 @@ dt {
 
 .ant-tooltip {
   @apply max-sm:hidden;
+}
+:where(.rounded-md) .ant-collapse,
+:where(.rounded-md) .ant-btn:not([class*="rounded"]),
+:where(.rounded-md) .ant-input {
+  @apply rounded;
+}
+
+:where(.rounded-md) .ant-collapse > .ant-collapse-item:last-child,
+:where(.rounded-md) .ant-collapse > .ant-collapse-item:last-child > .ant-collapse-header {
+  @apply rounded-b;
+}
+
+:where(.rounded-md) .ant-radio-button-wrapper:first-child {
+  @apply rounded-l;
+}
+
+:where(.rounded-md) .ant-radio-button-wrapper:last-child {
+  @apply rounded-r;
 }

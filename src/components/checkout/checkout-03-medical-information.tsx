@@ -178,7 +178,7 @@ const CheckoutMedicalInfo = forwardRef<
                           key={field.key}
                           name={`participant_${participant.id}_${field.key}`}
                           label={field.label}
-                          className="last:!mb-1.5"
+                          className="!mb-4 last:!mb-1.5"
                         >
                           <Input />
                         </Form.Item>
@@ -192,7 +192,7 @@ const CheckoutMedicalInfo = forwardRef<
                           key={field.key}
                           name={`participant_${participant.id}_${field.key}`}
                           label={field.label}
-                          className="last:!mb-1.5"
+                          className="!mb-4 last:!mb-1.5"
                         >
                           <Input />
                         </Form.Item>
@@ -209,7 +209,7 @@ const CheckoutMedicalInfo = forwardRef<
                           key={field.key}
                           name={`participant_${participant.id}_${field.key}`}
                           label={field.label}
-                          className="last:!mb-1.5"
+                          className="!mb-4 last:!mb-1.5"
                         >
                           <Input />
                         </Form.Item>
