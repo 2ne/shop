@@ -83,9 +83,8 @@ const CheckoutAdditionalProducts = forwardRef<
                 <div className="grid items-center flex-1 min-w-0">
                   <div>
                     <div className="font-medium">{requiredProduct.title}</div>
-                    <div className="text-neutral-500">12 months</div>
-                    <div className="pt-1.5 mt-auto text-neutral-500/75">
-                      {requiredProduct.cost} · per month
+                    <div className="text-neutral-500">
+                      {requiredProduct.subTitle}
                     </div>
                   </div>
                 </div>
