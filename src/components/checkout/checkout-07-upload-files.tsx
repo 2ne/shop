@@ -164,8 +164,8 @@ const CheckoutUploadFiles = forwardRef<
                     Gymnastics membership card (front)
                   </div>
                   <div>
-                    <Dragger {...props}>
-                      <div className="px-3 py-2">
+                    <Dragger {...props} className="group">
+                      <div className="px-3 py-2 group">
                         <div className="flex justify-center mb-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -192,10 +192,10 @@ const CheckoutUploadFiles = forwardRef<
                           </svg>
                         </div>
                         <p className="text-sm">
-                          <span className="font-medium text-interactive">
+                          <span className="font-medium text-interactive group-hover:underline">
                             Click to upload
                           </span>{" "}
-                          or drag and drop file
+                          or drag and drop a file
                         </p>
                       </div>
                     </Dragger>
@@ -206,7 +206,7 @@ const CheckoutUploadFiles = forwardRef<
                     Gymnastics membership card (back)
                   </div>
                   <div>
-                    <Dragger {...props}>
+                    <Dragger {...props} className="group">
                       <div className="px-3 py-2">
                         <div className="flex justify-center mb-1">
                           <svg
@@ -234,10 +234,10 @@ const CheckoutUploadFiles = forwardRef<
                           </svg>
                         </div>
                         <p className="text-sm">
-                          <span className="font-medium text-interactive">
+                          <span className="font-medium text-interactive group-hover:underline">
                             Click to upload
                           </span>{" "}
-                          or drag and drop file
+                          or drag and drop a file
                         </p>
                       </div>
                     </Dragger>

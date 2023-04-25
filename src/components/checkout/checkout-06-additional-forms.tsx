@@ -128,10 +128,10 @@ const CheckoutAdditionalForms = forwardRef<
               key={`participant_${index}`}
               className="p-4 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
             >
-              <div className="pb-4 font-medium border-b">
+              <div className="pb-4 mb-4 font-medium border-b">
                 {participant.firstName} {participant.lastName}
               </div>
-              <div className="divide-y [&>*]:py-4">
+              <div className="space-y-5">
                 <div>
                   <div className="mb-1 font-medium">
                     British gymnastics questions
@@ -172,7 +172,7 @@ const CheckoutAdditionalForms = forwardRef<
                     </span>
                   </Button>
                 </div>
-                <div className="last:pb-px">
+                <div>
                   <div className="mb-1 font-medium">
                     Previous coach experience
                   </div>
