@@ -141,8 +141,8 @@ const CheckoutConsentForms = forwardRef<
               </div>
               {consentFormFields.map((field) => (
                 <Form.Item
-                  key={`${participant.id}_${field.key}`}
-                  name={`${field.key}_${participant.id}`}
+                  key={field.key}
+                  name={`participant_${participant.id}_${field.key}`}
                   labelAlign="left"
                   valuePropName="checked"
                   className="!mb-2 last:!mb-0"
