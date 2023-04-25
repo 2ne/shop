@@ -1,8 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { Button, Form, Modal, Switch } from "antd";
+import { Button, Form, Modal } from "antd";
 import CheckoutStepHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
-import { ConsentForm, Participant, consentFormFields } from "../../types/types";
+import { Participant } from "../../types/types";
 
 export interface CheckoutAdditionalFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -22,7 +22,7 @@ const CheckoutAdditionalForms = forwardRef<
     { onFormValidation, title, subtitle }: CheckoutAdditionalFormsProps,
     ref: React.Ref<CheckoutAdditionalFormsHandles>
   ) => {
-    const { basketItems, addConsentForm } = useBasketContext();
+    const { basketItems } = useBasketContext();
     const [additionalInfoForm] = Form.useForm();
     const [formModal, setFormModal] = useState(false);
 
