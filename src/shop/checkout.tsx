@@ -22,6 +22,9 @@ import CheckoutAdditionalForms, {
 import CheckoutUploadFiles, {
   CheckoutUploadFilesHandles,
 } from "../components/checkout/checkout-07-upload-files";
+import CheckoutPayment, {
+  CheckoutPaymentHandles,
+} from "../components/checkout/checkout-08-payment";
 import CheckoutSteps from "../components/checkout/checkout-steps";
 import { CheckoutButton } from "../components/checkout/checkout-buttons";
 import CheckoutTimer from "../components/checkout/checkout-timer";
@@ -40,6 +43,7 @@ export const Checkout: React.FC = () => {
   const CheckoutAdditionalFormsRef =
     useRef<CheckoutAdditionalFormsHandles>(null);
   const CheckoutUploadFilesRef = useRef<CheckoutUploadFilesHandles>(null);
+  const CheckoutPaymentRef = useRef<CheckoutPaymentHandles>(null);
 
   const stepsData = [
     {
@@ -86,10 +90,16 @@ export const Checkout: React.FC = () => {
       subtitle:
         "Review the following required files for all of the participants",
     },
+    {
+      Component: CheckoutPayment,
+      ref: CheckoutPaymentRef,
+      title: "Payment",
+      subtitle: "Enter your payment details below to complete your order",
+    },
   ];
 
   const [activeSteps, setActiveSteps] = useState<number[]>([
-    0, 1, 2, 3, 4, 5, 6,
+    0, 1, 2, 3, 4, 5, 6, 7,
   ]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
