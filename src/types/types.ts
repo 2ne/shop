@@ -5,7 +5,6 @@ interface Participant {
   dob: Date;
   meetsAgeCriteria?: boolean; // Used to cross-reference with BasketItem's ageCriteria
   medicalInfo?: MedicalInfo;
-  emergencyContact?: EmergencyContact[];
   consentForms?: ConsentForm[];
   additionalForms?: AdditionalForm[];
   uploadedFiles?: UploadedFile[];
@@ -72,10 +71,27 @@ export const medicalInfoFields: MedicalInfoField[] = [
 ];
 
 interface EmergencyContact {
-  id: number;
   name: string;
   phone: string;
+  email?: string;
+  address?: string;
 }
+
+type EmergencyContactFieldKey = keyof EmergencyContact;
+
+type EmergencyContactField = {
+  key: EmergencyContactFieldKey;
+  label: string;
+  required?: boolean;
+  type: string;
+};
+
+export const emergencyContactFields: EmergencyContactField[] = [
+  { key: "name", label: "Name", required: true, type: "text" },
+  { key: "phone", label: "Phone", required: true, type: "tel" },
+  { key: "email", label: "Email", required: false, type: "email" },
+  { key: "address", label: "Address", required: false, type: "text" },
+];
 
 interface ConsentForm {
   id: number;
@@ -108,15 +124,17 @@ interface BasketItem {
   cost?: string;
   billing?: string;
   participants?: Participant[];
+  ageCriteria?: AgeCriteria;
   requiredProduct?: BasketItem;
   isRequiredProduct?: boolean;
-  ageCriteria?: AgeCriteria;
+  emergencyContact?: EmergencyContact[];
 }
 
 export type {
   Participant,
   MedicalInfo,
   EmergencyContact,
+  EmergencyContactField,
   ConsentForm,
   AdditionalForm,
   UploadedFile,

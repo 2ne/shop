@@ -122,19 +122,26 @@ export const Checkout: React.FC = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0 });
+  };
+
   const handleStepClick = (stepIndex: SetStateAction<number>) => {
     setCurrentStep(stepIndex);
+    scrollToTop;
   };
 
   const handlePrev = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
+      scrollToTop;
     }
   };
 
   const handleNext = () => {
     if (currentStep < activeSteps.length - 1) {
       setCurrentStep(currentStep + 1);
+      scrollToTop;
     }
   };
 
@@ -164,7 +171,7 @@ export const Checkout: React.FC = () => {
                   <div className="-ml-0.5">Back</div>
                 </button>
               )}
-              <div className="text-sm lg:hidden sub-heading">
+              <div className="!text-sm lg:hidden sub-heading">
                 Step {currentStep + 1} of {activeSteps.length}
               </div>
             </div>

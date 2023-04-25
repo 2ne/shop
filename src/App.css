@@ -202,7 +202,7 @@ dt {
 }
 :where(.rounded-md) .ant-collapse,
 :where(.rounded-md) .ant-btn:not([class*="rounded"]),
-:where(.rounded-md) .ant-input {
+:where(.rounded-md, .ant-collapse) .ant-input {
   @apply rounded;
 }
 

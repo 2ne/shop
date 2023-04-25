@@ -20,15 +20,24 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
             role="list"
             className="flex items-center h-10 px-4 sm:space-x-0.5 overflow-x-auto"
           >
-            <li>
-              <div className="flex items-center">
-                <Link to="/Home" className="truncate hover:underline">
-                  Home
-                </Link>
-              </div>
-            </li>
+            {!items && (
+              <li>
+                <div className="flex items-center">
+                  <div className="flex items-center sm:gap-x-0.5">
+                    <span className="truncate">Home</span>
+                  </div>
+                </div>
+              </li>
+            )}
             {items && (
               <>
+                <li>
+                  <div className="flex items-center">
+                    <Link to="/Home" className="truncate hover:underline">
+                      Home
+                    </Link>
+                  </div>
+                </li>
                 {items.map((item, index) => (
                   <li key={item.label}>
                     {index === items.length - 1 ? (

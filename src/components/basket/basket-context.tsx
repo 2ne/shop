@@ -152,30 +152,8 @@ export const BasketProvider: React.FC = ({ children }) => {
     });
   };
 
-  const addEmergencyContact = (
-    participantId: number,
-    emergencyContact: EmergencyContact
-  ) => {
-    setItems((prevItems) => {
-      const newItems = [...prevItems];
-
-      newItems.forEach((item) => {
-        if (item.participants) {
-          const participantIndex = item.participants.findIndex(
-            (p) => p.id === participantId
-          );
-
-          if (participantIndex >= 0) {
-            item.participants[participantIndex].emergencyContact = [
-              ...(item.participants[participantIndex].emergencyContact || []),
-              emergencyContact,
-            ];
-          }
-        }
-      });
-
-      return newItems;
-    });
+  const addEmergencyContact = () => {
+    console.log("TO DO - Add emergency contacts to the account owner");
   };
 
   const addConsentForm = (participantId: number, consentForm: ConsentForm) => {
