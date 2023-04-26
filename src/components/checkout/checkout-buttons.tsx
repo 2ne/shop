@@ -3,17 +3,17 @@ import React from "react";
 
 interface CheckoutButtonProps {
   onClick?: () => void;
-  type?: "continue" | "pay" | "confirm";
+  buttonType: "continue" | "pay" | "confirm";
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   onClick,
-  type = "continue",
+  buttonType = "continue",
 }) => {
   let text = "";
   let buttonClass;
 
-  switch (type) {
+  switch (buttonType) {
     case "pay":
       text = "Pay now";
       buttonClass = "!bg-emerald-500 hover:!bg-emerald-400";
@@ -34,7 +34,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
       className={buttonClass}
       onClick={onClick}
     >
-      {type === "pay" && (
+      {buttonType === "pay" && (
         <svg
           width="24"
           height="24"

@@ -251,7 +251,7 @@ export const Checkout: React.FC = () => {
             <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
               <CheckoutButton
                 onClick={submitCurrentForm}
-                type={stepsData[currentStep].buttonType}
+                buttonType={stepsData[currentStep].buttonType}
               />
             </div>
           </div>

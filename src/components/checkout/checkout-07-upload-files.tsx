@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { Form, Modal, Upload, UploadProps, message } from "antd";
 import CheckoutStepHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
@@ -25,8 +25,7 @@ const CheckoutUploadFiles = forwardRef<
     ref: React.Ref<CheckoutUploadFilesHandles>
   ) => {
     const { basketItems } = useBasketContext();
-    const [additionalInfoForm] = Form.useForm();
-    const [formModal, setFormModal] = useState(false);
+    const [uploadFilesForm] = Form.useForm();
 
     const props: UploadProps = {
       name: "file",
@@ -46,14 +45,6 @@ const CheckoutUploadFiles = forwardRef<
       onDrop(e) {
         console.log("Dropped files", e.dataTransfer.files);
       },
-    };
-
-    const showFormModal = () => {
-      setFormModal(true);
-    };
-
-    const formModalCancel = () => {
-      setFormModal(false);
     };
 
     // Create a Set to store unique participant IDs
@@ -80,9 +71,9 @@ const CheckoutUploadFiles = forwardRef<
       submitForm: async () => {
         try {
           // Validate all form fields
-          await additionalInfoForm.validateFields();
+          await uploadFilesForm.validateFields();
           // If validation is successful, submit the form
-          additionalInfoForm.submit();
+          uploadFilesForm.submit();
           // Notify the parent component that the form is valid
           onFormValidation(true);
           // Return true to indicate that the form submission was successful
@@ -142,8 +133,8 @@ const CheckoutUploadFiles = forwardRef<
         />
         <Form
           layout="vertical"
-          form={additionalInfoForm}
-          name="additionalInfoForm"
+          form={uploadFilesForm}
+          name="uploadFilesForm"
           onFinish={(values) => onDetailsFinish(values, participants)}
           onFinishFailed={onDetailsFinishFailed}
           className="space-y-6 text-left hide-validation-asterix"
