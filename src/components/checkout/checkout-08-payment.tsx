@@ -235,7 +235,7 @@ const CheckoutPayment = forwardRef<
                 <Input />
               </Form.Item>
             </div>
-            <div className="flex items-center justify-center !mt-0 text-center gap-x-2 !-mb-0.5">
+            <div className="flex items-center justify-center !mt-0.5 text-center gap-x-2 !-mb-0.5">
               <span className="text-sm text-neutral-500/75">Powered by</span>
               <img
                 src="https://i.ibb.co/1G4kScP/paypal.png"
