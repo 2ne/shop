@@ -164,14 +164,33 @@ const CheckoutPayment = forwardRef<
               </Button>
             </Form.Item>
             <div className="flex items-center justify-center text-center gap-x-1.5">
-              <span className="text-neutral-500/75">Powered by</span>
+              <span className="text-sm text-neutral-500/75">Powered by</span>
               <img
                 src="https://i.ibb.co/YRy0FTh/Go-Cardles.png"
                 alt="GoCardless Logo"
-                className="relative block h-4 -top-px"
+                className="relative block h-[15px] -top-px"
               />
             </div>
           </Form>
+        </div>
+        <div className="px-6 py-8 rounded-md bg-neutral-100">
+          <img
+            src={orgLogo}
+            alt={orgName + " Logo"}
+            className="block max-h-[3.25rem] sm:max-h-[3.5rem] rounded mx-auto mb-2"
+            loading="lazy"
+          />
+          <div className="mb-4 font-medium text-center border-neutral-200">
+            Direct Debit successfully setup
+          </div>
+          <div className="flex items-center justify-center text-center gap-x-1.5">
+            <span className="text-sm text-neutral-500/75">Powered by</span>
+            <img
+              src="https://i.ibb.co/YRy0FTh/Go-Cardles.png"
+              alt="GoCardless Logo"
+              className="relative block h-[15px] -top-px"
+            />
+          </div>
         </div>
       </>
     );
