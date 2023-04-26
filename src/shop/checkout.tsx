@@ -51,6 +51,7 @@ export const Checkout: React.FC = () => {
       ref: selectParticipantsRef,
       title: "Select participants",
       subtitle: "Please select who you are purchasing each product for",
+      buttonType: "continue",
     },
     {
       Component: CheckoutAdditionalProducts,
@@ -58,30 +59,35 @@ export const Checkout: React.FC = () => {
       title: "Additional products",
       subtitle:
         "Please review the required add-ons for the items in your basket.",
+      buttonType: "continue",
     },
     {
       Component: CheckoutMedicalInfo,
       ref: checkoutMedicalInfoRef,
       title: "Medical information",
       subtitle: "Please review the medical information for all participants",
+      buttonType: "continue",
     },
     {
       Component: CheckoutEmergencyContacts,
       ref: checkoutEmergencyContactsRef,
       title: "Emergency contacts",
       subtitle: "Review the emergency contacts and add them if required",
+      buttonType: "continue",
     },
     {
       Component: CheckoutConsentForms,
       ref: CheckoutConsentFormsRef,
       title: "Consent forms",
       subtitle: "Review the following consent forms for this product",
+      buttonType: "continue",
     },
     {
       Component: CheckoutAdditionalForms,
       ref: CheckoutAdditionalFormsRef,
       title: "Additional info",
       subtitle: "Review the following forms for all of the participants",
+      buttonType: "continue",
     },
     {
       Component: CheckoutUploadFiles,
@@ -89,12 +95,14 @@ export const Checkout: React.FC = () => {
       title: "Upload files",
       subtitle:
         "Review the following required files for all of the participants",
+      buttonType: "continue",
     },
     {
       Component: CheckoutPayment,
       ref: CheckoutPaymentRef,
       title: "Payment",
       subtitle: "Enter your payment details below to complete your order",
+      buttonType: "pay",
     },
   ];
 
@@ -241,7 +249,10 @@ export const Checkout: React.FC = () => {
               </div>
             ))}
             <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
-              <CheckoutButton onClick={submitCurrentForm} />
+              <CheckoutButton
+                onClick={submitCurrentForm}
+                type={stepsData[currentStep].buttonType}
+              />
             </div>
           </div>
         </section>
@@ -281,7 +292,10 @@ export const Checkout: React.FC = () => {
             </Button>
             <div className="space-y-4">
               <BasketTotals />
-              <CheckoutButton onClick={submitCurrentForm} />
+              <CheckoutButton
+                onClick={submitCurrentForm}
+                type={stepsData[currentStep].buttonType}
+              />
             </div>
           </Wrapper>
         </footer>

@@ -1,32 +1,42 @@
 import { Button } from "antd";
 import React from "react";
 
-const BaseButton: React.FC<{
-  text: string;
-  className?: string;
+interface CheckoutButtonProps {
   onClick?: () => void;
-}> = ({ text, className, onClick }) => (
-  <Button
-    size="large"
-    type="primary"
-    block
-    className={className}
-    onClick={onClick}
-  >
-    {text}
-  </Button>
-);
+  type?: "continue" | "pay" | "confirm";
+}
 
-export const CheckoutButton: React.FC<{ onClick?: () => void }> = ({
+export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   onClick,
-}) => <BaseButton text="Continue" onClick={onClick} />;
+  type = "continue",
+}) => {
+  let text = "";
+  let buttonClass;
 
-export const CheckoutButtonPay: React.FC<{ onClick?: () => void }> = ({
-  onClick,
-}) => (
-  <BaseButton
-    text="Pay now"
-    className="!bg-emerald-500 hover:!bg-emerald-400"
-    onClick={onClick}
-  />
-);
+  switch (type) {
+    case "pay":
+      text = "Pay now";
+      buttonClass = "!bg-emerald-500 hover:!bg-emerald-400";
+      break;
+    case "confirm":
+      text = "Confirm";
+      buttonClass = "!bg-emerald-500 hover:!bg-emerald-400";
+      break;
+    default:
+      text = "Continue";
+  }
+
+  return (
+    <Button
+      size="large"
+      type="primary"
+      block
+      className={buttonClass}
+      onClick={onClick}
+    >
+      {text}
+    </Button>
+  );
+};
+
+export default CheckoutButton;
