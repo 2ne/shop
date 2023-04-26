@@ -205,10 +205,6 @@ dt {
   @apply bg-neutral-400;
 }
 
-.ant-upload-wrapper .ant-upload-drag {
-  @apply bg-transparent;
-}
-
 :where(.rounded-md) .ant-collapse,
 :where(.rounded-md) .ant-upload-wrapper .ant-upload-drag,
 :where(.rounded-md) .ant-btn:not([class*="rounded"]),
@@ -230,7 +226,7 @@ dt {
 }
 
 .ant-upload-wrapper .ant-upload-drag {
-  @apply transition-[max-height] duration-200 max-h-[106px];
+  @apply bg-transparent transition-[max-height] duration-200 max-h-[106px];
 }
 
 .ant-upload-wrapper .ant-upload-drag:has(+ .ant-upload-list:not(:empty)) {
