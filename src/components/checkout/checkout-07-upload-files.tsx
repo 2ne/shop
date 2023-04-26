@@ -237,14 +237,6 @@ const CheckoutUploadFiles = forwardRef<
             </div>
           ))}
         </Form>
-        <Modal
-          title="Terms and Conditions"
-          open={formModal}
-          onCancel={formModalCancel}
-          footer={null}
-        >
-          SHOW FORM HERE
-        </Modal>
       </>
     );
   }
