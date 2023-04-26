@@ -94,7 +94,10 @@ const CheckoutPayment = forwardRef<
               label="Email"
               name="email"
               rules={[
-                { type: "email", message: "The input is not a valid email!" },
+                {
+                  type: "email",
+                  message: "Please enter a valid email address",
+                },
                 { required: true, message: "Please enter your email" },
               ]}
             >
