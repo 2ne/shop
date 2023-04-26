@@ -83,7 +83,7 @@ const CheckoutPayment = forwardRef<
               rules={[
                 {
                   required: true,
-                  message: "Please input the names on the account!",
+                  message: "Please enter the name on the account",
                 },
               ]}
             >
@@ -95,7 +95,7 @@ const CheckoutPayment = forwardRef<
               name="email"
               rules={[
                 { type: "email", message: "The input is not a valid email!" },
-                { required: true, message: "Please input your email!" },
+                { required: true, message: "Please enter your email" },
               ]}
             >
               <Input />
@@ -106,8 +106,7 @@ const CheckoutPayment = forwardRef<
               name="sortCode"
               extra="Must be 6 digits long"
               rules={[
-                { required: true, message: "Please input your sort code!" },
-                { len: 6, message: "Must be 6 digits long" },
+                { required: true, message: "Please enter your sort code" },
               ]}
             >
               <Input />
@@ -120,12 +119,7 @@ const CheckoutPayment = forwardRef<
               rules={[
                 {
                   required: true,
-                  message: "Please input your account number!",
-                },
-                {
-                  min: 6,
-                  max: 8,
-                  message: "Must be between 6 and 8 digits long",
+                  message: "Please enter your account number",
                 },
               ]}
             >
@@ -136,7 +130,7 @@ const CheckoutPayment = forwardRef<
               label="Post code"
               name="postCode"
               rules={[
-                { required: true, message: "Please input your post code!" },
+                { required: true, message: "Please enter your post code" },
               ]}
             >
               <Input />
