@@ -244,3 +244,7 @@ dt {
 .ant-upload-wrapper .ant-upload-list-item-action {
   @apply flex justify-center mr-1 h-7 w-7;
 }
+
+.ant-upload-wrapper .ant-upload-list .anticon-delete {
+  @apply !text-error;
+}
