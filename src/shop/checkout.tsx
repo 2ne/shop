@@ -26,7 +26,10 @@ import CheckoutPayment, {
   CheckoutPaymentHandles,
 } from "../components/checkout/checkout-08-payment";
 import CheckoutSteps from "../components/checkout/checkout-steps";
-import { CheckoutButton } from "../components/checkout/checkout-buttons";
+import {
+  CheckoutButton,
+  CheckoutButtonType,
+} from "../components/checkout/checkout-buttons";
 import CheckoutTimer from "../components/checkout/checkout-timer";
 import Header from "../components/header";
 import Main from "../components/main";
@@ -251,7 +254,9 @@ export const Checkout: React.FC = () => {
             <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
               <CheckoutButton
                 onClick={submitCurrentForm}
-                buttonType={stepsData[currentStep].buttonType}
+                buttonType={
+                  stepsData[currentStep].buttonType as CheckoutButtonType
+                }
               />
             </div>
           </div>
@@ -294,7 +299,9 @@ export const Checkout: React.FC = () => {
               <BasketTotals />
               <CheckoutButton
                 onClick={submitCurrentForm}
-                type={stepsData[currentStep].buttonType}
+                buttonType={
+                  stepsData[currentStep].buttonType as CheckoutButtonType
+                }
               />
             </div>
           </Wrapper>

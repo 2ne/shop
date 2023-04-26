@@ -1,9 +1,11 @@
 import { Button } from "antd";
 import React from "react";
 
+export type CheckoutButtonType = "continue" | "pay" | "confirm";
+
 interface CheckoutButtonProps {
   onClick?: () => void;
-  buttonType: "continue" | "pay" | "confirm";
+  buttonType: CheckoutButtonType;
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
