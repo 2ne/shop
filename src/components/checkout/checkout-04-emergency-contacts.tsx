@@ -30,7 +30,7 @@ const CheckoutEmergencyContacts = forwardRef<
     { onFormValidation, title, subtitle }: CheckoutEmergencyContactsProps,
     ref: React.Ref<CheckoutEmergencyContactsHandles>
   ) => {
-    const { basketItems, addEmergencyContact } = useBasketContext();
+    const { addEmergencyContact } = useBasketContext();
     const [emergencyContactForm] = Form.useForm();
     const emergencyContacts = [{ id: 1 }, { id: 2 }];
 
