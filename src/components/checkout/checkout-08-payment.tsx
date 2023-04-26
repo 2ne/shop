@@ -89,7 +89,6 @@ const CheckoutPayment = forwardRef<
             >
               <Input />
             </Form.Item>
-
             <Form.Item
               label="Email"
               name="email"
@@ -103,7 +102,6 @@ const CheckoutPayment = forwardRef<
             >
               <Input />
             </Form.Item>
-
             <Form.Item
               label="Sort code"
               name="sortCode"
@@ -114,7 +112,6 @@ const CheckoutPayment = forwardRef<
             >
               <Input />
             </Form.Item>
-
             <Form.Item
               label="Account number"
               name="accountNumber"
@@ -128,7 +125,6 @@ const CheckoutPayment = forwardRef<
             >
               <Input />
             </Form.Item>
-
             <Form.Item
               label="Post code"
               name="postCode"
@@ -138,7 +134,6 @@ const CheckoutPayment = forwardRef<
             >
               <Input />
             </Form.Item>
-
             <Form.Item className="pt-2">
               <Button type="primary" block>
                 <svg
@@ -156,7 +151,6 @@ const CheckoutPayment = forwardRef<
                     d="M5.75 11.75a1 1 0 011-1h10.5a1 1 0 011 1v5.5a2 2 0 01-2 2h-8.5a2 2 0 01-2-2v-5.5zM7.75 10.5v-.157c0-1.562-.094-3.302.996-4.42C9.368 5.288 10.374 4.75 12 4.75c1.626 0 2.632.537 3.254 1.174 1.09 1.117.996 2.857.996 4.419v.157"
                   ></path>
                 </svg>
-
                 <span>Set up Direct Debit</span>
               </Button>
             </Form.Item>
@@ -188,6 +182,68 @@ const CheckoutPayment = forwardRef<
               className="relative block h-[15px] -top-px"
             />
           </div>
+        </div>
+        <div className="p-6 rounded-md bg-neutral-100">
+          <Form
+            form={paymentForm}
+            name="paymentForm"
+            layout="vertical"
+            onFinish={(values) => onFinish(values)}
+            className="space-y-6 text-left hide-validation-asterix"
+          >
+            <Form.Item
+              label="Name on card"
+              name="nameOnCard"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter the name on the card",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Card number"
+              name="cardNumber"
+              rules={[
+                { required: true, message: "Please enter your card number" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <div className="flex gap-x-8">
+              <Form.Item
+                label="Expiry (mm/yy)"
+                name="expiryDate"
+                rules={[
+                  { required: true, message: "Please enter the expiry date" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label="Security code"
+                name="securityCode"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your security code",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </div>
+            <div className="flex items-center justify-center !mt-0 text-center gap-x-2 !-mb-0.5">
+              <span className="text-sm text-neutral-500/75">Powered by</span>
+              <img
+                src="https://i.ibb.co/1G4kScP/paypal.png"
+                alt="PayPal Logo"
+                className="relative block h-[23px] top-px"
+              />
+            </div>
+          </Form>
         </div>
       </>
     );
