@@ -11,15 +11,15 @@ interface Participant {
 }
 
 interface MedicalInfo {
-  doctorsName?: string;
-  surgeryAddress?: string;
-  surgeryTelephone?: string;
   medicalConditions?: string;
   disabilities?: string;
   behaviouralConditions?: string;
   medicines?: string;
   allergies?: string;
   dietaryNeedsOrConditions?: string;
+  doctorsName?: string;
+  surgeryAddress?: string;
+  surgeryTelephone?: string;
 }
 
 type MedicalInfoFieldKey = keyof MedicalInfo;
@@ -31,21 +31,6 @@ type MedicalInfoField = {
 };
 
 export const medicalInfoFields: MedicalInfoField[] = [
-  {
-    key: "doctorsName",
-    label: "Doctor's name",
-    group: "doctorsDetails",
-  },
-  {
-    key: "surgeryAddress",
-    label: "Surgery address",
-    group: "doctorsDetails",
-  },
-  {
-    key: "surgeryTelephone",
-    label: "Surgery telephone",
-    group: "doctorsDetails",
-  },
   {
     key: "medicalConditions",
     label: "Medical conditions",
@@ -67,6 +52,21 @@ export const medicalInfoFields: MedicalInfoField[] = [
     key: "dietaryNeedsOrConditions",
     label: "Dietary needs or other conditions",
     group: "allergiesAndDietary",
+  },
+  {
+    key: "doctorsName",
+    label: "Doctor's name",
+    group: "doctorsDetails",
+  },
+  {
+    key: "surgeryAddress",
+    label: "Surgery address",
+    group: "doctorsDetails",
+  },
+  {
+    key: "surgeryTelephone",
+    label: "Surgery telephone",
+    group: "doctorsDetails",
   },
 ];
 

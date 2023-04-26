@@ -167,21 +167,7 @@ const CheckoutMedicalInfo = forwardRef<
               </Form.Item>
               {medicalFields && (
                 <Collapse className="mt-4 pt-0.5">
-                  <Collapse.Panel header="Doctor's details" key="1">
-                    {medicalInfoFields
-                      .filter((field) => field.group === "doctorsDetails")
-                      .map((field) => (
-                        <Form.Item
-                          key={field.key}
-                          name={`participant_${participant.id}_${field.key}`}
-                          label={field.label}
-                          className="!mb-4 last:!mb-1.5"
-                        >
-                          <Input />
-                        </Form.Item>
-                      ))}
-                  </Collapse.Panel>
-                  <Collapse.Panel header="Medical information" key="2">
+                  <Collapse.Panel header="Medical information" key="1">
                     {medicalInfoFields
                       .filter((field) => field.group === "medicalInformation")
                       .map((field) => (
@@ -197,10 +183,24 @@ const CheckoutMedicalInfo = forwardRef<
                   </Collapse.Panel>
                   <Collapse.Panel
                     header="Allergies & dietary requirements"
-                    key="3"
+                    key="2"
                   >
                     {medicalInfoFields
                       .filter((field) => field.group === "allergiesAndDietary")
+                      .map((field) => (
+                        <Form.Item
+                          key={field.key}
+                          name={`participant_${participant.id}_${field.key}`}
+                          label={field.label}
+                          className="!mb-4 last:!mb-1.5"
+                        >
+                          <Input />
+                        </Form.Item>
+                      ))}
+                  </Collapse.Panel>
+                  <Collapse.Panel header="Doctor's details" key="3">
+                    {medicalInfoFields
+                      .filter((field) => field.group === "doctorsDetails")
                       .map((field) => (
                         <Form.Item
                           key={field.key}
