@@ -3,7 +3,6 @@ import { Form, Modal, Upload, UploadProps, message } from "antd";
 import CheckoutStepHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
 import { Participant } from "../../types/types";
-import { InboxOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
 
@@ -164,7 +163,7 @@ const CheckoutUploadFiles = forwardRef<
                     Gymnastics membership card (front)
                   </div>
                   <div>
-                    <Dragger {...props} className="group">
+                    <Dragger {...props} className="group" listType="picture">
                       <div className="px-3 py-2 group">
                         <div className="flex justify-center mb-1">
                           <svg
@@ -206,7 +205,7 @@ const CheckoutUploadFiles = forwardRef<
                     Gymnastics membership card (back)
                   </div>
                   <div>
-                    <Dragger {...props} className="group">
+                    <Dragger {...props} className="group" listType="picture">
                       <div className="px-3 py-2">
                         <div className="flex justify-center mb-1">
                           <svg
