@@ -158,9 +158,19 @@ const CheckoutConsentForms = forwardRef<
                   name={`participant_${participant.id}_${field.key}`}
                   labelAlign="left"
                   valuePropName="checked"
-                  className="!mb-2 last:!mb-0"
+                  className="!mb-2 last:!mb-0 [&_.ant-form-item-explain-error]:!-mt-1"
                   required={field.required}
                   initialValue={field.value}
+                  rules={[
+                    {
+                      validator: (_rule, value) => {
+                        if (!field.required || value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(new Error(`Consent required`));
+                      },
+                    },
+                  ]}
                 >
                   <div className="flex items-center">
                     <div className="flex items-center flex-grow gap-x-1">
@@ -187,6 +197,9 @@ const CheckoutConsentForms = forwardRef<
                           [`participant_${participant.id}_${field.key}`]:
                             checked,
                         });
+                        consentFormsForm.validateFields([
+                          `participant_${participant.id}_${field.key}`,
+                        ]);
                       }}
                     />
                   </div>
