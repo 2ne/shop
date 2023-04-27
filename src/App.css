@@ -248,3 +248,8 @@ dt {
 .ant-upload-wrapper .ant-upload-list .anticon-delete {
   @apply !text-error;
 }
+
+.ant-form-item-has-error .ant-switch {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px theme("colors.error");
+  border-radius: 100px;
+}
