@@ -215,7 +215,7 @@ const CheckoutPayment = forwardRef<
             </Form.Item>
             <div className="flex gap-x-8">
               <Form.Item
-                label="Expiry (mm/yy)"
+                label="Expiry (mm/yyyy)"
                 name="expiryDate"
                 rules={[
                   { required: true, message: "Please enter the expiry date" },

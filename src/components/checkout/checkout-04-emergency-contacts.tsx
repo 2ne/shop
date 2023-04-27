@@ -123,7 +123,7 @@ const CheckoutEmergencyContacts = forwardRef<
                 const nameFieldValue = emergencyContactForm.getFieldValue(
                   `contact_${contact.id}_name`
                 );
-                setContactName(nameFieldValue || "New contact");
+                setContactName(nameFieldValue || "Emergency contact #");
               }, [emergencyContactForm, contact.id]);
 
               return (
@@ -155,7 +155,9 @@ const CheckoutEmergencyContacts = forwardRef<
                               emergencyContactForm.getFieldValue(
                                 `contact_${contact.id}_name`
                               );
-                            setContactName(nameFieldValue || "New contact");
+                            setContactName(
+                              nameFieldValue || "Emergency contact #"
+                            );
                           }}
                         />
                       </Form.Item>

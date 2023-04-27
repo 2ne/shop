@@ -61,7 +61,7 @@ export const Checkout: React.FC = () => {
       ref: additionalProductsRef,
       title: "Additional products",
       subtitle:
-        "Please review the required add-ons for the items in your basket.",
+        "Please review the required add-ons for the items in your basket",
       buttonType: "continue",
     },
     {
@@ -82,7 +82,7 @@ export const Checkout: React.FC = () => {
       Component: CheckoutConsentForms,
       ref: CheckoutConsentFormsRef,
       title: "Consent forms",
-      subtitle: "Review the following consent forms for this product",
+      subtitle: "Review the following consent forms for all participants",
       buttonType: "continue",
     },
     {

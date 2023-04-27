@@ -139,16 +139,10 @@ const CheckoutAdditionalForms = forwardRef<
                   <Button
                     type="primary"
                     block
-                    className="!bg-success hover:!bg-success/90 gap-0.5 group"
+                    className="!bg-success hover:!bg-success/90 gap-0.5"
                     onClick={showFormModal}
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      className="absolute left-[calc(50%-4.25rem)]"
-                    >
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                       <path
                         stroke="currentColor"
                         strokeLinecap="round"
@@ -164,12 +158,7 @@ const CheckoutAdditionalForms = forwardRef<
                         d="M9.75 12.75l.434.924a1 1 0 001.772.073L14.25 9.75"
                       ></path>
                     </svg>
-                    <span className="transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-1/2">
-                      Completed
-                    </span>
-                    <span className="absolute transition-all duration-300 translate-y-1/2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                      View form
-                    </span>
+                    <span>View form</span>
                   </Button>
                 </div>
                 <div>
@@ -177,7 +166,16 @@ const CheckoutAdditionalForms = forwardRef<
                     Previous coach experience
                   </div>
                   <Button block onClick={showFormModal}>
-                    <span>View form</span>
+                    <span>Add information</span>
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M10.75 8.75L14.25 12L10.75 15.25"
+                      ></path>
+                    </svg>
                   </Button>
                 </div>
               </div>

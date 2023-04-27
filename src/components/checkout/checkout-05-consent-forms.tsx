@@ -117,7 +117,6 @@ const CheckoutConsentForms = forwardRef<
         <CheckoutStepHeader
           title={title}
           subtitle={subtitle}
-          requiredText="Consent is required for all participants"
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
