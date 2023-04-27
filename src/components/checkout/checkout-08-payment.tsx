@@ -2,6 +2,7 @@ import React, { forwardRef, useImperativeHandle } from "react";
 import { Button, Form, Input, Modal } from "antd";
 import CheckoutStepHeader from "./checkout-header";
 import { orgLogo, orgName } from "../../org";
+import Balancer from "react-wrap-balancer";
 
 export interface CheckoutPaymentHandles {
   submitForm: () => Promise<boolean>;
@@ -68,7 +69,7 @@ const CheckoutPayment = forwardRef<
             loading="lazy"
           />
           <div className="pb-4 text-center border-b mb-7 heading border-neutral-200">
-            Set up a Direct Debit with CG Swim School
+            <Balancer>Set up a Direct Debit with CG Swim School</Balancer>
           </div>
           <Form
             form={paymentForm}
