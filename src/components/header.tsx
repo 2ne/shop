@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const accountMenu = (
-    <Menu className="!border-0 -m-2 w-40 [&>li]:!rounded [&>li]:!flex [&>li]:!items-center">
+    <Menu className="!border-0 -m-2 w-40 [&>li]:!rounded-md [&>li]:!flex [&>li]:!items-center">
       <Menu.Item
         className="!text-neutral-600 hover:!bg-neutral-10 hover:!text-neutral-800"
         onClick={showMyAccountModal}
@@ -301,7 +301,7 @@ const Header: React.FC<HeaderProps> = ({
       >
         <div className="grid grid-cols-[14rem,1fr] gap-x-6">
           <aside>
-            <Menu className="!border-0 -mx-2 w-full [&>li]:!rounded [&>li]:!flex [&>li]:!items-center">
+            <Menu className="!border-0 -mx-2 w-full [&>li]:!rounded-md [&>li]:!flex [&>li]:!items-center">
               <Menu.Item className="!text-neutral-600 hover:!bg-neutral-10 hover:!text-neutral-800">
                 <div className="flex items-center">
                   <svg
