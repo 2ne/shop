@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
 
   const accountMenu = (
     <Menu className="!border-0 -m-2 w-40 [&>li]:!rounded [&>li]:!flex [&>li]:!items-center">
-      <Menu.Item className="text-neutral-600 hover:!bg-neutral-10 hover:!text-neutral-800">
+      <Menu.Item className="!text-neutral-600 hover:!bg-neutral-10 hover:!text-neutral-800">
         <div className="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({
       </Menu.Item>
       <Menu.Item
         onClick={handleLogout}
-        className="text-error hover:!bg-rose-50 hover:!text-error"
+        className="!text-error hover:!bg-rose-50 hover:!text-error"
       >
         <div className="flex items-center">
           <svg
