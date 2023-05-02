@@ -50,7 +50,7 @@ const AccountPayments: React.FC = () => {
           {invoice.items.map((item) => (
             <tr key={item.id} className="border-b last-of-type:border-b-0">
               <td className="px-0 py-3 align-top max-w-0">
-                <div className="flex items-center gap-x-1.5">
+                <div className="flex items-center gap-x-2">
                   <button
                     type="button"
                     className="font-medium truncate text-primary_text hover:underline"
