@@ -209,13 +209,23 @@ const Basket: React.FC = () => {
       </div>
       {!isCheckout && (
         <div className="sticky z-10 px-4 py-4 mt-auto -mx-4 -mb-4 sm:px-5 sm:py-5 sm:-mx-5 -bottom-4 bg-white/95">
-          {basketItems.length !== 0 ? (
-            <Button onClick={goToCheckout} size="large" type="primary" block>
+          <Button
+            size="large"
+            block
+            onClick={closeBasket}
+            className={basketItems.length > 0 ? "!hidden lg:!block" : ""}
+          >
+            Continue shopping
+          </Button>
+          {basketItems.length > 0 && (
+            <Button
+              onClick={goToCheckout}
+              size="large"
+              type="primary"
+              block
+              className="lg:mt-4"
+            >
               Checkout
-            </Button>
-          ) : (
-            <Button size="large" block onClick={closeBasket}>
-              Continue shopping
             </Button>
           )}
         </div>
