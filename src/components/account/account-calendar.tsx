@@ -28,7 +28,7 @@ const AccountCalendar: React.FC = () => {
       <div className="pb-3 border-b heading-sm">
         <span>2 events</span>
       </div>
-      <ol className="text-sm leading-6 divide-y divide-neutral-200">
+      <ol className="text-sm leading-6 divide-y">
         {events.map((event) => (
           <li key={event.id} className="relative flex py-4 space-x-4">
             <img

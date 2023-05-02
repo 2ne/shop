@@ -30,7 +30,7 @@ const AccountPayments: React.FC = () => {
           <col />
           <col />
         </colgroup>
-        <thead className="border-b border-neutral-200">
+        <thead className="border-b">
           <tr>
             <th scope="col" className="px-0 pb-2 font-medium">
               Invoice
@@ -48,10 +48,7 @@ const AccountPayments: React.FC = () => {
         </thead>
         <tbody>
           {invoice.items.map((item) => (
-            <tr
-              key={item.id}
-              className="border-b border-neutral-100 last-of-type:border-b-0"
-            >
+            <tr key={item.id} className="border-b last-of-type:border-b-0">
               <td className="px-0 py-3 align-top max-w-0">
                 <div className="flex items-center gap-x-1.5">
                   <button
