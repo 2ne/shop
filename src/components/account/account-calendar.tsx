@@ -25,8 +25,8 @@ const events = [
 const AccountCalendar: React.FC = () => {
   return (
     <div>
-      <div className="pb-3 border-b heading-sm">
-        <span>2 events</span>
+      <div className="pb-2 text-sm font-medium leading-6 border-b text-neutral-900">
+        <div className="pb-px">2 events</div>
       </div>
       <ol className="text-sm leading-6 divide-y">
         {events.map((event) => (
@@ -36,7 +36,7 @@ const AccountCalendar: React.FC = () => {
               alt=""
               className="flex-none object-cover object-center rounded-md h-14 w-14"
             />
-            <div className="flex-auto">
+            <div className="flex-auto -mt-1">
               <div className="font-medium">{event.name}</div>
               <dl className="flex flex-col text-sm leading-6 text-neutral-500">
                 <div className="flex items-center space-x-1.5">
