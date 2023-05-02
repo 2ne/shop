@@ -53,7 +53,7 @@ dl {
 }
 
 dt {
-  @apply text-gray-500;
+  @apply text-neutral-500;
 }
 
 .ant-btn {

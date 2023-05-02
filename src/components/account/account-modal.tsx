@@ -45,7 +45,7 @@ const AccountModal: React.FC<AccountModalProps> = ({
 
   const items: MenuItem[] = [
     getItem(
-      "Calendar",
+      "Upcoming events",
       "calendar",
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path

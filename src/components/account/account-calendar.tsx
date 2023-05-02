@@ -26,9 +26,9 @@ const AccountCalendar: React.FC = () => {
   return (
     <div>
       <div className="pb-3 border-b heading-sm">
-        <span>2 upcoming events</span>
+        <span>2 events</span>
       </div>
-      <ol className="text-xs leading-6 divide-y divide-neutral-200">
+      <ol className="text-sm leading-6 divide-y divide-neutral-200">
         {events.map((event) => (
           <li key={event.id} className="relative flex py-4 space-x-4">
             <img
@@ -37,8 +37,8 @@ const AccountCalendar: React.FC = () => {
               className="flex-none object-cover object-center rounded-md h-14 w-14"
             />
             <div className="flex-auto">
-              <div className="heading-sm">{event.name}</div>
-              <dl className="flex flex-col mt-1.5 text-xs text-neutral-500">
+              <div className="font-medium">{event.name}</div>
+              <dl className="flex flex-col text-sm leading-6 text-neutral-500">
                 <div className="flex items-center space-x-1.5">
                   <dt className="flex">
                     <span className="sr-only">Date</span>
@@ -62,7 +62,7 @@ const AccountCalendar: React.FC = () => {
                     <time>{event.date}</time>
                   </dd>
                 </div>
-                <div className="flex items-center mt-1 space-x-1.5">
+                <div className="flex items-center space-x-1.5">
                   <dt>
                     <span className="sr-only">Location</span>
                     <svg
@@ -93,7 +93,7 @@ const AccountCalendar: React.FC = () => {
                   <dd>{event.location}</dd>
                 </div>
                 {event.status === "Awaiting payment" && (
-                  <div className="flex items-center mt-1 space-x-1.5 text-error">
+                  <div className="flex items-center space-x-1.5 text-error">
                     <dt>
                       <span className="sr-only">Status</span>
                       <svg
