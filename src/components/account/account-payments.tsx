@@ -73,10 +73,10 @@ const AccountPayments: React.FC = () => {
                   {item.description}
                 </div>
               </td>
-              <td className="hidden py-5 pl-8 pr-0 text-right align-top text-neutral-700 sm:table-cell">
+              <td className="hidden py-5 pl-8 pr-0 text-right align-top text-neutral-500 sm:table-cell">
                 {item.date}
               </td>
-              <td className="py-5 pl-8 pr-0 text-right align-top text-neutral-700 tabular-nums">
+              <td className="py-5 pl-8 pr-0 text-right align-top text-neutral-500 tabular-nums">
                 {item.cost}
               </td>
             </tr>
