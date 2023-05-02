@@ -167,7 +167,9 @@ const CheckoutConsentForms = forwardRef<
                         if (!field.required || value) {
                           return Promise.resolve();
                         }
-                        return Promise.reject(new Error(`Consent required`));
+                        return Promise.reject(
+                          new Error(field.label + ` required`)
+                        );
                       },
                     },
                   ]}

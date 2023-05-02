@@ -88,7 +88,7 @@ type EmergencyContactField = {
 
 export const emergencyContactFields: EmergencyContactField[] = [
   { key: "name", label: "Name", required: true, type: "text" },
-  { key: "phone", label: "Phone", required: true, type: "tel" },
+  { key: "phone", label: "Phone number", required: true, type: "tel" },
   { key: "email", label: "Email", required: false, type: "email" },
   { key: "address", label: "Address", required: false, type: "text" },
 ];
