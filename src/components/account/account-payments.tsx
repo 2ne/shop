@@ -68,7 +68,7 @@ const AccountPayments: React.FC = () => {
                     </span>
                   )}
                 </div>
-                <div className="font-medium truncate ">{item.title}</div>
+                <div className="truncate ">{item.title}</div>
                 <div className="-mt-px truncate text-neutral-500">
                   {item.description}
                 </div>
