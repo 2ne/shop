@@ -44,10 +44,10 @@ const Banner: React.FC = () => {
                 <div className="absolute inset-0 top-auto z-20 grid p-16 place-content-center">
                   <div className="max-w-2xl mx-auto text-center">
                     <Balancer>
-                      <h2 className="flex items-center justify-center text-4xl font-bold leading-relaxed text-center text-white group-hover/link:underline underline-offset-4">
+                      <h2 className="flex items-center justify-center font-bold text-center text-white text-4xl leading-[1.35] group-hover/link:underline underline-offset-4">
                         {item.title}
                       </h2>
-                      <p className="mt-1 text-xl text-center text-white/90 line-clamp-3">
+                      <p className="mt-2.5 text-xl text-center text-white/90 line-clamp-4">
                         {item.description}
                       </p>
                     </Balancer>
