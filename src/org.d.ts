@@ -6,6 +6,13 @@ export interface OrgColours {
   interactive: string;
 }
 
+export interface OrgBanners {
+  img: string;
+  title: string;
+  description?: string;
+  link: string;
+}
+
 export interface OrgTiles {
   img: string;
   title: string;
@@ -29,5 +36,6 @@ export interface OrgEvents {
 export const orgName: string;
 export const orgLogo: string;
 export const orgColours: OrgColours;
+export const orgBanners: OrgBanners[];
 export const orgTiles: OrgTiles[];
 export const orgEvents: OrgEvents;

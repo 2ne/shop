@@ -4,12 +4,14 @@ import Header from "../components/header";
 import Tiles from "../components/tile";
 import Footer from "../components/footer";
 import Main from "../components/main";
+import Banner from "../components/banner";
 function Home(): ReactElement {
   return (
     <>
       <Header />
       <Breadcrumb />
       <Main>
+        <Banner />
         <Tiles />
       </Main>
       <Footer />

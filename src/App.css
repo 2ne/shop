@@ -267,3 +267,11 @@ dt {
     @apply !rounded-none !min-h-screen;
   }
 }
+
+.ant-carousel .slick-dots li button {
+  @apply h-2.5 w-2.5 rounded-full;
+}
+
+.ant-carousel .slick-dots li {
+  @apply !w-auto h-6;
+}

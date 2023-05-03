@@ -9,6 +9,30 @@ export const orgColours = {
   interactive: "#005da2",
 };
 
+export const orgBanners = [
+  {
+    img: "http://www.cgswimschool.com/images/swimming-crash-courses.jpg",
+    title: "Crash Courses",
+    description:
+      "Suitable for swimmers of any level, we concentrate on improving confidence and technique.",
+    link: "/AdultChildLessons",
+  },
+  {
+    img: "http://www.cgswimschool.com/images/adult-baby-swim.jpg",
+    title: "Adult & Baby Swim",
+    description:
+      "Our programme enhances swimming potential on a physical, social and cognitive level.",
+    link: "/AdultChildLessons",
+  },
+  {
+    img: "http://www.cgswimschool.com/images/one-to-one-swim-lessons.jpg",
+    title: "Adults' Swimming Lessons",
+    description:
+      "Providing the ideal environment to ensure a relaxed but stimulating environment.",
+    link: "/AdultChildLessons",
+  },
+];
+
 export const orgTiles = [
   {
     img: "https://app.joinin.online/services/anonymous/photo/file/6f2e0f06-8900-4dc0-981a-0259989f1871",
