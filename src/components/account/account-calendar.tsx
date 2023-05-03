@@ -9,6 +9,7 @@ const events = [
       "https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
     location: "Quarterway House, Ely Rd, Little Thetford",
     status: "Paid",
+    participant: "Jacob Toone",
   },
   {
     id: 1,
@@ -19,6 +20,7 @@ const events = [
     location: "Quarterway House, Ely Rd, Little Thetford",
 
     status: "Awaiting payment",
+    participant: "Jacob Toone",
   },
 ];
 
@@ -91,6 +93,36 @@ const AccountCalendar: React.FC = () => {
                     </svg>
                   </dt>
                   <dd>{event.location}</dd>
+                </div>
+                <div className="flex items-center space-x-1.5">
+                  <dt>
+                    <span className="sr-only">Participant</span>
+                    <svg
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      className="w-5 h-5"
+                    >
+                      <circle
+                        cx="12"
+                        cy="8"
+                        r="3.25"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                      ></circle>
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M6.848 19.25h10.305c1.141 0 2.021-.982 1.488-1.992C17.856 15.773 16.068 14 12 14s-5.856 1.773-6.64 3.258c-.534 1.01.346 1.992 1.487 1.992z"
+                      ></path>
+                    </svg>
+                  </dt>
+                  <dd>{event.participant}</dd>
                 </div>
                 {event.status === "Awaiting payment" && (
                   <div className="flex items-center space-x-1.5 text-error">
