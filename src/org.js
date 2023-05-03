@@ -11,17 +11,17 @@ export const orgColours = {
 
 export const orgBanners = [
   {
-    img: "https://images.unsplash.com/photo-1528912599607-dc5f96f6c1d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
-    title: "24th May - English County Championships",
-    description:
-      "Get your tickets for this year's championship to witness the highest level of swimming in the UK. Adult tickets are £15, while children's tickets cost £5, and children under 4 years old can enter for free.",
-    link: "/AdultChildLessons",
-  },
-  {
     img: "http://www.cgswimschool.com/images/swimming-crash-courses.jpg",
     title: "Crash Courses",
     description:
       "Suitable for swimmers of any level, we concentrate on improving confidence and technique. Prices start from £30 a session.",
+    link: "/AdultChildLessons",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1528912599607-dc5f96f6c1d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
+    title: "24th May - English County Championships",
+    description:
+      "Get your tickets for this year's championship to witness the highest level of swimming in the UK. Adult tickets are £15, while children's tickets cost £5.",
     link: "/AdultChildLessons",
   },
   {

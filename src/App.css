@@ -269,9 +269,9 @@ dt {
 }
 
 .ant-carousel .slick-dots li button {
-  @apply h-2.5 w-2.5 rounded-full;
+  @apply h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full;
 }
 
 .ant-carousel .slick-dots li {
-  @apply !w-auto h-6;
+  @apply !w-auto h-2 sm:h-6;
 }

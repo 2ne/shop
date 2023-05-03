@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { orgBanners } from "../org";
-import Balancer from "react-wrap-balancer";
 import { Carousel } from "antd";
 import { CarouselRef } from "antd/es/carousel";
 
@@ -21,7 +20,7 @@ const Banner: React.FC = () => {
   };
 
   return (
-    <div className="relative mb-10 overflow-hidden border-2 border-white rounded-md shadow group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10">
+    <div className="relative mb-5 overflow-hidden border-2 border-white rounded-md shadow sm:mb-6 xl:mb-8 2xl:mb-9 group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10">
       <Carousel ref={carouselRef} afterChange={onChange}>
         {orgBanners &&
           orgBanners.map((item, index) => (
@@ -33,24 +32,24 @@ const Banner: React.FC = () => {
               <img
                 src={item.img}
                 alt={item.title}
-                className="block object-cover object-center aspect-[7/3] w-full h-full rounded-[calc(0.375rem-0.125rem)] transition-opacity group-hover:opacity-90 duration-300"
+                className="block object-cover object-center aspect-[7/4] xl:aspect-[7/3] w-full h-full rounded-[calc(0.375rem-0.125rem)] transition-opacity group-hover:opacity-90 duration-300"
                 loading="lazy"
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 z-10 rounded-[calc(0.375rem-0.125rem)] duration-300 opacity-60 bg-gradient-to-b from-transparent to-black"
+                className="absolute inset-0 z-10 rounded-[calc(0.375rem-0.125rem)] duration-300 opacity-70 lg:opacity-60 bg-gradient-to-b from-black/5 to-black"
               ></div>
               {item.title && (
-                <div className="absolute inset-0 top-auto z-20 grid p-16 place-content-center">
-                  <div className="max-w-2xl mx-auto text-center">
-                    <Balancer>
-                      <h2 className="flex items-center justify-center font-bold text-center text-white text-4xl leading-[1.35] group-hover/link:underline underline-offset-4">
-                        {item.title}
-                      </h2>
-                      <p className="mt-2.5 text-xl text-center text-white/90 line-clamp-4">
+                <div className="absolute inset-0 z-20 grid p-10 sm:px-20 pb-14 xl:top-auto xl:p-20 place-content-center">
+                  <div className="w-full mx-auto text-center max-w-prose">
+                    <h2 className="flex items-center justify-center font-bold text-center text-white text-xl md:text-2xl xl:text-4xl xl:leading-[1.325] group-hover/link:underline underline-offset-4">
+                      <div className="line-clamp-2">{item.title}</div>
+                    </h2>
+                    <p className="mt-1 text-base text-center md:text-xl md:mt-2 xl:text-xl text-white/95">
+                      <span className="line-clamp-2 xl:line-clamp-4">
                         {item.description}
-                      </p>
-                    </Balancer>
+                      </span>
+                    </p>
                   </div>
                 </div>
               )}
@@ -60,7 +59,7 @@ const Banner: React.FC = () => {
       <button
         onClick={handlePrev}
         type="button"
-        className="absolute grid text-white transition-all bottom-0 rounded-md opacity-0 left-0 top-0 w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
+        className="absolute hidden sm:grid text-white transition-all bottom-0 rounded-md opacity-0 left-0 top-0 w-20 xl:w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
       >
         <svg
           width="24"
@@ -88,7 +87,7 @@ const Banner: React.FC = () => {
       <button
         onClick={handleNext}
         type="button"
-        className="absolute grid text-white transition-all bottom-0 rounded-md opacity-0 right-0 top-0 w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
+        className="absolute hidden sm:grid text-white transition-all bottom-0 rounded-md opacity-0 right-0 top-0 w-20 xl:w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
       >
         <svg
           width="24"
