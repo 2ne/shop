@@ -33,15 +33,15 @@ const Banner: React.FC = () => {
               <img
                 src={item.img}
                 alt={item.title}
-                className="block object-cover object-center aspect-[7/3] rounded-[calc(0.375rem-0.125rem)] transition-opacity group-hover:opacity-90 duration-300"
+                className="block object-cover object-center aspect-[7/3] w-full h-full rounded-[calc(0.375rem-0.125rem)] transition-opacity group-hover:opacity-90 duration-300"
                 loading="lazy"
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 z-10 rounded-[calc(0.375rem-0.125rem)] duration-300 opacity-[.55] bg-gradient-to-b from-transparent to-black"
+                className="absolute inset-0 z-10 rounded-[calc(0.375rem-0.125rem)] duration-300 opacity-60 bg-gradient-to-b from-transparent to-black"
               ></div>
               {item.title && (
-                <div className="absolute bottom-0 left-0 right-0 z-20 p-16">
+                <div className="absolute inset-0 top-auto z-20 grid p-16 place-content-center">
                   <div className="max-w-2xl mx-auto text-center">
                     <Balancer>
                       <h2 className="flex items-center justify-center text-4xl font-bold leading-relaxed text-center text-white group-hover/link:underline underline-offset-4">
@@ -60,7 +60,7 @@ const Banner: React.FC = () => {
       <button
         onClick={handlePrev}
         type="button"
-        className="absolute grid text-white transition-all bottom-0 rounded-full opacity-0 left-0 top-0 w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
+        className="absolute grid text-white transition-all bottom-0 rounded-md opacity-0 left-0 top-0 w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
       >
         <svg
           width="24"
@@ -88,7 +88,7 @@ const Banner: React.FC = () => {
       <button
         onClick={handleNext}
         type="button"
-        className="absolute grid text-white transition-all bottom-0 rounded-full opacity-0 right-0 top-0 w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
+        className="absolute grid text-white transition-all bottom-0 rounded-md opacity-0 right-0 top-0 w-24 place-content-center duration-300 group-hover:opacity-75 group/button hover:!opacity-100"
       >
         <svg
           width="24"

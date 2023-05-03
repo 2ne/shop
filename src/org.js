@@ -14,21 +14,21 @@ export const orgBanners = [
     img: "http://www.cgswimschool.com/images/swimming-crash-courses.jpg",
     title: "Crash Courses",
     description:
-      "Suitable for swimmers of any level, we concentrate on improving confidence and technique.",
+      "Suitable for swimmers of any level, we concentrate on improving confidence and technique. Prices start from £30 a session.",
     link: "/AdultChildLessons",
   },
   {
-    img: "http://www.cgswimschool.com/images/adult-baby-swim.jpg",
-    title: "Adult & Baby Swim",
+    img: "https://images.unsplash.com/photo-1560090995-01632a28895b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
+    title: "English County Championships",
     description:
-      "Our programme enhances swimming potential on a physical, social and cognitive level.",
+      "Get tickets for this years championship to see the highest level of swimming in the UK.",
     link: "/AdultChildLessons",
   },
   {
-    img: "http://www.cgswimschool.com/images/one-to-one-swim-lessons.jpg",
-    title: "Adults' Swimming Lessons",
+    img: "https://images.unsplash.com/photo-1603538966022-afcc0803652e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    title: "Buy your swimming gear today!",
     description:
-      "Providing the ideal environment to ensure a relaxed but stimulating environment.",
+      "We have an excellent choice of swimming equipment for all ages, including new Speedo Anti Fog goggles.",
     link: "/AdultChildLessons",
   },
 ];
