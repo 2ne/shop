@@ -250,17 +250,12 @@ dt {
 }
 
 .ant-form-item-has-error .ant-switch {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px theme("colors.error");
-  border-radius: 100px;
+  @apply rounded-full shadow-[0_0_0_2px_white,_0_0_0_3px_theme(colors.error)];
 }
 
 @media (max-width: 767px) {
   .modal-full-mobile {
     @apply !w-full !h-screen !inset-0 !max-w-none !p-0 !m-0 !rounded-none;
-  }
-
-  .modal-full-mobile .ant-modal-close {
-    @apply fixed;
   }
 
   .modal-full-mobile .ant-modal-content {
