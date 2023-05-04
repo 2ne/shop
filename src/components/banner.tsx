@@ -32,14 +32,14 @@ const Banner: React.FC = () => {
               <img
                 src={item.img}
                 alt={item.title}
-                className="block object-cover object-center aspect-[5/3] xl:aspect-[7/3] w-full h-full transition-opacity group-hover:opacity-90 duration-300"
+                className="block object-cover object-center aspect-[5/3] sm:aspect-[7/4] md:aspect-[5/3] lg:aspect-[2/1] xl:aspect-[7/3] w-full h-full transition-opacity group-hover:opacity-90 duration-300"
               />
               <div
                 aria-hidden="true"
                 className="absolute inset-0 z-10 rounded-[calc(0.375rem-0.125rem)] duration-300 opacity-70 lg:opacity-60 bg-gradient-to-b from-black/5 to-black"
               ></div>
               {item.title && (
-                <div className="absolute inset-0 z-20 grid p-10 sm:px-20 pb-14 xl:top-auto xl:p-20 place-content-center">
+                <div className="absolute inset-0 z-20 grid p-10 sm:px-20 pb-14 sm:top-auto sm:p-20 place-content-center">
                   <div className="w-full mx-auto text-center max-w-prose">
                     <h2 className="flex items-center justify-center font-bold text-center text-white text-xl md:text-2xl xl:text-4xl xl:leading-[1.325] group-hover/link:underline underline-offset-4">
                       <div className="line-clamp-2">{item.title}</div>
