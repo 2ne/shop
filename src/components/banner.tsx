@@ -32,7 +32,7 @@ const Banner: React.FC = () => {
               <img
                 src={item.img}
                 alt={item.title}
-                className="block object-cover object-center aspect-[7/4] xl:aspect-[7/3] w-full h-full transition-opacity group-hover:opacity-90 duration-300"
+                className="block object-cover object-center aspect-[5/3] xl:aspect-[7/3] w-full h-full transition-opacity group-hover:opacity-90 duration-300"
               />
               <div
                 aria-hidden="true"
