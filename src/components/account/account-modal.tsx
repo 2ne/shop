@@ -197,7 +197,7 @@ const AccountModal: React.FC<AccountModalProps> = ({
       className="modal-full-mobile"
     >
       <div className="md:grid md:grid-cols-[14rem,1fr] md:gap-x-6">
-        <aside>
+        <aside className="hidden md:block">
           <Menu
             className="!border-0 [&>li]:!mx-0 [&>li]:!rounded-md [&>li]:!px-3s [&>li]:!flex [&>li]:!items-center [&>li.ant-menu-item-selected]:bg-interactive/5 [&>li.ant-menu-item-selected]:font-medium"
             items={items}
