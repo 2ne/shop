@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({
 
   const items: MenuItem[] = [
     getItem(
-      "Upcoming events",
+      "Calendar",
       "calendar",
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path
