@@ -45,7 +45,7 @@ const AccountModal: React.FC<AccountModalProps> = ({
 
   const items: MenuItem[] = [
     getItem(
-      "Upcoming events",
+      "Calendar",
       "calendar",
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path
@@ -179,9 +179,16 @@ const AccountModal: React.FC<AccountModalProps> = ({
     ),
   ];
 
+  const modalTitle = selectedMenuKey ? selectedMenuKey : "My Account";
+
   return (
     <Modal
-      title="My Account"
+      title={
+        <>
+          <div className="md:hidden first-letter:capitalize">{modalTitle}</div>
+          <div className="hidden md:block">My Account</div>
+        </>
+      }
       open={isOpen}
       onOk={handleOk}
       onCancel={handleCancel}
