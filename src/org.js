@@ -11,7 +11,7 @@ export const orgColours = {
 
 export const orgBanners = [
   {
-    img: "http://www.cgswimschool.com/images/swimming-crash-courses.jpg",
+    img: "https://i.ibb.co/d0DTDdY/swimming-crash-courses.jpg",
     title: "Crash Courses",
     description:
       "Suitable for swimmers of any level, we concentrate on improving confidence and technique. Prices start from £30 a session.",
