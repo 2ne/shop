@@ -7,7 +7,6 @@ const Tiles: React.FC = () => {
     <>
       {orgTiles && (
         <>
-          <div className="mb-3 heading-lg">Quick links</div>
           <div className="mb-14 grid gap-3 sm:gap-4 2xl:gap-5 grid-cols-[repeat(auto-fit,_minmax(160px,_max-content))] sm:grid-cols-[repeat(auto-fit,_minmax(200px,_max-content))] lg:grid-cols-[repeat(auto-fit,_minmax(290px,_max-content))]">
             {orgTiles.map((item, index) => (
               <Link
