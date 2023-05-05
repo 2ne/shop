@@ -289,6 +289,32 @@ const Header: React.FC<HeaderProps> = ({
           </Link>
           {!hideButtons && (
             <div className="flex items-center gap-6 ml-auto sm:gap-8">
+              {!isCheckout && (
+                <button
+                  type="button"
+                  className="relative grid text-center group place-items-center"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M19.25 19.25L15.5 15.5M4.75 11a6.25 6.25 0 1112.5 0 6.25 6.25 0 01-12.5 0z"
+                    ></path>
+                  </svg>
+                  <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
+                    Find Class
+                  </div>
+                </button>
+              )}
               {!isLoggedIn && !isCheckout && (
                 <>
                   <button
