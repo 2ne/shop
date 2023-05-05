@@ -44,7 +44,7 @@ const Banner: React.FC = () => {
                     <h2 className="flex items-center justify-center font-bold text-center text-white text-xl md:text-2xl xl:text-4xl xl:leading-[1.325] group-hover/link:underline underline-offset-4">
                       <div className="line-clamp-2">{item.title}</div>
                     </h2>
-                    <p className="mt-1 text-base text-center md:text-xl md:mt-2.5 xl:text-xl text-white/95">
+                    <p className="mt-1 text-base text-center md:text-xl md:mt-2 xl:mt-4 xl:text-xl text-white/95">
                       <span className="line-clamp-2 xl:line-clamp-4">
                         {item.description}
                       </span>
