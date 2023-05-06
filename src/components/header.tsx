@@ -337,7 +337,7 @@ const Header: React.FC<HeaderProps> = ({
                 <>
                   <button
                     type="button"
-                    className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
+                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
                     onClick={handleLogin}
                   >
                     <svg
@@ -381,7 +381,7 @@ const Header: React.FC<HeaderProps> = ({
                   >
                     <button
                       type="button"
-                      className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
+                      className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -412,11 +412,11 @@ const Header: React.FC<HeaderProps> = ({
                 <>
                   <button
                     type="button"
-                    className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
+                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
                     onClick={openBasket}
                   >
                     {basketCount && basketCount > 0 ? (
-                      <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-2.5 right-0 place-items-center">
+                      <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-1 -right-1 lg:top-1 lg:right-1.5 place-items-center">
                         <span>{basketCount}</span>
                       </div>
                     ) : null}
@@ -456,7 +456,7 @@ const Header: React.FC<HeaderProps> = ({
                   </button>
                   <button
                     type="button"
-                    className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 lg:hidden group place-items-center hover:bg-white/95"
+                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 lg:hidden group place-items-center hover:bg-white/95"
                     onClick={openBasket}
                   >
                     <svg
