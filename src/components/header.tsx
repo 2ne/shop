@@ -332,7 +332,7 @@ const Header: React.FC<HeaderProps> = ({
             </ul>
           </nav>
           {!hideButtons && (
-            <div className="flex items-center gap-2 ml-auto">
+            <div className="flex items-center ml-auto gap-0.5 lg:gap-2">
               {!isLoggedIn && !isCheckout && (
                 <>
                   <button
