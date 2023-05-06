@@ -332,7 +332,7 @@ const Header: React.FC<HeaderProps> = ({
             </ul>
           </nav>
           {!hideButtons && (
-            <div className="flex items-center gap-2 ml-auto sm:gap-3 lg:gap-2">
+            <div className="flex items-center gap-2 ml-auto sm:gap-5 lg:gap-2">
               {!isLoggedIn && !isCheckout && (
                 <>
                   <button
@@ -416,7 +416,7 @@ const Header: React.FC<HeaderProps> = ({
                     onClick={openBasket}
                   >
                     {basketCount && basketCount > 0 ? (
-                      <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-1 -right-1 lg:top-1 lg:right-1.5 place-items-center">
+                      <div className="absolute grid min-w-[.75rem] h-3 sm:min-w-[1rem] sm:h-4 text-[0.5rem] sm:text-[0.65rem] text-center text-white bg-red-500 rounded-full top-0 -right-0.5 sm:-top-1 sm:-right-1.5 lg:top-1 lg:right-1.5 place-items-center">
                         <span>{basketCount}</span>
                       </div>
                     ) : null}
