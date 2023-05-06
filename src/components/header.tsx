@@ -287,39 +287,57 @@ const Header: React.FC<HeaderProps> = ({
               {name}
             </h1>
           </Link>
-          {!hideButtons && (
-            <div className="flex items-center gap-6 ml-auto sm:gap-8">
-              {!isCheckout && (
-                <button
-                  type="button"
-                  className="relative grid text-center group place-items-center"
+          <nav className="hidden lg:block">
+            <ul className="flex ml-6 xl:ml-10 gap-x-0.5 xl:gap-x-2">
+              <li>
+                <Link
+                  to=""
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
                 >
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    className="w-7 h-7"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M19.25 19.25L15.5 15.5M4.75 11a6.25 6.25 0 1112.5 0 6.25 6.25 0 01-12.5 0z"
-                    ></path>
-                  </svg>
-                  <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
-                    Find Class
-                  </div>
-                </button>
-              )}
+                  Classes
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to=""
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                >
+                  Memberships
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to=""
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                >
+                  Events
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to=""
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                >
+                  Shop
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to=""
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                >
+                  Class Finder
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          {!hideButtons && (
+            <div className="flex items-center gap-2 ml-auto">
               {!isLoggedIn && !isCheckout && (
                 <>
                   <button
                     type="button"
-                    className="w-[3.25rem] grid text-center group place-items-center"
+                    className="grid px-3 py-2 text-center transition-colors rounded-md group place-items-center hover:bg-white/95"
                     onClick={handleLogin}
                   >
                     <svg
@@ -347,7 +365,7 @@ const Header: React.FC<HeaderProps> = ({
                         d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"
                       ></path>
                     </svg>
-                    <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
+                    <div className="heading-xs !text-primary_text whitespace-nowrap">
                       Sign in
                     </div>
                   </button>
@@ -363,7 +381,7 @@ const Header: React.FC<HeaderProps> = ({
                   >
                     <button
                       type="button"
-                      className="w-[3.25rem] grid text-center group place-items-center"
+                      className="grid px-3 py-2 text-center transition-colors rounded-md group place-items-center hover:bg-white/95"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -383,7 +401,7 @@ const Header: React.FC<HeaderProps> = ({
                           d="M13.5 10a1.5 1.5 0 01-1.5 1.5V13a3 3 0 003-3h-1.5zM12 11.5a1.5 1.5 0 01-1.5-1.5H9a3 3 0 003 3v-1.5zM10.5 10A1.5 1.5 0 0112 8.5V7a3 3 0 00-3 3h1.5zM12 8.5a1.5 1.5 0 011.5 1.5H15a3 3 0 00-3-3v1.5zM6.621 16.52a.75.75 0 101.153.96l-1.153-.96zm9.606.96a.75.75 0 101.152-.96l-1.152.96zm-8.453 0A5.487 5.487 0 0112 15.5V14a6.987 6.987 0 00-5.379 2.52l1.153.96zM12 15.5c1.698 0 3.216.769 4.227 1.98l1.152-.96A6.987 6.987 0 0012 14v1.5z"
                         ></path>
                       </svg>
-                      <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
+                      <div className="heading-xs !text-primary_text whitespace-nowrap">
                         Account
                       </div>
                     </button>
@@ -393,7 +411,7 @@ const Header: React.FC<HeaderProps> = ({
               {!isCheckout && (
                 <button
                   type="button"
-                  className="relative grid text-center group place-items-center"
+                  className="grid px-3 py-2 text-center transition-colors rounded-md group place-items-center hover:bg-white/95"
                   onClick={openBasket}
                 >
                   {basketCount && basketCount > 0 ? (
@@ -431,7 +449,7 @@ const Header: React.FC<HeaderProps> = ({
                       d="M19.25 9.75H4.75"
                     ></path>
                   </svg>
-                  <div className="heading-xs !text-primary_text whitespace-nowrap group-hover:underline">
+                  <div className="heading-xs !text-primary_text whitespace-nowrap">
                     Basket
                   </div>
                 </button>
