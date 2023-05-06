@@ -283,16 +283,16 @@ const Header: React.FC<HeaderProps> = ({
               className="block max-h-[3.5rem] sm:max-h-[4rem] rounded"
               loading="lazy"
             />
-            <h1 className="!text-primary_text heading-xl line-clamp-3 group-hover:underline">
+            <h1 className="!text-primary_text heading-xl line-clamp-3 ">
               {name}
             </h1>
           </Link>
           <nav className="hidden lg:block">
-            <ul className="flex ml-6 xl:ml-10 gap-x-0.5 xl:gap-x-2">
+            <ul className="flex ml-6 xl:ml-8 gap-x-0.5 xl:gap-x-2">
               <li>
                 <Link
                   to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
                 >
                   Classes
                 </Link>
@@ -300,7 +300,7 @@ const Header: React.FC<HeaderProps> = ({
               <li>
                 <Link
                   to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
                 >
                   Memberships
                 </Link>
@@ -308,7 +308,7 @@ const Header: React.FC<HeaderProps> = ({
               <li>
                 <Link
                   to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
                 >
                   Events
                 </Link>
@@ -316,7 +316,7 @@ const Header: React.FC<HeaderProps> = ({
               <li>
                 <Link
                   to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
                 >
                   Shop
                 </Link>
@@ -324,7 +324,7 @@ const Header: React.FC<HeaderProps> = ({
               <li>
                 <Link
                   to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/75 font-medium transition"
+                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
                 >
                   Class Finder
                 </Link>
@@ -332,12 +332,12 @@ const Header: React.FC<HeaderProps> = ({
             </ul>
           </nav>
           {!hideButtons && (
-            <div className="flex items-center ml-auto gap-0.5 lg:gap-2">
+            <div className="flex items-center gap-2 ml-auto sm:gap-3 lg:gap-2">
               {!isLoggedIn && !isCheckout && (
                 <>
                   <button
                     type="button"
-                    className="grid px-3 py-2 text-center transition-colors rounded-md group place-items-center hover:bg-white/95"
+                    className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
                     onClick={handleLogin}
                   >
                     <svg
@@ -365,7 +365,7 @@ const Header: React.FC<HeaderProps> = ({
                         d="M6.8475 19.25H17.1525C18.2944 19.25 19.174 18.2681 18.6408 17.2584C17.8563 15.7731 16.068 14 12 14C7.93201 14 6.14367 15.7731 5.35924 17.2584C4.82597 18.2681 5.70558 19.25 6.8475 19.25Z"
                       ></path>
                     </svg>
-                    <div className="heading-xs !text-primary_text whitespace-nowrap">
+                    <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
                       Sign in
                     </div>
                   </button>
@@ -381,7 +381,7 @@ const Header: React.FC<HeaderProps> = ({
                   >
                     <button
                       type="button"
-                      className="grid px-3 py-2 text-center transition-colors rounded-md group place-items-center hover:bg-white/95"
+                      className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -401,7 +401,7 @@ const Header: React.FC<HeaderProps> = ({
                           d="M13.5 10a1.5 1.5 0 01-1.5 1.5V13a3 3 0 003-3h-1.5zM12 11.5a1.5 1.5 0 01-1.5-1.5H9a3 3 0 003 3v-1.5zM10.5 10A1.5 1.5 0 0112 8.5V7a3 3 0 00-3 3h1.5zM12 8.5a1.5 1.5 0 011.5 1.5H15a3 3 0 00-3-3v1.5zM6.621 16.52a.75.75 0 101.153.96l-1.153-.96zm9.606.96a.75.75 0 101.152-.96l-1.152.96zm-8.453 0A5.487 5.487 0 0112 15.5V14a6.987 6.987 0 00-5.379 2.52l1.153.96zM12 15.5c1.698 0 3.216.769 4.227 1.98l1.152-.96A6.987 6.987 0 0012 14v1.5z"
                         ></path>
                       </svg>
-                      <div className="heading-xs !text-primary_text whitespace-nowrap">
+                      <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
                         Account
                       </div>
                     </button>
@@ -409,50 +409,74 @@ const Header: React.FC<HeaderProps> = ({
                 </>
               )}
               {!isCheckout && (
-                <button
-                  type="button"
-                  className="grid px-3 py-2 text-center transition-colors rounded-md group place-items-center hover:bg-white/95"
-                  onClick={openBasket}
-                >
-                  {basketCount && basketCount > 0 ? (
-                    <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-2.5 right-0 place-items-center">
-                      <span>{basketCount}</span>
-                    </div>
-                  ) : null}
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    className="w-7 h-7"
-                    aria-hidden="true"
+                <>
+                  <button
+                    type="button"
+                    className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
+                    onClick={openBasket}
                   >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M16.5843 17.662L18.25 9.75H5.75L7.41569 17.662C7.61053 18.5875 8.42701 19.25 9.37279 19.25H14.6272C15.573 19.25 16.3895 18.5875 16.5843 17.662Z"
-                    ></path>
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M8.75 9.5V7.75C8.75 6.09315 10.0931 4.75 11.75 4.75H12.25C13.9069 4.75 15.25 6.09315 15.25 7.75V9.5"
-                    ></path>
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M19.25 9.75H4.75"
-                    ></path>
-                  </svg>
-                  <div className="heading-xs !text-primary_text whitespace-nowrap">
-                    Basket
-                  </div>
-                </button>
+                    {basketCount && basketCount > 0 ? (
+                      <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-2.5 right-0 place-items-center">
+                        <span>{basketCount}</span>
+                      </div>
+                    ) : null}
+                    <svg
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      className="w-7 h-7"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M16.5843 17.662L18.25 9.75H5.75L7.41569 17.662C7.61053 18.5875 8.42701 19.25 9.37279 19.25H14.6272C15.573 19.25 16.3895 18.5875 16.5843 17.662Z"
+                      ></path>
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M8.75 9.5V7.75C8.75 6.09315 10.0931 4.75 11.75 4.75H12.25C13.9069 4.75 15.25 6.09315 15.25 7.75V9.5"
+                      ></path>
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M19.25 9.75H4.75"
+                      ></path>
+                    </svg>
+                    <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
+                      Basket
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    className="grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 lg:hidden group place-items-center hover:bg-white/95"
+                    onClick={openBasket}
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      className="w-7 h-7"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M4.75 5.75h14.5M4.75 18.25h14.5M4.75 12h14.5"
+                      ></path>
+                    </svg>
+                  </button>
+                </>
               )}
               {isCheckout && (
                 <Tooltip
@@ -483,7 +507,7 @@ const Header: React.FC<HeaderProps> = ({
                       ></path>
                     </svg>
 
-                    <div className="mt-0.5 heading-xs !text-primary_text sm:!leading-4 group-hover:underline">
+                    <div className="mt-0.5 heading-xs !text-primary_text sm:!leading-4 ">
                       Secure <br />
                       Checkout
                     </div>
