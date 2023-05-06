@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "./wrapper";
 import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
 import { useBasketContext } from "./basket/basket-context";
 import { useCheckoutContext } from "./checkout/checkout-context";
-import { Tooltip, message, Popover, Menu, MenuProps } from "antd";
+import { Tooltip, message, Popover, Menu, MenuProps, Modal } from "antd";
 import AccountModal from "./account/account-modal";
 
 export interface HeaderProps {
@@ -28,8 +28,21 @@ const Header: React.FC<HeaderProps> = ({
   const [isAccountPopoverVisible, setIsAccountPopoverVisible] = useState(false);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
   const [selectedMenuKey, setSelectedMenuKey] = useState(String);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   basketCount = itemCount();
+
+  const openNav = () => {
+    setIsNavOpen(true);
+  };
+
+  const navOk = () => {
+    setIsNavOpen(false);
+  };
+
+  const navCancel = () => {
+    setIsNavOpen(false);
+  };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -49,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({
     setIsAccountModalOpen(false);
   };
 
-  const handleVisibleChange = (open: boolean) => {
+  const handleAccountPopoverVisibleChange = (open: boolean) => {
     setIsAccountPopoverVisible(open);
   };
 
@@ -262,6 +275,14 @@ const Header: React.FC<HeaderProps> = ({
     ),
   ];
 
+  const navMenuItems = [
+    { label: "Classes", to: "" },
+    { label: "Memberships", to: "" },
+    { label: "Events", to: "" },
+    { label: "Shop", to: "" },
+    { label: "Class Finder", to: "" },
+  ];
+
   const accountMenu = (
     <Menu
       className="!border-0 -m-2 w-48 [&>li_.ant-menu-title-content]:!text-neutral-800 [&>li]:!rounded-md [&>li]:!flex [&>li]:!items-center [&>li>div]:!flex [&>li>div]:!items-center [&>li_.ant-menu-item-icon]:shrink-0 [&>li_.ant-menu-item-icon]:-ml-2.5 [&>li_.ant-menu-item-icon]:text-center [&>li_.ant-menu-item-icon]:!text-neutral-600 [&>li_.ant-menu-item-icon]:w-7 [&>li_.ant-menu-submenu-arrow]:hidden"
@@ -289,46 +310,16 @@ const Header: React.FC<HeaderProps> = ({
           </Link>
           <nav className="hidden lg:block">
             <ul className="flex ml-6 xl:ml-8 gap-x-0.5 xl:gap-x-2">
-              <li>
-                <Link
-                  to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
-                >
-                  Classes
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
-                >
-                  Memberships
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
-                >
-                  Events
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
-                >
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to=""
-                  className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
-                >
-                  Class Finder
-                </Link>
-              </li>
+              {navMenuItems.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    to={item.to}
+                    className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
           {!hideButtons && (
@@ -377,7 +368,7 @@ const Header: React.FC<HeaderProps> = ({
                     content={accountMenu}
                     trigger="click"
                     open={isAccountPopoverVisible}
-                    onOpenChange={handleVisibleChange}
+                    onOpenChange={handleAccountPopoverVisibleChange}
                   >
                     <button
                       type="button"
@@ -455,9 +446,9 @@ const Header: React.FC<HeaderProps> = ({
                     </div>
                   </button>
                   <button
+                    onClick={openNav}
                     type="button"
-                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 lg:hidden group place-items-center hover:bg-white/95"
-                    onClick={openBasket}
+                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:hidden lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
                   >
                     <svg
                       width="24"
@@ -475,6 +466,10 @@ const Header: React.FC<HeaderProps> = ({
                         d="M4.75 5.75h14.5M4.75 18.25h14.5M4.75 12h14.5"
                       ></path>
                     </svg>
+
+                    <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
+                      Menu
+                    </div>
                   </button>
                 </>
               )}
@@ -519,6 +514,24 @@ const Header: React.FC<HeaderProps> = ({
           )}
         </Wrapper>
       </header>
+      <Modal
+        className="top-3"
+        title="Navigation"
+        footer={false}
+        open={isNavOpen}
+        onOk={navOk}
+        onCancel={navCancel}
+      >
+        <ul className="-my-2 text-base divide-y divide-neutral-100">
+          {navMenuItems.map((item, index) => (
+            <li key={index}>
+              <Link to={item.to} className="block py-2 text-sm transition">
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Modal>
       <AccountModal
         isOpen={isAccountModalOpen}
         handleOk={handleOk}
