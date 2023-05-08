@@ -524,8 +524,7 @@ const Header: React.FC<HeaderProps> = ({
       </header>
       <Drawer
         title="Basic Drawer"
-        placement={"right"}
-        closable={false}
+        placement="right"
         onClose={navCancel}
         open={isNavOpen}
       >
