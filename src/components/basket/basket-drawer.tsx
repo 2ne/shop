@@ -24,7 +24,9 @@ const BasketDrawer: React.FC = () => {
       onClose={closeBasket}
       open={isOpen}
       zIndex={30}
-      rootClassName={isCheckout ? "max-lg:bottom-[8.35rem]" : " "}
+      rootClassName={`ant-drawer-basket ${
+        isCheckout ? "max-lg:bottom-[8.35rem]" : ""
+      }`}
     >
       <Basket />
     </Drawer>

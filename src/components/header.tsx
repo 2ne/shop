@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
 import { useBasketContext } from "./basket/basket-context";
 import { useCheckoutContext } from "./checkout/checkout-context";
-import { Tooltip, message, Popover, Menu, MenuProps, Modal } from "antd";
+import {
+  Tooltip,
+  message,
+  Popover,
+  Menu,
+  MenuProps,
+  Modal,
+  Drawer,
+} from "antd";
 import AccountModal from "./account/account-modal";
 
 export interface HeaderProps {
@@ -514,13 +522,12 @@ const Header: React.FC<HeaderProps> = ({
           )}
         </Wrapper>
       </header>
-      <Modal
-        className="top-3"
-        title="Navigation"
-        footer={false}
+      <Drawer
+        title="Basic Drawer"
+        placement={"right"}
+        closable={false}
+        onClose={navCancel}
         open={isNavOpen}
-        onOk={navOk}
-        onCancel={navCancel}
       >
         <ul className="-my-2 text-base divide-y divide-neutral-100">
           {navMenuItems.map((item, index) => (
@@ -531,7 +538,7 @@ const Header: React.FC<HeaderProps> = ({
             </li>
           ))}
         </ul>
-      </Modal>
+      </Drawer>
       <AccountModal
         isOpen={isAccountModalOpen}
         handleOk={handleOk}
