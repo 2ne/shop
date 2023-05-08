@@ -523,12 +523,17 @@ const Header: React.FC<HeaderProps> = ({
         </Wrapper>
       </header>
       <Drawer
-        title="Basic Drawer"
+        title="CG Swim School"
         placement="right"
         onClose={navCancel}
         open={isNavOpen}
       >
-        <ul className="-my-2 text-base divide-y divide-neutral-100">
+        <ul className="-mt-2 divide-y divide-neutral-100">
+          <li key="home">
+            <Link to="/" className="block py-2 text-sm transition">
+              Home
+            </Link>
+          </li>
           {navMenuItems.map((item, index) => (
             <li key={index}>
               <Link to={item.to} className="block py-2 text-sm transition">
@@ -536,6 +541,21 @@ const Header: React.FC<HeaderProps> = ({
               </Link>
             </li>
           ))}
+        </ul>
+        <div className="mt-8 mb-3 text-sm font-medium text-neutral-500">
+          My Account
+        </div>
+        <ul className="divide-y divide-neutral-100">
+          <li key="home">
+            <Link to="/" className="block py-2 text-sm transition">
+              Calendar
+            </Link>
+          </li>
+          <li key="home">
+            <Link to="/" className="block py-2 text-sm transition">
+              Payments
+            </Link>
+          </li>
         </ul>
       </Drawer>
       <AccountModal
