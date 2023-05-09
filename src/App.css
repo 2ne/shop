@@ -259,11 +259,11 @@ dt {
   }
 
   .modal-full-mobile .ant-modal-header {
-    @apply sticky top-0 z-10 bg-white/95 -mx-4 px-4 -my-3 py-3 mb-3;
+    @apply sticky top-0 z-10 bg-neutral-100/95 -mx-4 px-4 -my-3 py-4 mb-4 !rounded-none;
   }
 
   .modal-full-mobile .ant-modal-close {
-    @apply top-3.5 right-4 fixed;
+    @apply top-4 right-4 fixed;
   }
 
   .modal-full-mobile .ant-modal-content {
