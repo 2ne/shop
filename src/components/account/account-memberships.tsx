@@ -3,7 +3,9 @@ import React from "react";
 const AccountMemberships: React.FC = () => {
   return (
     <div>
-      <div className="heading-sm">Memberships</div>
+      <div className="pb-2 text-sm font-medium leading-6 border-b text-neutral-900">
+        <div className="pb-px">Memberships</div>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,9 @@ import React from "react";
 const AccountOrganisations: React.FC = () => {
   return (
     <div>
-      <div className="mb-3 heading-sm">Switch organisations</div>
+      <div className="pb-2 text-sm font-medium leading-6 border-b text-neutral-900">
+        <div className="pb-px">Switch organisations</div>
+      </div>
       <p className="text-sm">
         You are a member of 2 JoinIn organisations. Click on the name of an
         organisation below to switch to their shop.
