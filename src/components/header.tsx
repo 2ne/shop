@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Wrapper from "./wrapper";
 import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
@@ -10,8 +10,8 @@ import {
   Popover,
   Menu,
   MenuProps,
-  Modal,
   Drawer,
+  Button,
 } from "antd";
 import AccountModal from "./account/account-modal";
 
@@ -44,11 +44,7 @@ const Header: React.FC<HeaderProps> = ({
     setIsNavOpen(true);
   };
 
-  const navOk = () => {
-    setIsNavOpen(false);
-  };
-
-  const navCancel = () => {
+  const navClose = () => {
     setIsNavOpen(false);
   };
 
@@ -60,6 +56,16 @@ const Header: React.FC<HeaderProps> = ({
   const handleLogin = () => {
     setIsLoggedIn(true);
     message.success("Welcome, James");
+  };
+
+  const handleLoginDrawer = () => {
+    handleLogin();
+    navClose();
+  };
+
+  const handleLogoutDrawer = () => {
+    handleLogout();
+    navClose();
   };
 
   const handleOk = () => {
@@ -331,12 +337,58 @@ const Header: React.FC<HeaderProps> = ({
             </ul>
           </nav>
           {!hideButtons && (
-            <div className="flex items-center gap-3 ml-auto sm:gap-5 lg:gap-2 -mr-[.4rem] sm:mr-0">
+            <div className="flex items-center gap-2 ml-auto sm:gap-3 lg:gap-2">
+              {!isCheckout && (
+                <button
+                  type="button"
+                  className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
+                  onClick={openBasket}
+                >
+                  {basketCount && basketCount > 0 ? (
+                    <div className="absolute grid min-w-[.75rem] h-3 sm:min-w-[1rem] sm:h-4 text-[0.5rem] sm:text-[0.65rem] text-center text-white bg-red-500 rounded-full top-0 -right-0.5 sm:-top-1 sm:-right-1.5 lg:top-1 lg:right-1.5 place-items-center">
+                      <span>{basketCount}</span>
+                    </div>
+                  ) : null}
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M16.5843 17.662L18.25 9.75H5.75L7.41569 17.662C7.61053 18.5875 8.42701 19.25 9.37279 19.25H14.6272C15.573 19.25 16.3895 18.5875 16.5843 17.662Z"
+                    ></path>
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M8.75 9.5V7.75C8.75 6.09315 10.0931 4.75 11.75 4.75H12.25C13.9069 4.75 15.25 6.09315 15.25 7.75V9.5"
+                    ></path>
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M19.25 9.75H4.75"
+                    ></path>
+                  </svg>
+                  <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
+                    Basket
+                  </div>
+                </button>
+              )}
               {!isLoggedIn && !isCheckout && (
                 <>
                   <button
                     type="button"
-                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
+                    className="relative hidden lg:grid px-1 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
                     onClick={handleLogin}
                   >
                     <svg
@@ -372,93 +424,13 @@ const Header: React.FC<HeaderProps> = ({
               )}
               {isLoggedIn && !isCheckout && (
                 <>
-                  <Popover
-                    content={accountMenu}
-                    trigger="click"
-                    open={isAccountPopoverVisible}
-                    onOpenChange={handleAccountPopoverVisibleChange}
-                  >
-                    <button
-                      type="button"
-                      className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        className="w-7 h-7"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M18.5 12a6.5 6.5 0 01-6.5 6.5V20a8 8 0 008-8h-1.5zM12 18.5A6.5 6.5 0 015.5 12H4a8 8 0 008 8v-1.5zM5.5 12A6.5 6.5 0 0112 5.5V4a8 8 0 00-8 8h1.5zM12 5.5a6.5 6.5 0 016.5 6.5H20a8 8 0 00-8-8v1.5z"
-                        ></path>
-                        <path
-                          fill="currentColor"
-                          d="M13.5 10a1.5 1.5 0 01-1.5 1.5V13a3 3 0 003-3h-1.5zM12 11.5a1.5 1.5 0 01-1.5-1.5H9a3 3 0 003 3v-1.5zM10.5 10A1.5 1.5 0 0112 8.5V7a3 3 0 00-3 3h1.5zM12 8.5a1.5 1.5 0 011.5 1.5H15a3 3 0 00-3-3v1.5zM6.621 16.52a.75.75 0 101.153.96l-1.153-.96zm9.606.96a.75.75 0 101.152-.96l-1.152.96zm-8.453 0A5.487 5.487 0 0112 15.5V14a6.987 6.987 0 00-5.379 2.52l1.153.96zM12 15.5c1.698 0 3.216.769 4.227 1.98l1.152-.96A6.987 6.987 0 0012 14v1.5z"
-                        ></path>
-                      </svg>
-                      <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
-                        Account
-                      </div>
-                    </button>
-                  </Popover>
-                </>
-              )}
-              {!isCheckout && (
-                <>
-                  <button
-                    type="button"
-                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
-                    onClick={openBasket}
-                  >
-                    {basketCount && basketCount > 0 ? (
-                      <div className="absolute grid min-w-[.75rem] h-3 sm:min-w-[1rem] sm:h-4 text-[0.5rem] sm:text-[0.65rem] text-center text-white bg-red-500 rounded-full top-0 -right-0.5 sm:-top-1 sm:-right-1.5 lg:top-1 lg:right-1.5 place-items-center">
-                        <span>{basketCount}</span>
-                      </div>
-                    ) : null}
-                    <svg
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      className="w-7 h-7"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M16.5843 17.662L18.25 9.75H5.75L7.41569 17.662C7.61053 18.5875 8.42701 19.25 9.37279 19.25H14.6272C15.573 19.25 16.3895 18.5875 16.5843 17.662Z"
-                      ></path>
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M8.75 9.5V7.75C8.75 6.09315 10.0931 4.75 11.75 4.75H12.25C13.9069 4.75 15.25 6.09315 15.25 7.75V9.5"
-                      ></path>
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M19.25 9.75H4.75"
-                      ></path>
-                    </svg>
-                    <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
-                      Basket
-                    </div>
-                  </button>
                   <button
                     onClick={openNav}
                     type="button"
-                    className="relative grid px-1 py-1 text-center transition-colors rounded-md lg:hidden lg:px-3 lg:py-2 group place-items-center hover:bg-white/95"
+                    className="relative hidden lg:grid px-1 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
                   >
                     <svg
+                      xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
                       fill="none"
@@ -467,19 +439,46 @@ const Header: React.FC<HeaderProps> = ({
                       aria-hidden="true"
                     >
                       <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M4.75 5.75h14.5M4.75 18.25h14.5M4.75 12h14.5"
+                        fill="currentColor"
+                        d="M18.5 12a6.5 6.5 0 01-6.5 6.5V20a8 8 0 008-8h-1.5zM12 18.5A6.5 6.5 0 015.5 12H4a8 8 0 008 8v-1.5zM5.5 12A6.5 6.5 0 0112 5.5V4a8 8 0 00-8 8h1.5zM12 5.5a6.5 6.5 0 016.5 6.5H20a8 8 0 00-8-8v1.5z"
+                      ></path>
+                      <path
+                        fill="currentColor"
+                        d="M13.5 10a1.5 1.5 0 01-1.5 1.5V13a3 3 0 003-3h-1.5zM12 11.5a1.5 1.5 0 01-1.5-1.5H9a3 3 0 003 3v-1.5zM10.5 10A1.5 1.5 0 0112 8.5V7a3 3 0 00-3 3h1.5zM12 8.5a1.5 1.5 0 011.5 1.5H15a3 3 0 00-3-3v1.5zM6.621 16.52a.75.75 0 101.153.96l-1.153-.96zm9.606.96a.75.75 0 101.152-.96l-1.152.96zm-8.453 0A5.487 5.487 0 0112 15.5V14a6.987 6.987 0 00-5.379 2.52l1.153.96zM12 15.5c1.698 0 3.216.769 4.227 1.98l1.152-.96A6.987 6.987 0 0012 14v1.5z"
                       ></path>
                     </svg>
-
                     <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
-                      Menu
+                      Account
                     </div>
                   </button>
                 </>
+              )}
+              {!isCheckout && (
+                <button
+                  onClick={openNav}
+                  type="button"
+                  className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:hidden lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M4.75 5.75h14.5M4.75 18.25h14.5M4.75 12h14.5"
+                    ></path>
+                  </svg>
+                  <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
+                    Account
+                  </div>
+                </button>
               )}
               {isCheckout && (
                 <Tooltip
@@ -523,40 +522,246 @@ const Header: React.FC<HeaderProps> = ({
         </Wrapper>
       </header>
       <Drawer
-        title="CG Swim School"
+        title={
+          <div className="flex items-center gap-2.5">
+            <img
+              src={logo}
+              alt={name + " Logo"}
+              className="block max-h-[2.25rem] rounded"
+              loading="lazy"
+            />
+            <div className="!text-primary_text font-medium truncate">
+              {name}
+            </div>
+          </div>
+        }
         placement="right"
-        onClose={navCancel}
+        onClose={navClose}
         open={isNavOpen}
+        rootClassName={"[&>.ant-drawer-content-wrapper]:max-w-full"}
       >
-        <ul className="-mt-2 divide-y divide-neutral-100">
-          <li key="home">
-            <Link to="/" className="block py-2 text-sm transition">
-              Home
-            </Link>
-          </li>
-          {navMenuItems.map((item, index) => (
-            <li key={index}>
-              <Link to={item.to} className="block py-2 text-sm transition">
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-8 mb-3 text-sm font-medium text-neutral-500">
-          My Account
+        <div className="[&>*]:mb-6 -mt-1">
+          <div className="lg:hidden">
+            <div className="mb-3 text-sm font-medium text-neutral-500">
+              Links
+            </div>
+            <ul className="">
+              <li>
+                <Link to="/" className="block py-1.5 text-sm transition">
+                  Home
+                </Link>
+              </li>
+              {navMenuItems.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    to={item.to}
+                    className="block py-1.5 text-sm transition"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {isLoggedIn && (
+            <>
+              <div>
+                <div className="mb-2 text-sm font-medium text-neutral-500">
+                  My Account
+                </div>
+                <ul className="">
+                  <li>
+                    <Link
+                      to="/"
+                      className="flex items-center gap-2 py-1.5 text-sm transition"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="text-neutral-600"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M4.75 8.75a2 2 0 012-2h10.5a2 2 0 012 2v8.5a2 2 0 01-2 2H6.75a2 2 0 01-2-2v-8.5zM8 4.75v3.5M16 4.75v3.5M7.75 10.75h8.5"
+                        ></path>
+                      </svg>
+                      <span>Calendar</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      className="flex items-center gap-2 py-1.5 text-sm transition"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="text-neutral-600"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M4.75 7.75a2 2 0 012-2h10.5a2 2 0 012 2v8.5a2 2 0 01-2 2H6.75a2 2 0 01-2-2v-8.5zM5 10.25h14M7.75 14.25h2.5M15.75 14.25h.5"
+                        ></path>
+                      </svg>
+                      <span>Payments</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      className="flex items-center gap-2 py-1.5 text-sm transition"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="text-neutral-600"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M18.25 6.75a2 2 0 00-2-2H5.75v14.5h10.5a2 2 0 002-2V6.75z"
+                        ></path>
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M14.25 10a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zM9.75 15.25h4.5"
+                        ></path>
+                      </svg>
+                      <span>Memberships</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      className="flex items-center gap-2 py-1.5 text-sm transition"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="text-neutral-600"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M11.25 7a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+                        ></path>
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M16.498 5.403c-.55-.715-1.467-.907-2.156-.253-.688.654-.785 1.748-.244 2.521l2.4 2.579 2.4-2.579c.542-.773.456-1.874-.244-2.52-.701-.648-1.606-.463-2.156.252z"
+                          clipRule="evenodd"
+                        ></path>
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M9 9.75c-3.4 0-4.25 1.75-4.25 4.5h2v3a2 2 0 002 2h.5a2 2 0 002-2v-3h2c0-2.75-.85-4.5-4.25-4.5z"
+                        ></path>
+                      </svg>
+                      <span>Family</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      className="flex items-center gap-2 py-1.5 text-sm transition"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="text-neutral-600"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M5.621 14.963l1.101.172c.813.127 1.393.872 1.333 1.71l-.081 1.137a.811.811 0 00.445.787l.814.4c.292.145.641.09.88-.134l.818-.773a1.55 1.55 0 012.138 0l.818.773a.776.776 0 00.88.135l.815-.402a.808.808 0 00.443-.785l-.08-1.138c-.06-.838.52-1.583 1.332-1.71l1.101-.172a.798.798 0 00.651-.62l.201-.9a.816.816 0 00-.324-.847l-.918-.643a1.634 1.634 0 01-.476-2.132l.555-.988a.824.824 0 00-.068-.907l-.563-.723a.78.78 0 00-.85-.269l-1.064.334a1.567 1.567 0 01-1.928-.949l-.407-1.058a.791.791 0 00-.737-.511l-.903.002a.791.791 0 00-.734.516l-.398 1.045a1.566 1.566 0 01-1.93.956l-1.11-.348a.78.78 0 00-.851.27l-.56.724a.823.823 0 00-.062.91l.568.99c.418.73.213 1.666-.469 2.144l-.907.636a.817.817 0 00-.324.847l.2.9c.072.325.33.57.651.62z"
+                        ></path>
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M13.591 10.409a2.25 2.25 0 11-3.183 3.182 2.25 2.25 0 013.183-3.182z"
+                        ></path>
+                      </svg>
+                      <span>Settings</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <div className="mb-2 text-sm font-medium text-neutral-500">
+                  Switch organisation
+                </div>
+                <ul className="">
+                  <li>
+                    <Link to="/" className="block py-1.5 text-sm transition">
+                      Organisation 1
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/" className="block py-1.5 text-sm transition">
+                      Organisation 2
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
         </div>
-        <ul className="divide-y divide-neutral-100">
-          <li key="home">
-            <Link to="/" className="block py-2 text-sm transition">
-              Calendar
-            </Link>
-          </li>
-          <li key="home">
-            <Link to="/" className="block py-2 text-sm transition">
-              Payments
-            </Link>
-          </li>
-        </ul>
+        {isLoggedIn && (
+          <div className="mt-7">
+            <Button block size="large" onClick={handleLogoutDrawer}>
+              Sign out
+            </Button>
+          </div>
+        )}
+        {!isLoggedIn && (
+          <div className="sticky pb-6 mt-auto -bottom-8 bg-white/95">
+            <div className="mt-6">
+              <Button
+                block
+                size="large"
+                type="primary"
+                onClick={handleLoginDrawer}
+              >
+                Sign in
+              </Button>
+            </div>
+          </div>
+        )}
       </Drawer>
       <AccountModal
         isOpen={isAccountModalOpen}
