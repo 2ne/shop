@@ -1,10 +1,11 @@
 import React from "react";
-import { Modal, Menu, MenuProps } from "antd";
+import { Modal, Menu, MenuProps, message } from "antd";
 import AccountCalendar from "./account-calendar";
 import AccountPayments from "./account-payments";
 import AccountFamily from "./account-family";
 import AccountSettings from "./account-settings";
 import AccountMemberships from "./account-memberships";
+import AccountOrganisations from "./account-organisations";
 
 interface AccountModalProps {
   isOpen: boolean;
@@ -21,6 +22,14 @@ const AccountModal: React.FC<AccountModalProps> = ({
   selectedMenuKey,
   setSelectedMenuKey,
 }) => {
+  const handleLogout = () => {
+    message.success("Successfully signed out");
+    setTimeout(() => {
+      setSelectedMenuKey("");
+      window.location.reload();
+    }, 1000);
+  };
+
   const handleMenuSelect = (e: { key: string }) => {
     setSelectedMenuKey(e.key);
   };
@@ -177,6 +186,28 @@ const AccountModal: React.FC<AccountModalProps> = ({
         handleMenuSelect({ key: "settings" });
       }
     ),
+    getItem(
+      "Switch organisations",
+      "switchOrganisations",
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+          d="M8.25 11.25L4.75 8l3.5-3.25M4.75 8h10.5M15.75 12.75l3.5 3.25-3.5 3.25M19.25 16H8.75"
+        ></path>
+      </svg>,
+      () => {
+        handleMenuSelect({ key: "switchOrganisations" });
+      }
+    ),
   ];
 
   const modalTitle = selectedMenuKey ? selectedMenuKey : "My Account";
@@ -204,6 +235,22 @@ const AccountModal: React.FC<AccountModalProps> = ({
             selectedKeys={[selectedMenuKey]}
             onSelect={handleMenuSelect}
           />
+          <button
+            type="button"
+            className="flex items-center w-full h-10 gap-2.5 px-4 transition-colors rounded-md hover:bg-error/5 hover:text-error"
+            onClick={handleLogout}
+          >
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="M15.75 8.75l3.5 3.25-3.5 3.25M19 12h-8.25M15.25 4.75h-8.5a2 2 0 00-2 2v10.5a2 2 0 002 2h8.5"
+              ></path>
+            </svg>
+            <span>Sign out</span>
+          </button>
         </aside>
         <div className="">
           {selectedMenuKey === "calendar" && <AccountCalendar />}
@@ -211,6 +258,9 @@ const AccountModal: React.FC<AccountModalProps> = ({
           {selectedMenuKey === "memberships" && <AccountMemberships />}
           {selectedMenuKey === "family" && <AccountFamily />}
           {selectedMenuKey === "settings" && <AccountSettings />}
+          {selectedMenuKey === "switchOrganisations" && (
+            <AccountOrganisations />
+          )}
         </div>
       </div>
     </Modal>

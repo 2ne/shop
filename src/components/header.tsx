@@ -72,7 +72,6 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const navLinks = [
-    { label: "Home", to: "/" },
     { label: "Classes", to: "/" },
     { label: "Memberships", to: "/" },
     { label: "Events", to: "/" },
@@ -256,7 +255,7 @@ const Header: React.FC<HeaderProps> = ({
           </Link>
           <nav className="hidden lg:block">
             <ul className="flex ml-6 xl:ml-8 gap-x-0.5 xl:gap-x-2">
-              {navLinks.slice(1).map((item, index) => (
+              {navLinks.map((item, index) => (
                 <li key={index}>
                   <Link
                     to={item.to}
@@ -357,7 +356,10 @@ const Header: React.FC<HeaderProps> = ({
               {isLoggedIn && !isCheckout && (
                 <>
                   <button
-                    onClick={openNav}
+                    onClick={() => {
+                      setSelectedMenuKey("calendar");
+                      showMyAccountModal();
+                    }}
                     type="button"
                     className="relative hidden lg:grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
                   >
@@ -454,7 +456,7 @@ const Header: React.FC<HeaderProps> = ({
       </header>
       <Drawer
         title={
-          <div className="flex items-center gap-2.5">
+          <Link className="flex items-center gap-2.5" to="/home">
             <img
               src={logo}
               alt={name + " Logo"}
@@ -464,7 +466,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="!text-primary_text font-medium truncate">
               {name}
             </div>
-          </div>
+          </Link>
         }
         placement="right"
         onClose={navClose}
@@ -472,7 +474,7 @@ const Header: React.FC<HeaderProps> = ({
         rootClassName={"[&>.ant-drawer-content-wrapper]:max-w-full"}
       >
         <div className="[&>*]:mb-6 -mt-1">
-          <div className="lg:hidden">
+          <div>
             <div className="mb-3 text-sm font-medium text-neutral-500">
               Links
             </div>
@@ -557,6 +559,7 @@ const Header: React.FC<HeaderProps> = ({
         )}
       </Drawer>
       <AccountModal
+        loggedIn={loggedIn}
         isOpen={isAccountModalOpen}
         handleOk={handleOk}
         handleCancel={handleCancel}
