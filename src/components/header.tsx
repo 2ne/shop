@@ -68,6 +68,7 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const navLinks = [
+    { label: "Home", to: "" },
     { label: "Classes", to: "" },
     { label: "Memberships", to: "" },
     { label: "Events", to: "" },
@@ -95,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({
           </Link>
           <nav className="hidden lg:block">
             <ul className="flex ml-6 xl:ml-8 gap-x-0.5 xl:gap-x-2">
-              {navLinks.map((item, index) => (
+              {navLinks.slice(1).map((item, index) => (
                 <li key={index}>
                   <Link
                     to={item.to}
@@ -316,12 +317,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="mb-3 text-sm font-medium text-neutral-500">
               Links
             </div>
-            <ul className="">
-              <li>
-                <Link to="/" className="block py-1.5 text-sm transition">
-                  Home
-                </Link>
-              </li>
+            <ul>
               {navLinks.map((item, index) => (
                 <li key={index}>
                   <Link
