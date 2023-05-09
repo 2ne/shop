@@ -188,7 +188,7 @@ const AccountModal: React.FC<AccountModalProps> = ({
     ),
     getItem(
       "Switch organisations",
-      "switchOrganisations",
+      "organisations",
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -205,7 +205,7 @@ const AccountModal: React.FC<AccountModalProps> = ({
         ></path>
       </svg>,
       () => {
-        handleMenuSelect({ key: "switchOrganisations" });
+        handleMenuSelect({ key: "organisations" });
       }
     ),
   ];
@@ -259,9 +259,7 @@ const AccountModal: React.FC<AccountModalProps> = ({
           {selectedMenuKey === "memberships" && <AccountMemberships />}
           {selectedMenuKey === "family" && <AccountFamily />}
           {selectedMenuKey === "settings" && <AccountSettings />}
-          {selectedMenuKey === "switchOrganisations" && (
-            <AccountOrganisations />
-          )}
+          {selectedMenuKey === "organisations" && <AccountOrganisations />}
         </div>
       </div>
     </Modal>
