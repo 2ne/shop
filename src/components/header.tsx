@@ -526,8 +526,11 @@ const Header: React.FC<HeaderProps> = ({
                 </div>
                 <ul className="">
                   <li>
-                    <Link to="/" className="block py-1.5 text-sm transition">
-                      Organisation 1
+                    <Link
+                      to="/"
+                      className="block py-1.5 text-sm transition text-interactive"
+                    >
+                      CG Swim School
                     </Link>
                   </li>
                   <li>
@@ -563,7 +566,6 @@ const Header: React.FC<HeaderProps> = ({
         )}
       </Drawer>
       <AccountModal
-        loggedIn={loggedIn}
         isOpen={isAccountModalOpen}
         handleOk={handleOk}
         handleCancel={handleCancel}
