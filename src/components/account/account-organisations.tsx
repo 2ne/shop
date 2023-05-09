@@ -3,7 +3,7 @@ import React from "react";
 const AccountOrganisations: React.FC = () => {
   return (
     <div>
-      <div className="pb-2 text-sm font-medium leading-6 border-b text-neutral-900">
+      <div className="pb-2 mb-4 text-sm font-medium leading-6 border-b text-neutral-900">
         <div className="pb-px">Switch organisations</div>
       </div>
       <p className="text-sm">
