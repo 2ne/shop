@@ -253,20 +253,22 @@ const Header: React.FC<HeaderProps> = ({
               {name}
             </h1>
           </Link>
-          <nav className="hidden lg:block">
-            <ul className="flex ml-6 xl:ml-8 gap-x-0.5 xl:gap-x-2">
-              {navLinks.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item.to}
-                    className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {!hideButtons && !isCheckout && (
+            <nav className="hidden lg:block">
+              <ul className="flex ml-6 xl:ml-8 gap-x-0.5 xl:gap-x-2">
+                {navLinks.map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      to={item.to}
+                      className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
           {!hideButtons && (
             <div className="flex items-center gap-2 ml-auto sm:gap-3 lg:gap-2">
               {!isCheckout && (
@@ -471,7 +473,9 @@ const Header: React.FC<HeaderProps> = ({
         placement="right"
         onClose={navClose}
         open={isNavOpen}
-        rootClassName={"[&>.ant-drawer-content-wrapper]:max-w-full"}
+        rootClassName={
+          "[&>.ant-drawer-content-wrapper]:max-w-full [&>.ant-drawer-content-wrapper]:!w-full sm:[&>.ant-drawer-content-wrapper]:!w-[360px]"
+        }
       >
         <div className="[&>*]:mb-6 -mt-1">
           <div>
