@@ -226,6 +226,7 @@ const AccountModal: React.FC<AccountModalProps> = ({
       footer={false}
       width={800}
       className="modal-full-mobile"
+      rootClassName="z-max"
     >
       <div className="md:grid md:grid-cols-[14rem,1fr] md:gap-x-6">
         <aside className="hidden md:block">
