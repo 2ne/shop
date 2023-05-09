@@ -528,7 +528,7 @@ const Header: React.FC<HeaderProps> = ({
                   <li>
                     <Link
                       to="/"
-                      className="block py-1.5 text-sm transition text-interactive"
+                      className="block py-1.5 text-sm transition text-interactive font-medium"
                     >
                       CG Swim School
                     </Link>
