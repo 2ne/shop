@@ -15,21 +15,21 @@ export const orgBanners = [
     title: "Crash Courses",
     description:
       "Suitable for swimmers of any level, we concentrate on improving confidence and technique. Prices start from £30 a session.",
-    link: "/AdultChildLessons",
+    link: "/BubbleTheSeahorse",
   },
   {
     img: "https://images.unsplash.com/photo-1528912599607-dc5f96f6c1d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
     title: "24th May - English County Championships",
     description:
       "Get your tickets for this year's championship to witness the highest level of swimming in the UK. Adult tickets are £15, while children's tickets cost £5.",
-    link: "/AdultChildLessons",
+    link: "/BubbleTheSeahorse",
   },
   {
     img: "https://images.unsplash.com/photo-1603538966022-afcc0803652e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     title: "Buy your swimming gear today!",
     description:
       "We have an excellent choice of swimming equipment for all ages, including new Speedo Anti Fog goggles.",
-    link: "/AdultChildLessons",
+    link: "/BubbleTheSeahorse",
   },
 ];
 
