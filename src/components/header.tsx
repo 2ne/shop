@@ -59,6 +59,10 @@ const Header: React.FC<HeaderProps> = ({
     navClose();
   };
 
+  const showMyAccountModal = () => {
+    setIsAccountModalOpen(true);
+  };
+
   const handleOk = () => {
     setIsAccountModalOpen(false);
   };
@@ -68,12 +72,12 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const navLinks = [
-    { label: "Home", to: "" },
-    { label: "Classes", to: "" },
-    { label: "Memberships", to: "" },
-    { label: "Events", to: "" },
-    { label: "Shop", to: "" },
-    { label: "Class Finder", to: "" },
+    { label: "Home", to: "/" },
+    { label: "Classes", to: "/" },
+    { label: "Memberships", to: "/" },
+    { label: "Events", to: "/" },
+    { label: "Shop", to: "/" },
+    { label: "Class Finder", to: "/" },
   ];
 
   return (
@@ -338,8 +342,12 @@ const Header: React.FC<HeaderProps> = ({
                 </div>
                 <ul className="">
                   <li>
-                    <Link
-                      to="/"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedMenuKey("calendar");
+                        showMyAccountModal();
+                      }}
                       className="flex items-center gap-2 py-1.5 text-sm transition"
                     >
                       <svg
@@ -358,11 +366,15 @@ const Header: React.FC<HeaderProps> = ({
                         ></path>
                       </svg>
                       <span>Calendar</span>
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
-                      to="/"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedMenuKey("payments");
+                        showMyAccountModal();
+                      }}
                       className="flex items-center gap-2 py-1.5 text-sm transition"
                     >
                       <svg
@@ -382,11 +394,15 @@ const Header: React.FC<HeaderProps> = ({
                         ></path>
                       </svg>
                       <span>Payments</span>
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
-                      to="/"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedMenuKey("memberships");
+                        showMyAccountModal();
+                      }}
                       className="flex items-center gap-2 py-1.5 text-sm transition"
                     >
                       <svg
@@ -413,11 +429,15 @@ const Header: React.FC<HeaderProps> = ({
                         ></path>
                       </svg>
                       <span>Memberships</span>
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
-                      to="/"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedMenuKey("family");
+                        showMyAccountModal();
+                      }}
                       className="flex items-center gap-2 py-1.5 text-sm transition"
                     >
                       <svg
@@ -452,11 +472,15 @@ const Header: React.FC<HeaderProps> = ({
                         ></path>
                       </svg>
                       <span>Family</span>
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
-                      to="/"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedMenuKey("settings");
+                        showMyAccountModal();
+                      }}
                       className="flex items-center gap-2 py-1.5 text-sm transition"
                     >
                       <svg
@@ -483,7 +507,7 @@ const Header: React.FC<HeaderProps> = ({
                         ></path>
                       </svg>
                       <span>Settings</span>
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>
