@@ -7,6 +7,7 @@ import { BasketProvider } from "./components/basket/basket-context";
 import BasketLayout from "./components/basket/basket-layout";
 import Checkout from "./shop/checkout";
 import { CheckoutProvider } from "./components/checkout/checkout-context";
+import ClassFinder from "./shop/class-finder";
 
 function App(): ReactElement {
   return (
@@ -24,6 +25,7 @@ function App(): ReactElement {
                 path="/BubbleTheSeahorse"
                 element={<BubbleTheSeahorse />}
               />
+              <Route path="/Finder" element={<ClassFinder />} />
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="*" element={<Home />} />
             </Routes>

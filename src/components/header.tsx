@@ -76,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({
     { label: "Memberships", to: "/" },
     { label: "Events", to: "/" },
     { label: "Shop", to: "/" },
-    { label: "Class Finder", to: "/" },
+    { label: "Class Finder", to: "/Finder" },
   ];
 
   const accountLinks = [
