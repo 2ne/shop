@@ -58,9 +58,9 @@ const Finder: React.FC = () => {
         />
       </div>
       <Form layout="vertical">
-        <div className="p-4 mb-8 border space-y-4 rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error">
+        <div className="p-4 mb-8 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error">
           {participants.map((participant, index) => (
-            <div key={index} className="flex">
+            <div key={index} className="relative !mb-10">
               <DateOfBirthInput
                 onDateChange={(day, month, year, age) =>
                   handleDateChange(index, day, month, year, age)
@@ -68,7 +68,8 @@ const Finder: React.FC = () => {
               />
               {index !== 0 && (
                 <Button
-                  className="ml-2"
+                  className="absolute -top-1.5 right-0 !px-0"
+                  type="link"
                   onClick={() => removeParticipant(index)}
                 >
                   Remove
