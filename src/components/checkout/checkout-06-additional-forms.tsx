@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Button, Form, Modal } from "antd";
-import CheckoutStepHeader from "./checkout-header";
+import FormHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
 import { Participant } from "../../types/types";
 
@@ -90,7 +90,7 @@ const CheckoutAdditionalForms = forwardRef<
 
     return (
       <>
-        <CheckoutStepHeader
+        <FormHeader
           title={title}
           subtitle={subtitle}
           icon={

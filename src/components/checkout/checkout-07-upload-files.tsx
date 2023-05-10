@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import { Form, Modal, Upload, UploadProps, message } from "antd";
-import CheckoutStepHeader from "./checkout-header";
+import FormHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
 import { Participant } from "../../types/types";
 
@@ -103,7 +103,7 @@ const CheckoutUploadFiles = forwardRef<
 
     return (
       <>
-        <CheckoutStepHeader
+        <FormHeader
           title={title}
           subtitle={subtitle}
           icon={

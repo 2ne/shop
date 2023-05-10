@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 
-type CheckoutStepHeaderProps = {
+type FormHeaderProps = {
   icon: ReactNode;
   title: string;
   subtitle: string;
   requiredText?: string;
 };
 
-const CheckoutStepHeader: React.FC<CheckoutStepHeaderProps> = ({
+const FormHeader: React.FC<FormHeaderProps> = ({
   icon,
   title,
   subtitle,
@@ -67,4 +67,4 @@ const CheckoutStepHeader: React.FC<CheckoutStepHeaderProps> = ({
   );
 };
 
-export default CheckoutStepHeader;
+export default FormHeader;

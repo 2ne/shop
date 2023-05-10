@@ -5,7 +5,7 @@ import React, {
   useState,
 } from "react";
 import { Collapse, Form, Input } from "antd";
-import CheckoutStepHeader from "./checkout-header";
+import FormHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
 import {
   emergencyContactFields,
@@ -69,7 +69,7 @@ const CheckoutEmergencyContacts = forwardRef<
 
     return (
       <>
-        <CheckoutStepHeader
+        <FormHeader
           title={title}
           subtitle={subtitle}
           requiredText="This product requires 2 emergency contacts"

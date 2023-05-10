@@ -5,7 +5,7 @@ import React, {
   useState,
 } from "react";
 import { Button, Form, Radio, Tooltip } from "antd";
-import CheckoutStepHeader from "./checkout-header";
+import FormHeader from "./checkout-header";
 import AddParticipantModal, {
   AddParticipantValues,
 } from "./checkout-01-select-participants-add-modal";
@@ -179,7 +179,7 @@ const CheckoutSelectParticipants = forwardRef<
 
     return (
       <>
-        <CheckoutStepHeader
+        <FormHeader
           title={title}
           subtitle={subtitle}
           icon={

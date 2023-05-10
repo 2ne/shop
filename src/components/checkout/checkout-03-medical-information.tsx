@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Collapse, Form, Input, Radio, RadioChangeEvent } from "antd";
-import CheckoutStepHeader from "./checkout-header";
+import FormHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
 import { MedicalInfo, Participant, medicalInfoFields } from "../../types/types";
 
@@ -112,7 +112,7 @@ const CheckoutMedicalInfo = forwardRef<
 
     return (
       <>
-        <CheckoutStepHeader
+        <FormHeader
           title={title}
           subtitle={subtitle}
           icon={

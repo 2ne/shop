@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DateOfBirthInput from "../dob-input";
 import { Button, Form } from "antd";
-import CheckoutStepHeader from "../checkout/checkout-header";
+import FormHeader from "../checkout/checkout-header";
 
 const Finder: React.FC = () => {
   const [bdayDay, setBdayDay] = useState("");
@@ -24,7 +24,7 @@ const Finder: React.FC = () => {
   return (
     <div className="w-full lg:max-w-[22rem] lg:mx-auto space-y-6">
       <div className="lg:text-center">
-        <CheckoutStepHeader
+        <FormHeader
           title="Class Finder"
           subtitle="Enter the participant's birth date and we'll find the perfect classes for them"
           icon={

@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Form, Modal, Switch } from "antd";
-import CheckoutStepHeader from "./checkout-header";
+import FormHeader from "./checkout-header";
 import { useBasketContext } from "../basket/basket-context";
 import { ConsentForm, Participant, consentFormFields } from "../../types/types";
 
@@ -114,7 +114,7 @@ const CheckoutConsentForms = forwardRef<
 
     return (
       <>
-        <CheckoutStepHeader
+        <FormHeader
           title={title}
           subtitle={subtitle}
           icon={

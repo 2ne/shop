@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import { Button, Form, Input, Modal } from "antd";
-import CheckoutStepHeader from "./checkout-header";
+import FormHeader from "./checkout-header";
 import { orgLogo, orgName } from "../../org";
 import Balancer from "react-wrap-balancer";
 
@@ -40,7 +40,7 @@ const CheckoutPayment = forwardRef<
 
     return (
       <>
-        <CheckoutStepHeader
+        <FormHeader
           title={title}
           subtitle={subtitle}
           icon={
