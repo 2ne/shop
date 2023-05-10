@@ -67,7 +67,7 @@ function BubbleTheSeahorse(): ReactElement {
     <>
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <Main className="space-y-4 sm:space-y-8">
+      <Main className="pb-24 space-y-4 sm:space-y-8">
         <div className="sticky top-0 space-y-0.5 py-3 border-b sm:space-y-0 border-neutral-200 bg-white/95 z-20 -mt-3">
           <h2 className="heading-lg">Bubble the Seahorse</h2>
           <h3 className="sub-heading">Every Tuesday at 11:30 - 12:00</h3>
