@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 import Main from "../components/main";
 import Finder from "../components/finder/finder";
 function ClassFinder(): ReactElement {
-  const breadcrumbItems = [{ label: "Class finder", link: "/Finder" }];
+  const breadcrumbItems = [{ label: "Class Finder", link: "/Finder" }];
   return (
     <>
       <Header />

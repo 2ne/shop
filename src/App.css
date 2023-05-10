@@ -76,15 +76,16 @@ dt {
   @apply !h-10 lg:!h-[2.75rem] !text-sm sm:!text-base;
 }
 
-.ant-form-vertical .ant-form-item-label {
+.ant-form .ant-form-item-label {
   @apply pb-1.5 font-medium text-sm;
 }
 
-.ant-form-vertical .ant-form-item-extra {
+.ant-form .ant-form-item-extra {
   @apply pt-1.5 text-sm;
 }
 
-.ant-form-vertical .ant-form-item-explain-error {
+.ant-form .ant-form-item-explain-error,
+.ant-form .ant-form-item-explain {
   @apply mt-1;
 }
 
@@ -96,7 +97,7 @@ dt {
   @apply opacity-0;
 }
 
-.ant-form-vertical .ant-form-item {
+.ant-form .ant-form-item {
   @apply mb-6;
 }
 
