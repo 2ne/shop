@@ -12,7 +12,7 @@ function Home(): ReactElement {
       <Breadcrumb />
       <Main>
         <Banner />
-        <div className="px-12 py-10 mb-5 rounded-md bg-neutral-100 sm:mb-6 xl:mb-8 2xl:mb-9 ">
+        <div className="py-10 mb-5 rounded-md px-14 bg-neutral-100 sm:mb-6 xl:mb-8 2xl:mb-9 ">
           <h2 className="flex items-center text-lg font-bold text-neutral-800 md:text-xl group-hover/link:underline underline-offset-4">
             Welcome to CG Swim School
           </h2>
