@@ -3,8 +3,15 @@ import DateOfBirthInput from "../dob-input";
 import { Button, Form } from "antd";
 import FormHeader from "../checkout/checkout-header";
 
+interface Participant {
+  day: string;
+  month: string;
+  year: string;
+  age: number | null;
+}
+
 const Finder: React.FC = () => {
-  const [participants, setParticipants] = useState([
+  const [participants, setParticipants] = useState<Participant[]>([
     { day: "", month: "", year: "", age: null },
   ]);
 
@@ -51,9 +58,9 @@ const Finder: React.FC = () => {
         />
       </div>
       <Form layout="vertical">
-        <div className="p-4 mb-8 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error">
+        <div className="p-4 mb-8 border space-y-4 rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error">
           {participants.map((participant, index) => (
-            <div key={index} className="relative !mb-10">
+            <div key={index} className="flex">
               <DateOfBirthInput
                 onDateChange={(day, month, year, age) =>
                   handleDateChange(index, day, month, year, age)
@@ -61,8 +68,7 @@ const Finder: React.FC = () => {
               />
               {index !== 0 && (
                 <Button
-                  className="absolute -top-1.5 right-0 !px-0"
-                  type="link"
+                  className="ml-2"
                   onClick={() => removeParticipant(index)}
                 >
                   Remove
