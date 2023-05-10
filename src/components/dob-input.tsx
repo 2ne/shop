@@ -93,6 +93,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
         </>
       }
       help="Example · 31/04/1970"
+      className="[&:first-child+.ant-form-item]:!mt-10"
     >
       <div className="grid grid-cols-3">
         <Input

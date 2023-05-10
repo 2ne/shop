@@ -4,21 +4,31 @@ import { Button, Form } from "antd";
 import FormHeader from "../checkout/checkout-header";
 
 const Finder: React.FC = () => {
-  const [bdayDay, setBdayDay] = useState("");
-  const [bdayMonth, setBdayMonth] = useState("");
-  const [bdayYear, setBdayYear] = useState("");
-  const [age, setAge] = useState<number | null>(null);
+  const [participants, setParticipants] = useState([
+    { day: "", month: "", year: "", age: null },
+  ]);
 
   const handleDateChange = (
+    index: number,
     day: string,
     month: string,
     year: string,
     age: number | null
   ) => {
-    setBdayDay(day);
-    setBdayMonth(month);
-    setBdayYear(year);
-    setAge(age);
+    const newParticipants = [...participants];
+    newParticipants[index] = { day, month, year, age };
+    setParticipants(newParticipants);
+  };
+
+  const addParticipant = () => {
+    setParticipants([
+      ...participants,
+      { day: "", month: "", year: "", age: null },
+    ]);
+  };
+
+  const removeParticipant = (index: number) => {
+    setParticipants(participants.filter((_, i) => i !== index));
   };
 
   return (
@@ -41,9 +51,28 @@ const Finder: React.FC = () => {
         />
       </div>
       <Form layout="vertical">
-        <div className="p-4 mb-8 border space-y-4 rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error">
-          <DateOfBirthInput onDateChange={handleDateChange} />
-          <Button block>Add participant</Button>
+        <div className="p-4 mb-8 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error">
+          {participants.map((participant, index) => (
+            <div key={index} className="relative !mb-10">
+              <DateOfBirthInput
+                onDateChange={(day, month, year, age) =>
+                  handleDateChange(index, day, month, year, age)
+                }
+              />
+              {index !== 0 && (
+                <Button
+                  className="absolute -top-1.5 right-0 !px-0"
+                  type="link"
+                  onClick={() => removeParticipant(index)}
+                >
+                  Remove
+                </Button>
+              )}
+            </div>
+          ))}
+          <Button block onClick={addParticipant}>
+            Add participant
+          </Button>
         </div>
         <Button type="primary" htmlType="submit" block size="large">
           Continue
