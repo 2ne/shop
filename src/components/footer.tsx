@@ -77,20 +77,20 @@ const Footer: React.FC = () => {
     <footer className="z-[-10] sticky bottom-0 px-3 py-8 text-neutral-600 bg-neutral-100">
       <Wrapper>
         <div className="sm:flex sm:items-center sm:justify-between">
-          <div className="flex items-center mb-4 sm:mb-0">
+          <div className="flex items-center mb-5 sm:mb-0">
             <img
               src={orgLogo}
               alt={orgName + " Logo"}
-              className="block max-h-[3.5rem] rounded mr-3"
+              className="block max-h-[2.5rem] sm:max-h-[3.5rem] rounded mr-2.5 sm:mr-3"
               loading="lazy"
             />
-            <span className="self-center text-lg font-semibold whitespace-nowrap text-interactive">
+            <span className="self-center font-semibold sm:text-lg whitespace-nowrap text-interactive">
               {orgName}
             </span>
           </div>
           <ul className="flex flex-wrap items-center mb-6 text-sm text-neutral-500 sm:mb-0">
             <li>
-              <Link to="#" className="mr-4 hover:underline md:mr-6 ">
+              <Link to="#" className="mr-4 hover:underline md:mr-6">
                 About Us
               </Link>
             </li>
@@ -124,7 +124,12 @@ const Footer: React.FC = () => {
                 className="text-neutral-400 hover:text-neutral-500"
               >
                 <span className="sr-only">{item.name}</span>
-                {<item.icon className="w-6 h-6" aria-hidden="true" />}
+                {
+                  <item.icon
+                    className="w-5 h-5 sm:w-6 sm:h-6"
+                    aria-hidden="true"
+                  />
+                }
               </Link>
             ))}
           </div>
