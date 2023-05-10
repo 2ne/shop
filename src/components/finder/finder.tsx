@@ -26,7 +26,7 @@ const Finder: React.FC = () => {
       <div className="lg:text-center">
         <CheckoutStepHeader
           title="Class Finder"
-          subtitle="Please enter the participant's birth date"
+          subtitle="Enter the participant's birth date and we'll find the perfect classes for them"
           icon={
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path
