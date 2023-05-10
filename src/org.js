@@ -84,7 +84,7 @@ export const orgTiles = [
 export const orgEvents = {
   Monday: [
     {
-      img: "https://app.joinin.online/services/anonymous/photo/8b0f7a97-c07e-4fd3-ae37-f2fcc6ebff18",
+      img: "https://app.joinin.online/services/anonymous/photo/588bdbdf-686e-49bf-91d6-ecc3c650c7e1",
       title: "Smiley the Turtle",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",

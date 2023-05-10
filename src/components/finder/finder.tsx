@@ -43,7 +43,7 @@ const Finder: React.FC = () => {
       <div className="lg:text-center">
         <FormHeader
           title="Class Finder"
-          subtitle="Enter the participant's birth date and we'll find the perfect classes for them"
+          subtitle="Enter the participant's details and we'll find the perfect classes for them"
           icon={
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path
@@ -57,10 +57,13 @@ const Finder: React.FC = () => {
           }
         />
       </div>
-      <Form layout="vertical">
-        <div className="p-4 mb-8 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error">
-          {participants.map((participant, index) => (
-            <div key={index} className="relative !mb-10">
+      <Form layout="vertical" className="">
+        {participants.map((participant, index) => (
+          <div
+            key={index}
+            className="p-4 border mb-4 rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
+          >
+            <div className="relative">
               <DateOfBirthInput
                 onDateChange={(day, month, year, age) =>
                   handleDateChange(index, day, month, year, age)
@@ -76,12 +79,18 @@ const Finder: React.FC = () => {
                 </Button>
               )}
             </div>
-          ))}
-          <Button block onClick={addParticipant}>
-            Add participant
-          </Button>
-        </div>
-        <Button type="primary" htmlType="submit" block size="large">
+          </div>
+        ))}
+        <Button block onClick={addParticipant}>
+          Add participant
+        </Button>
+        <Button
+          type="primary"
+          htmlType="submit"
+          block
+          size="large"
+          className="mt-12"
+        >
           Continue
         </Button>
       </Form>

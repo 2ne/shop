@@ -18,13 +18,13 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
     <Link
       key={`${activeDay}-event-${index}`}
       to={event.link}
-      className="block p-3 text-sm card max-lg:grid max-lg:gap-4 max-sm:grid-cols-4 max-lg:grid-cols-3 max-lg:items-center"
+      className="block p-0.5 text-sm card max-lg:grid max-lg:gap-4 max-sm:grid-cols-4 max-lg:grid-cols-3 max-lg:items-center"
     >
       <img
-        className="aspect-[3/2] object-cover mx-auto max-lg:col-span-1"
+        className="aspect-[3/2] object-cover object-center mx-auto max-lg:col-span-1 rounded-t-[calc(0.375rem-0.125rem)]"
         src={event.img}
       />
-      <div className="space-y-0.5 max-sm:col-span-3 max-lg:col-span-2">
+      <div className="py-2.5 p-3 space-y-0.5 max-sm:col-span-3 max-lg:col-span-2">
         <h3 className="mb-1.5 heading-sm truncate">{event.title}</h3>
         <div className="flex items-center gap-1">
           <svg
