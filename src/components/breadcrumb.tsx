@@ -13,7 +13,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
-    <div className="relative z-10 bg-secondary text-secondary_text">
+    <div className="relative bg-secondary text-secondary_text">
       <Wrapper className="!p-0">
         <nav className="overflow-hidden text-sm tracking-normal">
           <ol

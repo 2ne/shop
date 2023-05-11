@@ -18,7 +18,7 @@ const Main: React.FC<MainProps> = ({ children, className }) => {
     : baseClassNames;
 
   return (
-    <main className="relative z-10 bg-white">
+    <main className="relative bg-white">
       <div className={combinedClassNames}>{children}</div>
     </main>
   );

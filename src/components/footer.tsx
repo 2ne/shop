@@ -74,7 +74,7 @@ const navigation = {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="sticky bottom-0 z-0 px-3 py-8 text-neutral-600 bg-neutral-100">
+    <footer className="px-3 py-8 text-neutral-600 bg-neutral-100">
       <Wrapper>
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="flex items-center mb-5 sm:mb-0">

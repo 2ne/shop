@@ -237,7 +237,7 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
-      <header className="relative z-10 bg-primary text-primary_text">
+      <header className="relative bg-primary text-primary_text">
         <Wrapper className="flex items-center h-[5.5rem] gap-x-2">
           <Link
             to="/Home"
