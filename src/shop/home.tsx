@@ -10,7 +10,7 @@ function Home(): ReactElement {
     <>
       <Header />
       <Breadcrumb />
-      <Main className="space-y-6 sm:space-y-8 pb-14">
+      <Main className="pb-20 space-y-6 sm:space-y-8">
         <Banner />
         <div className="rounded-md shadow shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10 p-0.5">
           <div className="flex gap-9 p-14 pb-12  bg-neutral-100 rounded-[calc(0.375rem-0.125rem)]">
