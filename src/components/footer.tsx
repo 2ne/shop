@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
           <ul className="flex flex-wrap items-center mb-6 text-sm text-neutral-500 sm:mb-0">
             <li>
               <Link to="#" className="mr-4 hover:underline md:mr-6">
-                About Us
+                Our Website
               </Link>
             </li>
             <li>
@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
             </li>
             <li>
               <Link to="#" className="mr-4 hover:underline md:mr-6 ">
-                FAQ
+                FAQs
               </Link>
             </li>
             <li>
