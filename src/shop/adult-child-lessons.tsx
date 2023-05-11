@@ -16,9 +16,6 @@ function AdultChildLessons(): ReactElement {
       <Main className="pb-20">
         <CalendarWeek />
       </Main>
-      <div className="hidden sm:contents">
-        <Footer />
-      </div>
     </>
   );
 }

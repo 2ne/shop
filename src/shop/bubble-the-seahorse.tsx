@@ -278,7 +278,6 @@ function BubbleTheSeahorse(): ReactElement {
           </div>
         </div>
       </Main>
-      <Footer />
     </>
   );
 }
