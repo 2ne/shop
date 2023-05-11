@@ -16,12 +16,13 @@ function Home(): ReactElement {
           <div className="flex gap-9 p-14 pb-12  bg-neutral-100 rounded-[calc(0.375rem-0.125rem)]">
             <img
               src="https://i.ibb.co/PGbKx8c/michael-dam-m-EZ3-Po-FGs-k-unsplash-1.jpg"
-              className="object-cover object-center mb-8 rounded-full w-44 h-44 aspect-square"
+              className="object-cover object-center mb-8 border-[0.125rem] ring-1 ring-neutral-200 border-white rounded-full w-44 h-44 aspect-square"
             />
             <div>
-              <h2 className="pb-4 mb-4 -mt-1 text-lg font-bold border-b border-neutral-300/50 text-neutral-800 md:text-xl">
+              <h2 className="mb-4 -mt-1 text-lg font-bold text-neutral-800 md:text-xl">
                 Welcome to CG Swim School
               </h2>
+              <div className="h-[2px] mb-4 bg-white border-t border-solid border-neutral-200"></div>
               <p>
                 We are a family-run swimming school whose aim is to inspire
                 swimmers to be confident and safe whilst having fun. We strive
