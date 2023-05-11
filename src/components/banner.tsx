@@ -20,7 +20,7 @@ const Banner: React.FC = () => {
   };
 
   return (
-    <div className="relative mb-5 overflow-hidden border-2 border-white rounded-md shadow sm:mb-6 xl:mb-8 2xl:mb-9 group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10">
+    <div className="relative overflow-hidden border-2 border-white rounded-md shadow group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10">
       <Carousel ref={carouselRef} afterChange={onChange}>
         {orgBanners &&
           orgBanners.map((item, index) => (
