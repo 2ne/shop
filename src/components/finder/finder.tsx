@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import DateOfBirthInput from "../dob-input";
-import { Button, Form } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import FormHeader from "../checkout/checkout-header";
+const { Option } = Select;
 
 interface Participant {
   day: string;
@@ -57,12 +58,19 @@ const Finder: React.FC = () => {
           }
         />
       </div>
-      <Form layout="vertical" className="">
+      <Form layout="vertical" className="" requiredMark={false}>
         {participants.map((participant, index) => (
           <div
             key={index}
             className="p-4 border mb-4 rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
           >
+            <Form.Item
+              label="First name"
+              name="firstName"
+              rules={[{ required: true, message: "Please enter a first name" }]}
+            >
+              <Input />
+            </Form.Item>
             <div className="relative">
               <DateOfBirthInput
                 onDateChange={(day, month, year, age) =>
@@ -79,6 +87,26 @@ const Finder: React.FC = () => {
                 </Button>
               )}
             </div>
+            <Form.Item
+              name="skillLevel"
+              label={
+                <div className="flex items-center">
+                  <div>Skill level</div>
+                  <span className="mx-1">·</span>
+                  <Button type="link" className="!px-0">
+                    Unsure? Use our level finder
+                  </Button>
+                </div>
+              }
+              rules={[{ required: true }]}
+              className="!mb-1 relative"
+            >
+              <Select placeholder="Select a level...">
+                <Option value="1">Level 1</Option>
+                <Option value="2">Level 2</Option>
+                <Option value="3">Level 3</Option>
+              </Select>
+            </Form.Item>
           </div>
         ))}
         <Button block onClick={addParticipant}>

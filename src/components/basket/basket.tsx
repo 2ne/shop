@@ -22,6 +22,10 @@ const Basket: React.FC = () => {
   const { closeBasket, basketItems, removeItem } = useBasketContext();
   const navigate = useNavigate();
 
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+
   const goToCheckout = () => {
     closeBasket();
     navigate("/Checkout");
@@ -111,6 +115,7 @@ const Basket: React.FC = () => {
                           bordered={false}
                           size="small"
                           className="[&_.ant-select-selection-item]:font-medium"
+                          onChange={handleChange}
                           options={[
                             { value: "1", label: "1" },
                             { value: "2", label: "2" },
