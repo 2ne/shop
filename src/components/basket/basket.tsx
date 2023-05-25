@@ -1,5 +1,5 @@
-import { Button, Tooltip } from "antd";
-import React from "react";
+import { Button, Select, Tooltip } from "antd";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBasketContext } from "./basket-context";
 import { useCheckoutContext } from "../checkout/checkout-context";
@@ -102,12 +102,30 @@ const Basket: React.FC = () => {
                     )}
                   </div>
                   {!isCheckout && (
-                    <div className="mt-auto mb-0.5 pt-1">
+                    <div className="mt-auto mb-0.5 pt-1 flex">
+                      <div className="flex items-center mr-3 font-medium">
+                        <div className="mr-1">Quantity</div>
+                        <Select
+                          defaultValue="1"
+                          style={{ width: 46 }}
+                          bordered={false}
+                          size="small"
+                          className="[&_.ant-select-selection-item]:font-medium"
+                          options={[
+                            { value: "1", label: "1" },
+                            { value: "2", label: "2" },
+                            { value: "3", label: "3" },
+                            { value: "4", label: "4" },
+                            { value: "5", label: "5" },
+                          ]}
+                        />
+                      </div>
+
                       <Tooltip title="Remove item" placement="right">
                         <button
                           type="button"
                           onClick={() => removeItem(item.id)}
-                          className="grid transition-colors rounded-full w-7 h-7 place-items-center bg-neutral-100 hover:bg-neutral-200"
+                          className="grid transition-colors rounded-full w-7 h-7 place-items-center hover:bg-neutral-200"
                         >
                           <svg
                             width="24"

@@ -249,7 +249,7 @@ const Header: React.FC<HeaderProps> = ({
               className="block max-h-[3.5rem] max-w-[5rem] sm:max-h-[4rem] sm:max-w-[8rem] rounded"
               loading="lazy"
             />
-            <h1 className="!text-primary_text heading-xl line-clamp-3 ">
+            <h1 className="!text-primary_text heading-xl line-clamp-3 group-hover:underline">
               {name}
             </h1>
           </Link>
