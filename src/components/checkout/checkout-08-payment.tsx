@@ -43,6 +43,7 @@ const CheckoutPayment = forwardRef<
         <FormHeader
           title={title}
           subtitle={subtitle}
+          requiredText="Direct Debits can be used for single, one-time payments. Rest assured that a one-off transaction will not repeat."
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
