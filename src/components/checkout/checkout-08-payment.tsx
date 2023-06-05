@@ -280,6 +280,86 @@ const CheckoutPayment = forwardRef<
             </div>
           </Form>
         </div>
+        <div className="p-6 rounded-md bg-neutral-100">
+          <img
+            src={orgLogo}
+            alt={orgName + " Logo"}
+            className="-mt-0.5 block max-h-[3.25rem] sm:max-h-[3.5rem] rounded mx-auto mb-2"
+            loading="lazy"
+          />
+          <div className="pb-4 text-center border-b mb-7 heading border-neutral-200">
+            <Balancer>Set up a Direct Debit with CG Swim School</Balancer>
+          </div>
+          <div className="flex pb-4 text-sm text-left border-b mb-7 border-neutral-200">
+            <div>
+              <div className="-mt-1 font-medium">James Toone</div>
+              <div className="text-neutral-600">jamestoone@gmail.com</div>
+              <div className="text-neutral-600">28 Longhurst</div>
+              <div className="text-neutral-600">RH15 0TG</div>
+            </div>
+            <div className="ml-auto">
+              <Button className="bg-white">Edit</Button>
+            </div>
+          </div>
+          <Form
+            form={paymentForm}
+            name="paymentForm"
+            layout="vertical"
+            onFinish={(values) => onFinish(values)}
+            className="space-y-6 text-left hide-validation-asterix"
+          >
+            <Form.Item
+              label="Account name"
+              name="accountName"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter an account name",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Sort code"
+              name="sortCode"
+              extra="Must be 6 digits long"
+              rules={[
+                { required: true, message: "Please enter your sort code" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item className="pt-2">
+              <Button type="primary" block>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5 mr-1"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5.75 11.75a1 1 0 011-1h10.5a1 1 0 011 1v5.5a2 2 0 01-2 2h-8.5a2 2 0 01-2-2v-5.5zM7.75 10.5v-.157c0-1.562-.094-3.302.996-4.42C9.368 5.288 10.374 4.75 12 4.75c1.626 0 2.632.537 3.254 1.174 1.09 1.117.996 2.857.996 4.419v.157"
+                  ></path>
+                </svg>
+                <span>Set up Direct Debit</span>
+              </Button>
+            </Form.Item>
+            <div className="flex items-center justify-center text-center gap-x-1.5">
+              <span className="text-sm text-neutral-500/75">Powered by</span>
+              <img
+                src="https://i.ibb.co/1Rw0nfW/landz-logo-on-white-1.jpg"
+                alt="London & Zurich Logo"
+                className="block h-[22px] rounded-md"
+              />
+            </div>
+          </Form>
+        </div>
         <div className="grid place-items-center aspect-square">
           <div className="grid gap-4 place-items-center">
             <div role="status">
