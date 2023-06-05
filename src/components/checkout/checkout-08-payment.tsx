@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Button, Form, Input, Modal } from "antd";
 import FormHeader from "./checkout-header";
 import { orgLogo, orgName } from "../../org";
@@ -22,6 +22,8 @@ const CheckoutPayment = forwardRef<
     { onFormValidation, title, subtitle }: CheckoutPaymentProps,
     ref: React.Ref<CheckoutPaymentHandles>
   ) => {
+    const [editDetailsLondonZurichModal, setEditDetailsLondonZurichModal] =
+      useState(false);
     const [paymentForm] = Form.useForm();
 
     useImperativeHandle(ref, () => ({
@@ -37,6 +39,20 @@ const CheckoutPayment = forwardRef<
     const onFinish = (values: any) => {
       console.log("Payment form values:", values);
     };
+
+    const [editDetailsLondonZurich] = Form.useForm();
+
+    function handleOk() {
+      editDetailsLondonZurich.validateFields().then((values) => {
+        console.log("ok");
+        setEditDetailsLondonZurichModal(false);
+      });
+    }
+
+    function handleCancel() {
+      console.log("cancel");
+      setEditDetailsLondonZurichModal(false);
+    }
 
     return (
       <>
@@ -299,7 +315,12 @@ const CheckoutPayment = forwardRef<
               <div className="text-neutral-600">RH15 0TG</div>
             </div>
             <div className="ml-auto">
-              <Button className="bg-white">Edit</Button>
+              <Button
+                className="bg-white"
+                onClick={() => setEditDetailsLondonZurichModal(true)}
+              >
+                Edit
+              </Button>
             </div>
           </div>
           <Form
@@ -438,6 +459,60 @@ const CheckoutPayment = forwardRef<
             <div className="text-lg font-bold">Processing your order</div>
           </div>
         </div>
+        <Modal
+          title="Edit details"
+          open={editDetailsLondonZurichModal}
+          onCancel={handleCancel}
+          onOk={handleOk}
+          className="max-w-sm"
+        >
+          <Form
+            form={editDetailsLondonZurich}
+            name="editDetailsLondonZurichForm"
+            layout="vertical"
+            className="space-y-6 text-left hide-validation-asterix"
+          >
+            <Form.Item
+              label="First name"
+              name="firstName"
+              rules={[
+                { required: true, message: "Please enter your first name" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Last name"
+              name="lastName"
+              rules={[
+                { required: true, message: "Please enter your last name" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Email address"
+              name="email"
+              rules={[
+                { required: true, message: "Please enter your email address" },
+                {
+                  type: "email",
+                  message: "Please enter a valid email address",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Address"
+              name="address"
+              rules={[{ required: true, message: "Please enter your address" }]}
+              className="!mb-8"
+            >
+              <Input />
+            </Form.Item>
+          </Form>
+        </Modal>
       </>
     );
   }

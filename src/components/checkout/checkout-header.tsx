@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 
 type FormHeaderProps = {
-  icon: ReactNode;
+  icon?: ReactNode;
   title: string;
   subtitle: string;
   requiredText?: string;
@@ -16,11 +16,13 @@ const FormHeader: React.FC<FormHeaderProps> = ({
 }) => {
   return (
     <header>
-      <div className="justify-center hidden mb-2.5 lg:flex">
-        <i className="w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-neutral-100/75 flex items-center justify-center border-4 border-white/50 text-neutral-700">
-          {icon}
-        </i>
-      </div>
+      {icon && (
+        <div className="justify-center hidden mb-2.5 lg:flex">
+          <i className="w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-neutral-100/75 flex items-center justify-center border-4 border-white/50 text-neutral-700">
+            {icon}
+          </i>
+        </div>
+      )}
       <div className="hidden lg:block">
         <Balancer>
           <div className="mb-2 heading-lg">{title}</div>
