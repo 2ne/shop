@@ -355,7 +355,7 @@ const CheckoutPayment = forwardRef<
               <img
                 src="https://i.ibb.co/1Rw0nfW/landz-logo-on-white-1.jpg"
                 alt="London & Zurich Logo"
-                className="block h-[22px] rounded-md"
+                className="block h-[26px] rounded-md"
               />
             </div>
           </Form>
