@@ -42,93 +42,98 @@ const Finder: React.FC = () => {
 
   return (
     <div
-      className={`lg:mt-8 lg:mb-20 mb-8 lg:flex lg:justify-between lg:gap-14 ${
+      className={`lg:mt-[4vh] lg:mb-20 mb-8 lg:flex lg:justify-between lg:gap-16 ${
         participants.length > 1 ? " lg:items-start " : " lg:items-center "
       } `}
     >
-      <div
-        className="absolute inset-0 bg-grid bg-[bottom_1px_center] pointer-events-none"
-        style={{
-          maskImage: "radial-gradient(black, transparent)",
-          WebkitMaskImage: "radial-gradient(black, transparent)",
-        }}
-      ></div>
-      <div className="shrink-0 w-full lg:max-w-[22rem] space-y-6">
-        <div className="relative lg:text-center">
-          <FormHeader
-            title="Swim Class Finder"
-            subtitle="Enter the participant's details and we'll find the perfect classes for them"
-          />
-        </div>
-        <Form layout="vertical" className="" requiredMark={false}>
-          {participants.map((participant, index) => (
-            <div
-              key={index}
-              className="p-4 relative border mb-4 rounded-md bg-white border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
-            >
-              {participants.length > 1 && (
-                <div className="relative">
-                  <Form.Item
-                    label="First name"
-                    name="firstName"
-                    rules={[
-                      { required: true, message: "Please enter a first name" },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  {index !== 0 && (
-                    <Button
-                      className="absolute -top-1.5 right-0 !px-0"
-                      type="link"
-                      onClick={() => removeParticipant(index)}
-                    >
-                      Remove
-                    </Button>
-                  )}
-                </div>
-              )}
-              <DateOfBirthInput
-                onDateChange={(day, month, year, age) =>
-                  handleDateChange(index, day, month, year, age)
-                }
-              />
-              <Form.Item
-                name="skillLevel"
-                label={
-                  <div className="flex items-center">
-                    <div>Skill level</div>
-                    <span className="mx-1">·</span>
-                    <Button type="link" className="!px-0">
-                      Unsure? Use our level finder
-                    </Button>
-                  </div>
-                }
-                rules={[{ required: true }]}
-                className="!mb-1 relative"
+      <div className="shrink-0 w-full lg:max-w-[22rem] relative">
+        <div className="relative z-10 space-y-6">
+          <div className="lg:text-center">
+            <FormHeader
+              title="Swim Class Finder"
+              subtitle="Enter the participant's details and we'll find the perfect classes for them"
+            />
+          </div>
+          <Form layout="vertical" className="" requiredMark={false}>
+            {participants.map((participant, index) => (
+              <div
+                key={index}
+                className="p-4 relative border mb-4 rounded-md bg-white border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
               >
-                <Select placeholder="Select a level...">
-                  <Option value="1">Level 1</Option>
-                  <Option value="2">Level 2</Option>
-                  <Option value="3">Level 3</Option>
-                </Select>
-              </Form.Item>
-            </div>
-          ))}
-          <Button block onClick={addParticipant} className="bg-white">
-            Add participant
-          </Button>
-          <Button
-            type="primary"
-            htmlType="submit"
-            block
-            size="large"
-            className="mt-12"
-            icon={<SearchOutlined />}
-          >
-            Search
-          </Button>
-        </Form>
+                {participants.length > 1 && (
+                  <div className="relative">
+                    <Form.Item
+                      label="First name"
+                      name="firstName"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please enter a first name",
+                        },
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    {index !== 0 && (
+                      <Button
+                        className="absolute -top-1.5 right-0 !px-0"
+                        type="link"
+                        onClick={() => removeParticipant(index)}
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                )}
+                <DateOfBirthInput
+                  onDateChange={(day, month, year, age) =>
+                    handleDateChange(index, day, month, year, age)
+                  }
+                />
+                <Form.Item
+                  name="skillLevel"
+                  label={
+                    <div className="flex items-center">
+                      <div>Skill level</div>
+                      <span className="mx-1">·</span>
+                      <Button type="link" className="!px-0">
+                        Unsure? Use our level finder
+                      </Button>
+                    </div>
+                  }
+                  rules={[{ required: true }]}
+                  className="!mb-1 relative"
+                >
+                  <Select placeholder="Select a level...">
+                    <Option value="1">Level 1</Option>
+                    <Option value="2">Level 2</Option>
+                    <Option value="3">Level 3</Option>
+                  </Select>
+                </Form.Item>
+              </div>
+            ))}
+            <Button block onClick={addParticipant} className="bg-white">
+              Add participant
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              block
+              size="large"
+              className="mt-10"
+              icon={<SearchOutlined />}
+            >
+              Search
+            </Button>
+          </Form>
+        </div>
+        <div
+          className="absolute inset-0 bg-grid bg-[bottom_1px_center] pointer-events-none"
+          style={{
+            maskImage: "radial-gradient(black, transparent)",
+            WebkitMaskImage: "radial-gradient(black, transparent)",
+          }}
+        ></div>
       </div>
       <div className="sticky hidden mt-0.5 lg:block top-10">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
