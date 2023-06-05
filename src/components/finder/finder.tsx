@@ -1,21 +1,34 @@
 import React, { useState } from "react";
 import DateOfBirthInput from "../dob-input";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Radio } from "antd";
 import FormHeader from "../checkout/checkout-header";
 import { SearchOutlined } from "@ant-design/icons";
-const { Option } = Select;
-
-interface Participant {
-  day: string;
-  month: string;
-  year: string;
-  age: number | null;
-}
+import { RadioChangeEvent } from "antd/lib/radio";
 
 const Finder: React.FC = () => {
-  const [participants, setParticipants] = useState<Participant[]>([
-    { day: "", month: "", year: "", age: null },
-  ]);
+  const [findLevel, setFindLevel] = useState(false);
+
+  const handleFindLevel = () => {
+    setFindLevel(true);
+  };
+
+  const [canEnterWater, setCanEnterWater] = useState<number | undefined>(
+    undefined
+  );
+  const [canExitWater, setCanExitWater] = useState<number | undefined>(
+    undefined
+  );
+
+  const handleCanEnterWaterChange = (e: RadioChangeEvent) => {
+    setCanEnterWater(e.target.value);
+    if (e.target.value === 2) {
+      setCanExitWater(2);
+    }
+  };
+
+  const handleCanExitWaterChange = (e: RadioChangeEvent) => {
+    setCanExitWater(e.target.value);
+  };
 
   const handleDateChange = (
     index: number,
@@ -23,29 +36,10 @@ const Finder: React.FC = () => {
     month: string,
     year: string,
     age: number | null
-  ) => {
-    const newParticipants = [...participants];
-    newParticipants[index] = { day, month, year, age };
-    setParticipants(newParticipants);
-  };
-
-  const addParticipant = () => {
-    setParticipants([
-      ...participants,
-      { day: "", month: "", year: "", age: null },
-    ]);
-  };
-
-  const removeParticipant = (index: number) => {
-    setParticipants(participants.filter((_, i) => i !== index));
-  };
+  ) => {};
 
   return (
-    <div
-      className={`lg:mt-[4vh] lg:mb-20 mb-8 lg:flex lg:justify-between lg:gap-16 ${
-        participants.length > 1 ? " lg:items-start " : " lg:items-center "
-      } `}
-    >
+    <div className="lg:mt-[4vh] lg:mb-20 mb-8 lg:flex lg:justify-between lg:gap-16 items-center ">
       <div className="shrink-0 w-full lg:max-w-[22rem] relative">
         <div className="relative z-10 space-y-6">
           <div className="lg:text-center">
@@ -54,78 +48,61 @@ const Finder: React.FC = () => {
               subtitle="Enter the participant's details and we'll find the perfect classes for them"
             />
           </div>
-          <Form layout="vertical" className="" requiredMark={false}>
-            {participants.map((participant, index) => (
-              <div
-                key={index}
-                className="p-4 relative border mb-4 rounded-md bg-white border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
-              >
-                {participants.length > 1 && (
-                  <div className="relative">
-                    <Form.Item
-                      label="First name"
-                      name="firstName"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter a first name",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                    {index !== 0 && (
-                      <Button
-                        className="absolute -top-1.5 right-0 !px-0"
-                        type="link"
-                        onClick={() => removeParticipant(index)}
-                      >
-                        Remove
-                      </Button>
+          {!findLevel && (
+            <section>
+              <Form layout="vertical" requiredMark={false}>
+                <div className="relative p-4 mb-4 bg-white border rounded-md border-neutral-200">
+                  <div className="-mb-6">
+                    <DateOfBirthInput
+                      onDateChange={(day, month, year, age) =>
+                        handleDateChange(0, day, month, year, age)
+                      }
+                    />
+                  </div>
+                </div>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  block
+                  size="large"
+                  icon={<SearchOutlined />}
+                  className="mt-2"
+                  onClick={handleFindLevel}
+                >
+                  Find Level
+                </Button>
+              </Form>
+            </section>
+          )}
+          {findLevel && (
+            <section>
+              <Form layout="vertical" requiredMark={false}>
+                <div className="relative p-4 bg-white border rounded-md border-neutral-200">
+                  <div className="-mb-7 empty:hidden">
+                    {canEnterWater === undefined && (
+                      <Form.Item label="Can they enter the water?">
+                        <Radio.Group onChange={handleCanEnterWaterChange}>
+                          <Radio value={1}>Yes</Radio>
+                          <Radio value={2}>No</Radio>
+                        </Radio.Group>
+                      </Form.Item>
+                    )}
+                    {canEnterWater === 1 && canExitWater === undefined && (
+                      <Form.Item label="Can they exit the water?">
+                        <Radio.Group onChange={handleCanExitWaterChange}>
+                          <Radio value={1}>Yes</Radio>
+                          <Radio value={2}>No</Radio>
+                        </Radio.Group>
+                      </Form.Item>
                     )}
                   </div>
-                )}
-                <DateOfBirthInput
-                  onDateChange={(day, month, year, age) =>
-                    handleDateChange(index, day, month, year, age)
-                  }
-                />
-                <Form.Item
-                  name="skillLevel"
-                  label={
-                    <div className="flex items-center">
-                      <div>Skill level</div>
-                      <span className="mx-1">·</span>
-                      <Button type="link" className="!px-0">
-                        Unsure? Use our level finder
-                      </Button>
-                    </div>
-                  }
-                  rules={[{ required: true }]}
-                  className="!mb-1 relative"
-                >
-                  <Select placeholder="Select a level...">
-                    <Option value="1">Level 1</Option>
-                    <Option value="2">Level 2</Option>
-                    <Option value="3">Level 3</Option>
-                  </Select>
-                </Form.Item>
-              </div>
-            ))}
-            <Button block onClick={addParticipant} className="bg-white">
-              Add participant
-            </Button>
-            <Button
-              type="primary"
-              htmlType="submit"
-              block
-              size="large"
-              className="mt-10"
-              icon={<SearchOutlined />}
-            >
-              Search
-            </Button>
-          </Form>
+                  {canEnterWater === 2 && <p>Level 1</p>}
+                  {canEnterWater === 1 && canExitWater === 2 && <p>Level 2</p>}
+                  {canEnterWater === 1 && canExitWater === 1 && <p>Level 3</p>}
+                </div>
+              </Form>
+            </section>
+          )}
         </div>
         <div
           className="absolute inset-0 bg-grid bg-[bottom_1px_center] pointer-events-none"
