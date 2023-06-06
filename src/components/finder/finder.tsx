@@ -7,9 +7,13 @@ import { RadioChangeEvent } from "antd/lib/radio";
 
 const Finder: React.FC = () => {
   const [findLevel, setFindLevel] = useState(false);
+  const [age, setAge] = useState(0);
+  const [agePopulated, setAgePopulated] = useState(false);
 
   const handleFindLevel = () => {
-    setFindLevel(true);
+    if (agePopulated) {
+      setFindLevel(true);
+    }
   };
 
   const [canEnterWater, setCanEnterWater] = useState<number | undefined>(
@@ -36,10 +40,22 @@ const Finder: React.FC = () => {
     month: string,
     year: string,
     age: number | null
-  ) => {};
+  ) => {
+    if (age) {
+      setAge(age);
+      setAgePopulated(true);
+    } else {
+      setAgePopulated(false);
+    }
+  };
+
+  const resetLevels = () => {
+    setCanEnterWater(undefined);
+    setCanExitWater(undefined);
+  };
 
   return (
-    <div className="lg:mt-[4vh] lg:mb-20 mb-8 lg:flex lg:justify-between lg:gap-16 items-center ">
+    <div className="lg:mt-[4vh] lg:mb-20 mb-8 lg:flex lg:justify-between lg:gap-16 items-center">
       <div className="shrink-0 w-full lg:max-w-[22rem] relative">
         <div className="relative z-10 space-y-6">
           <div className="lg:text-center">
@@ -96,16 +112,41 @@ const Finder: React.FC = () => {
                       </Form.Item>
                     )}
                   </div>
-                  {canEnterWater === 2 && <p>Level 1</p>}
+                  {canEnterWater === 2 && (
+                    <div className="space-y-3 text-sm">
+                      <div>
+                        Your {age} year old fits into our Level 1 - Seahorse
+                        group.
+                      </div>
+                      <div>
+                        You can find classes for this level below or{" "}
+                        <a onClick={resetLevels} className="link">
+                          find new level
+                        </a>{" "}
+                        if you don't think this level is correct.
+                      </div>
+                    </div>
+                  )}
                   {canEnterWater === 1 && canExitWater === 2 && <p>Level 2</p>}
                   {canEnterWater === 1 && canExitWater === 1 && <p>Level 3</p>}
                 </div>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  block
+                  size="large"
+                  icon={<SearchOutlined />}
+                  className="mt-6"
+                  onClick={handleFindLevel}
+                >
+                  Find Classes
+                </Button>
               </Form>
             </section>
           )}
         </div>
         <div
-          className="absolute inset-0 bg-grid bg-[bottom_1px_center] pointer-events-none"
+          className="absolute -inset-16 bg-grid bg-[bottom_1px_center] pointer-events-none"
           style={{
             maskImage: "radial-gradient(black, transparent)",
             WebkitMaskImage: "radial-gradient(black, transparent)",
