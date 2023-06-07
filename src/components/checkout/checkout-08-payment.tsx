@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal } from "antd";
 import FormHeader from "./checkout-header";
 import { orgLogo, orgName } from "../../org";
 import Balancer from "react-wrap-balancer";
+import { CheckOutlined } from "@ant-design/icons";
 
 export interface CheckoutPaymentHandles {
   submitForm: () => Promise<boolean>;
@@ -454,14 +455,32 @@ const CheckoutPayment = forwardRef<
           </div>
         </div>
         <div className="px-6 py-8 rounded-md bg-neutral-100">
-          <img
-            src={orgLogo}
-            alt={orgName + " Logo"}
-            className="block max-h-[3.25rem] sm:max-h-[3.5rem] rounded mx-auto mb-2"
-            loading="lazy"
-          />
-          <div className="mb-4 font-medium text-center border-neutral-200">
-            Direct Debit successfully setup
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="w-12 h-12 mx-auto -mt-4"
+          >
+            <path
+              fill="currentColor"
+              d="M18.5 12a6.5 6.5 0 01-6.5 6.5V20a8 8 0 008-8h-1.5zM12 18.5A6.5 6.5 0 015.5 12H4a8 8 0 008 8v-1.5zM5.5 12A6.5 6.5 0 0112 5.5V4a8 8 0 00-8 8h1.5zM12 5.5a6.5 6.5 0 016.5 6.5H20a8 8 0 00-8-8v1.5z"
+            ></path>
+            <path
+              fill="currentColor"
+              d="M9.01 15.127a.75.75 0 101.48.246l-1.48-.246zm4.5.246a.75.75 0 101.48-.246l-1.48.246zm-3.76-.123l.74.124v.003l-.001.003-.001.004v.004l.002-.012a1.12 1.12 0 01.211-.396c.166-.2.515-.48 1.299-.48V13c-1.216 0-1.992.47-2.451 1.02a2.616 2.616 0 00-.51.976 1.797 1.797 0 00-.025.111l-.002.011-.001.005v.002c0 .001 0 .002.739.125zM12 14.5c.784 0 1.133.28 1.299.48a1.12 1.12 0 01.21.396l.004.012v-.004l-.002-.004v-.003-.002c0-.001 0-.002.739-.125l.74-.124v-.001-.002l-.002-.005-.002-.011a.986.986 0 00-.025-.111 2.616 2.616 0 00-.51-.976C13.992 13.47 13.216 13 12 13v1.5zM10 10v1a1 1 0 001-1h-1zm0 0H9a1 1 0 001 1v-1zm0 0V9a1 1 0 00-1 1h1zm0 0h1a1 1 0 00-1-1v1zM14 10v1a1 1 0 001-1h-1zm0 0h-1a1 1 0 001 1v-1zm0 0V9a1 1 0 00-1 1h1zm0 0h1a1 1 0 00-1-1v1z"
+            ></path>
+          </svg>
+          <div className="mb-4 text-center border-neutral-200">
+            <p className="mb-4 font-medium leading-6">
+              Our system is currently unable to deal with your request
+            </p>
+            <p className="text-sm">
+              Your Direct Debit has not been created. For any queries contact
+              our help desk on{" "}
+              <span className="whitespace-nowrap">0121 234 7999</span>.
+            </p>
           </div>
           <div className="flex items-center justify-center text-center gap-x-1.5">
             <span className="text-sm text-neutral-500/75">Powered by</span>
@@ -471,6 +490,30 @@ const CheckoutPayment = forwardRef<
               className="block h-[26px] rounded-md"
             />
           </div>
+        </div>
+        <div className="px-6 py-8 rounded-md bg-neutral-100">
+          <img
+            src={orgLogo}
+            alt={orgName + " Logo"}
+            className="block max-h-[3.25rem] sm:max-h-[3.5rem] rounded mx-auto mb-2"
+            loading="lazy"
+          />
+          <div className="mb-4 font-medium text-center border-neutral-200">
+            Confirm your Direct Debit agreement
+          </div>
+          <p className="mb-6 text-sm border-neutral-200">
+            Please review your agreement with Longon & Zurich{" "}
+            <a className="link">Here</a>. Upon confirmation of your agreement, a
+            copy will be sent to your email.
+          </p>
+          <Button
+            type="primary"
+            block
+            className="!bg-emerald-500 hover:!bg-emerald-400"
+            icon={<CheckOutlined />}
+          >
+            Confirm
+          </Button>
         </div>
         <div className="grid place-items-center aspect-square">
           <div className="grid gap-4 place-items-center">
