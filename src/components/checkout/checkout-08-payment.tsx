@@ -353,6 +353,19 @@ const CheckoutPayment = forwardRef<
             >
               <Input />
             </Form.Item>
+            <Form.Item
+              label="Account number"
+              name="accountNumber"
+              extra="Must be between 6 and 8 digits long"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your account number",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
             <Form.Item className="pt-2">
               <Button type="primary" block>
                 <svg
@@ -537,6 +550,32 @@ const CheckoutPayment = forwardRef<
               <span className="sr-only">Loading...</span>
             </div>
             <div className="text-lg font-bold">Processing your order</div>
+          </div>
+        </div>
+        <div className="mb-14">
+          <div className="justify-center hidden mb-2.5 lg:flex">
+            <i className="w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-emerald-100/75 flex items-center justify-center border-4 border-white/50 text-emerald-700">
+              <CheckOutlined />
+            </i>
+          </div>
+
+          <div className="mb-24">
+            <Balancer className="mb-8">
+              <div className="mb-2 heading-lg">Thank you for your order</div>
+              <div className="sub-heading">Order number · #483299</div>
+              <p className="mt-4 text-sm border-neutral-200">
+                We'll send a confirmation email to jtoone@loveadmin.com shortly.
+                Please also check your spam folder.
+              </p>
+            </Balancer>
+            <div className="space-y-4">
+              <Button type="primary" size="large" block>
+                Continue shopping
+              </Button>
+              <Button size="large" block>
+                Sign out
+              </Button>
+            </div>
           </div>
         </div>
         <Modal
