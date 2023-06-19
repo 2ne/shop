@@ -1,3 +1,14 @@
+interface Address {
+  addressId?: number;
+  nickname: string;
+  houseName: string;
+  street: string;
+  town: string;
+  county: string;
+  postcode: string;
+  countryName: string;
+}
+
 interface Participant {
   id: number;
   firstName: string;
@@ -74,23 +85,50 @@ interface EmergencyContact {
   name: string;
   phone: string;
   email?: string;
-  address?: string;
+  address?: Address;
 }
 
-type EmergencyContactFieldKey = keyof EmergencyContact;
+type EmergencyContactFieldKey = keyof EmergencyContact | keyof Address;
+
+type NestedFields = {
+  key: EmergencyContactFieldKey;
+  label: string;
+  required?: boolean;
+  type: string;
+  fields?: EmergencyContactField[];
+};
 
 type EmergencyContactField = {
   key: EmergencyContactFieldKey;
   label: string;
   required?: boolean;
   type: string;
-};
+} & (NestedFields | object);
 
 export const emergencyContactFields: EmergencyContactField[] = [
   { key: "name", label: "Name", required: true, type: "text" },
   { key: "phone", label: "Phone number", required: true, type: "tel" },
   { key: "email", label: "Email", required: false, type: "email" },
-  { key: "address", label: "Address", required: false, type: "text" },
+  {
+    key: "address",
+    label: "Address",
+    required: false,
+    type: "object",
+    fields: [
+      { key: "nickname", label: "Nickname", required: false, type: "text" },
+      { key: "houseName", label: "House Name", required: false, type: "text" },
+      { key: "street", label: "Street", required: false, type: "text" },
+      { key: "town", label: "Town", required: false, type: "text" },
+      { key: "county", label: "County", required: false, type: "text" },
+      { key: "postcode", label: "Postcode", required: false, type: "text" },
+      {
+        key: "countryName",
+        label: "Country Name",
+        required: false,
+        type: "text",
+      },
+    ],
+  },
 ];
 
 interface ConsentForm {
