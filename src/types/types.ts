@@ -1,6 +1,5 @@
 interface Address {
   addressId?: number;
-  nickname: string;
   houseName: string;
   street: string;
   town: string;
@@ -90,7 +89,7 @@ interface EmergencyContact {
 
 type EmergencyContactFieldKey = keyof EmergencyContact | keyof Address;
 
-type NestedFields = {
+type NestedEmergencyContactFields = {
   key: EmergencyContactFieldKey;
   label: string;
   required?: boolean;
@@ -103,7 +102,7 @@ type EmergencyContactField = {
   label: string;
   required?: boolean;
   type: string;
-} & (NestedFields | object);
+} & (NestedEmergencyContactFields | object);
 
 export const emergencyContactFields: EmergencyContactField[] = [
   { key: "name", label: "Name", required: true, type: "text" },
@@ -115,8 +114,12 @@ export const emergencyContactFields: EmergencyContactField[] = [
     required: false,
     type: "object",
     fields: [
-      { key: "nickname", label: "Nickname", required: false, type: "text" },
-      { key: "houseName", label: "House Name", required: false, type: "text" },
+      {
+        key: "houseName",
+        label: "House name / number",
+        required: false,
+        type: "text",
+      },
       { key: "street", label: "Street", required: false, type: "text" },
       { key: "town", label: "Town", required: false, type: "text" },
       { key: "county", label: "County", required: false, type: "text" },
@@ -201,10 +204,12 @@ interface BasketItem {
 }
 
 export type {
+  Address,
   Participant,
   MedicalInfo,
   EmergencyContact,
   EmergencyContactField,
+  NestedEmergencyContactFields,
   ConsentForm,
   ConsentFormField,
   AdditionalForm,
