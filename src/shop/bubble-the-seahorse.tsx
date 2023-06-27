@@ -200,7 +200,7 @@ function BubbleTheSeahorse(): ReactElement {
                 </dd>
                 <dt>Age</dt>
                 <dd>
-                  Suitable for babies ages up to 3 years with a parent/guardian
+                  Suitable for babies aged 12-18 months with a parent/guardian
                 </dd>
                 <dt>Time</dt>
                 <dd>Every Tuesday at 11:30 - 12:00</dd>
@@ -244,35 +244,33 @@ function BubbleTheSeahorse(): ReactElement {
             <section className="space-y-4">
               <div className="pb-2 mb-3 border-b border-neutral-200 heading">
                 Coach Profile ·{" "}
-                <span className="sub-heading">Arsène Wenger</span>
+                <span className="sub-heading">Michael Phelps</span>
               </div>
               <img
                 className="sm:float-left aspect-[3/2] object-cover sm:max-w-[30%] rounded-md sm:mr-5 sm:mb-5 relative sm:-top-1"
-                src="https://m.media-amazon.com/images/M/MV5BMDUwNWI1NDktZTkyYS00NTgwLWI3YTAtNDM4YWNkNTU3ZTdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg"
-                alt="Arsène Wenger"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Michael_Phelps_Rio_Olympics_2016.jpg/440px-Michael_Phelps_Rio_Olympics_2016.jpg"
+                alt="Michael Phelps"
               />
               <p>
-                Arsène Charles Ernest Wenger OBE, born 22 October 1949 is a
-                French former football manager and player who is currently
-                serving as FIFA's Chief of Global Football Development. He was
-                the manager of Arsenal from 1996 to 2018, where he was the
-                longest-serving and most successful in the club's history. His
-                contribution to English football through changes to scouting,
-                players' training, and diet regimens revitalised Arsenal and
-                aided the globalisation of the sport in the 21st century. Born
-                in Strasbourg and raised in Duttlenheim to an entrepreneurial
-                family, Wenger was introduced to football by his father, the
-                manager of the local village team.
+                Michael Fred Phelps II (born June 30, 1985) is an American
+                former competitive swimmer. He is the most successful and most
+                decorated Olympian of all time with a total of 28 medals. Phelps
+                also holds the all-time records for Olympic gold medals (23),
+                Olympic gold medals in individual events (13), and Olympic
+                medals in individual events (16). At the 2004 Summer Olympics in
+                Athens, Phelps tied the record of eight medals of any color at a
+                single Games, held by gymnast Alexander Dityatin, by winning six
+                gold and two bronze medals.
               </p>
               <p>
-                After a modest playing career, in which he made appearances for
-                several amateur clubs, Wenger obtained a manager's diploma in
-                1981. Following an unsuccessful period at Nancy in 1987, Wenger
-                joined Monaco; the club won the league championship in 1988. In
-                1991, Wenger guided Monaco to victory in the Coupe de France. In
-                1995, he moved to Japan to coach J.League side Nagoya Grampus
-                Eight and won the Emperor's Cup and Japanese Super Cup in his
-                first and only year.
+                Four years later, when he won eight gold medals at the 2008
+                Beijing Games, he broke fellow American swimmer Mark Spitz's
+                1972 record of seven first-place finishes at any single Olympic
+                Games. At the 2012 Summer Olympics in London, Phelps won four
+                gold and two silver medals, and at the 2016 Summer Olympics in
+                Rio de Janeiro, he won five gold medals and one silver. This
+                made him the most successful athlete of the Games for the fourth
+                Olympics in a row.
               </p>
             </section>
           </div>

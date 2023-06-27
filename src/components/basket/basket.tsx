@@ -226,7 +226,7 @@ const Basket: React.FC = () => {
                   </>
                 )}
                 <dt>Coach</dt>
-                <dd>Arsène Wenger</dd>
+                <dd>Michael Phelps</dd>
               </dl>
             </div>
           ))
