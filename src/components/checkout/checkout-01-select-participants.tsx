@@ -12,6 +12,7 @@ import AddParticipantModal, {
 import { useBasketContext } from "../basket/basket-context";
 import { calculateAge } from "./checkout-utils";
 import { BasketItem, Participant } from "../../types/types";
+import { EditOutlined } from "@ant-design/icons";
 
 export interface CheckoutSelectParticipantsHandles {
   submitForm: () => Promise<boolean>;
@@ -251,31 +252,43 @@ const CheckoutSelectParticipants = forwardRef<
                 ]}
                 validateTrigger={false}
               >
-                <Radio.Group>
-                  <div className="grid gap-1.5">
-                    {participants.map((participant) => (
-                      <Tooltip
-                        key={`${item.id}_${participant.id}`}
-                        title={`Age: ${calculateAge(participant.dob)}`}
-                        placement="left"
-                      >
+                <Radio.Group className="block">
+                  {participants.map((participant) => (
+                    <Tooltip
+                      key={`${item.id}_${participant.id}`}
+                      title={`Age: ${calculateAge(participant.dob)}`}
+                      placement="left"
+                    >
+                      <div className="group flex items-center">
                         <Radio
                           value={participant.id}
                           disabled={!participant.meetsAgeCriteria}
+                          className="!flex items-center [&>span:last-child]:block"
                         >
-                          {participant.firstName} {participant.lastName}
-                          {!participant.meetsAgeCriteria && (
-                            <span>
-                              {calculateAge(participant.dob) <
-                              (ageCriteria.min ?? 0)
-                                ? " · Below age limit"
-                                : " · Above age limit"}
-                            </span>
-                          )}
+                          <div className="py-1 flex items-center">
+                            <div>
+                              {participant.firstName} {participant.lastName}
+                              {!participant.meetsAgeCriteria && (
+                                <span>
+                                  {calculateAge(participant.dob) <
+                                  (ageCriteria.min ?? 0)
+                                    ? " · Below age limit"
+                                    : " · Above age limit"}
+                                </span>
+                              )}
+                            </div>
+                          </div>
                         </Radio>
-                      </Tooltip>
-                    ))}
-                  </div>
+                        <Button
+                          shape="circle"
+                          size="small"
+                          type="text"
+                          icon={<EditOutlined />}
+                          className="justify-center -ml-2 [@media(pointer:coarse){}]:text-neutral-500 [@media(pointer:coarse){}]:ml-auto opacity-0 group-hover:opacity-100 duration-200 transition-opacity [@media(pointer:coarse){}]:opacity-100"
+                        ></Button>
+                      </div>
+                    </Tooltip>
+                  ))}
                 </Radio.Group>
               </Form.Item>
               <div>
