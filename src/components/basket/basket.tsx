@@ -6,12 +6,8 @@ import { useCheckoutContext } from "../checkout/checkout-context";
 
 export const BasketTotals: React.FC = () => (
   <div className="grid grid-cols-2 [&>*:nth-child(even)]:text-right gap-y-1.5 text-sm">
-    <div className="text-neutral-500">Yearly cost</div>
-    <div className="text-neutral-500">£48.00</div>
     <div className="text-neutral-500">Monthly cost</div>
     <div className="text-neutral-500">£48.00</div>
-    <div className="text-neutral-500">Service fee</div>
-    <div className="text-neutral-500">£5.00</div>
     <div className="font-medium">Total due now</div>
     <div className="font-medium">£48.00</div>
   </div>
