@@ -11,13 +11,19 @@ import { orgLogo, orgName } from "../org";
 interface SignInProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccessfulLogin: () => void;
 }
 
-const SignIn: React.FC<SignInProps> = ({ isOpen, onClose }) => {
+const SignInModal: React.FC<SignInProps> = ({
+  isOpen,
+  onClose,
+  onSuccessfulLogin,
+}) => {
   const [form] = Form.useForm();
   const emailRef = useRef<InputRef>(null);
   const passwordRef = useRef<InputRef>(null);
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [userExists, setUserExists] = useState(false);
   const [newUser, setNewUser] = useState(false);
 
@@ -49,6 +55,10 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, onClose }) => {
     if (email === "jamestoone@gmail.com") {
       setUserExists(true);
       setNewUser(false);
+      if (password.length > 1) {
+        onClose();
+        onSuccessfulLogin();
+      }
     } else {
       setNewUser(true);
       setUserExists(false);
@@ -56,7 +66,6 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, onClose }) => {
   };
 
   const onFinish = (values: any) => {
-    // Perform your validation here
     console.log("Success:", values);
     handleContinue();
   };
@@ -148,6 +157,7 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, onClose }) => {
                 prefix={<LockOutlined className="w-5 text-neutral-600" />}
                 placeholder="Password"
                 className="[&>input.ant-input]:!shadow-[0_0_0_20px_white_inset] [&>input.ant-input:focus]:!shadow-[0_0_0_20px_white_inset]"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Item>
           )}
@@ -173,4 +183,4 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default SignIn;
+export default SignInModal;

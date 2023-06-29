@@ -6,7 +6,7 @@ import { useBasketContext } from "./basket/basket-context";
 import { useCheckoutContext } from "./checkout/checkout-context";
 import { Tooltip, message, Drawer, Button } from "antd";
 import AccountModal from "./account/account-modal";
-import SignIn from "./sign-in";
+import SignInModal from "./sign-in";
 
 export interface HeaderProps {
   loggedIn?: boolean;
@@ -57,9 +57,11 @@ const Header: React.FC<HeaderProps> = ({
 
   const handleLogin = () => {
     showModal();
+  };
 
-    /* setIsLoggedIn(true); */
-    /* message.success("Welcome, James"); */
+  const handleSuccessfulLogin = () => {
+    setIsLoggedIn(true);
+    message.success("Welcome, James");
   };
 
   const handleLoginDrawer = () => {
@@ -585,7 +587,11 @@ const Header: React.FC<HeaderProps> = ({
         selectedMenuKey={selectedMenuKey}
         setSelectedMenuKey={setSelectedMenuKey}
       />
-      <SignIn isOpen={isModalOpen} onClose={hideModal} />
+      <SignInModal
+        isOpen={isModalOpen}
+        onClose={hideModal}
+        onSuccessfulLogin={handleSuccessfulLogin}
+      />
     </>
   );
 };
