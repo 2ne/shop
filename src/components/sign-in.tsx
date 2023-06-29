@@ -7,6 +7,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import { orgLogo, orgName } from "../org";
+import { Link } from "react-router-dom";
 
 interface SignInProps {
   isOpen: boolean;
@@ -26,6 +27,7 @@ const SignInModal: React.FC<SignInProps> = ({
   const [password, setPassword] = useState("");
   const [userExists, setUserExists] = useState(false);
   const [newUser, setNewUser] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState(false);
 
   useEffect(() => {
     if (isOpen && emailRef.current) {
@@ -34,8 +36,8 @@ const SignInModal: React.FC<SignInProps> = ({
           emailRef.current?.focus({
             cursor: "start",
           }),
-        100
-      ); // timeout is needed because antd Modal animation causes issues with immediate focus
+        195
+      );
     }
   }, [isOpen]);
 
@@ -46,22 +48,26 @@ const SignInModal: React.FC<SignInProps> = ({
           passwordRef.current?.focus({
             cursor: "start",
           }),
-        100
+        195
       );
     }
-  }, [userExists]); // this effect runs when userExists changes
+  }, [userExists]);
 
   const handleContinue = () => {
     if (email === "jamestoone@gmail.com") {
       setUserExists(true);
       setNewUser(false);
-      if (password.length > 1) {
+      if (password && password !== "password") {
+        setPasswordValidation(true);
+      }
+      if (password === "password") {
         onClose();
         onSuccessfulLogin();
       }
     } else {
       setNewUser(true);
       setUserExists(false);
+      setPasswordValidation(false);
     }
   };
 
@@ -122,6 +128,18 @@ const SignInModal: React.FC<SignInProps> = ({
                   message: "Please enter your email address",
                 },
               ]}
+              help={
+                newUser &&
+                !userExists && (
+                  <div className="mt-1 mb-4 text-sm">
+                    No JoinIn account found. Try a different email or{" "}
+                    <Link to="/CreateAccount" className="link">
+                      Create an account.
+                    </Link>
+                  </div>
+                )
+              }
+              validateStatus={newUser ? "error" : ""}
             >
               <Input
                 ref={emailRef}
@@ -138,19 +156,15 @@ const SignInModal: React.FC<SignInProps> = ({
                 size="small"
                 type="text"
                 icon={<CloseCircleOutlined className="mr-px" />}
-                className="!w-auto !h-auto !p-0 !bg-transparent text-neutral-500 hover:text-neutral-700 active:text-neutral-800 absolute right-2.5 top-1/2 -translate-y-1/2 z-20"
+                className="!w-auto !h-auto !p-0 !bg-transparent text-neutral-500 hover:text-neutral-700 active:text-neutral-800 absolute right-2.5 top-2 z-20"
               ></Button>
             )}
           </div>
           {userExists && (
             <Form.Item
               name="password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter your password",
-                },
-              ]}
+              help={passwordValidation && "Your email or password is incorrect"}
+              validateStatus={passwordValidation ? "error" : ""}
             >
               <Input.Password
                 ref={passwordRef}

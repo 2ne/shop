@@ -1,117 +1,55 @@
-import { Button } from "antd";
 import { useEffect, useRef, useState, SetStateAction } from "react";
-import Basket, { BasketTotals } from "../components/basket/basket";
+import Breadcrumb from "../breadcrumb";
 import CheckoutSelectParticipants, {
   CheckoutSelectParticipantsHandles,
-} from "../components/checkout/checkout-01-select-participants";
+} from "../checkout/checkout-01-select-participants";
 import CheckoutAdditionalProducts, {
   CheckoutAdditionalProductsHandles,
-} from "../components/checkout/checkout-02-additional-products";
+} from "../checkout/checkout-02-additional-products";
 import CheckoutMedicalInfo, {
   CheckoutMedicalInfoHandles,
-} from "../components/checkout/checkout-03-medical-information";
-import CheckoutEmergencyContacts, {
-  CheckoutEmergencyContactsHandles,
-} from "../components/checkout/checkout-04-emergency-contacts";
-import CheckoutConsentForms, {
-  CheckoutConsentFormsHandles,
-} from "../components/checkout/checkout-05-consent-forms";
-import CheckoutAdditionalForms, {
-  CheckoutAdditionalFormsHandles,
-} from "../components/checkout/checkout-06-additional-forms";
-import CheckoutUploadFiles, {
-  CheckoutUploadFilesHandles,
-} from "../components/checkout/checkout-07-upload-files";
-import CheckoutPayment, {
-  CheckoutPaymentHandles,
-} from "../components/checkout/checkout-08-payment";
-import { SubmitButton, SubmitButtonType } from "../components/submit-button";
-import CheckoutTimer from "../components/checkout/checkout-timer";
-import Header from "../components/header";
-import Main from "../components/main";
-import Wrapper from "../components/wrapper";
-import { useBasketContext } from "../components/basket/basket-context";
-import Steps from "../components/steps";
+} from "../checkout/checkout-03-medical-information";
+import { SubmitButton, SubmitButtonType } from "../submit-button";
+import Header from "../header";
+import Main from "../main";
+import Steps from "../steps";
+import Wrapper from "../wrapper";
 
-export const Checkout: React.FC = () => {
+export const CreateAccountForm: React.FC = () => {
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
   const checkoutMedicalInfoRef = useRef<CheckoutMedicalInfoHandles>(null);
-  const checkoutEmergencyContactsRef =
-    useRef<CheckoutEmergencyContactsHandles>(null);
-  const CheckoutConsentFormsRef = useRef<CheckoutConsentFormsHandles>(null);
-  const CheckoutAdditionalFormsRef =
-    useRef<CheckoutAdditionalFormsHandles>(null);
-  const CheckoutUploadFilesRef = useRef<CheckoutUploadFilesHandles>(null);
-  const CheckoutPaymentRef = useRef<CheckoutPaymentHandles>(null);
+  const breadcrumbItems = [{ label: "Create account", link: "/CreateAccount" }];
 
   const stepsData = [
     {
       Component: CheckoutSelectParticipants,
       ref: selectParticipantsRef,
-      title: "Select participants",
-      subtitle: "Please select who you are purchasing each product for",
+      title: "Account owner",
+      subtitle:
+        "This information will be used to identify you within JoinIn and an organisation",
       buttonType: "continue",
     },
     {
       Component: CheckoutAdditionalProducts,
       ref: additionalProductsRef,
-      title: "Additional products",
+      title: "Contact details",
       subtitle:
-        "Please review the required add-ons for the items in your basket",
+        "Speeds up checkout and allows communication from an organisation",
       buttonType: "continue",
     },
     {
       Component: CheckoutMedicalInfo,
       ref: checkoutMedicalInfoRef,
-      title: "Medical information",
-      subtitle: "Please review the medical information for all participants",
-      buttonType: "continue",
-    },
-    {
-      Component: CheckoutEmergencyContacts,
-      ref: checkoutEmergencyContactsRef,
-      title: "Emergency contacts",
-      subtitle: "Review the emergency contacts and add them if required",
-      buttonType: "continue",
-    },
-    {
-      Component: CheckoutConsentForms,
-      ref: CheckoutConsentFormsRef,
-      title: "Consent forms",
-      subtitle: "Review the following consent forms for all participants",
-      buttonType: "continue",
-    },
-    {
-      Component: CheckoutAdditionalForms,
-      ref: CheckoutAdditionalFormsRef,
-      title: "Additional info",
-      subtitle: "Review the following forms for all of the participants",
-      buttonType: "continue",
-    },
-    {
-      Component: CheckoutUploadFiles,
-      ref: CheckoutUploadFilesRef,
-      title: "Upload files",
-      subtitle:
-        "Review the following required files for all of the participants",
-      buttonType: "continue",
-    },
-    {
-      Component: CheckoutPayment,
-      ref: CheckoutPaymentRef,
-      title: "Payment",
-      subtitle: "Enter your payment details below to complete your order",
-      buttonType: "pay",
+      title: "Set a password",
+      subtitle: "Secure your account and protect your personal information.",
+      buttonType: "createAccount",
     },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([
-    0, 1, 2, 3, 4, 5, 6, 7,
-  ]); // Define which steps are required (stepData[index])
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
-  const { openBasket, closeBasket, isOpen } = useBasketContext();
 
   const renderStepComponent = (stepIndex: number) => {
     const { Component, ref, title, subtitle } = stepsData[stepIndex];
@@ -201,8 +139,8 @@ export const Checkout: React.FC = () => {
 
   return (
     <>
-      <Header />
-      <CheckoutTimer timer={25} />
+      <Header hideButtons={true} />
+      <Breadcrumb items={breadcrumbItems} />
       <Main className="lg:divide-x lg:grid lg:grid-cols-4 max-lg:pb-[11rem]">
         <aside className="lg:pr-5">
           <div className="lg:sticky lg:top-4">
@@ -231,7 +169,7 @@ export const Checkout: React.FC = () => {
             </div>
             <div className="hidden lg:block">
               <div className="mb-5 heading">
-                Checkout{" "}
+                Create Account{" "}
                 <span className="text-neutral-500">
                   · Step {currentStep + 1} of {totalSteps}
                 </span>
@@ -245,7 +183,7 @@ export const Checkout: React.FC = () => {
             </div>
           </div>
         </aside>
-        <section className="lg:px-5 lg:col-span-2 lg:text-center">
+        <section className="lg:px-5 lg:col-span-3 lg:text-center">
           <div className="lg:max-w-[22rem] lg:m-auto">
             {activeSteps.map((stepIndex, index) => (
               <div
@@ -268,52 +206,17 @@ export const Checkout: React.FC = () => {
             </div>
           </div>
         </section>
-        <aside className="hidden lg:pl-5 lg:block">
-          <div className="lg:sticky lg:top-4">
-            <Basket />
-            <div className="pt-5 mt-5 border-t border-neutral-200">
-              <BasketTotals />
-            </div>
-          </div>
-        </aside>
       </Main>
       <footer className="fixed bottom-0 left-0 right-0 z-40 py-4 rounded-t-md lg:hidden shadow-t bg-white/95 ring-black/10">
         <Wrapper>
-          <Button
-            onClick={isOpen ? closeBasket : openBasket}
-            shape="circle"
-            className="bg-white !rounded-full absolute -top-4 left-1/2 -translate-x-1/2"
-          >
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              className={`transition-all transform relative mx-auto  ${
-                isOpen ? " rotate-180 " : " -top-px "
-              }`}
-              aria-label="Toggle basket"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M15.25 14.25L12 10.75l-3.25 3.5"
-              ></path>
-            </svg>
-          </Button>
-          <div className="space-y-4">
-            <BasketTotals />
-            <SubmitButton
-              onClick={submitCurrentForm}
-              buttonType={stepsData[currentStep].buttonType as SubmitButtonType}
-            />
-          </div>
+          <SubmitButton
+            onClick={submitCurrentForm}
+            buttonType={stepsData[currentStep].buttonType as SubmitButtonType}
+          />
         </Wrapper>
       </footer>
     </>
   );
 };
 
-export default Checkout;
+export default CreateAccountForm;

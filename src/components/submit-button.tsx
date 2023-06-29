@@ -1,14 +1,14 @@
 import { Button } from "antd";
 import React from "react";
 
-export type CheckoutButtonType = "continue" | "pay" | "confirm";
+export type SubmitButtonType = "continue" | "pay" | "confirm" | "createAccount";
 
-interface CheckoutButtonProps {
+interface SubmitButtonProps {
   onClick?: () => void;
-  buttonType: CheckoutButtonType;
+  buttonType: SubmitButtonType;
 }
 
-export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
+export const SubmitButton: React.FC<SubmitButtonProps> = ({
   onClick,
   buttonType = "continue",
 }) => {
@@ -22,6 +22,10 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
       break;
     case "confirm":
       text = "Confirm";
+      buttonClass = "!bg-emerald-500 hover:!bg-emerald-400";
+      break;
+    case "createAccount":
+      text = "Create account";
       buttonClass = "!bg-emerald-500 hover:!bg-emerald-400";
       break;
     default:
@@ -58,4 +62,4 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   );
 };
 
-export default CheckoutButton;
+export default SubmitButton;

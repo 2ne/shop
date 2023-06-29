@@ -4,7 +4,7 @@ interface Step {
   title: string;
 }
 
-interface CheckoutStepsProps {
+interface StepsProps {
   currentStep: number;
   furthestStep: number;
   steps: Step[];
@@ -15,7 +15,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const CustomSteps: React.FC<CheckoutStepsProps> = ({
+const Steps: React.FC<StepsProps> = ({
   currentStep,
   furthestStep,
   steps,
@@ -232,4 +232,4 @@ const CustomSteps: React.FC<CheckoutStepsProps> = ({
   );
 };
 
-export default CustomSteps;
+export default Steps;
