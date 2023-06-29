@@ -84,11 +84,6 @@ dt {
   @apply pt-1.5 text-sm;
 }
 
-.ant-form .ant-form-item-explain-error,
-.ant-form .ant-form-item-explain {
-  @apply mt-1;
-}
-
 .ant-form-item-required {
   @apply inline-flex flex-row-reverse gap-x-1;
 }
@@ -97,7 +92,7 @@ dt {
   @apply opacity-0;
 }
 
-.ant-form .ant-form-item {
+.ant-form-vertical .ant-form-item {
   @apply mb-6;
 }
 

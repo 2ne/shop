@@ -6,6 +6,7 @@ import { useBasketContext } from "./basket/basket-context";
 import { useCheckoutContext } from "./checkout/checkout-context";
 import { Tooltip, message, Drawer, Button } from "antd";
 import AccountModal from "./account/account-modal";
+import SignIn from "./sign-in";
 
 export interface HeaderProps {
   loggedIn?: boolean;
@@ -29,6 +30,16 @@ const Header: React.FC<HeaderProps> = ({
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [selectedMenuKey, setSelectedMenuKey] = useState(String);
 
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+  const hideModal = () => {
+    setModalOpen(false);
+  };
+
   basketCount = itemCount();
 
   const openNav = () => {
@@ -45,8 +56,10 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
-    message.success("Welcome, James");
+    showModal();
+
+    /* setIsLoggedIn(true); */
+    /* message.success("Welcome, James"); */
   };
 
   const handleLoginDrawer = () => {
@@ -572,6 +585,7 @@ const Header: React.FC<HeaderProps> = ({
         selectedMenuKey={selectedMenuKey}
         setSelectedMenuKey={setSelectedMenuKey}
       />
+      <SignIn isOpen={isModalOpen} onClose={hideModal} />
     </>
   );
 };
