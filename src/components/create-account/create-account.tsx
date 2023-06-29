@@ -141,8 +141,8 @@ export const CreateAccountForm: React.FC = () => {
     <>
       <Header hideButtons={true} />
       <Breadcrumb items={breadcrumbItems} />
-      <Main className="lg:divide-x lg:grid lg:grid-cols-4 max-lg:pb-[11rem]">
-        <aside className="lg:pr-5">
+      <Main className="lg:divide-x lg:grid lg:grid-cols-7 max-lg:pb-[11rem]">
+        <aside className="lg:pr-5 lg:col-span-2">
           <div className="lg:sticky lg:top-4">
             <div className="flex items-center justify-between -mt-1.5 lg:hidden h-6 mb-2">
               {currentStep > 0 && (
@@ -168,11 +168,19 @@ export const CreateAccountForm: React.FC = () => {
               </div>
             </div>
             <div className="hidden lg:block">
-              <div className="mb-5 heading">
-                Create Account{" "}
+              <div className="mb-4 heading">
+                Create a JoinIn Account
                 <span className="text-neutral-500">
-                  · Step {currentStep + 1} of {totalSteps}
+                  <span className="mx-1.5">·</span>
+                  <span>
+                    Step {currentStep + 1} of {totalSteps}
+                  </span>
                 </span>
+              </div>
+              <div className="mb-6 sub-heading-sm">
+                Join CG Swim School on JoinIn! Seamlessly manage bookings and
+                payments while experiencing our swift checkout and paperless
+                solution.
               </div>
               <Steps
                 currentStep={currentStep}
@@ -183,7 +191,7 @@ export const CreateAccountForm: React.FC = () => {
             </div>
           </div>
         </aside>
-        <section className="lg:px-5 lg:col-span-3 lg:text-center">
+        <section className="lg:px-5 lg:col-span-5 lg:text-center">
           <div className="lg:max-w-[22rem] lg:m-auto">
             {activeSteps.map((stepIndex, index) => (
               <div
