@@ -217,7 +217,7 @@ const CheckoutConsentForms = forwardRef<
           footer={null}
         >
           These terms and conditions apply to all members and guests of
-          [Gymnastics Club Name] ("the Club"). By joining the Club or
+          [Swimming Club Name] ("the Club"). By joining the Club or
           participating in any Club activities, you agree to be bound by these
           terms and conditions.
         </Modal>

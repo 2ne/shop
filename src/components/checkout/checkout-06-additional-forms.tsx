@@ -134,7 +134,7 @@ const CheckoutAdditionalForms = forwardRef<
               <div className="space-y-5">
                 <div>
                   <div className="mb-1 font-medium">
-                    British gymnastics questions
+                    British swimming questions
                   </div>
                   <Button
                     type="primary"

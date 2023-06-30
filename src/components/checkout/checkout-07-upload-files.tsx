@@ -151,7 +151,7 @@ const CheckoutUploadFiles = forwardRef<
               <div className="space-y-5">
                 <div className="">
                   <div className="mb-1 font-medium">
-                    Gymnastics membership card (front)
+                    Swimming membership card (front)
                   </div>
                   <div>
                     <Dragger {...props} className="group" listType="picture">
@@ -193,7 +193,7 @@ const CheckoutUploadFiles = forwardRef<
                 </div>
                 <div className="">
                   <div className="mb-1 font-medium">
-                    Gymnastics membership card (back)
+                    Swimming membership card (back)
                   </div>
                   <div>
                     <Dragger {...props} className="group" listType="picture">

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, SetStateAction } from "react";
 import Breadcrumb from "../breadcrumb";
-import CheckoutSelectParticipants, {
-  CheckoutSelectParticipantsHandles,
-} from "../create-account/checkout-01-select-participants";
-import CheckoutAdditionalProducts, {
-  CheckoutAdditionalProductsHandles,
-} from "../create-account/checkout-02-additional-products";
-import CheckoutMedicalInfo, {
-  CheckoutMedicalInfoHandles,
-} from "../create-account/checkout-03-medical-information";
+import CreateAccountOwnerForms, {
+  CreateAccountOwnerFormsHandles,
+} from "./create-account-01-account-owner";
+import CreateAccountContactDetailsForms, {
+  CreateAccountContactDetailsFormsHandles,
+} from "./create-account-02-contact-details";
+import CreateAccountPasswordForms, {
+  CreateAccountPasswordFormsHandles,
+} from "./create-account-03-set-password";
 import { FormButton, FormButtonType } from "../form-button";
 import Header from "../header";
 import Main from "../main";
@@ -16,33 +16,34 @@ import Steps from "../steps";
 import Wrapper from "../wrapper";
 
 export const CreateAccountForm: React.FC = () => {
-  const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
-  const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
-  const checkoutMedicalInfoRef = useRef<CheckoutMedicalInfoHandles>(null);
+  const accountOwnerRef = useRef<CreateAccountOwnerFormsHandles>(null);
+  const contactDetailsRef =
+    useRef<CreateAccountContactDetailsFormsHandles>(null);
+  const setPasswordRef = useRef<CreateAccountPasswordFormsHandles>(null);
   const breadcrumbItems = [
     { label: "Create a JoinIn account", link: "/CreateAccount" },
   ];
 
   const stepsData = [
     {
-      Component: CheckoutSelectParticipants,
-      ref: selectParticipantsRef,
+      Component: CreateAccountOwnerForms,
+      ref: accountOwnerRef,
       title: "Account owner",
       subtitle:
         "This information will be used to identify you within JoinIn and an organisation",
       buttonType: "continue",
     },
     {
-      Component: CheckoutAdditionalProducts,
-      ref: additionalProductsRef,
+      Component: CreateAccountContactDetailsForms,
+      ref: contactDetailsRef,
       title: "Contact details",
       subtitle:
         "Speeds up checkout and allows communication from an organisation",
       buttonType: "continue",
     },
     {
-      Component: CheckoutMedicalInfo,
-      ref: checkoutMedicalInfoRef,
+      Component: CreateAccountPasswordForms,
+      ref: setPasswordRef,
       title: "Set a password",
       subtitle: "Secure your account and protect your personal information.",
       buttonType: "createAccount",

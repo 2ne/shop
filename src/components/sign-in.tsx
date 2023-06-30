@@ -36,7 +36,7 @@ const SignInModal: React.FC<SignInProps> = ({
           emailRef.current?.focus({
             cursor: "start",
           }),
-        195
+        200
       );
     }
   }, [isOpen]);
@@ -48,7 +48,7 @@ const SignInModal: React.FC<SignInProps> = ({
           passwordRef.current?.focus({
             cursor: "start",
           }),
-        195
+        200
       );
     }
   }, [userExists]);
@@ -142,6 +142,7 @@ const SignInModal: React.FC<SignInProps> = ({
               validateStatus={newUser ? "error" : ""}
             >
               <Input
+                type="email"
                 ref={emailRef}
                 prefix={<UserOutlined className="w-5 text-neutral-600" />}
                 placeholder="Email address"

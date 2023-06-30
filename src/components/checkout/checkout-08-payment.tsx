@@ -60,7 +60,7 @@ const CheckoutPayment = forwardRef<
         <FormHeader
           title={title}
           subtitle={subtitle}
-          requiredText="Direct Debits can be used for single, one-time payments. Rest assured that a one-off transaction will not repeat."
+          // requiredText="Direct Debits can be used for single, one-time payments. Rest assured that a one-off transaction will not repeat."
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const CheckoutPayment = forwardRef<
             </svg>
           }
         />
-        <div className="p-6 rounded-md bg-neutral-100">
+        {/*         <div className="p-6 rounded-md bg-neutral-100">
           <img
             src={orgLogo}
             alt={orgName + " Logo"}
@@ -235,7 +235,7 @@ const CheckoutPayment = forwardRef<
               className="relative block h-[15px] -top-px"
             />
           </div>
-        </div>
+        </div> */}
         <div className="p-6 rounded-md bg-neutral-100">
           <Form
             form={paymentForm}
@@ -298,7 +298,7 @@ const CheckoutPayment = forwardRef<
             </div>
           </Form>
         </div>
-        <div className="p-6 rounded-md bg-neutral-100">
+        {/*         <div className="p-6 rounded-md bg-neutral-100">
           <img
             src={orgLogo}
             alt={orgName + " Logo"}
@@ -577,7 +577,7 @@ const CheckoutPayment = forwardRef<
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
         <Modal
           title="Edit details"
           open={editDetailsLondonZurichModal}
