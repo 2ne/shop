@@ -223,7 +223,7 @@ function BubbleTheSeahorse(): ReactElement {
                     View
                   </button>
                 </dd>
-                <dt>Aprroval</dt>
+                <dt>Approval</dt>
                 <dd>
                   This purchase requires approval by the organisation prior to
                   the purchase proceeding.
