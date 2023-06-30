@@ -119,7 +119,7 @@ const CreateAccountOwnerForms = forwardRef<
           >
             <Input />
           </Form.Item>
-          <Form.Item label="Date of birth" extra="Example · 31/04/1970">
+          <Form.Item label="Date of birth" extra="Example · 30/04/1970">
             <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only !w-full">
               <Form.Item
                 name="dobDD"
