@@ -44,6 +44,10 @@
 }
 
 .sub-heading-sm {
+  @apply text-neutral-500 text-sm font-normal;
+}
+
+.sub-heading-xs {
   @apply text-neutral-500 text-xs sm:text-sm font-normal;
 }
 

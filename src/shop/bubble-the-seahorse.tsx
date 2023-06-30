@@ -92,7 +92,7 @@ function BubbleTheSeahorse(): ReactElement {
                 >
                   <Radio.Button value="a" className="radio-button-xl">
                     <div className="heading">Session · £16.00</div>
-                    <div className="mt-0.5 sub-heading-sm">
+                    <div className="mt-0.5 sub-heading-xs">
                       Every Tuesday
                       <span className="hidden lg:inline">
                         {" "}
@@ -102,7 +102,7 @@ function BubbleTheSeahorse(): ReactElement {
                   </Radio.Button>
                   <Radio.Button value="b" className="radio-button-xl">
                     <div className="heading">Trial · £5.00</div>
-                    <div className="mt-0.5 sub-heading-sm">
+                    <div className="mt-0.5 sub-heading-xs">
                       Single session
                       <span className="hidden lg:inline"> on a Tuesday</span>
                     </div>
