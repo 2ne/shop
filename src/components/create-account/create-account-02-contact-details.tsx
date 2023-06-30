@@ -1,6 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Button, Form, Input, Modal, Space } from "antd";
 import FormHeader from "../form-header";
+import AddressModal, { AddressValues } from "../address-modal";
+import classNames from "classnames";
 
 export interface CreateAccountContactDetailsFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -24,8 +26,13 @@ const CreateAccountContactDetailsForms = forwardRef<
     }: CreateAccountContactDetailsFormsProps,
     ref: React.Ref<CreateAccountContactDetailsFormsHandles>
   ) => {
-    const [additionalInfoForm] = Form.useForm();
+    const [contactDetailsForm] = Form.useForm();
     const [formModal, setFormModal] = useState(false);
+
+    const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+    const [modalAddressValues, setModalAddressValues] =
+      useState<AddressValues>();
+    const [isValidAddress, setIsValidAddress] = useState(true);
 
     const showFormModal = () => {
       setFormModal(true);
@@ -40,9 +47,9 @@ const CreateAccountContactDetailsForms = forwardRef<
       submitForm: async () => {
         try {
           // Validate all form fields
-          await additionalInfoForm.validateFields();
+          await contactDetailsForm.validateFields();
           // If validation is successful, submit the form
-          additionalInfoForm.submit();
+          contactDetailsForm.submit();
           // Notify the parent component that the form is valid
           onFormValidation(true);
           // Return true to indicate that the form submission was successful
@@ -65,6 +72,12 @@ const CreateAccountContactDetailsForms = forwardRef<
 
     const onDetailsFinishFailed = (errorInfo: any) => {
       console.log(errorInfo);
+    };
+
+    const onSave = (values: any) => {
+      contactDetailsForm.setFieldsValue({ ...values });
+      setModalAddressValues(values);
+      setIsAddressModalOpen(false);
     };
 
     return (
@@ -95,69 +108,93 @@ const CreateAccountContactDetailsForms = forwardRef<
         />
         <Form
           layout="vertical"
-          form={additionalInfoForm}
-          name="additionalInfoForm"
+          form={contactDetailsForm}
+          name="contactDetailsForm"
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
           className="text-left hide-validation-asterix"
         >
           <Form.Item
-            label="Email"
-            name="email"
+            label="Mobile number"
+            name="mobileNumber"
             rules={[
               {
-                type: "email",
-                message: "Email address is not valid",
-              },
-              {
                 required: true,
-                message: "Please enter your email address",
+                message: "Please enter a mobile number",
               },
             ]}
           >
-            <Input type="email" />
+            <Input type="tel" />
           </Form.Item>
-          <Form.Item
-            label="First name"
-            name="firstName"
-            rules={[{ required: true, message: "Please enter a name" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Last name"
-            name="lastName"
-            rules={[{ required: true, message: "Please enter a name" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item label="Date of birth" extra="Example · 31/04/1970">
-            <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only">
-              <Form.Item
-                name="dobDD"
-                label="Day"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0"
-              >
-                <Input inputMode="numeric" maxLength={2} placeholder="DD" />
-              </Form.Item>
-              <Form.Item
-                name="dobMM"
-                label="Month"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0"
-              >
-                <Input inputMode="numeric" maxLength={2} placeholder="MM" />
-              </Form.Item>
-              <Form.Item
-                name="dobYYYY"
-                label="Year"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0"
-              >
-                <Input inputMode="numeric" maxLength={4} placeholder="YYYY" />
-              </Form.Item>
-            </Space.Compact>
+          <Form.Item label="Address">
+            <Form.Item
+              name="addressLineOne"
+              rules={[{ required: true, message: "" }]}
+              hidden
+            >
+              <Input readOnly />
+            </Form.Item>
+            <Form.Item
+              name="addressLineTwo"
+              rules={[{ required: false }]}
+              hidden
+            >
+              <Input readOnly />
+            </Form.Item>
+            <Form.Item
+              name="townCity"
+              rules={[{ required: true, message: "" }]}
+              hidden
+            >
+              <Input readOnly />
+            </Form.Item>
+            <Form.Item
+              name="postcode"
+              rules={[{ required: true, message: "" }]}
+              hidden
+            >
+              <Input readOnly />
+            </Form.Item>
+            <Button
+              block={true}
+              onClick={() => {
+                setIsAddressModalOpen(true);
+              }}
+              className={classNames({
+                "border border-solid": true,
+                "border-primary-500 text-primary-600 hover:text-primary-500 hover:underline":
+                  !modalAddressValues && isValidAddress,
+                "border-danger-500 text-danger-500 hover:text-danger-400 hover:underline":
+                  !modalAddressValues && !isValidAddress,
+                "border-neutral-300 justify-start hover:bg-white hover:border-primary-500":
+                  modalAddressValues && isValidAddress,
+              })}
+            >
+              {!modalAddressValues ? (
+                "Add address"
+              ) : (
+                <div className="-ml-1 truncate">
+                  <span>{modalAddressValues.addressLineOne}, </span>
+                  {modalAddressValues.addressLineTwo && (
+                    <span>{modalAddressValues.addressLineTwo}, </span>
+                  )}
+                  <span>{modalAddressValues.townCity}, </span>
+                  <span>{modalAddressValues.postcode}</span>
+                </div>
+              )}
+            </Button>
+            {!modalAddressValues && !isValidAddress && (
+              <div className="ant-form-item-explain-error">
+                Please add an address
+              </div>
+            )}
+            <AddressModal
+              openModal={isAddressModalOpen}
+              onModalSave={onSave}
+              onModalCancel={() => {
+                setIsAddressModalOpen(false);
+              }}
+            />
           </Form.Item>
         </Form>
         <Modal

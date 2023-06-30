@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { Button, Form, Input, Modal, Space } from "antd";
+import { Form, Input, Space } from "antd";
 import FormHeader from "../form-header";
 
 export interface CreateAccountOwnerFormsHandles {
@@ -20,25 +20,16 @@ const CreateAccountOwnerForms = forwardRef<
     { onFormValidation, title, subtitle }: CreateAccountOwnerFormsProps,
     ref: React.Ref<CreateAccountOwnerFormsHandles>
   ) => {
-    const [additionalInfoForm] = Form.useForm();
-    const [formModal, setFormModal] = useState(false);
-
-    const showFormModal = () => {
-      setFormModal(true);
-    };
-
-    const formModalCancel = () => {
-      setFormModal(false);
-    };
+    const [accountOwnerForm] = Form.useForm();
 
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
         try {
           // Validate all form fields
-          await additionalInfoForm.validateFields();
+          await accountOwnerForm.validateFields();
           // If validation is successful, submit the form
-          additionalInfoForm.submit();
+          accountOwnerForm.submit();
           // Notify the parent component that the form is valid
           onFormValidation(true);
           // Return true to indicate that the form submission was successful
@@ -92,8 +83,8 @@ const CreateAccountOwnerForms = forwardRef<
         />
         <Form
           layout="vertical"
-          form={additionalInfoForm}
-          name="additionalInfoForm"
+          form={accountOwnerForm}
+          name="accountOwnerForm"
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
           className="text-left hide-validation-asterix"
@@ -157,14 +148,6 @@ const CreateAccountOwnerForms = forwardRef<
             </Space.Compact>
           </Form.Item>
         </Form>
-        <Modal
-          title="Terms and Conditions"
-          open={formModal}
-          onCancel={formModalCancel}
-          footer={null}
-        >
-          SHOW FORM HERE
-        </Modal>
       </>
     );
   }

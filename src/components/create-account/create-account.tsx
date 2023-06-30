@@ -142,7 +142,7 @@ export const CreateAccountForm: React.FC = () => {
 
   return (
     <>
-      <Header hideButtons={true} />
+      <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="lg:divide-x lg:grid lg:grid-cols-6 xl:grid-cols-7 max-lg:pb-[11rem]">
         <aside className="lg:pr-5 md:col-span-2 lg:col-span-2">

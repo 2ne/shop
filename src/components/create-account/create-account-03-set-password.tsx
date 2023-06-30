@@ -1,6 +1,7 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { Button, Form, Input, Modal, Space } from "antd";
+import React, { forwardRef, useImperativeHandle } from "react";
+import { Form, Input } from "antd";
 import FormHeader from "../form-header";
+import { Link } from "react-router-dom";
 
 export interface CreateAccountPasswordFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -20,25 +21,16 @@ const CreateAccountPasswordForms = forwardRef<
     { onFormValidation, title, subtitle }: CreateAccountPasswordFormsProps,
     ref: React.Ref<CreateAccountPasswordFormsHandles>
   ) => {
-    const [additionalInfoForm] = Form.useForm();
-    const [formModal, setFormModal] = useState(false);
-
-    const showFormModal = () => {
-      setFormModal(true);
-    };
-
-    const formModalCancel = () => {
-      setFormModal(false);
-    };
+    const [setPasswordForm] = Form.useForm();
 
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
         try {
           // Validate all form fields
-          await additionalInfoForm.validateFields();
+          await setPasswordForm.validateFields();
           // If validation is successful, submit the form
-          additionalInfoForm.submit();
+          setPasswordForm.submit();
           // Notify the parent component that the form is valid
           onFormValidation(true);
           // Return true to indicate that the form submission was successful
@@ -82,79 +74,26 @@ const CreateAccountPasswordForms = forwardRef<
         />
         <Form
           layout="vertical"
-          form={additionalInfoForm}
-          name="additionalInfoForm"
+          form={setPasswordForm}
+          name="setPasswordForm"
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
           className="text-left hide-validation-asterix"
         >
           <Form.Item
-            label="Email"
-            name="email"
-            rules={[
-              {
-                type: "email",
-                message: "Email address is not valid",
-              },
-              {
-                required: true,
-                message: "Please enter your email address",
-              },
-            ]}
+            label="Set password"
+            name="setPassword"
+            rules={[{ required: true, message: "Please enter a password" }]}
           >
-            <Input type="email" />
+            <Input.Password />
           </Form.Item>
-          <Form.Item
-            label="First name"
-            name="firstName"
-            rules={[{ required: true, message: "Please enter a name" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Last name"
-            name="lastName"
-            rules={[{ required: true, message: "Please enter a name" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item label="Date of birth" extra="Example · 31/04/1970">
-            <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only">
-              <Form.Item
-                name="dobDD"
-                label="Day"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0"
-              >
-                <Input inputMode="numeric" maxLength={2} placeholder="DD" />
-              </Form.Item>
-              <Form.Item
-                name="dobMM"
-                label="Month"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0"
-              >
-                <Input inputMode="numeric" maxLength={2} placeholder="MM" />
-              </Form.Item>
-              <Form.Item
-                name="dobYYYY"
-                label="Year"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0"
-              >
-                <Input inputMode="numeric" maxLength={4} placeholder="YYYY" />
-              </Form.Item>
-            </Space.Compact>
-          </Form.Item>
+          <div className="sub-heading-sm">
+            By clicking Create account you confirm that you agree to our{" "}
+            <Link to="#" className="link">
+              Terms & Conditions.
+            </Link>
+          </div>
         </Form>
-        <Modal
-          title="Terms and Conditions"
-          open={formModal}
-          onCancel={formModalCancel}
-          footer={null}
-        >
-          SHOW FORM HERE
-        </Modal>
       </>
     );
   }
