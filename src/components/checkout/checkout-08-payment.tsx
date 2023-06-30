@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Button, Form, Input, Modal } from "antd";
-import FormHeader from "./checkout-header";
+import FormHeader from "../form-header";
 import { orgLogo, orgName } from "../../org";
 import Balancer from "react-wrap-balancer";
 import { CheckOutlined } from "@ant-design/icons";

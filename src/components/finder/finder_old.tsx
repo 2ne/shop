@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DateOfBirthInput from "../dob-input";
 import { Button, Form, Input, Select } from "antd";
-import FormHeader from "../checkout/checkout-header";
+import FormHeader from "../form-header";
 const { Option } = Select;
 
 interface Participant {

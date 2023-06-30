@@ -2,14 +2,14 @@ import { useEffect, useRef, useState, SetStateAction } from "react";
 import Breadcrumb from "../breadcrumb";
 import CheckoutSelectParticipants, {
   CheckoutSelectParticipantsHandles,
-} from "../checkout/checkout-01-select-participants";
+} from "../create-account/checkout-01-select-participants";
 import CheckoutAdditionalProducts, {
   CheckoutAdditionalProductsHandles,
-} from "../checkout/checkout-02-additional-products";
+} from "../create-account/checkout-02-additional-products";
 import CheckoutMedicalInfo, {
   CheckoutMedicalInfoHandles,
-} from "../checkout/checkout-03-medical-information";
-import { SubmitButton, SubmitButtonType } from "../submit-button";
+} from "../create-account/checkout-03-medical-information";
+import { FormButton, FormButtonType } from "../form-button";
 import Header from "../header";
 import Main from "../main";
 import Steps from "../steps";
@@ -171,7 +171,7 @@ export const CreateAccountForm: React.FC = () => {
             </div>
             <div className="hidden lg:block">
               <div className="mb-3 heading">
-                Create a JoinIn Account
+                Create a JoinIn account
                 <span className="text-neutral-500">
                   <span className="mx-1.5">·</span>
                   <span>
@@ -207,11 +207,9 @@ export const CreateAccountForm: React.FC = () => {
               </div>
             ))}
             <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
-              <SubmitButton
+              <FormButton
                 onClick={submitCurrentForm}
-                buttonType={
-                  stepsData[currentStep].buttonType as SubmitButtonType
-                }
+                buttonType={stepsData[currentStep].buttonType as FormButtonType}
               />
             </div>
           </div>
@@ -219,9 +217,9 @@ export const CreateAccountForm: React.FC = () => {
       </Main>
       <footer className="fixed bottom-0 left-0 right-0 z-40 py-4 rounded-t-md lg:hidden shadow-t bg-white/95 ring-black/10">
         <Wrapper>
-          <SubmitButton
+          <FormButton
             onClick={submitCurrentForm}
-            buttonType={stepsData[currentStep].buttonType as SubmitButtonType}
+            buttonType={stepsData[currentStep].buttonType as FormButtonType}
           />
         </Wrapper>
       </footer>

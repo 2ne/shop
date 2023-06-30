@@ -1,14 +1,14 @@
 import { Button } from "antd";
 import React from "react";
 
-export type SubmitButtonType = "continue" | "pay" | "confirm" | "createAccount";
+export type FormButtonType = "continue" | "pay" | "confirm" | "createAccount";
 
-interface SubmitButtonProps {
+interface FormButtonProps {
   onClick?: () => void;
-  buttonType: SubmitButtonType;
+  buttonType: FormButtonType;
 }
 
-export const SubmitButton: React.FC<SubmitButtonProps> = ({
+export const FormButton: React.FC<FormButtonProps> = ({
   onClick,
   buttonType = "continue",
 }) => {
@@ -62,4 +62,4 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
   );
 };
 
-export default SubmitButton;
+export default FormButton;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DateOfBirthInput from "../dob-input";
 import { Button, Form, Radio } from "antd";
-import FormHeader from "../checkout/checkout-header";
+import FormHeader from "../form-header";
 import { SearchOutlined } from "@ant-design/icons";
 import { RadioChangeEvent } from "antd/lib/radio";
 

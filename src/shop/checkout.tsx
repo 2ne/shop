@@ -25,7 +25,7 @@ import CheckoutUploadFiles, {
 import CheckoutPayment, {
   CheckoutPaymentHandles,
 } from "../components/checkout/checkout-08-payment";
-import { SubmitButton, SubmitButtonType } from "../components/submit-button";
+import { FormButton, FormButtonType } from "../components/form-button";
 import CheckoutTimer from "../components/checkout/checkout-timer";
 import Header from "../components/header";
 import Main from "../components/main";
@@ -259,11 +259,9 @@ export const Checkout: React.FC = () => {
               </div>
             ))}
             <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
-              <SubmitButton
+              <FormButton
                 onClick={submitCurrentForm}
-                buttonType={
-                  stepsData[currentStep].buttonType as SubmitButtonType
-                }
+                buttonType={stepsData[currentStep].buttonType as FormButtonType}
               />
             </div>
           </div>
@@ -305,9 +303,9 @@ export const Checkout: React.FC = () => {
           </Button>
           <div className="space-y-4">
             <BasketTotals />
-            <SubmitButton
+            <FormButton
               onClick={submitCurrentForm}
-              buttonType={stepsData[currentStep].buttonType as SubmitButtonType}
+              buttonType={stepsData[currentStep].buttonType as FormButtonType}
             />
           </div>
         </Wrapper>

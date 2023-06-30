@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import { Form, Modal, Upload, UploadProps, message } from "antd";
-import FormHeader from "./checkout-header";
+import FormHeader from "../form-header";
 import { useBasketContext } from "../basket/basket-context";
 import { Participant } from "../../types/types";
 

@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Form, Modal, Switch } from "antd";
-import FormHeader from "./checkout-header";
+import FormHeader from "../form-header";
 import { useBasketContext } from "../basket/basket-context";
 import { ConsentForm, Participant, consentFormFields } from "../../types/types";
 

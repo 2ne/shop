@@ -8,9 +8,9 @@ import { Button, Form, Radio, Tooltip } from "antd";
 import FormHeader from "../form-header";
 import AddParticipantModal, {
   AddParticipantValues,
-} from "./checkout-01-select-participants-add-modal";
+} from "../checkout/checkout-01-select-participants-add-modal";
 import { useBasketContext } from "../basket/basket-context";
-import { calculateAge } from "./checkout-utils";
+import { calculateAge } from "../checkout/checkout-utils";
 import { BasketItem, Participant } from "../../types/types";
 import { EditOutlined } from "@ant-design/icons";
 
@@ -259,13 +259,13 @@ const CheckoutSelectParticipants = forwardRef<
                       title={`Age: ${calculateAge(participant.dob)}`}
                       placement="left"
                     >
-                      <div className="group flex items-center">
+                      <div className="flex items-center group">
                         <Radio
                           value={participant.id}
                           disabled={!participant.meetsAgeCriteria}
                           className="!flex items-center [&>span:last-child]:block"
                         >
-                          <div className="py-1 flex items-center">
+                          <div className="flex items-center py-1">
                             <div>
                               {participant.firstName} {participant.lastName}
                               {!participant.meetsAgeCriteria && (

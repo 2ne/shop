@@ -5,7 +5,7 @@ import React, {
   useState,
 } from "react";
 import { Collapse, Form, Input, Modal } from "antd";
-import FormHeader from "./checkout-header";
+import FormHeader from "../form-header";
 import { useBasketContext } from "../basket/basket-context";
 import {
   Address,
