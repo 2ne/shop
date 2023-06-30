@@ -116,7 +116,7 @@ const CreateAccountContactDetailsForms = forwardRef<
         >
           <Form.Item
             label="Mobile number"
-            name="mobileNumber"
+            name="tel"
             rules={[
               {
                 required: true,

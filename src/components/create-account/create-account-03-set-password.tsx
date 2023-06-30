@@ -82,7 +82,7 @@ const CreateAccountPasswordForms = forwardRef<
         >
           <Form.Item
             label="Set password"
-            name="setPassword"
+            name="new-password"
             rules={[{ required: true, message: "Please enter a password" }]}
           >
             <Input.Password />

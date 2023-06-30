@@ -144,7 +144,7 @@ export const CreateAccountForm: React.FC = () => {
     <>
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <Main className="lg:divide-x lg:grid lg:grid-cols-6 xl:grid-cols-7 max-lg:pb-[11rem]">
+      <Main className="pb-24 lg:divide-x lg:grid lg:grid-cols-6 xl:grid-cols-7 xl:pb-12">
         <aside className="lg:pr-5 md:col-span-2 lg:col-span-2">
           <div className="lg:sticky lg:top-4">
             <div className="flex items-center justify-between -mt-1.5 lg:hidden h-6 mb-2">

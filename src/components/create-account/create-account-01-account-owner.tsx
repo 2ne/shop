@@ -119,10 +119,14 @@ const CreateAccountOwnerForms = forwardRef<
           >
             <Input />
           </Form.Item>
-          <Form.Item label="Date of birth" extra="Example · 30/04/1970">
+          <Form.Item
+            label="Date of birth"
+            extra="Example · 30/04/1970"
+            name="bday"
+          >
             <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only !w-full">
               <Form.Item
-                name="dobDD"
+                name="bday-day"
                 label="Day"
                 rules={[{ required: true, message: "" }]}
                 className="!mb-0 !w-full"
@@ -130,7 +134,7 @@ const CreateAccountOwnerForms = forwardRef<
                 <Input inputMode="numeric" maxLength={2} placeholder="DD" />
               </Form.Item>
               <Form.Item
-                name="dobMM"
+                name="bday-month"
                 label="Month"
                 rules={[{ required: true, message: "" }]}
                 className="!mb-0 !w-full"
@@ -138,7 +142,7 @@ const CreateAccountOwnerForms = forwardRef<
                 <Input inputMode="numeric" maxLength={2} placeholder="MM" />
               </Form.Item>
               <Form.Item
-                name="dobYYYY"
+                name="bday-year"
                 label="Year"
                 rules={[{ required: true, message: "" }]}
                 className="!mb-0 !w-full"
