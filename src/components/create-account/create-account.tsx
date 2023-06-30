@@ -19,7 +19,9 @@ export const CreateAccountForm: React.FC = () => {
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
   const checkoutMedicalInfoRef = useRef<CheckoutMedicalInfoHandles>(null);
-  const breadcrumbItems = [{ label: "Create account", link: "/CreateAccount" }];
+  const breadcrumbItems = [
+    { label: "Create a JoinIn account", link: "/CreateAccount" },
+  ];
 
   const stepsData = [
     {
