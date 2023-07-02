@@ -7,7 +7,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import { orgLogo, orgName } from "../org";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface SignInProps {
   isOpen: boolean;
@@ -86,6 +86,8 @@ const SignInModal: React.FC<SignInProps> = ({
     setTimeout(() => emailRef.current?.focus(), 100);
   };
 
+  const navigate = useNavigate();
+
   return (
     <Modal width={340} open={isOpen} onCancel={onClose} footer={null}>
       <div className="grid gap-6 px-1 pb-2">
@@ -133,9 +135,18 @@ const SignInModal: React.FC<SignInProps> = ({
                 !userExists && (
                   <div className="mt-1 mb-4 text-sm">
                     No JoinIn account found. Try a different email or{" "}
-                    <Link to="/CreateAccount" className="link">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigate("/CreateAccount", {
+                          state: { email: email },
+                        });
+                        onClose();
+                      }}
+                      className="link"
+                    >
                       Create an account.
-                    </Link>
+                    </button>
                   </div>
                 )
               }

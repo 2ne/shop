@@ -1,6 +1,7 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { Form, Input, Space } from "antd";
 import FormHeader from "../form-header";
+import { useLocation } from "react-router-dom";
 
 export interface CreateAccountOwnerFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -21,6 +22,8 @@ const CreateAccountOwnerForms = forwardRef<
     ref: React.Ref<CreateAccountOwnerFormsHandles>
   ) => {
     const [accountOwnerForm] = Form.useForm();
+    const location = useLocation();
+    const email = location.state?.email;
 
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
@@ -92,6 +95,7 @@ const CreateAccountOwnerForms = forwardRef<
           <Form.Item
             label="Email"
             name="email"
+            initialValue={email}
             rules={[
               {
                 type: "email",
