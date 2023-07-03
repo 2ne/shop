@@ -1,7 +1,8 @@
-import React, { forwardRef, useImperativeHandle } from "react";
-import { Form, Input, Space } from "antd";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
+import { Empty, Form, Input, Space } from "antd";
 import FormHeader from "../form-header";
 import { useLocation } from "react-router-dom";
+import DateOfBirthInput from "../dob-input";
 
 export interface CreateAccountOwnerFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -24,6 +25,27 @@ const CreateAccountOwnerForms = forwardRef<
     const [accountOwnerForm] = Form.useForm();
     const location = useLocation();
     const email = location.state?.email;
+    const [dateOfBirth, setDateOfBirth] = useState<{
+      day: string;
+      month: string;
+      year: string;
+      age: number | null;
+    }>({
+      day: "",
+      month: "",
+      year: "",
+      age: null,
+    });
+
+    const handleDateChange = (
+      day: string,
+      month: string,
+      year: string,
+      age: number | null
+    ) => {
+      setDateOfBirth({ day, month, year, age });
+      console.log("Date of Birth changed:", { day, month, year, age });
+    };
 
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
@@ -114,43 +136,16 @@ const CreateAccountOwnerForms = forwardRef<
             name="firstName"
             rules={[{ required: true, message: "Please enter a name" }]}
           >
-            <Input />
+            <Input autoComplete="given-name" />
           </Form.Item>
           <Form.Item
             label="Last name"
             name="lastName"
             rules={[{ required: true, message: "Please enter a name" }]}
           >
-            <Input />
+            <Input autoComplete="family-name" />
           </Form.Item>
-          <Form.Item label="Date of birth" extra="Example · 30/04/1970">
-            <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only !w-full">
-              <Form.Item
-                name="bday-day"
-                label="Day"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0 !w-full"
-              >
-                <Input inputMode="numeric" maxLength={2} placeholder="DD" />
-              </Form.Item>
-              <Form.Item
-                name="bday-month"
-                label="Month"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0 !w-full"
-              >
-                <Input inputMode="numeric" maxLength={2} placeholder="MM" />
-              </Form.Item>
-              <Form.Item
-                name="bday-year"
-                label="Year"
-                rules={[{ required: true, message: "" }]}
-                className="!mb-0 !w-full"
-              >
-                <Input inputMode="numeric" maxLength={4} placeholder="YYYY" />
-              </Form.Item>
-            </Space.Compact>
-          </Form.Item>
+          <DateOfBirthInput onDateChange={handleDateChange} />
         </Form>
       </>
     );

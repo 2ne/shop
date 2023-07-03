@@ -92,7 +92,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
           )}
         </>
       }
-      extra="Example · 31/04/1970"
+      extra="Example · 30/04/1970"
     >
       <div className="grid grid-cols-3">
         <Input

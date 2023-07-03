@@ -9,6 +9,9 @@ import CreateAccountContactDetailsForms, {
 import CreateAccountPasswordForms, {
   CreateAccountPasswordFormsHandles,
 } from "./create-account-03-set-password";
+import EmailVerificationForms, {
+  EmailVerificationFormsHandles,
+} from "./create-account-04-email-verification";
 import { FormButton, FormButtonType } from "../form-button";
 import Header from "../header";
 import Main from "../main";
@@ -20,6 +23,7 @@ export const CreateAccountForm: React.FC = () => {
   const contactDetailsRef =
     useRef<CreateAccountContactDetailsFormsHandles>(null);
   const setPasswordRef = useRef<CreateAccountPasswordFormsHandles>(null);
+  const emailVerificationRef = useRef<EmailVerificationFormsHandles>(null);
   const breadcrumbItems = [
     { label: "Create a JoinIn account", link: "/CreateAccount" },
   ];
@@ -48,9 +52,17 @@ export const CreateAccountForm: React.FC = () => {
       subtitle: "Secure your account and protect your personal information.",
       buttonType: "createAccount",
     },
+    {
+      Component: EmailVerificationForms,
+      ref: emailVerificationRef,
+      title: "Email verification",
+      subtitle:
+        "Account created succesfully. Please check your email. We sent a verification link to jtoone@loveadmin.com",
+      buttonType: "verifyAccount",
+    },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2]); // Define which steps are required (stepData[index])
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2, 3]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
 

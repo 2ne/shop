@@ -1,7 +1,12 @@
 import { Button } from "antd";
 import React from "react";
 
-export type FormButtonType = "continue" | "pay" | "confirm" | "createAccount";
+export type FormButtonType =
+  | "continue"
+  | "pay"
+  | "confirm"
+  | "createAccount"
+  | "verifyAccount";
 
 interface FormButtonProps {
   onClick?: () => void;
@@ -27,6 +32,9 @@ export const FormButton: React.FC<FormButtonProps> = ({
     case "createAccount":
       text = "Create account";
       buttonClass = "!bg-emerald-500 hover:!bg-emerald-400";
+      break;
+    case "verifyAccount":
+      text = "Verify Account";
       break;
     default:
       text = "Continue";
