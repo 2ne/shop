@@ -145,7 +145,7 @@ const SignInModal: React.FC<SignInProps> = ({
                       }}
                       className="link"
                     >
-                      Create an account.
+                      create a JoinIn account.
                     </button>
                   </div>
                 )
