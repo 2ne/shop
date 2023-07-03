@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({
 
   const handleSuccessfulLogin = () => {
     setIsLoggedIn(true);
-    message.success("Successfully signed in. Welcome, James!");
+    message.success("Welcome, James!");
   };
 
   const handleLoginDrawer = () => {

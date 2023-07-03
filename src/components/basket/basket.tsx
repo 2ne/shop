@@ -1,4 +1,4 @@
-import { Button, Select, Tooltip } from "antd";
+import { Alert, Button, Modal, Select, Tooltip } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBasketContext } from "./basket-context";
@@ -14,6 +14,7 @@ export const BasketTotals: React.FC = () => (
 );
 
 const Basket: React.FC = () => {
+  const [itemError, setItemError] = useState(false);
   const { isCheckout } = useCheckoutContext();
   const { closeBasket, basketItems, removeItem } = useBasketContext();
   const navigate = useNavigate();
@@ -26,6 +27,13 @@ const Basket: React.FC = () => {
     closeBasket();
     navigate("/Checkout");
   };
+
+  /* CHECKOUT ERROR  Modal.error({
+    title: "Checkout error",
+    content:
+      "Sorry cannot complete checkout, please review the items in your basket.",
+    okText: "Return to basket",
+  }); */
 
   return (
     <>
@@ -91,14 +99,28 @@ const Basket: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="object-cover w-16 h-16 rounded"
+                    className={`object-cover w-16 h-16 rounded ${
+                      itemError ? " grayscale " : ""
+                    }`}
                   />
                 )}
                 <div className="grid items-center flex-1 min-w-0 text-sm">
                   <div>
-                    <div className="font-medium">{item.title}</div>
+                    <div
+                      className={`font-medium ${
+                        itemError ? " text-rose-600 " : ""
+                      }`}
+                    >
+                      {item.title}
+                    </div>
                     {item.subTitle && (
-                      <div className="text-neutral-500">{item.subTitle}</div>
+                      <div
+                        className={`text-neutral-500 ${
+                          itemError ? " text-rose-500 " : ""
+                        }`}
+                      >
+                        {item.subTitle}
+                      </div>
                     )}
                   </div>
                   {!isCheckout && (
@@ -178,52 +200,57 @@ const Basket: React.FC = () => {
                   )}
                 </div>
               </div>
-              <dl className="grid grid-cols-[4rem,1fr] [&>dt]:truncate gap-y-2.5 gap-x-3.5 text-sm tracking-normal">
-                {item.dates && (
-                  <>
-                    <dt>Dates</dt>
-                    <dd>
-                      {item.dates} ·{" "}
-                      <button type="button" className="link">
-                        View
-                      </button>
-                    </dd>
-                  </>
-                )}
-                {item.billing && (
-                  <>
-                    <dt>Billing</dt>
-                    <dd>{item.billing}</dd>
-                  </>
-                )}
-                {item.price && (
-                  <>
-                    <dt>Price</dt>
-                    <dd>
-                      <span className="tabular-nums">{item.price}</span>
-                      <span className="text-neutral-500"> · per session</span>
-                    </dd>
-                  </>
-                )}
-                {item.cost && (
-                  <>
-                    <dt>Cost</dt>
-                    <dd>
-                      <div>
-                        <span className="tabular-nums">{item.cost}</span>
-                        <span className="text-neutral-500"> · per month</span>
-                      </div>
-                      <div className="mt-1 text-xs text-neutral-500">
-                        Cost depends on 4 or 5 sessions in a month.
-                        <br className="lg:contents" /> Example based on 4
-                        sessions.
-                      </div>
-                    </dd>
-                  </>
-                )}
-                <dt>Coach</dt>
-                <dd>Michael Phelps</dd>
-              </dl>
+              {itemError && (
+                <Alert message="Class is full" type="error" showIcon />
+              )}
+              {!itemError && (
+                <dl className="grid grid-cols-[4rem,1fr] [&>dt]:truncate gap-y-2.5 gap-x-3.5 text-sm tracking-normal">
+                  {item.dates && (
+                    <>
+                      <dt>Dates</dt>
+                      <dd>
+                        {item.dates} ·{" "}
+                        <button type="button" className="link">
+                          View
+                        </button>
+                      </dd>
+                    </>
+                  )}
+                  {item.billing && (
+                    <>
+                      <dt>Billing</dt>
+                      <dd>{item.billing}</dd>
+                    </>
+                  )}
+                  {item.price && (
+                    <>
+                      <dt>Price</dt>
+                      <dd>
+                        <span className="tabular-nums">{item.price}</span>
+                        <span className="text-neutral-500"> · per session</span>
+                      </dd>
+                    </>
+                  )}
+                  {item.cost && (
+                    <>
+                      <dt>Cost</dt>
+                      <dd>
+                        <div>
+                          <span className="tabular-nums">{item.cost}</span>
+                          <span className="text-neutral-500"> · per month</span>
+                        </div>
+                        <div className="mt-1 text-xs text-neutral-500">
+                          Cost depends on 4 or 5 sessions in a month.
+                          <br className="lg:contents" /> Example based on 4
+                          sessions.
+                        </div>
+                      </dd>
+                    </>
+                  )}
+                  <dt>Coach</dt>
+                  <dd>Michael Phelps</dd>
+                </dl>
+              )}
             </div>
           ))
         )}

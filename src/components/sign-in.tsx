@@ -95,7 +95,7 @@ const SignInModal: React.FC<SignInProps> = ({
 
   const handleEmailReset = () => {
     setUserExists(false);
-    signInForm.setFieldsValue({ email: "" });
+    signInForm.resetFields();
     setTimeout(() => emailRef.current?.focus(), 100);
   };
 
@@ -213,7 +213,6 @@ const SignInModal: React.FC<SignInProps> = ({
                   placeholder="Password"
                   className="[&>input.ant-input]:!shadow-[0_0_0_20px_white_inset] [&>input.ant-input:focus]:!shadow-[0_0_0_20px_white_inset]"
                   onChange={(e) => setPassword(e.target.value)}
-                  name="current-password"
                 />
               </Form.Item>
             )}
