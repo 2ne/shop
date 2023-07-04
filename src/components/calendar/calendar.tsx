@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Checkbox, Collapse, Select } from "antd";
 import { orgEvents, Event } from "../../org";
 import CalendarEvent from "./calendar-event";
-import { ArrowUpOutlined, DownOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 const { Panel } = Collapse;
 
@@ -166,6 +166,7 @@ const Calendar: React.FC = () => {
               img: event.img,
               hideImage: event.hideImage,
               title: event.title,
+              description: event.description,
               link: event.link,
               address: event.address,
               startTime: event.startTime,
@@ -273,6 +274,7 @@ const Calendar: React.FC = () => {
                       img: event.img,
                       hideImage: event.hideImage,
                       title: event.title,
+                      description: event.description,
                       link: event.link,
                       address: event.address,
                       startTime: event.startTime,

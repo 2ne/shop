@@ -86,9 +86,14 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
       <div
         className={`py-1 px-2 space-y-1 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
       >
-        <h3 className={`mb-1 heading-sm truncate ${textColourClass}`}>
-          {event.title}
-        </h3>
+        <div className="mb-1.5">
+          <div className={`heading-sm truncate ${textColourClass}`}>
+            {event.title}
+          </div>
+          <div className={`truncate text-sm opacity-80 ${textColourClass}`}>
+            {event.description}
+          </div>
+        </div>
         <div className="flex items-center gap-1">
           <svg
             width="24"

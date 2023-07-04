@@ -86,6 +86,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8b0f7a97-c07e-4fd3-ae37-f2fcc6ebff18",
       title: "Smiley the Turtle",
+      description: "3-4 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "09:30",
@@ -96,6 +97,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie The Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "10:00",
@@ -106,6 +108,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie The Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "10:30",
@@ -116,6 +119,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
       title: "Snappy the Crab",
+      description: "18-24 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:00",
@@ -126,6 +130,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle The Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "12:00",
@@ -136,6 +141,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
       title: "Snappy the Crab",
+      description: "18-24 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "12:45",
@@ -148,6 +154,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
       title: "Bubble the Seahorse",
+      description: "12-18 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:30",
@@ -158,6 +165,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
       title: "Danny the Dolphin (SEND)",
+      description: "4-5 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "17:30",
@@ -168,6 +176,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
       title: "Danny the Dolphin (SEND)",
+      description: "4-5 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "18:00",
@@ -180,6 +189,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle The Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "09:00",
@@ -190,6 +200,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie The Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "10:00",
@@ -200,6 +211,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle The Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:00",
@@ -210,6 +222,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
       title: "Bubble the Seahorse",
+      description: "12-18 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:30",
@@ -220,6 +233,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle The Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "14:30",
@@ -230,6 +244,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
       title: "Snappy the Crab",
+      description: "18-24 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "15:00",
@@ -242,6 +257,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie The Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "10:00",
@@ -252,6 +268,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/d55349ad-454d-4cf1-be8d-0d853386c8a2",
       title: "Cutie the Clam",
+      description: "3-6 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "10:30",
@@ -262,6 +279,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
       title: "Bubble the Seahorse",
+      description: "12-18 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:00",
@@ -272,6 +290,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie the Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:30",
@@ -282,6 +301,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
       title: "Snappy the Crab",
+      description: "18-24 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "12:00",
@@ -292,6 +312,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Twinkle The Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "12:30",
@@ -302,6 +323,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
       title: "Bubble the Seahorse",
+      description: "12-18 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "13:15",
@@ -312,6 +334,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/d55349ad-454d-4cf1-be8d-0d853386c8a2",
       title: "Cutie the Clam",
+      description: "3-6 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "13:45",
@@ -322,6 +345,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie the Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "15:00",
@@ -334,6 +358,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8b0f7a97-c07e-4fd3-ae37-f2fcc6ebff18",
       title: "Smiley the Turtle",
+      description: "3-4 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "09:30",
@@ -344,6 +369,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie The Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "10:00",
@@ -354,6 +380,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
       title: "Ollie The Octopus",
+      description: "2-3 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "10:30",
@@ -364,6 +391,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
       title: "Snappy the Crab",
+      description: "18-24 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:00",
@@ -374,6 +402,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle The Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "12:00",
@@ -384,6 +413,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
       title: "Snappy the Crab",
+      description: "18-24 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "12:45",
@@ -396,6 +426,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/6b832f28-d50e-4420-81f3-244f7cb30898",
       title: "Swishy the Seal",
+      description: "4-5 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "11:30",
@@ -406,6 +437,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
       title: "Danny the Dolphin (SEND)",
+      description: "4-5 years",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "15:00",
@@ -416,6 +448,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle the Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "16:00",
@@ -428,6 +461,7 @@ export const orgEvents = {
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle The Starfish",
+      description: "6-12 months",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "09:00",
