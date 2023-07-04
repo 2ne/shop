@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Checkbox, Collapse, Select } from "antd";
+import { Button, Checkbox, Collapse, DatePicker, Select } from "antd";
 import { orgEvents, Event } from "../../org";
 import CalendarEvent from "./calendar-event";
 import {
@@ -9,6 +9,7 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
+import dayjs from "dayjs";
 const { Panel } = Collapse;
 
 type SelectedValue = string | undefined;
@@ -61,6 +62,7 @@ const Calendar: React.FC = () => {
   };
 
   let fakeDateNumberCounter = 3;
+  const monthYearFormat = "MMMM YYYY";
 
   return (
     <>
@@ -69,7 +71,18 @@ const Calendar: React.FC = () => {
           <h2 className="heading-lg">Adult and Child Lessons</h2>
         </div>
         <div className="hidden mx-auto lg:block">
-          <Button className="!px-3" icon={<CalendarOutlined />}>
+          <div className="relative cursor-pointer no-select">
+            <DatePicker
+              defaultValue={dayjs()}
+              format={monthYearFormat}
+              picker="date"
+              allowClear={false}
+            />
+          </div>
+          <Button
+            className="!px-3 absolute inset-0 z-10 !bg-white"
+            icon={<CalendarOutlined />}
+          >
             July 2023
           </Button>
         </div>
