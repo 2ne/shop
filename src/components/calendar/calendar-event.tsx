@@ -10,34 +10,34 @@ interface CalendarEventProps {
 }
 
 const colourClasses = {
-  red: "bg-red-50 shadow shadow-red-900/5 ring-opacity-5 ring-1 ring-red-800",
+  red: "bg-red-50 shadow shadow-red-900/5 ring-opacity-10 ring-1 ring-red-800",
   orange:
-    "bg-orange-50 shadow shadow-orange-900/5 ring-opacity-5 ring-1 ring-orange-800",
+    "bg-orange-50 shadow shadow-orange-900/5 ring-opacity-10 ring-1 ring-orange-800",
   amber:
-    "bg-amber-50 shadow shadow-amber-900/5 ring-opacity-5 ring-1 ring-amber-800",
+    "bg-amber-50 shadow shadow-amber-900/5 ring-opacity-10 ring-1 ring-amber-800",
   yellow:
-    "bg-yellow-50 shadow shadow-yellow-900/5 ring-opacity-5 ring-1 ring-yellow-800",
-  lime: "bg-lime-50 shadow shadow-lime-900/5 ring-opacity-5 ring-1 ring-lime-800",
+    "bg-yellow-50 shadow shadow-yellow-900/5 ring-opacity-10 ring-1 ring-yellow-800",
+  lime: "bg-lime-50 shadow shadow-lime-900/5 ring-opacity-10 ring-1 ring-lime-800",
   green:
-    "bg-green-50 shadow shadow-green-900/5 ring-opacity-5 ring-1 ring-green-800",
+    "bg-green-50 shadow shadow-green-900/5 ring-opacity-10 ring-1 ring-green-800",
   emerald:
-    "bg-emerald-50 shadow shadow-emerald-900/5 ring-opacity-5 ring-1 ring-emerald-800",
-  teal: "bg-teal-50 shadow shadow-teal-900/5 ring-opacity-5 ring-1 ring-teal-800",
-  cyan: "bg-cyan-50 shadow shadow-cyan-900/5 ring-opacity-5 ring-1 ring-cyan-800",
-  sky: "bg-sky-50 shadow shadow-sky-900/5 ring-opacity-5 ring-1 ring-sky-800",
-  blue: "bg-blue-50 shadow shadow-blue-900/5 ring-opacity-5 ring-1 ring-blue-800",
+    "bg-emerald-50 shadow shadow-emerald-900/5 ring-opacity-10 ring-1 ring-emerald-800",
+  teal: "bg-teal-50 shadow shadow-teal-900/5 ring-opacity-10 ring-1 ring-teal-800",
+  cyan: "bg-cyan-50 shadow shadow-cyan-900/5 ring-opacity-10 ring-1 ring-cyan-800",
+  sky: "bg-sky-50 shadow shadow-sky-900/5 ring-opacity-10 ring-1 ring-sky-800",
+  blue: "bg-blue-50 shadow shadow-blue-900/5 ring-opacity-10 ring-1 ring-blue-800",
   indigo:
-    "bg-indigo-50 shadow shadow-indigo-900/5 ring-opacity-5 ring-1 ring-indigo-800",
+    "bg-indigo-50 shadow shadow-indigo-900/5 ring-opacity-10 ring-1 ring-indigo-800",
   violet:
-    "bg-violet-50 shadow shadow-violet-900/5 ring-opacity-5 ring-1 ring-violet-800",
+    "bg-violet-50 shadow shadow-violet-900/5 ring-opacity-10 ring-1 ring-violet-800",
   purple:
-    "bg-purple-50 shadow shadow-purple-900/5 ring-opacity-5 ring-1 ring-purple-800",
+    "bg-purple-50 shadow shadow-purple-900/5 ring-opacity-10 ring-1 ring-purple-800",
   fuchsia:
-    "bg-fuchsia-50 shadow shadow-fuchsia-900/5 ring-opacity-5 ring-1 ring-fuchsia-800",
-  pink: "bg-pink-50 shadow shadow-pink-900/5 ring-opacity-5 ring-1 ring-pink-800",
-  rose: "bg-rose-50 shadow shadow-rose-900/5 ring-opacity-5 ring-1 ring-rose-800",
+    "bg-fuchsia-50 shadow shadow-fuchsia-900/5 ring-opacity-10 ring-1 ring-fuchsia-800",
+  pink: "bg-pink-50 shadow shadow-pink-900/5 ring-opacity-10 ring-1 ring-pink-800",
+  rose: "bg-rose-50 shadow shadow-rose-900/5 ring-opacity-10 ring-1 ring-rose-800",
   stone:
-    "bg-stone-50 shadow shadow-stone-900/5 ring-opacity-5 ring-1 ring-stone-800",
+    "bg-stone-50 shadow shadow-stone-900/5 ring-opacity-10 ring-1 ring-stone-800",
 };
 
 const textColourClasses = {
@@ -73,7 +73,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
     <Link
       key={`${activeDay}-event-${index}`}
       to={event.link}
-      className={`block px-0.5 text-sm card max-lg:grid gap-1 sm:gap-4 max-sm:grid-cols-3 max-lg:grid-cols-3 max-lg:items-center ${colourClass}`}
+      className={`@container block px-0.5 text-sm card max-lg:grid gap-1 sm:gap-4 max-sm:grid-cols-3 max-lg:grid-cols-3 max-lg:items-center ${colourClass}`}
     >
       {!event.hideImage && (
         <img
@@ -84,9 +84,9 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
         />
       )}
       <div
-        className={`py-2 p-3 space-y-0.5 max-lg:col-span-2 ${textColourClass}`}
+        className={`py-1 px-2 space-y-1 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
       >
-        <h3 className={`mb-1.5 heading-sm truncate ${textColourClass}`}>
+        <h3 className={`mb-1 heading-sm truncate ${textColourClass}`}>
           {event.title}
         </h3>
         <div className="flex items-center gap-1">
@@ -95,7 +95,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             height="24"
             fill="none"
             viewBox="0 0 24 24"
-            className="-ml-1 opacity-75 shrink-0"
+            className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
           >
             <circle
               cx="12"
@@ -110,13 +110,13 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
               d="M12 8V12L14 14"
             ></path>
           </svg>
-          <span>{event.startTime}</span>
+          <span className="">{event.startTime}</span>
           <svg
             width="24"
             height="24"
             fill="none"
             viewBox="0 0 24 24"
-            className="w-6 h-6 -mx-1.5 opacity-75"
+            className="w-5 h-5 -mx-1.5 opacity-70 shrink-0"
           >
             <path
               stroke="currentColor"
@@ -126,7 +126,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
               d="M10.75 8.75L14.25 12L10.75 15.25"
             ></path>
           </svg>
-          <span>{event.endTime}</span>
+          <span className="truncate">{event.endTime}</span>
         </div>
         <div className="flex items-center gap-1">
           <svg
@@ -134,7 +134,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             height="24"
             fill="none"
             viewBox="0 0 24 24"
-            className="-ml-1 opacity-75 shrink-0"
+            className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
           >
             <path
               stroke="currentColor"
@@ -161,7 +161,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             height="24"
             fill="none"
             viewBox="0 0 24 24"
-            className="-ml-1 opacity-75 shrink-0"
+            className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
           >
             <circle
               cx="12"

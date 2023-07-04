@@ -300,3 +300,26 @@ dt {
 .bg-grid {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
+
+.container-lg .container {
+  @apply max-w-[1460px];
+}
+
+.break-container {
+  max-width: 1440px;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.ant-collapse-calendar .ant-collapse-header {
+  padding: 10px 0 !important;
+}
+
+.ant-collapse-calendar .ant-collapse-header-text {
+  font-weight: 500;
+}
+
+.ant-collapse-calendar .ant-collapse-content-box {
+  padding: 4px 16px 16px 0 !important;
+}
