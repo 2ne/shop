@@ -302,7 +302,7 @@ dt {
 }
 
 .container-lg .container {
-  @apply max-w-[1460px];
+  @apply lg:max-w-[1460px];
 }
 
 .break-container {
