@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Checkbox, Collapse, Select } from "antd";
 import { orgEvents, Event } from "../../org";
 import CalendarEvent from "./calendar-event";
-import { DownOutlined } from "@ant-design/icons";
+import {
+  CalendarOutlined,
+  DownOutlined,
+  LeftOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 const { Panel } = Collapse;
 
@@ -58,8 +63,23 @@ const Calendar: React.FC = () => {
   return (
     <>
       <div className="mb-0.5 lg:-mt-3 lg:py-3 lg:mb-6 lg:flex lg:items-end lg:border-b lg:border-neutral-200 lg:sticky lg:top-0 lg:z-20 lg:bg-white/95 ring-2 ring-white/95">
-        <h2 className="heading-lg">Adult and Child Lessons</h2>
-        <div className="max-lg:overflow-x-auto max-lg:z-30 max-lg:bg-white/95 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:ml-auto max-lg:py-2.5 max-lg:border-t max-lg:border-black/10">
+        <div className="flex-grow w-full">
+          <h2 className="heading-lg">Adult and Child Lessons</h2>
+        </div>
+        <div className="hidden mx-auto lg:block">
+          <Button icon={<CalendarOutlined />}>July 2023</Button>
+        </div>
+        <div className="items-center justify-end flex-grow hidden w-full gap-2 lg:flex">
+          <Button
+            className="justify-center"
+            icon={<LeftOutlined className="w-3 h-3 text-neutral-600" />}
+          ></Button>
+          <Button
+            className="justify-center"
+            icon={<RightOutlined className="w-3 h-3 text-neutral-600" />}
+          ></Button>
+        </div>
+        <div className="max-lg:overflow-x-auto lg:hidden max-lg:z-30 max-lg:bg-white/95 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:ml-auto max-lg:py-2.5 max-lg:border-t max-lg:border-black/10">
           <div className="container flex lg:flex-wrap items-center gap-2 lg:gap-2.5 lg:p-0">
             <Select
               value={selectedValue}
@@ -110,51 +130,19 @@ const Calendar: React.FC = () => {
       <div className="sticky top-0 z-20 flex items-center gap-2 py-3.5 mb-2 bg-gradient-to-b from-white/95 lg:hidden">
         <Button
           onClick={previousDay}
-          shape="circle"
-          className="!rounded-md bg-white"
-        >
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="mx-auto"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              d="M13.25 8.75L9.75 12L13.25 15.25"
-            ></path>
-          </svg>
-        </Button>
+          className="justify-center !bg-white"
+          icon={<LeftOutlined className="w-3 h-3 text-neutral-600" />}
+        ></Button>
         <div className="flex-grow text-center">
-          <Button block={true} className="!bg-white">
-            {activeDay}
+          <Button className="!bg-white" block icon={<CalendarOutlined />}>
+            {activeDay} 5 July
           </Button>
         </div>
         <Button
           onClick={nextDay}
-          shape="circle"
-          className="!rounded-md bg-white"
-        >
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="mx-auto"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              d="M10.75 8.75L14.25 12L10.75 15.25"
-            ></path>
-          </svg>
-        </Button>
+          className="justify-center !bg-white"
+          icon={<RightOutlined className="w-3 h-3 text-neutral-600" />}
+        ></Button>
       </div>
       <div className="grid grid-cols-1 gap-2.5 p-px lg:hidden">
         {orgEvents[activeDay].map((event: Event, index: number) => (
@@ -188,7 +176,7 @@ const Calendar: React.FC = () => {
               expandIconPosition="end"
               expandIcon={({ isActive }) => (
                 <DownOutlined
-                  className="text-neutral-600"
+                  className="!text-neutral-500"
                   rotate={isActive ? 180 : 0}
                 />
               )}

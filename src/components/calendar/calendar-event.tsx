@@ -84,7 +84,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
         />
       )}
       <div
-        className={`py-1 px-2 space-y-1 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
+        className={`py-1 px-2 space-y-1 my-1 lg:mt-0 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
       >
         <div className="mb-1.5">
           <div className={`heading-sm truncate ${textColourClass}`}>
