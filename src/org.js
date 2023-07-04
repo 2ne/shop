@@ -91,6 +91,7 @@ export const orgEvents = {
       startTime: "09:30",
       endTime: "10:00",
       price: "£16.00",
+      colour: "emerald",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -100,6 +101,7 @@ export const orgEvents = {
       startTime: "10:00",
       endTime: "10:30",
       price: "£16.00",
+      colour: "pink",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -109,6 +111,7 @@ export const orgEvents = {
       startTime: "10:30",
       endTime: "11:00",
       price: "£16.00",
+      colour: "pink",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -118,6 +121,7 @@ export const orgEvents = {
       startTime: "11:00",
       endTime: "11:30",
       price: "£16.00",
+      colour: "red",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -127,6 +131,7 @@ export const orgEvents = {
       startTime: "12:00",
       endTime: "12:30",
       price: "£16.00",
+      colour: "blue",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -136,6 +141,7 @@ export const orgEvents = {
       startTime: "12:45",
       endTime: "13:15",
       price: "£16.00",
+      colour: "red",
     },
   ],
   Tuesday: [
@@ -147,6 +153,7 @@ export const orgEvents = {
       startTime: "11:30",
       endTime: "12:00",
       price: "£16.00",
+      colour: "yellow",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
@@ -156,6 +163,7 @@ export const orgEvents = {
       startTime: "17:30",
       endTime: "18:00",
       price: "£16.00",
+      colour: "sky",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
@@ -165,6 +173,7 @@ export const orgEvents = {
       startTime: "18:00",
       endTime: "18:30",
       price: "£16.00",
+      colour: "sky",
     },
   ],
   Wednesday: [
@@ -176,6 +185,7 @@ export const orgEvents = {
       startTime: "09:00",
       endTime: "09:30",
       price: "£16.00",
+      colour: "blue",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -185,6 +195,7 @@ export const orgEvents = {
       startTime: "10:00",
       endTime: "10:30",
       price: "£16.00",
+      colour: "pink",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -194,6 +205,7 @@ export const orgEvents = {
       startTime: "11:00",
       endTime: "11:30",
       price: "£16.00",
+      colour: "blue",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
@@ -203,15 +215,17 @@ export const orgEvents = {
       startTime: "11:30",
       endTime: "12:00",
       price: "£16.00",
+      colour: "yellow",
     },
     {
-      img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
+      img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
       title: "Twinkle The Starfish",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
       startTime: "14:30",
       endTime: "15:00",
       price: "£16.00",
+      colour: "blue",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -221,6 +235,7 @@ export const orgEvents = {
       startTime: "15:00",
       endTime: "15:30",
       price: "£16.00",
+      colour: "red",
     },
   ],
   Thursday: [
@@ -232,6 +247,7 @@ export const orgEvents = {
       startTime: "10:00",
       endTime: "10:30",
       price: "£16.00",
+      colour: "pink",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/d55349ad-454d-4cf1-be8d-0d853386c8a2",
@@ -241,6 +257,7 @@ export const orgEvents = {
       startTime: "10:30",
       endTime: "11:00",
       price: "£16.00",
+      colour: "lime",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
@@ -250,6 +267,7 @@ export const orgEvents = {
       startTime: "11:00",
       endTime: "11:30",
       price: "£16.00",
+      colour: "yellow",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -259,6 +277,7 @@ export const orgEvents = {
       startTime: "11:30",
       endTime: "12:00",
       price: "£16.00",
+      colour: "pink",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -268,6 +287,7 @@ export const orgEvents = {
       startTime: "12:00",
       endTime: "12:30",
       price: "£16.00",
+      colour: "red",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -277,6 +297,7 @@ export const orgEvents = {
       startTime: "12:30",
       endTime: "13:00",
       price: "£16.00",
+      colour: "blue",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
@@ -286,6 +307,7 @@ export const orgEvents = {
       startTime: "13:15",
       endTime: "13:45",
       price: "£16.00",
+      colour: "yellow",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/d55349ad-454d-4cf1-be8d-0d853386c8a2",
@@ -295,6 +317,7 @@ export const orgEvents = {
       startTime: "13:45",
       endTime: "14:15",
       price: "£16.00",
+      colour: "lime",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -304,6 +327,7 @@ export const orgEvents = {
       startTime: "15:00",
       endTime: "15:30",
       price: "£16.00",
+      colour: "pink",
     },
   ],
   Friday: [
@@ -315,6 +339,7 @@ export const orgEvents = {
       startTime: "09:30",
       endTime: "10:00",
       price: "£16.00",
+      colour: "emerald",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -324,6 +349,7 @@ export const orgEvents = {
       startTime: "10:00",
       endTime: "10:30",
       price: "£16.00",
+      colour: "pink",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -333,6 +359,7 @@ export const orgEvents = {
       startTime: "10:30",
       endTime: "11:00",
       price: "£16.00",
+      colour: "pink",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -342,6 +369,7 @@ export const orgEvents = {
       startTime: "11:00",
       endTime: "11:30",
       price: "£16.00",
+      colour: "red",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -351,6 +379,7 @@ export const orgEvents = {
       startTime: "12:00",
       endTime: "12:30",
       price: "£16.00",
+      colour: "blue",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -360,6 +389,7 @@ export const orgEvents = {
       startTime: "12:45",
       endTime: "13:15",
       price: "£16.00",
+      colour: "red",
     },
   ],
   Saturday: [
@@ -371,6 +401,7 @@ export const orgEvents = {
       startTime: "11:30",
       endTime: "12:00",
       price: "£16.00",
+      colour: "stone",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
@@ -380,6 +411,7 @@ export const orgEvents = {
       startTime: "15:00",
       endTime: "15:30",
       price: "£16.00",
+      colour: "sky",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -389,6 +421,7 @@ export const orgEvents = {
       startTime: "16:00",
       endTime: "16:30",
       price: "£16.00",
+      colour: "blue",
     },
   ],
 };

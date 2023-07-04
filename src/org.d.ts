@@ -20,13 +20,33 @@ export interface OrgTiles {
 }
 
 export interface Event {
-  img: string;
+  img?: string;
+  hideImage?: boolean;
   title: string;
   link: string;
   address: string;
   startTime: string;
   endTime: string;
   price: string;
+  colour?:
+    | "red"
+    | "orange"
+    | "amber"
+    | "yellow"
+    | "lime"
+    | "green"
+    | "emerald"
+    | "teal"
+    | "cyan"
+    | "sky"
+    | "blue"
+    | "indigo"
+    | "violet"
+    | "purple"
+    | "fuchsia"
+    | "pink"
+    | "rose"
+    | "stone";
 }
 
 export interface OrgEvents {

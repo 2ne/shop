@@ -149,12 +149,14 @@ const CalendarWeek: React.FC = () => {
             index={index}
             event={{
               img: event.img,
+              hideImage: event.hideImage,
               title: event.title,
               link: event.link,
               address: event.address,
               startTime: event.startTime,
               endTime: event.endTime,
               price: event.price,
+              colour: event.colour,
             }}
           />
         ))}
@@ -173,12 +175,14 @@ const CalendarWeek: React.FC = () => {
                   index={index}
                   event={{
                     img: event.img,
+                    hideImage: event.hideImage,
                     title: event.title,
                     link: event.link,
                     address: event.address,
                     startTime: event.startTime,
                     endTime: event.endTime,
                     price: event.price,
+                    colour: event.colour,
                   }}
                 />
               ))}
