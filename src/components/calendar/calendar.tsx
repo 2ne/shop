@@ -15,6 +15,18 @@ const { Panel } = Collapse;
 type SelectedValue = string | undefined;
 
 const Calendar: React.FC = () => {
+  const [date, setDate] = useState(dayjs());
+  const [open, setOpen] = useState(false);
+
+  const handleOpenChange = (open: boolean) => {
+    setOpen(open);
+  };
+
+  const handleDateChange = (value: any) => {
+    setDate(value);
+    setOpen(false);
+  };
+
   useEffect(() => {
     document.documentElement.classList.add("container-lg");
 
@@ -70,20 +82,23 @@ const Calendar: React.FC = () => {
         <div className="flex-grow w-full">
           <h2 className="heading-lg">Adult and Child Lessons</h2>
         </div>
-        <div className="hidden mx-auto lg:block">
-          <div className="relative cursor-pointer no-select">
-            <DatePicker
-              defaultValue={dayjs()}
-              format={monthYearFormat}
-              picker="date"
-              allowClear={false}
-            />
-          </div>
+        <div className="relative hidden h-8 mx-auto lg:block">
+          <DatePicker
+            value={date}
+            format={monthYearFormat}
+            picker="date"
+            allowClear={false}
+            open={open}
+            onOpenChange={handleOpenChange}
+            onChange={handleDateChange}
+            className="relative opacity-0 pointer-events-none"
+          />
           <Button
-            className="!px-3 absolute inset-0 z-10 !bg-white"
+            className="!bg-white -top-8 relative"
             icon={<CalendarOutlined />}
+            onClick={() => setOpen(true)}
           >
-            July 2023
+            {date.format(monthYearFormat)}
           </Button>
         </div>
         <div className="items-center justify-end flex-grow hidden w-full gap-2 lg:flex">
