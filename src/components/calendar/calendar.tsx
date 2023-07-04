@@ -278,7 +278,7 @@ const Calendar: React.FC = () => {
             </Collapse>
           </div>
         </div>
-        <div className="hidden w-full gap-2 -mt-2 lg:col-span-4 xl:col-span-5 lg:flex">
+        <div className="hidden w-full gap-2 -mt-3 lg:col-span-4 xl:col-span-5 lg:flex">
           {Object.entries(orgEvents).map(([day, events]) => (
             <div key={day} className="max-w-[25%] w-full min-w-0">
               <div className="sticky z-10 hidden pt-2.5 pb-2 text-center mb-1 lg:block top-14 bg-white/95 heading-sm ring-2 ring-white/95">
