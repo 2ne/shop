@@ -60,6 +60,8 @@ const Calendar: React.FC = () => {
     console.log("checked = ", checkedValues);
   };
 
+  let fakeDateNumberCounter = 3;
+
   return (
     <>
       <div className="mb-0.5 lg:-mt-3 lg:py-3 lg:mb-6 lg:flex lg:items-end lg:border-b lg:border-neutral-200 lg:sticky lg:top-0 lg:z-20 lg:bg-white/95 ring-2 ring-white/95">
@@ -67,7 +69,9 @@ const Calendar: React.FC = () => {
           <h2 className="heading-lg">Adult and Child Lessons</h2>
         </div>
         <div className="hidden mx-auto lg:block">
-          <Button icon={<CalendarOutlined />}>July 2023</Button>
+          <Button className="!px-3" icon={<CalendarOutlined />}>
+            July 2023
+          </Button>
         </div>
         <div className="items-center justify-end flex-grow hidden w-full gap-2 lg:flex">
           <Button
@@ -246,11 +250,30 @@ const Calendar: React.FC = () => {
             </Collapse>
           </div>
         </div>
-        <div className="items-start hidden w-full gap-2 -mt-2 lg:col-span-4 xl:col-span-5 lg:flex">
+        <div className="hidden w-full gap-2 -mt-2 lg:col-span-4 xl:col-span-5 lg:flex">
           {Object.entries(orgEvents).map(([day, events]) => (
             <div key={day} className="max-w-[25%] w-full min-w-0">
               <div className="sticky z-10 hidden pt-2.5 pb-2 text-center mb-1 lg:block top-14 bg-white/95 heading-sm ring-2 ring-white/95">
-                {day}
+                <span
+                  className={`inline-flex gap-x-1 rounded px-2 py-1 
+                    ${
+                      fakeDateNumberCounter === 4
+                        ? " bg-primary text-primary_text "
+                        : " "
+                    }
+                  `}
+                >
+                  <span>{day.substring(0, 3)}</span>
+                  <span
+                    className={
+                      fakeDateNumberCounter === 4
+                        ? "text-primary_text"
+                        : "text-neutral-500"
+                    }
+                  >
+                    0{fakeDateNumberCounter++}
+                  </span>
+                </span>
               </div>
               <div className="grid grid-cols-1 gap-2 p-px">
                 {events.map((event: Event, index: number) => (
