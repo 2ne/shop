@@ -234,7 +234,7 @@ const Calendar: React.FC = () => {
         )}
       </div>
 
-      <div className="hidden lg:gap-9 lg:grid lg:grid-cols-5 xl:grid-cols-6">
+      <div className="hidden lg:gap-6 lg:grid lg:grid-cols-5 xl:grid-cols-6">
         <div className="-mt-1.5">
           <div className="sticky z-10 top-16">
             <Collapse
@@ -251,44 +251,44 @@ const Calendar: React.FC = () => {
               )}
             >
               <Panel header="Class" key="1">
-                <Checkbox.Group className="space-y-1.5">
+                <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
                   <Checkbox value="Bubble the Seahorse">
-                    <div className="bg-yellow-50 text-yellow-800 px-1.5 rounded">
+                    <div className="bg-yellow-50 text-yellow-800 px-1.5 rounded truncate">
                       Bubble the Seahorse
                     </div>
                   </Checkbox>
                   <Checkbox value="Cutie the Clam">
-                    <div className="bg-lime-50 text-lime-800 px-1.5 rounded">
+                    <div className="bg-lime-50 text-lime-800 px-1.5 rounded truncate">
                       Cutie the Clam
                     </div>
                   </Checkbox>
                   <Checkbox value="Danny the Dolphin">
-                    <div className="bg-sky-50 text-sky-800 px-1.5 rounded">
+                    <div className="bg-sky-50 text-sky-800 px-1.5 rounded truncate">
                       Danny the Dolphin
                     </div>
                   </Checkbox>
                   <Checkbox value="Ollie the Octopus">
-                    <div className="bg-pink-50 text-pink-800 px-1.5 rounded">
+                    <div className="bg-pink-50 text-pink-800 px-1.5 rounded truncate">
                       Ollie the Octopus
                     </div>
                   </Checkbox>
                   <Checkbox value="Smiley the Turtle">
-                    <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded">
+                    <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded truncate">
                       Smiley the Turtle
                     </div>
                   </Checkbox>
                   <Checkbox value="Snappy the Crab">
-                    <div className="bg-red-50 text-red-800 px-1.5 rounded">
+                    <div className="bg-red-50 text-red-800 px-1.5 rounded truncate">
                       Snappy the Crab
                     </div>
                   </Checkbox>
                   <Checkbox value="Swishy the Seal">
-                    <div className="bg-stone-50 text-stone-800 px-1.5 rounded">
+                    <div className="bg-stone-50 text-stone-800 px-1.5 rounded truncate">
                       Swishy the Seal
                     </div>
                   </Checkbox>
                   <Checkbox value="Twinkle the Starfish">
-                    <div className="bg-blue-50 text-blue-800 px-1.5 rounded">
+                    <div className="bg-blue-50 text-blue-800 px-1.5 rounded truncate">
                       Twinkle the Starfish
                     </div>
                   </Checkbox>
@@ -307,18 +307,24 @@ const Calendar: React.FC = () => {
                 few
               </Panel>
               <Panel header="Time of day" key="6">
-                <Checkbox.Group className="space-y-1.5">
+                <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
                   <Checkbox value="Morning">
-                    <span>Morning</span>
-                    <span className="text-neutral-500"> · 00:00 - 12:00</span>
+                    <div className="truncate">
+                      <span>Morning</span>
+                      <span className="text-neutral-500"> · 00:00 - 12:00</span>
+                    </div>
                   </Checkbox>
                   <Checkbox value="Afternoon">
-                    <span>Afternoon</span>
-                    <span className="text-neutral-500"> · 12:00 - 18:00</span>
+                    <div className="truncate">
+                      <span>Afternoon</span>
+                      <span className="text-neutral-500"> · 12:00 - 18:00</span>
+                    </div>
                   </Checkbox>
                   <Checkbox value="Evening">
-                    <span>Evening</span>
-                    <span className="text-neutral-500"> · 18:00 - 00:00</span>
+                    <div className="truncate">
+                      <span>Evening</span>
+                      <span className="text-neutral-500"> · 18:00 - 00:00</span>
+                    </div>
                   </Checkbox>
                 </Checkbox.Group>
               </Panel>
