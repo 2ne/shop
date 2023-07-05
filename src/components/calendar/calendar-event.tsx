@@ -141,13 +141,11 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
         </div>
       );
     } else {
-      return null; // or throw an error for invalid time
+      return null;
     }
 
     return (
-      <div
-        className={`-mb-0.5 mt-1 first:-mt-0.5 cursor-default ${timePeriod}`}
-      >
+      <div className={`-mb-0.5 mt-1 first:-mt-0 cursor-default ${timePeriod}`}>
         {timeJSX}
       </div>
     );
