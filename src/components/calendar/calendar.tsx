@@ -124,6 +124,7 @@ const Calendar: React.FC = () => {
             onOpenChange={handleOpenChange}
             onChange={handleDateChange}
             className="relative opacity-0 pointer-events-none"
+            popupClassName="!left-1/2 !-translate-x-1/2"
           />
           <Button
             className="!bg-white -top-8 relative"

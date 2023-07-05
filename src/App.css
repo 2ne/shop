@@ -324,6 +324,11 @@ dt {
   padding: 4px 0 16px 0 !important;
 }
 
+.ant-picker-header-super-prev-btn,
+.ant-picker-header-super-next-btn {
+  display: none !important;
+}
+
 .morning ~ .morning,
 .afternoon ~ .afternoon,
 .evening ~ .evening {
