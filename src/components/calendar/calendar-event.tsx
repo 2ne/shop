@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Event } from "../../org";
 
@@ -69,128 +69,215 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
   const colourClass = event.colour ? colourClasses[event.colour] : "";
   const textColourClass = event.colour ? textColourClasses[event.colour] : "";
 
-  return (
-    <Link
-      key={`${activeDay}-event-${index}`}
-      to={event.link}
-      className={`@container block px-0.5 text-sm card max-lg:grid gap-1 sm:gap-4 max-sm:grid-cols-3 max-lg:grid-cols-3 max-lg:items-center ${colourClass}`}
-    >
-      {!event.hideImage && (
-        <img
-          className={`mt-0.5 max-lg:mb-0.5 max-lg:h-full aspect-[3/2] object-cover object-center mx-auto max-lg:col-span-1 max-lg:rounded-l-[calc(0.375rem-0.125rem)] lg:rounded-t-[calc(0.375rem-0.125rem)] ${
-            event.colour ? " mix-blend-multiply brightness-105 " : " "
-          }`}
-          src={event.img}
-        />
-      )}
+  function getTimePeriod(timeString: string) {
+    const time = parseInt(timeString.substring(0, 2), 10);
+    let timePeriod = "";
+    let timeJSX;
+
+    if (time >= 0 && time < 12) {
+      timePeriod = "morning";
+      timeJSX = (
+        <div className="flex items-center lg:justify-center gap-1.5 text-sm text-neutral-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="12"
+            viewBox="0 0 16 12"
+            fill="none"
+          >
+            <path
+              d="M2.66683 7.99984H1.3335M4.20957 4.20925L3.26676 3.26644M11.7907 4.20925L12.7335 3.26644M14.6668 7.99984H13.3335M4.66683 7.99984C4.66683 6.15889 6.15921 4.6665 8.00016 4.6665C9.84111 4.6665 11.3335 6.15889 11.3335 7.99984M14.6668 10.6665H1.3335M8.00016 0.666504V1.99984"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div>Morning</div>
+        </div>
+      );
+    } else if (time >= 12 && time < 18) {
+      timePeriod = "afternoon";
+      timeJSX = (
+        <div className="flex items-center lg:justify-center gap-1.5 text-sm text-neutral-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="16"
+            viewBox="0 0 15 16"
+            fill="none"
+          >
+            <path
+              d="M7.66667 1.3335V2.66683M7.66667 13.3335V14.6668M2.33333 8.00016H1M3.87608 4.20957L2.93327 3.26676M11.4573 4.20957L12.4001 3.26676M3.87608 11.7935L2.93327 12.7363M11.4573 11.7935L12.4001 12.7363M14.3333 8.00016H13M11 8.00016C11 9.84111 9.50762 11.3335 7.66667 11.3335C5.82572 11.3335 4.33333 9.84111 4.33333 8.00016C4.33333 6.15921 5.82572 4.66683 7.66667 4.66683C9.50762 4.66683 11 6.15921 11 8.00016Z"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div>Afternoon</div>
+        </div>
+      );
+    } else if (time >= 18 && time < 24) {
+      timePeriod = "evening";
+      timeJSX = (
+        <div className="flex items-center lg:justify-center gap-1.5 text-sm text-neutral-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+          >
+            <path
+              d="M13.1667 9.2423C12.4005 9.58879 11.55 9.78166 10.6545 9.78166C7.28392 9.78166 4.55151 7.04925 4.55151 3.67865C4.55151 2.78313 4.74439 1.93265 5.09087 1.1665C2.97336 2.12412 1.5 4.25508 1.5 6.73016C1.5 10.1008 4.23241 12.8332 7.60302 12.8332C10.0781 12.8332 12.209 11.3598 13.1667 9.2423Z"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div>Evening</div>
+        </div>
+      );
+    } else {
+      return null; // or throw an error for invalid time
+    }
+
+    return (
       <div
-        className={`py-1 px-2 space-y-1 my-1 lg:mt-0 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
+        className={`-mb-0.5 mt-1 first:-mt-0.5 cursor-default ${timePeriod}`}
       >
-        <div className="mb-1.5">
-          <div className={`heading-sm truncate ${textColourClass}`}>
-            {event.title}
+        {timeJSX}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {getTimePeriod(event.startTime)}
+      <Link
+        key={`${activeDay}-event-${index}`}
+        to={event.link}
+        className={`@container block px-0.5 text-sm card max-lg:grid gap-1 sm:gap-4 max-sm:grid-cols-3 max-lg:grid-cols-3 max-lg:items-center ${colourClass}`}
+      >
+        {!event.hideImage && (
+          <img
+            className={`mt-0.5 max-lg:mb-0.5 max-lg:h-full aspect-[3/2] object-cover object-center mx-auto max-lg:col-span-1 max-lg:rounded-l-[calc(0.375rem-0.125rem)] lg:rounded-t-[calc(0.375rem-0.125rem)] ${
+              event.colour ? " mix-blend-multiply brightness-105 " : " "
+            }`}
+            src={event.img}
+          />
+        )}
+        <div
+          className={`py-1 px-2 space-y-1 my-1 lg:mt-0 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
+        >
+          <div className="mb-1.5">
+            <div className={`heading-sm truncate ${textColourClass}`}>
+              {event.title}
+            </div>
+            <div className={`truncate text-sm opacity-80 ${textColourClass}`}>
+              {event.description}
+            </div>
           </div>
-          <div className={`truncate text-sm opacity-80 ${textColourClass}`}>
-            {event.description}
-          </div>
-        </div>
-        <div className="flex items-center gap-1">
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="7.25"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            ></circle>
-            <path
-              stroke="currentColor"
-              strokeWidth="1.5"
-              d="M12 8V12L14 14"
-            ></path>
-          </svg>
-          <span className="">{event.startTime}</span>
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="w-5 h-5 -mx-1.5 opacity-70 shrink-0"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1"
-              d="M10.75 8.75L14.25 12L10.75 15.25"
-            ></path>
-          </svg>
-          <span className="truncate">{event.endTime}</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              d="M18.25 11C18.25 15 12 19.25 12 19.25C12 19.25 5.75 15 5.75 11C5.75 7.5 8.68629 4.75 12 4.75C15.3137 4.75 18.25 7.5 18.25 11Z"
-            ></path>
-            <circle
-              cx="12"
-              cy="11"
-              r="2.25"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-            ></circle>
-          </svg>
-          <span className="truncate">{event.address}</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="7.25"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-            ></circle>
-            <g transform="scale(0.45) translate(14 14)">
+          <div className="flex items-center gap-1">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="7.25"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              ></circle>
+              <path
+                stroke="currentColor"
+                strokeWidth="1.5"
+                d="M12 8V12L14 14"
+              ></path>
+            </svg>
+            <span className="">{event.startTime}</span>
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="w-5 h-5 -mx-1.5 opacity-70 shrink-0"
+            >
               <path
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="2.5"
-                d="M17.25 8.25v-1.5a2 2 0 00-2-2h-3.5c-1.105 0-2 .893-2 1.998V14c0 3-3 5.25-3 5.25h8.5a2 2 0 002-2v-.5M6.75 11.75h6.5"
+                strokeWidth="1"
+                d="M10.75 8.75L14.25 12L10.75 15.25"
               ></path>
-            </g>
-          </svg>
-          <span>{event.price}</span>
+            </svg>
+            <span className="truncate">{event.endTime}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="M18.25 11C18.25 15 12 19.25 12 19.25C12 19.25 5.75 15 5.75 11C5.75 7.5 8.68629 4.75 12 4.75C15.3137 4.75 18.25 7.5 18.25 11Z"
+              ></path>
+              <circle
+                cx="12"
+                cy="11"
+                r="2.25"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              ></circle>
+            </svg>
+            <span className="truncate">{event.address}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="7.25"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              ></circle>
+              <g transform="scale(0.45) translate(14 14)">
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M17.25 8.25v-1.5a2 2 0 00-2-2h-3.5c-1.105 0-2 .893-2 1.998V14c0 3-3 5.25-3 5.25h8.5a2 2 0 002-2v-.5M6.75 11.75h6.5"
+                ></path>
+              </g>
+            </svg>
+            <span>{event.price}</span>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </>
   );
 };
 

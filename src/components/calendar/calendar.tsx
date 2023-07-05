@@ -53,24 +53,28 @@ const Calendar: React.FC = () => {
 
   const [activeDay, setActiveDay] = useState<string>(Object.keys(orgEvents)[0]);
 
-  const daysList = Object.keys(orgEvents);
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   const previousDay = () => {
-    const index = daysList.indexOf(activeDay);
+    const index = daysOfWeek.indexOf(activeDay);
     if (index > 0) {
-      setActiveDay(daysList[index - 1]);
+      setActiveDay(daysOfWeek[index - 1]);
     }
   };
 
   const nextDay = () => {
-    const index = daysList.indexOf(activeDay);
-    if (index < daysList.length - 1) {
-      setActiveDay(daysList[index + 1]);
+    const index = daysOfWeek.indexOf(activeDay);
+    if (index < daysOfWeek.length - 1) {
+      setActiveDay(daysOfWeek[index + 1]);
     }
-  };
-
-  const onClassOptionsChange = (checkedValues: CheckboxValueType[]) => {
-    console.log("checked = ", checkedValues);
   };
 
   // fake stuff to make it look like this week and today is active
@@ -92,6 +96,17 @@ const Calendar: React.FC = () => {
   }
 
   const monthYearFormat = "MMMM YYYY";
+
+  const NoEventsToday = () => {
+    return (
+      <div className="pt-1 space-y-1 text-sm text-center cursor-default text-neutral-400">
+        <div>
+          <CalendarOutlined className="text-xl" />
+        </div>
+        <div>No events</div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -194,31 +209,36 @@ const Calendar: React.FC = () => {
         ></Button>
       </div>
       <div className="grid grid-cols-1 gap-2.5 p-px lg:hidden">
-        {orgEvents[activeDay].map((event: Event, index: number) => (
-          <CalendarEvent
-            key={`${index}`}
-            activeDay={activeDay}
-            index={index}
-            event={{
-              img: event.img,
-              hideImage: event.hideImage,
-              title: event.title,
-              description: event.description,
-              link: event.link,
-              address: event.address,
-              startTime: event.startTime,
-              endTime: event.endTime,
-              price: event.price,
-              colour: event.colour,
-            }}
-          />
-        ))}
+        {(orgEvents[activeDay] || []).length > 0 ? (
+          orgEvents[activeDay].map((event: Event, index: number) => (
+            <CalendarEvent
+              key={`${index}`}
+              activeDay={activeDay}
+              index={index}
+              event={{
+                img: event.img,
+                hideImage: event.hideImage,
+                title: event.title,
+                description: event.description,
+                link: event.link,
+                address: event.address,
+                startTime: event.startTime,
+                endTime: event.endTime,
+                price: event.price,
+                colour: event.colour,
+              }}
+            />
+          ))
+        ) : (
+          <NoEventsToday />
+        )}
       </div>
+
       <div className="hidden lg:gap-10 lg:grid lg:grid-cols-5 xl:grid-cols-6">
         <div className="-mt-1.5">
           <div className="sticky z-10 top-16">
             <Collapse
-              defaultActiveKey={["1"]}
+              defaultActiveKey={["1", "6"]}
               ghost
               bordered={false}
               className="ant-collapse-calendar"
@@ -231,10 +251,7 @@ const Calendar: React.FC = () => {
               )}
             >
               <Panel header="Class" key="1">
-                <Checkbox.Group
-                  onChange={onClassOptionsChange}
-                  className="space-y-1.5"
-                >
+                <Checkbox.Group className="space-y-1.5">
                   <Checkbox value="Bubble the Seahorse">
                     <div className="bg-yellow-50 text-yellow-800 px-1.5 rounded">
                       Bubble the Seahorse
@@ -290,23 +307,36 @@ const Calendar: React.FC = () => {
                 few
               </Panel>
               <Panel header="Time of day" key="6">
-                few
+                <Checkbox.Group className="space-y-1.5">
+                  <Checkbox value="Morning">
+                    <span>Morning</span>
+                    <span className="text-neutral-500"> · 00:00 - 12:00</span>
+                  </Checkbox>
+                  <Checkbox value="Afternoon">
+                    <span>Afternoon</span>
+                    <span className="text-neutral-500"> · 12:00 - 18:00</span>
+                  </Checkbox>
+                  <Checkbox value="Evening">
+                    <span>Evening</span>
+                    <span className="text-neutral-500"> · 18:00 - 00:00</span>
+                  </Checkbox>
+                </Checkbox.Group>
               </Panel>
             </Collapse>
           </div>
         </div>
         <div className="hidden w-full gap-2 -mt-3 lg:col-span-4 xl:col-span-5 lg:flex">
-          {Object.entries(orgEvents).map(([day, events]) => (
+          {daysOfWeek.map((day) => (
             <div key={day} className="max-w-[25%] w-full min-w-0">
               <div className="sticky z-10 hidden pt-2.5 pb-2 text-center mb-1 lg:block top-14 bg-white/95 heading-sm ring-2 ring-white/95">
                 <span
                   className={`inline-flex gap-x-1 rounded px-2 py-1 
-                    ${
-                      fakeDateNumberCounter === fakeToday
-                        ? " bg-primary text-primary_text "
-                        : " "
-                    }
-                  `}
+            ${
+              fakeDateNumberCounter === fakeToday
+                ? " bg-primary text-primary_text "
+                : " "
+            }
+          `}
                 >
                   <span>{day.substring(0, 3)}</span>
                   <span
@@ -321,25 +351,31 @@ const Calendar: React.FC = () => {
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-2 p-px">
-                {events.map((event: Event, index: number) => (
-                  <CalendarEvent
-                    key={`${index}`}
-                    activeDay={activeDay}
-                    index={index}
-                    event={{
-                      img: event.img,
-                      hideImage: event.hideImage,
-                      title: event.title,
-                      description: event.description,
-                      link: event.link,
-                      address: event.address,
-                      startTime: event.startTime,
-                      endTime: event.endTime,
-                      price: event.price,
-                      colour: event.colour,
-                    }}
-                  />
-                ))}
+                {(orgEvents[day] || []).length > 0 ? (
+                  orgEvents[day].map((event: Event, index: number) => (
+                    <>
+                      <CalendarEvent
+                        key={`${index}`}
+                        activeDay={activeDay}
+                        index={index}
+                        event={{
+                          img: event.img,
+                          hideImage: event.hideImage,
+                          title: event.title,
+                          description: event.description,
+                          link: event.link,
+                          address: event.address,
+                          startTime: event.startTime,
+                          endTime: event.endTime,
+                          price: event.price,
+                          colour: event.colour,
+                        }}
+                      />
+                    </>
+                  ))
+                ) : (
+                  <NoEventsToday />
+                )}
               </div>
             </div>
           ))}
