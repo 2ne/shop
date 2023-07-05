@@ -239,7 +239,7 @@ const Calendar: React.FC = () => {
         <div className="-mt-1.5">
           <div className="sticky z-10 top-16">
             <Collapse
-              defaultActiveKey={["1", "6"]}
+              defaultActiveKey={["1", "2"]}
               ghost
               bordered={false}
               className="ant-collapse-calendar"
@@ -295,19 +295,7 @@ const Calendar: React.FC = () => {
                   </Checkbox>
                 </Checkbox.Group>
               </Panel>
-              <Panel header="Location" key="2">
-                few
-              </Panel>
-              <Panel header="Gender" key="3">
-                few
-              </Panel>
-              <Panel header="Age (year)" key="4">
-                few
-              </Panel>
-              <Panel header="Coach" key="5">
-                few
-              </Panel>
-              <Panel header="Time of day" key="6">
+              <Panel header="Time of day" key="2">
                 <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
                   <Checkbox value="Morning">
                     <div className="truncate">
@@ -328,6 +316,18 @@ const Calendar: React.FC = () => {
                     </div>
                   </Checkbox>
                 </Checkbox.Group>
+              </Panel>
+              <Panel header="Location" key="3">
+                few
+              </Panel>
+              <Panel header="Gender" key="4">
+                few
+              </Panel>
+              <Panel header="Age (year)" key="5">
+                few
+              </Panel>
+              <Panel header="Coach" key="6">
+                few
               </Panel>
             </Collapse>
           </div>
