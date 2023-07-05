@@ -234,7 +234,7 @@ const Calendar: React.FC = () => {
         )}
       </div>
 
-      <div className="hidden lg:gap-10 lg:grid lg:grid-cols-5 xl:grid-cols-6">
+      <div className="hidden lg:gap-9 lg:grid lg:grid-cols-5 xl:grid-cols-6">
         <div className="-mt-1.5">
           <div className="sticky z-10 top-16">
             <Collapse

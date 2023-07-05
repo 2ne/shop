@@ -457,19 +457,7 @@ export const orgEvents = {
       colour: "blue",
     },
   ],
-  Sunday: [
-    {
-      img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
-      title: "Twinkle The Starfish",
-      description: "6-12 months",
-      link: "/BubbleTheSeahorse",
-      address: "Little Thetford",
-      startTime: "09:00",
-      endTime: "09:30",
-      price: "£16.00",
-      colour: "blue",
-    },
-  ],
+  Sunday: [],
 };
 
 /* export const orgName = "Harlow Gymnastics Club";
