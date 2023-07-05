@@ -73,7 +73,24 @@ const Calendar: React.FC = () => {
     console.log("checked = ", checkedValues);
   };
 
-  let fakeDateNumberCounter = 3;
+  // fake stuff to make it look like this week and today is active
+  let fakeDateNumberCounter = getMondayDate();
+  const fakeToday = getCurrentDate();
+
+  function getMondayDate() {
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const difference = dayOfWeek - 1; // Monday is the first day of the week
+
+    today.setDate(today.getDate() - difference);
+    return today.getDate();
+  }
+
+  function getCurrentDate() {
+    const today = new Date();
+    return today.getDate();
+  }
+
   const monthYearFormat = "MMMM YYYY";
 
   return (
@@ -167,7 +184,7 @@ const Calendar: React.FC = () => {
         ></Button>
         <div className="flex-grow text-center">
           <Button className="!bg-white" block icon={<CalendarOutlined />}>
-            {activeDay} 5 July
+            {activeDay} {fakeDateNumberCounter} July
           </Button>
         </div>
         <Button
@@ -285,7 +302,7 @@ const Calendar: React.FC = () => {
                 <span
                   className={`inline-flex gap-x-1 rounded px-2 py-1 
                     ${
-                      fakeDateNumberCounter === 4
+                      fakeDateNumberCounter === fakeToday
                         ? " bg-primary text-primary_text "
                         : " "
                     }
@@ -294,7 +311,7 @@ const Calendar: React.FC = () => {
                   <span>{day.substring(0, 3)}</span>
                   <span
                     className={
-                      fakeDateNumberCounter === 4
+                      fakeDateNumberCounter === fakeToday
                         ? "text-primary_text"
                         : "text-neutral-500"
                     }
