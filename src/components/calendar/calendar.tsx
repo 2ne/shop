@@ -34,6 +34,14 @@ const Calendar: React.FC = () => {
     };
   }, []);
 
+  const addClassToHTML = () => {
+    document.documentElement.classList.add("max-lg:overflow-hidden");
+  };
+
+  const removeClassFromHTML = () => {
+    document.documentElement.classList.remove("max-lg:overflow-hidden");
+  };
+
   const [selectedClassValue, setSelectedClassValue] =
     useState<SelectedValue>(undefined);
   const [selectedTimeOfDayValue, setSelectedTimeOfDayValue] =
@@ -165,6 +173,13 @@ const Calendar: React.FC = () => {
               value={selectedClassValue}
               allowClear={true}
               placeholder="Class"
+              onDropdownVisibleChange={(open) => {
+                if (open) {
+                  addClassToHTML();
+                } else {
+                  removeClassFromHTML();
+                }
+              }}
               onChange={handleClassChange}
               className="ant-select-token"
               popupClassName="ant-select-mobile"
@@ -189,6 +204,13 @@ const Calendar: React.FC = () => {
               value={selectedTimeOfDayValue}
               allowClear={true}
               placeholder="Time of day"
+              onDropdownVisibleChange={(open) => {
+                if (open) {
+                  addClassToHTML();
+                } else {
+                  removeClassFromHTML();
+                }
+              }}
               onChange={handleTimeOfDayChange}
               className="ant-select-token"
               popupClassName="ant-select-mobile"
@@ -202,6 +224,13 @@ const Calendar: React.FC = () => {
               value={selectedLocationValue}
               allowClear={true}
               placeholder="Location"
+              onDropdownVisibleChange={(open) => {
+                if (open) {
+                  addClassToHTML();
+                } else {
+                  removeClassFromHTML();
+                }
+              }}
               onChange={handleLocationChange}
               className="ant-select-token"
               popupClassName="ant-select-mobile"
@@ -214,6 +243,13 @@ const Calendar: React.FC = () => {
               value={selectedAgeValue}
               allowClear={true}
               placeholder="Age"
+              onDropdownVisibleChange={(open) => {
+                if (open) {
+                  addClassToHTML();
+                } else {
+                  removeClassFromHTML();
+                }
+              }}
               onChange={handleAgeChange}
               className="ant-select-token"
               popupClassName="ant-select-mobile"
@@ -392,7 +428,7 @@ const Calendar: React.FC = () => {
                     { value: ">18", label: ">18" },
                   ].map(({ value, label }) => (
                     <Checkbox key={value} value={value}>
-                      <div className="relative text-xs -top-px">
+                      <div className="relative -ml-px text-xs -top-px">
                         <span>{label}</span>
                       </div>
                     </Checkbox>
