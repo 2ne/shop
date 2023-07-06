@@ -8,7 +8,6 @@ import {
   LeftOutlined,
   RightOutlined,
 } from "@ant-design/icons";
-import { CheckboxValueType } from "antd/es/checkbox/Group";
 import dayjs from "dayjs";
 const { Panel } = Collapse;
 
@@ -35,20 +34,28 @@ const Calendar: React.FC = () => {
     };
   }, []);
 
-  const [selectedValue, setSelectedValue] = useState<SelectedValue>(undefined);
-  const [selectedValue1, setSelectedValue1] =
+  const [selectedClassValue, setSelectedClassValue] =
+    useState<SelectedValue>(undefined);
+  const [selectedTimeOfDayValue, setSelectedTimeOfDayValue] =
+    useState<SelectedValue>(undefined);
+  const [selectedLocationValue, setSelectedLocationValue] =
     useState<SelectedValue>(undefined);
 
   const handleReset = () => {
-    setSelectedValue(undefined);
-    setSelectedValue1(undefined);
+    setSelectedClassValue(undefined);
+    setSelectedLocationValue(undefined);
   };
 
-  const handleChange = (value: string) => {
-    setSelectedValue(value);
+  const handleClassChange = (value: string) => {
+    setSelectedClassValue(value);
   };
-  const handleChange1 = (value: string) => {
-    setSelectedValue1(value);
+
+  const handleTimeOfDayChange = (value: string) => {
+    setSelectedTimeOfDayValue(value);
+  };
+
+  const handleLocationChange = (value: string) => {
+    setSelectedLocationValue(value);
   };
 
   const [activeDay, setActiveDay] = useState<string>(Object.keys(orgEvents)[0]);
@@ -147,10 +154,10 @@ const Calendar: React.FC = () => {
         <div className="max-lg:overflow-x-auto lg:hidden max-lg:z-30 max-lg:bg-white/95 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:ml-auto max-lg:py-2.5 max-lg:border-t max-lg:border-black/10">
           <div className="container flex lg:flex-wrap items-center gap-2 lg:gap-2.5 lg:p-0">
             <Select
-              value={selectedValue}
+              value={selectedClassValue}
               allowClear={true}
               placeholder="Class"
-              onChange={handleChange}
+              onChange={handleClassChange}
               className="ant-select-token"
               popupClassName="ant-select-mobile"
               options={[
@@ -171,15 +178,31 @@ const Calendar: React.FC = () => {
               ]}
             />
             <Select
-              value={selectedValue1}
+              value={selectedTimeOfDayValue}
               allowClear={true}
-              placeholder="Location"
-              onChange={handleChange1}
+              placeholder="Time of day"
+              onChange={handleTimeOfDayChange}
               className="ant-select-token"
               popupClassName="ant-select-mobile"
-              options={[{ value: "littleThetford", label: "Little Thetford" }]}
+              options={[
+                { value: "morning", label: "Morning" },
+                { value: "afternoon", label: "Afternoon" },
+                { value: "evening", label: "Evening" },
+              ]}
             />
-            {(selectedValue || selectedValue1) && (
+            <Select
+              value={selectedLocationValue}
+              allowClear={true}
+              placeholder="Location"
+              onChange={handleLocationChange}
+              className="ant-select-token"
+              popupClassName="ant-select-mobile"
+              options={[
+                { value: "littleThetford", label: "Little Thetford" },
+                { value: "newmarket", label: "Newmarket" },
+              ]}
+            />
+            {(selectedClassValue || selectedLocationValue) && (
               <Button
                 type="link"
                 onClick={handleReset}
@@ -318,15 +341,110 @@ const Calendar: React.FC = () => {
                 </Checkbox.Group>
               </Panel>
               <Panel header="Location" key="3">
-                few
+                <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
+                  <Checkbox value="Little Telford">
+                    <div className="truncate">
+                      <span>Little Telford</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="Newmarket">
+                    <div className="truncate">
+                      <span>Newmarket</span>
+                    </div>
+                  </Checkbox>
+                </Checkbox.Group>
               </Panel>
-              <Panel header="Gender" key="4">
-                few
+              <Panel header="Age" key="4">
+                <Checkbox.Group className="[&_*]:text-xs gap-y-4 items-center grid-cols-4 grid [&_.ant-checkbox-wrapper>span]:min-w-0">
+                  <Checkbox value="1">
+                    <div className="truncate">
+                      <span>&#60;1</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="2">
+                    <div className="truncate">
+                      <span>2</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="3">
+                    <div className="truncate">
+                      <span>3</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="4">
+                    <div className="truncate">
+                      <span>4</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="5">
+                    <div className="truncate">
+                      <span>5</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="6">
+                    <div className="truncate">
+                      <span>6</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="7">
+                    <div className="truncate">
+                      <span>7</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="8">
+                    <div className="truncate">
+                      <span>8</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="9">
+                    <div className="truncate">
+                      <span>9</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="10">
+                    <div className="truncate">
+                      <span>10</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="11">
+                    <div className="truncate">
+                      <span>11</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="12">
+                    <div className="truncate">
+                      <span>12</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="13">
+                    <div className="truncate">
+                      <span>13</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="14">
+                    <div className="truncate">
+                      <span>14</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="15">
+                    <div className="truncate">
+                      <span>15</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="16">
+                    <div className="truncate">
+                      <span>16</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="13">
+                    <div className="truncate">
+                      <span>17</span>
+                    </div>
+                  </Checkbox>
+                  <Checkbox value="18">&#x3e;18</Checkbox>
+                </Checkbox.Group>
               </Panel>
-              <Panel header="Age (year)" key="5">
-                few
-              </Panel>
-              <Panel header="Coach" key="6">
+              <Panel header="Coach" key="5">
                 few
               </Panel>
             </Collapse>
