@@ -88,9 +88,9 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             <path
               d="M2.66683 7.99984H1.3335M4.20957 4.20925L3.26676 3.26644M11.7907 4.20925L12.7335 3.26644M14.6668 7.99984H13.3335M4.66683 7.99984C4.66683 6.15889 6.15921 4.6665 8.00016 4.6665C9.84111 4.6665 11.3335 6.15889 11.3335 7.99984M14.6668 10.6665H1.3335M8.00016 0.666504V1.99984"
               stroke="currentColor"
-              stroke-width="1.25"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <div>Morning</div>
@@ -110,9 +110,9 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             <path
               d="M7.66667 1.3335V2.66683M7.66667 13.3335V14.6668M2.33333 8.00016H1M3.87608 4.20957L2.93327 3.26676M11.4573 4.20957L12.4001 3.26676M3.87608 11.7935L2.93327 12.7363M11.4573 11.7935L12.4001 12.7363M14.3333 8.00016H13M11 8.00016C11 9.84111 9.50762 11.3335 7.66667 11.3335C5.82572 11.3335 4.33333 9.84111 4.33333 8.00016C4.33333 6.15921 5.82572 4.66683 7.66667 4.66683C9.50762 4.66683 11 6.15921 11 8.00016Z"
               stroke="currentColor"
-              stroke-width="1.25"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <div>Afternoon</div>
@@ -132,9 +132,9 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             <path
               d="M13.1667 9.2423C12.4005 9.58879 11.55 9.78166 10.6545 9.78166C7.28392 9.78166 4.55151 7.04925 4.55151 3.67865C4.55151 2.78313 4.74439 1.93265 5.09087 1.1665C2.97336 2.12412 1.5 4.25508 1.5 6.73016C1.5 10.1008 4.23241 12.8332 7.60302 12.8332C10.0781 12.8332 12.209 11.3598 13.1667 9.2423Z"
               stroke="currentColor"
-              stroke-width="1.25"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <div>Evening</div>
