@@ -3,11 +3,15 @@
 @tailwind utilities;
 
 .min-h-screen {
-  min-height: 100svh;
+  @apply min-h-[100svh];
 }
 
 .h-screen {
-  height: 100dvh;
+  @apply h-[100dvh];
+}
+
+.min-h-screen-custom {
+  @apply min-h-[calc(100svh-8rem)];
 }
 
 .ant-btn-link,
@@ -43,11 +47,7 @@
   @apply text-lg font-semibold leading-5 sm:text-xl decoration-2;
 }
 
-.heading-xs:not([class*="text-"]),
-.heading-sm:not([class*="text-"]),
-.heading:not([class*="text-"]),
-.heading-lg:not([class*="text-"]),
-.heading-xl:not([class*="text-"]) {
+:where(.heading-xs, .heading-sm, .heading, .heading-lg, .heading-xl):not([class*="text-"]) {
   @apply text-neutral-900;
 }
 
@@ -63,9 +63,7 @@
   @apply text-xs sm:text-sm font-normal;
 }
 
-.sub-heading:not([class*="text-"]),
-.sub-heading-sm:not([class*="text-"]),
-.sub-heading-xs:not([class*="text-"]) {
+:where(.sub-heading, .sub-heading-sm, .sub-heading-xs):not([class*="text-"]) {
   @apply text-neutral-500;
 }
 
@@ -195,10 +193,6 @@ dt {
   @apply hidden;
 }
 
-.min-h-screen-custom {
-  @apply min-h-[calc(100svh-8rem)];
-}
-
 .ant-steps.ant-steps-vertical {
   @apply pl-[calc(0.25rem+1px)];
 }
@@ -305,36 +299,29 @@ dt {
   @apply lg:max-w-[1460px];
 }
 
-.break-container {
-  max-width: 1440px;
-  width: 100vw;
-  margin-left: 50%;
-  transform: translate3d(-50%, 0, 0);
-}
-
 .ant-collapse-calendar .ant-collapse-header {
-  padding: 10px 0 !important;
+  @apply !py-2.5 !px-0;
 }
 
 .ant-collapse-calendar .ant-collapse-header:hover .ant-collapse-header-text {
-  text-decoration: underline;
+  @apply underline;
 }
 
 .ant-collapse-calendar .ant-collapse-header-text {
-  font-weight: 500;
+  @apply font-medium;
 }
 
 .ant-collapse-calendar .ant-collapse-content-box {
-  padding: 4px 0 16px 0 !important;
+  @apply !pt-1 !pb-4 !px-0;
 }
 
 .ant-picker-header-super-prev-btn,
 .ant-picker-header-super-next-btn {
-  display: none !important;
+  @apply !hidden;
 }
 
 .morning ~ .morning,
 .afternoon ~ .afternoon,
 .evening ~ .evening {
-  display: none;
+  @apply !hidden;
 }
