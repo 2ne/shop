@@ -316,6 +316,10 @@ dt {
   padding: 10px 0 !important;
 }
 
+.ant-collapse-calendar .ant-collapse-header:hover .ant-collapse-header-text {
+  text-decoration: underline;
+}
+
 .ant-collapse-calendar .ant-collapse-header-text {
   font-weight: 500;
 }

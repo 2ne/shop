@@ -40,10 +40,14 @@ const Calendar: React.FC = () => {
     useState<SelectedValue>(undefined);
   const [selectedLocationValue, setSelectedLocationValue] =
     useState<SelectedValue>(undefined);
+  const [selectedAgeValue, setSelectedAgeValue] =
+    useState<SelectedValue>(undefined);
 
   const handleReset = () => {
     setSelectedClassValue(undefined);
+    setSelectedTimeOfDayValue(undefined);
     setSelectedLocationValue(undefined);
+    setSelectedAgeValue(undefined);
   };
 
   const handleClassChange = (value: string) => {
@@ -56,6 +60,10 @@ const Calendar: React.FC = () => {
 
   const handleLocationChange = (value: string) => {
     setSelectedLocationValue(value);
+  };
+
+  const handleAgeChange = (value: string) => {
+    setSelectedAgeValue(value);
   };
 
   const [activeDay, setActiveDay] = useState<string>(Object.keys(orgEvents)[0]);
@@ -202,7 +210,26 @@ const Calendar: React.FC = () => {
                 { value: "newmarket", label: "Newmarket" },
               ]}
             />
-            {(selectedClassValue || selectedLocationValue) && (
+            <Select
+              value={selectedAgeValue}
+              allowClear={true}
+              placeholder="Age"
+              onChange={handleAgeChange}
+              className="ant-select-token"
+              popupClassName="ant-select-mobile"
+              options={[
+                { value: "<1", label: "<1" },
+                ...Array.from({ length: 18 }, (_, i) => ({
+                  value: `${i + 1}`,
+                  label: `${i + 1}`,
+                })),
+                { value: ">18", label: ">18" },
+              ]}
+            />
+            {(selectedClassValue ||
+              selectedLocationValue ||
+              selectedTimeOfDayValue ||
+              selectedAgeValue) && (
               <Button
                 type="link"
                 onClick={handleReset}
@@ -265,7 +292,7 @@ const Calendar: React.FC = () => {
               defaultActiveKey={["1", "2"]}
               ghost
               bordered={false}
-              className="ant-collapse-calendar"
+              className="select-none ant-collapse-calendar"
               expandIconPosition="end"
               expandIcon={({ isActive }) => (
                 <DownOutlined
@@ -355,97 +382,22 @@ const Calendar: React.FC = () => {
                 </Checkbox.Group>
               </Panel>
               <Panel header="Age" key="4">
-                <Checkbox.Group className="[&_*]:text-xs gap-y-4 items-center grid-cols-4 grid [&_.ant-checkbox-wrapper>span]:min-w-0">
-                  <Checkbox value="1">
-                    <div className="truncate">
-                      <span>&#60;1</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="2">
-                    <div className="truncate">
-                      <span>2</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="3">
-                    <div className="truncate">
-                      <span>3</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="4">
-                    <div className="truncate">
-                      <span>4</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="5">
-                    <div className="truncate">
-                      <span>5</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="6">
-                    <div className="truncate">
-                      <span>6</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="7">
-                    <div className="truncate">
-                      <span>7</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="8">
-                    <div className="truncate">
-                      <span>8</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="9">
-                    <div className="truncate">
-                      <span>9</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="10">
-                    <div className="truncate">
-                      <span>10</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="11">
-                    <div className="truncate">
-                      <span>11</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="12">
-                    <div className="truncate">
-                      <span>12</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="13">
-                    <div className="truncate">
-                      <span>13</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="14">
-                    <div className="truncate">
-                      <span>14</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="15">
-                    <div className="truncate">
-                      <span>15</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="16">
-                    <div className="truncate">
-                      <span>16</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="13">
-                    <div className="truncate">
-                      <span>17</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="18">&#x3e;18</Checkbox>
+                <Checkbox.Group className="grid items-center grid-cols-4 gap-y-2.5">
+                  {[
+                    { value: "<1", label: "<1" },
+                    ...Array.from({ length: 18 }, (_, i) => ({
+                      value: `${i + 1}`,
+                      label: `${i + 1}`,
+                    })),
+                    { value: ">18", label: ">18" },
+                  ].map(({ value, label }) => (
+                    <Checkbox key={value} value={value}>
+                      <div className="relative text-xs -top-px">
+                        <span>{label}</span>
+                      </div>
+                    </Checkbox>
+                  ))}
                 </Checkbox.Group>
-              </Panel>
-              <Panel header="Coach" key="5">
-                few
               </Panel>
             </Collapse>
           </div>
