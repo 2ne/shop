@@ -72,7 +72,11 @@ const treeData = [
     })),
   },
   {
-    title: "Private Lessons",
+    title: (
+      <div className="bg-rose-50 text-rose-800 px-1.5 rounded -ml-1 truncate">
+        Private Lessons
+      </div>
+    ),
     key: "private",
     children: privateLessons.map((product, index) => ({
       title: product,
@@ -249,37 +253,39 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
         </div>
         <div className="max-lg:overflow-x-auto lg:hidden max-lg:z-30 max-lg:bg-white/95 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:ml-auto max-lg:py-2.5 max-lg:border-t max-lg:border-black/10">
           <div className="container flex lg:flex-wrap items-center gap-2 lg:gap-2.5 lg:p-0">
-            <Select
-              value={selectedClassValue}
-              allowClear={true}
-              placeholder="Class"
-              onDropdownVisibleChange={(open) => {
-                if (open) {
-                  addClassToHTML();
-                } else {
-                  removeClassFromHTML();
-                }
-              }}
-              onChange={handleClassChange}
-              className="ant-select-token"
-              popupClassName="ant-select-mobile"
-              options={[
-                { value: "bubbletheseahorse", label: "Bubble the Seahorse" },
-                { value: "cutietheclam", label: "Cutie the Clam" },
-                {
-                  value: "danyythedolphin",
-                  label: "Danny the Dolphin (SEND)",
-                },
-                { value: "ollietheoctopus", label: "Ollie the Octopus" },
-                { value: "smileytheturle", label: "Smiley the Turtle" },
-                { value: "snappythecrab", label: "Snappy the Crab" },
-                { value: "swishytheseal", label: "Swishy the Seal" },
-                {
-                  value: "twinklethestarfish",
-                  label: "Twinkle The Starfish ",
-                },
-              ]}
-            />
+            {singleProduct && (
+              <Select
+                value={selectedClassValue}
+                allowClear={true}
+                placeholder="Class"
+                onDropdownVisibleChange={(open) => {
+                  if (open) {
+                    addClassToHTML();
+                  } else {
+                    removeClassFromHTML();
+                  }
+                }}
+                onChange={handleClassChange}
+                className="ant-select-token"
+                popupClassName="ant-select-mobile"
+                options={[
+                  { value: "bubbletheseahorse", label: "Bubble the Seahorse" },
+                  { value: "cutietheclam", label: "Cutie the Clam" },
+                  {
+                    value: "danyythedolphin",
+                    label: "Danny the Dolphin (SEND)",
+                  },
+                  { value: "ollietheoctopus", label: "Ollie the Octopus" },
+                  { value: "smileytheturle", label: "Smiley the Turtle" },
+                  { value: "snappythecrab", label: "Snappy the Crab" },
+                  { value: "swishytheseal", label: "Swishy the Seal" },
+                  {
+                    value: "twinklethestarfish",
+                    label: "Twinkle The Starfish ",
+                  },
+                ]}
+              />
+            )}
             <Select
               value={selectedTimeOfDayValue}
               allowClear={true}
