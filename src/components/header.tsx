@@ -109,10 +109,10 @@ const Header: React.FC<HeaderProps> = ({
           }
           trigger="click"
         >
-          <>
+          <span className="-my-1.5 -mx-2.5 py-1.5 px-2.5">
             <span>Timetable</span>
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
-          </>
+          </span>
         </Popover>
       ),
       to: "",
