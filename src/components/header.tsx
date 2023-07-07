@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
 import { useBasketContext } from "./basket/basket-context";
 import { useCheckoutContext } from "./checkout/checkout-context";
-import { Tooltip, message, Drawer, Button } from "antd";
+import { Tooltip, message, Drawer, Button, Popover } from "antd";
 import AccountModal from "./account/account-modal";
 import SignInModal from "./sign-in";
+import { DownOutlined } from "@ant-design/icons";
 
 export interface HeaderProps {
   loggedIn?: boolean;
@@ -87,11 +88,37 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const navLinks = [
-    { label: "Classes", to: "/" },
-    { label: "Memberships", to: "/" },
-    { label: "Events", to: "/" },
-    { label: "Shop", to: "/" },
+    {
+      label: (
+        <Popover
+          content={
+            <div className="w-40 space-y-1">
+              <Link
+                to="/Timetable"
+                className="block px-3 py-1.5 font-medium rounded hover:bg-neutral-100 hover:bg-primary-text transition-all"
+              >
+                Little Telford
+              </Link>
+              <Link
+                to="/Timetable"
+                className="block px-3 py-1.5 font-medium rounded hover:bg-neutral-100 hover:bg-primary-text transition-all"
+              >
+                Newmarket
+              </Link>
+            </div>
+          }
+          trigger="click"
+        >
+          <>
+            <span>Timetable</span>
+            <DownOutlined className="ml-1.5 text-xs opacity-75" />
+          </>
+        </Popover>
+      ),
+      to: "",
+    },
     { label: "Class Finder", to: "/Finder" },
+    { label: "Shop", to: "/" },
   ];
 
   const accountLinks = [

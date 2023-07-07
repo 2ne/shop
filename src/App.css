@@ -325,3 +325,29 @@ dt {
 .evening ~ .evening {
   @apply !hidden;
 }
+
+.ant-tree-shop .ant-tree-switcher {
+  @apply !-ml-2;
+}
+
+.ant-tree-shop .ant-tree-switcher .ant-tree-switcher-icon {
+  @apply relative top-[-3px];
+}
+
+.ant-tree-shop .ant-tree-node-content-wrapper:hover,
+.ant-tree-shop .ant-tree-checkbox + span:hover {
+  @apply bg-transparent;
+}
+
+.ant-tree-shop .ant-tree-checkbox:has(+ span:hover) .ant-tree-checkbox-inner {
+  @apply border-interactive;
+}
+
+.ant-tree-shop .ant-tree-treenode,
+.ant-tree-shop .ant-tree-node-content-wrapper {
+  @apply min-w-0 w-full flex;
+}
+
+.ant-tree-shop .ant-tree-title {
+  @apply min-w-0;
+}

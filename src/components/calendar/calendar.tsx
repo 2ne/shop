@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Checkbox, Collapse, DatePicker, Select } from "antd";
-import { orgEvents, Event } from "../../org";
+import { Button, Checkbox, Collapse, DatePicker, Select, Tree } from "antd";
+import { orgEvents, orgClassEvents, Event } from "../../org";
 import CalendarEvent from "./calendar-event";
 import {
   CalendarOutlined,
@@ -11,9 +11,83 @@ import {
 import dayjs from "dayjs";
 const { Panel } = Collapse;
 
+const adultAndChildLessons = [
+  "Bubble the Seahorse",
+  "Cutie the Clam",
+  "Danny the Dolphin",
+  "Ollie the Octopus",
+  "Smiley the Turtle",
+  "Snappy the Crab",
+  "Swishy the Seal",
+  "Twinkle the Starfish",
+];
+
+const independentChildrensLessons = [
+  "Stage 1",
+  "Stage 2",
+  "Stage 3",
+  "Stage 4",
+  "Stage 5",
+];
+
+const adultLessons = ["Beginner", "Intermediate", "Advanced"];
+
+const privateLessons = ["Children's Class", "Adult's Class"];
+
+const treeData = [
+  {
+    title: (
+      <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded -ml-1 truncate">
+        Adult and Child Lessons
+      </div>
+    ),
+    key: "adultChild",
+    children: adultAndChildLessons.map((product, index) => ({
+      title: product,
+      key: `adultChild-${index}`,
+    })),
+  },
+  {
+    title: (
+      <div className="bg-blue-50 text-blue-800 px-1.5 rounded -ml-1 truncate">
+        Independent Children's Lessons
+      </div>
+    ),
+    key: "independantChild",
+    children: independentChildrensLessons.map((product, index) => ({
+      title: product,
+      key: `independantChild-${index}`,
+    })),
+  },
+  {
+    title: (
+      <div className="bg-amber-50 text-amber-800 px-1.5 rounded -ml-1 truncate">
+        Adult Lessons
+      </div>
+    ),
+    key: "adult",
+    children: adultLessons.map((product, index) => ({
+      title: product,
+      key: `adult-${index}`,
+    })),
+  },
+  {
+    title: "Private Lessons",
+    key: "private",
+    children: privateLessons.map((product, index) => ({
+      title: product,
+      key: `private-${index}`,
+    })),
+  },
+];
+
 type SelectedValue = string | undefined;
 
-const Calendar: React.FC = () => {
+export interface CalendarProps {
+  singleProduct: boolean;
+}
+
+const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
   const [date, setDate] = useState(dayjs());
   const [open, setOpen] = useState(false);
 
@@ -74,7 +148,9 @@ const Calendar: React.FC = () => {
     setSelectedAgeValue(value);
   };
 
-  const [activeDay, setActiveDay] = useState<string>(Object.keys(orgEvents)[0]);
+  const [activeDay, setActiveDay] = useState<string>(
+    singleProduct ? Object.keys(orgClassEvents)[0] : Object.keys(orgEvents)[0]
+  );
 
   const daysOfWeek = [
     "Monday",
@@ -135,7 +211,11 @@ const Calendar: React.FC = () => {
     <>
       <div className="mb-0.5 lg:-mt-3 lg:py-3 lg:mb-6 lg:flex lg:items-end lg:border-b lg:border-neutral-200 lg:sticky lg:top-0 lg:z-20 lg:bg-white/95 ring-2 ring-white/95">
         <div className="flex-grow w-full">
-          <h2 className="heading-lg">Adult and Child Lessons</h2>
+          <h2 className="heading-lg">
+            {singleProduct
+              ? "Adult and Child Lessons"
+              : "Little Telford Timetable"}
+          </h2>
         </div>
         <div className="relative hidden h-8 mx-auto lg:block">
           <DatePicker
@@ -221,25 +301,6 @@ const Calendar: React.FC = () => {
               ]}
             />
             <Select
-              value={selectedLocationValue}
-              allowClear={true}
-              placeholder="Location"
-              onDropdownVisibleChange={(open) => {
-                if (open) {
-                  addClassToHTML();
-                } else {
-                  removeClassFromHTML();
-                }
-              }}
-              onChange={handleLocationChange}
-              className="ant-select-token"
-              popupClassName="ant-select-mobile"
-              options={[
-                { value: "littleThetford", label: "Little Thetford" },
-                { value: "newmarket", label: "Newmarket" },
-              ]}
-            />
-            <Select
               value={selectedAgeValue}
               allowClear={true}
               placeholder="Age"
@@ -296,9 +357,16 @@ const Calendar: React.FC = () => {
         ></Button>
       </div>
       <div className="grid grid-cols-1 gap-2.5 p-px lg:hidden">
-        {(orgEvents[activeDay] || []).length > 0 ? (
-          orgEvents[activeDay].map((event: Event, index: number) => (
+        {(singleProduct
+          ? orgClassEvents[activeDay]
+          : orgEvents[activeDay] || []
+        ).length > 0 ? (
+          (singleProduct
+            ? orgClassEvents[activeDay]
+            : orgEvents[activeDay]
+          ).map((event: Event, index: number) => (
             <CalendarEvent
+              singleProduct={singleProduct}
               key={`${index}`}
               activeDay={activeDay}
               index={index}
@@ -313,6 +381,7 @@ const Calendar: React.FC = () => {
                 endTime: event.endTime,
                 price: event.price,
                 colour: event.colour,
+                productColour: event.productColour,
               }}
             />
           ))
@@ -337,50 +406,61 @@ const Calendar: React.FC = () => {
                 />
               )}
             >
-              <Panel header="Class" key="1">
-                <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
-                  <Checkbox value="Bubble the Seahorse">
-                    <div className="bg-yellow-50 text-yellow-800 px-1.5 rounded truncate">
-                      Bubble the Seahorse
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Cutie the Clam">
-                    <div className="bg-lime-50 text-lime-800 px-1.5 rounded truncate">
-                      Cutie the Clam
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Danny the Dolphin">
-                    <div className="bg-sky-50 text-sky-800 px-1.5 rounded truncate">
-                      Danny the Dolphin
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Ollie the Octopus">
-                    <div className="bg-pink-50 text-pink-800 px-1.5 rounded truncate">
-                      Ollie the Octopus
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Smiley the Turtle">
-                    <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded truncate">
-                      Smiley the Turtle
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Snappy the Crab">
-                    <div className="bg-red-50 text-red-800 px-1.5 rounded truncate">
-                      Snappy the Crab
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Swishy the Seal">
-                    <div className="bg-stone-50 text-stone-800 px-1.5 rounded truncate">
-                      Swishy the Seal
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Twinkle the Starfish">
-                    <div className="bg-blue-50 text-blue-800 px-1.5 rounded truncate">
-                      Twinkle the Starfish
-                    </div>
-                  </Checkbox>
-                </Checkbox.Group>
-              </Panel>
+              {singleProduct ? (
+                <Panel header="Class" key="1">
+                  <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
+                    <Checkbox value="Bubble the Seahorse">
+                      <div className="bg-yellow-50 text-yellow-800 px-1.5 rounded truncate">
+                        Bubble the Seahorse
+                      </div>
+                    </Checkbox>
+                    <Checkbox value="Cutie the Clam">
+                      <div className="bg-lime-50 text-lime-800 px-1.5 rounded truncate">
+                        Cutie the Clam
+                      </div>
+                    </Checkbox>
+                    <Checkbox value="Danny the Dolphin">
+                      <div className="bg-sky-50 text-sky-800 px-1.5 rounded truncate">
+                        Danny the Dolphin
+                      </div>
+                    </Checkbox>
+                    <Checkbox value="Ollie the Octopus">
+                      <div className="bg-pink-50 text-pink-800 px-1.5 rounded truncate">
+                        Ollie the Octopus
+                      </div>
+                    </Checkbox>
+                    <Checkbox value="Smiley the Turtle">
+                      <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded truncate">
+                        Smiley the Turtle
+                      </div>
+                    </Checkbox>
+                    <Checkbox value="Snappy the Crab">
+                      <div className="bg-red-50 text-red-800 px-1.5 rounded truncate">
+                        Snappy the Crab
+                      </div>
+                    </Checkbox>
+                    <Checkbox value="Swishy the Seal">
+                      <div className="bg-stone-50 text-stone-800 px-1.5 rounded truncate">
+                        Swishy the Seal
+                      </div>
+                    </Checkbox>
+                    <Checkbox value="Twinkle the Starfish">
+                      <div className="bg-blue-50 text-blue-800 px-1.5 rounded truncate">
+                        Twinkle the Starfish
+                      </div>
+                    </Checkbox>
+                  </Checkbox.Group>
+                </Panel>
+              ) : (
+                <Panel header="Products" key="1">
+                  <Tree
+                    checkable={true}
+                    selectable={false}
+                    treeData={treeData}
+                    className="ant-tree-shop"
+                  />
+                </Panel>
+              )}
               <Panel header="Time of day" key="2">
                 <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
                   <Checkbox value="Morning">
@@ -399,20 +479,6 @@ const Calendar: React.FC = () => {
                     <div className="truncate">
                       <span>Evening</span>
                       <span className="text-neutral-500"> · 18:00 - 00:00</span>
-                    </div>
-                  </Checkbox>
-                </Checkbox.Group>
-              </Panel>
-              <Panel header="Location" key="3">
-                <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
-                  <Checkbox value="Little Telford">
-                    <div className="truncate">
-                      <span>Little Telford</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Newmarket">
-                    <div className="truncate">
-                      <span>Newmarket</span>
                     </div>
                   </Checkbox>
                 </Checkbox.Group>
@@ -464,28 +530,33 @@ const Calendar: React.FC = () => {
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-2 p-px">
-                {(orgEvents[day] || []).length > 0 ? (
-                  orgEvents[day].map((event: Event, index: number) => (
-                    <>
-                      <CalendarEvent
-                        key={`${index}`}
-                        activeDay={activeDay}
-                        index={index}
-                        event={{
-                          img: event.img,
-                          hideImage: event.hideImage,
-                          title: event.title,
-                          description: event.description,
-                          link: event.link,
-                          address: event.address,
-                          startTime: event.startTime,
-                          endTime: event.endTime,
-                          price: event.price,
-                          colour: event.colour,
-                        }}
-                      />
-                    </>
-                  ))
+                {(singleProduct ? orgClassEvents[day] : orgEvents[day] || [])
+                  .length > 0 ? (
+                  (singleProduct ? orgClassEvents[day] : orgEvents[day]).map(
+                    (event: Event, index: number) => (
+                      <>
+                        <CalendarEvent
+                          singleProduct={singleProduct}
+                          key={`${index}`}
+                          activeDay={activeDay}
+                          index={index}
+                          event={{
+                            img: event.img,
+                            hideImage: event.hideImage,
+                            title: event.title,
+                            description: event.description,
+                            link: event.link,
+                            address: event.address,
+                            startTime: event.startTime,
+                            endTime: event.endTime,
+                            price: event.price,
+                            colour: event.colour,
+                            productColour: event.productColour,
+                          }}
+                        />
+                      </>
+                    )
+                  )
                 ) : (
                   <NoEventsToday />
                 )}

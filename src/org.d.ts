@@ -19,6 +19,27 @@ export interface OrgTiles {
   link: string;
 }
 
+export enum Colour {
+  red = "red",
+  orange = "orange",
+  amber = "amber",
+  yellow = "yellow",
+  lime = "lime",
+  green = "green",
+  emerald = "emerald",
+  teal = "teal",
+  cyan = "cyan",
+  sky = "sky",
+  blue = "blue",
+  indigo = "indigo",
+  violet = "violet",
+  purple = "purple",
+  fuchsia = "fuchsia",
+  pink = "pink",
+  rose = "rose",
+  stone = "stone",
+}
+
 export interface Event {
   img?: string;
   hideImage?: boolean;
@@ -29,28 +50,15 @@ export interface Event {
   startTime: string;
   endTime: string;
   price: string;
-  colour?:
-    | "red"
-    | "orange"
-    | "amber"
-    | "yellow"
-    | "lime"
-    | "green"
-    | "emerald"
-    | "teal"
-    | "cyan"
-    | "sky"
-    | "blue"
-    | "indigo"
-    | "violet"
-    | "purple"
-    | "fuchsia"
-    | "pink"
-    | "rose"
-    | "stone";
+  colour?: Colour;
+  productColour?: Colour;
 }
 
 export interface OrgEvents {
+  [key: string]: Event[];
+}
+
+export interface OrgClassEvents {
   [key: string]: Event[];
 }
 
@@ -60,3 +68,4 @@ export const orgColours: OrgColours;
 export const orgBanners: OrgBanners[];
 export const orgTiles: OrgTiles[];
 export const orgEvents: OrgEvents;
+export const orgClassEvents: OrgClassEvents;

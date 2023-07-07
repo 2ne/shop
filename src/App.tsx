@@ -9,6 +9,7 @@ import Checkout from "./shop/checkout";
 import { CheckoutProvider } from "./components/checkout/checkout-context";
 import ClassFinder from "./shop/class-finder";
 import CreateAccount from "./shop/create-account";
+import Timetable from "./shop/timetable";
 
 function App(): ReactElement {
   return (
@@ -27,6 +28,7 @@ function App(): ReactElement {
                 element={<BubbleTheSeahorse />}
               />
               <Route path="/Finder" element={<ClassFinder />} />
+              <Route path="/Timetable" element={<Timetable />} />
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/CreateAccount" element={<CreateAccount />} />
               <Route path="*" element={<Home />} />

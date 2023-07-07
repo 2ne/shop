@@ -7,6 +7,7 @@ interface CalendarEventProps {
   activeDay: string;
   index: number;
   event: Event;
+  singleProduct: boolean;
 }
 
 const colourClasses = {
@@ -65,9 +66,22 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
   activeDay,
   index,
   event,
+  singleProduct,
 }) => {
-  const colourClass = event.colour ? colourClasses[event.colour] : "";
-  const textColourClass = event.colour ? textColourClasses[event.colour] : "";
+  const colourClass = singleProduct
+    ? event.colour
+      ? colourClasses[event.colour]
+      : ""
+    : event.productColour
+    ? colourClasses[event.productColour]
+    : "";
+  const textColourClass = singleProduct
+    ? event.colour
+      ? textColourClasses[event.colour]
+      : ""
+    : event.productColour
+    ? textColourClasses[event.productColour]
+    : "";
 
   function getTimePeriod(timeString: string) {
     const time = parseInt(timeString.substring(0, 2), 10);
@@ -159,7 +173,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
         to={event.link}
         className={`@container block px-0.5 text-sm card max-lg:grid gap-1 sm:gap-4 max-sm:grid-cols-3 max-lg:grid-cols-3 max-lg:items-center ${colourClass}`}
       >
-        {!event.hideImage && (
+        {!event.hideImage && singleProduct && (
           <img
             className={`mt-0.5 max-lg:mb-0.5 aspect-[3/2] object-cover object-center mx-auto max-lg:col-span-1 max-lg:rounded-l-[calc(0.375rem-0.125rem)] lg:rounded-t-[calc(0.375rem-0.125rem)] ${
               event.colour ? " mix-blend-multiply brightness-105 " : " "
@@ -170,13 +184,15 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
         <div
           className={`py-1 px-2 space-y-1 my-1 lg:mt-0 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
         >
-          <div className="mb-1.5">
+          <div className={!singleProduct ? "" : "mb-1.5"}>
             <div className={`heading-sm truncate ${textColourClass}`}>
               {event.title}
             </div>
-            <div className={`truncate text-sm opacity-80 ${textColourClass}`}>
-              {event.description}
-            </div>
+            {singleProduct && (
+              <div className={`truncate text-sm opacity-80 ${textColourClass}`}>
+                {event.description}
+              </div>
+            )}
           </div>
           <div className="flex items-center gap-1">
             <svg
@@ -217,62 +233,66 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             </svg>
             <span className="truncate">{event.endTime}</span>
           </div>
-          <div className="flex items-center gap-1">
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M18.25 11C18.25 15 12 19.25 12 19.25C12 19.25 5.75 15 5.75 11C5.75 7.5 8.68629 4.75 12 4.75C15.3137 4.75 18.25 7.5 18.25 11Z"
-              ></path>
-              <circle
-                cx="12"
-                cy="11"
-                r="2.25"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-              ></circle>
-            </svg>
-            <span className="truncate">{event.address}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="7.25"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-              ></circle>
-              <g transform="scale(0.45) translate(14 14)">
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M17.25 8.25v-1.5a2 2 0 00-2-2h-3.5c-1.105 0-2 .893-2 1.998V14c0 3-3 5.25-3 5.25h8.5a2 2 0 002-2v-.5M6.75 11.75h6.5"
-                ></path>
-              </g>
-            </svg>
-            <span>{event.price}</span>
-          </div>
+          {singleProduct && (
+            <>
+              <div className="flex items-center gap-1">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M18.25 11C18.25 15 12 19.25 12 19.25C12 19.25 5.75 15 5.75 11C5.75 7.5 8.68629 4.75 12 4.75C15.3137 4.75 18.25 7.5 18.25 11Z"
+                  ></path>
+                  <circle
+                    cx="12"
+                    cy="11"
+                    r="2.25"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                  ></circle>
+                </svg>
+                <span className="truncate">{event.address}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="7.25"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                  ></circle>
+                  <g transform="scale(0.45) translate(14 14)">
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2.5"
+                      d="M17.25 8.25v-1.5a2 2 0 00-2-2h-3.5c-1.105 0-2 .893-2 1.998V14c0 3-3 5.25-3 5.25h8.5a2 2 0 002-2v-.5M6.75 11.75h6.5"
+                    ></path>
+                  </g>
+                </svg>
+                <span>{event.price}</span>
+              </div>
+            </>
+          )}
         </div>
       </Link>
     </>

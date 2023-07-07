@@ -2,11 +2,10 @@ import { ReactElement } from "react";
 import Breadcrumb from "../components/breadcrumb";
 import Header from "../components/header";
 import Main from "../components/main";
-import CalendarWeek from "../components/calendar/calendar-week";
 import Calendar from "../components/calendar/calendar";
-function AdultChildLessons(): ReactElement {
+function Timetable(): ReactElement {
   const breadcrumbItems = [
-    { label: "Adult and Child Lessons", link: "/AdultChildLessons" },
+    { label: "Little Telford Timetable", link: "/Timetable" },
   ];
 
   return (
@@ -14,11 +13,10 @@ function AdultChildLessons(): ReactElement {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="pb-20">
-        {/* <CalendarWeek /> */}
-        <Calendar singleProduct={true} />
+        <Calendar singleProduct={false} />
       </Main>
     </>
   );
 }
 
-export default AdultChildLessons;
+export default Timetable;
