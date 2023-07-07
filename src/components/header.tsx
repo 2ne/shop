@@ -30,8 +30,12 @@ const Header: React.FC<HeaderProps> = ({
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [selectedMenuKey, setSelectedMenuKey] = useState(String);
-
   const [isModalOpen, setModalOpen] = useState(false);
+  const [popoverVisible, setPopoverVisible] = useState(false);
+
+  const closePopover = () => {
+    setPopoverVisible(false);
+  };
 
   const showModal = () => {
     setModalOpen(true);
@@ -94,12 +98,14 @@ const Header: React.FC<HeaderProps> = ({
           content={
             <div className="w-40 space-y-1">
               <Link
+                onClick={closePopover}
                 to="/Timetable"
                 className="block px-3 py-1.5 font-medium rounded hover:bg-neutral-100 hover:bg-primary-text transition-all"
               >
                 Little Telford
               </Link>
               <Link
+                onClick={closePopover}
                 to="/Timetable"
                 className="block px-3 py-1.5 font-medium rounded hover:bg-neutral-100 hover:bg-primary-text transition-all"
               >
@@ -108,6 +114,8 @@ const Header: React.FC<HeaderProps> = ({
             </div>
           }
           trigger="click"
+          visible={popoverVisible}
+          onVisibleChange={setPopoverVisible}
         >
           <span className="-my-1.5 -mx-2.5 py-1.5 px-2.5">
             <span>Timetable</span>
