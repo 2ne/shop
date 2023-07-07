@@ -290,6 +290,28 @@ export const orgEvents = {
   ],
   Tuesday: [
     {
+      img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
+      title: "Stage 2",
+      link: "/BubbleTheSeahorse",
+      address: "Little Thetford",
+      startTime: "10:30",
+      endTime: "11:00",
+      price: "19.50",
+      colour: "emerald",
+      productColour: "blue",
+    },
+    {
+      img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
+      title: "Stage 1",
+      link: "/BubbleTheSeahorse",
+      address: "Little Thetford",
+      startTime: "11:00",
+      endTime: "11:30",
+      price: "19.50",
+      colour: "emerald",
+      productColour: "blue",
+    },
+    {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
       title: "Bubble the Seahorse",
       description: "12-18 months",
