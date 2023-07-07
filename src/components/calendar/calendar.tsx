@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, Checkbox, Collapse, DatePicker, Select, Tree } from "antd";
+import {
+  Button,
+  Checkbox,
+  Collapse,
+  DatePicker,
+  Select,
+  Tree,
+  TreeSelect,
+} from "antd";
 import { orgEvents, orgClassEvents, Event } from "../../org";
 import CalendarEvent from "./calendar-event";
 import {
@@ -81,6 +89,57 @@ const treeData = [
     children: privateLessons.map((product, index) => ({
       title: product,
       key: `private-${index}`,
+    })),
+  },
+];
+
+const treeSelectData = [
+  {
+    value: "Adult and Child Lessons",
+    title: (
+      <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded -ml-1 truncate">
+        Adult and Child Lessons
+      </div>
+    ),
+    children: adultAndChildLessons.map((product, index) => ({
+      value: `adultChild-${index}`,
+      title: product,
+    })),
+  },
+  {
+    value: "Independent Children's Lessons",
+    title: (
+      <div className="bg-blue-50 text-blue-800 px-1.5 rounded -ml-1 truncate">
+        Independent Children's Lessons
+      </div>
+    ),
+    children: independentChildrensLessons.map((product, index) => ({
+      value: `independantChild-${index}`,
+      title: product,
+    })),
+  },
+  {
+    value: "Adult Lessons",
+    title: (
+      <div className="bg-amber-50 text-amber-800 px-1.5 rounded -ml-1 truncate">
+        Adult Lessons
+      </div>
+    ),
+    children: adultLessons.map((product, index) => ({
+      value: `adult-${index}`,
+      title: product,
+    })),
+  },
+  {
+    value: "Private Lessons",
+    title: (
+      <div className="bg-rose-50 text-rose-800 px-1.5 rounded -ml-1 truncate">
+        Private Lessons
+      </div>
+    ),
+    children: privateLessons.map((product, index) => ({
+      value: `private-${index}`,
+      title: product,
     })),
   },
 ];
@@ -253,7 +312,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
         </div>
         <div className="max-lg:overflow-x-auto lg:hidden max-lg:z-30 max-lg:bg-white/95 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:ml-auto max-lg:py-2.5 max-lg:border-t max-lg:border-black/10">
           <div className="container flex lg:flex-wrap items-center gap-2 lg:gap-2.5 lg:p-0">
-            {singleProduct && (
+            {singleProduct ? (
               <Select
                 value={selectedClassValue}
                 allowClear={true}
@@ -284,6 +343,23 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                     label: "Twinkle The Starfish ",
                   },
                 ]}
+              />
+            ) : (
+              <TreeSelect
+                allowClear
+                placeholder="Products"
+                treeData={treeSelectData}
+                className="ant-select-token"
+                popupClassName="ant-select-mobile"
+                value={selectedClassValue}
+                onChange={handleClassChange}
+                onDropdownVisibleChange={(open) => {
+                  if (open) {
+                    addClassToHTML();
+                  } else {
+                    removeClassFromHTML();
+                  }
+                }}
               />
             )}
             <Select

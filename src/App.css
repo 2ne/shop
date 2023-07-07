@@ -330,8 +330,9 @@ dt {
   @apply !-ml-2;
 }
 
-.ant-tree-shop .ant-tree-switcher .ant-tree-switcher-icon {
-  @apply relative top-[-3px];
+.ant-tree-switcher-icon,
+.ant-select-tree-switcher-icon {
+  @apply !relative !top-[-3px];
 }
 
 .ant-tree-shop .ant-tree-node-content-wrapper:hover,
@@ -350,4 +351,8 @@ dt {
 
 .ant-tree-shop .ant-tree-title {
   @apply min-w-0;
+}
+
+.ant-tree-select .ant-select-selection-item > div {
+  @apply bg-transparent pr-0;
 }
