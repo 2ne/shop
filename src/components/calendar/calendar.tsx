@@ -19,6 +19,23 @@ import {
 import dayjs from "dayjs";
 const { Panel } = Collapse;
 
+function useViewportHeightPercentage(percentage: number) {
+  const [height, setHeight] = useState(window.innerHeight * (percentage / 100));
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight * (percentage / 100));
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, [percentage]);
+
+  return height;
+}
+
 const adultAndChildLessons = [
   "Bubble the Seahorse",
   "Cutie the Clam",
@@ -153,6 +170,7 @@ export interface CalendarProps {
 const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
   const [date, setDate] = useState(dayjs());
   const [open, setOpen] = useState(false);
+  const safeHeight = useViewportHeightPercentage(75);
 
   const handleOpenChange = (open: boolean) => {
     setOpen(open);
@@ -314,6 +332,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
           <div className="container flex lg:flex-wrap items-center gap-2 lg:gap-2.5 lg:p-0">
             {singleProduct ? (
               <Select
+                listHeight={safeHeight}
                 value={selectedClassValue}
                 allowClear={true}
                 placeholder="Class"
@@ -351,6 +370,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                 treeData={treeSelectData}
                 className="ant-select-token"
                 popupClassName="ant-select-mobile"
+                listHeight={safeHeight}
                 value={selectedClassValue}
                 onChange={handleClassChange}
                 onDropdownVisibleChange={(open) => {
@@ -363,6 +383,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
               />
             )}
             <Select
+              listHeight={safeHeight}
               value={selectedTimeOfDayValue}
               allowClear={true}
               placeholder="Time of day"
@@ -383,6 +404,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
               ]}
             />
             <Select
+              listHeight={safeHeight}
               value={selectedAgeValue}
               allowClear={true}
               placeholder="Age"
