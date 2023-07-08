@@ -8,6 +8,7 @@ import { Tooltip, message, Drawer, Button, Popover } from "antd";
 import AccountModal from "./account/account-modal";
 import SignInModal from "./sign-in";
 import { DownOutlined } from "@ant-design/icons";
+import { time } from "console";
 
 export interface HeaderProps {
   loggedIn?: boolean;
@@ -32,6 +33,11 @@ const Header: React.FC<HeaderProps> = ({
   const [selectedMenuKey, setSelectedMenuKey] = useState(String);
   const [isModalOpen, setModalOpen] = useState(false);
   const [popoverVisible, setPopoverVisible] = useState(false);
+  const [timetableMenu, setTimetableMenu] = useState(false);
+
+  const toggleTimetableMenu = () => {
+    setTimetableMenu((timetableMenu) => !timetableMenu);
+  };
 
   const closePopover = () => {
     setPopoverVisible(false);
@@ -122,6 +128,43 @@ const Header: React.FC<HeaderProps> = ({
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
           </span>
         </Popover>
+      ),
+      to: "",
+    },
+    { label: "Class Finder", to: "/Finder" },
+    { label: "Shop", to: "/" },
+  ];
+
+  const navMobileLinks = [
+    {
+      label: (
+        <>
+          <div
+            className="-my-1.5 -mx-2.5 py-1.5 px-2.5"
+            onClick={toggleTimetableMenu}
+          >
+            <span>Timetable</span>
+            <DownOutlined className="ml-1.5 text-xs opacity-75" />
+          </div>
+          {timetableMenu && (
+            <div className="mt-3 ml-4 space-y-3">
+              <Link
+                onClick={navClose}
+                to="/Timetable"
+                className="block text-neutral-800 hover:text-interactive"
+              >
+                Little Telford
+              </Link>
+              <Link
+                onClick={navClose}
+                to="/Timetable"
+                className="block text-neutral-800 hover:text-interactive"
+              >
+                Newmarket
+              </Link>
+            </div>
+          )}
+        </>
       ),
       to: "",
     },
@@ -533,7 +576,7 @@ const Header: React.FC<HeaderProps> = ({
               Links
             </div>
             <ul>
-              {navLinks.map((item, index) => (
+              {navMobileLinks.map((item, index) => (
                 <li key={index}>
                   <Link
                     to={item.to}
