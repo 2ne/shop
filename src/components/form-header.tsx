@@ -35,7 +35,7 @@ const FormHeader: React.FC<FormHeaderProps> = ({
       </div>
       {requiredText && (
         <div className="flex mt-2.5 lg:justify-center">
-          <div className="inline-flex items-center px-3 py-2 text-xs font-medium text-left rounded-md lg:px-4 lg:text-sm bg-primary text-primary_text gap-x-2">
+          <div className="inline-flex items-center px-3 py-2 text-xs font-medium text-left rounded-md lg:px-4 sm:text-sm bg-primary text-primary_text gap-x-2">
             <svg
               width="24"
               height="24"
