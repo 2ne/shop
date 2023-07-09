@@ -572,7 +572,7 @@ const Header: React.FC<HeaderProps> = ({
       >
         <div className="[&>*]:mb-6 -mt-1">
           <div>
-            <div className="mb-3 text-sm font-medium text-neutral-500">
+            <div className="mb-2 text-sm font-medium text-neutral-500">
               Links
             </div>
             <ul>
