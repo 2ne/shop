@@ -137,7 +137,7 @@ dt {
 }
 
 .ant-select-mobile {
-  @apply max-lg:!rounded-t-md max-lg:!rounded-b-none max-lg:!fixed max-lg:!p-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bottom-0 max-lg:!top-auto max-lg:!w-full;
+  @apply max-lg:!rounded-t-md max-lg:!rounded-b-none max-lg:!fixed max-lg:!p-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bottom-0 max-lg:!top-auto max-lg:!w-full max-lg:max-w-[696px] max-lg:mx-auto;
 }
 
 .ant-select-mobile:before {
