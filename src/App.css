@@ -145,7 +145,7 @@ dt {
 }
 
 .ant-select-mobile > div {
-  @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative max-lg:!p-3;
+  @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative max-lg:!py-3 max-lg:!px-1.5;
 }
 
 .ant-select-mobile .ant-select-item {
