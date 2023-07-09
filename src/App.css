@@ -145,11 +145,15 @@ dt {
 }
 
 .ant-select-mobile > div {
-  @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative max-lg:!py-3 max-lg:!px-1.5;
+  @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative max-lg:!py-3 max-lg:!px-1.5 max-lg:!rounded-t-md;
 }
 
 .ant-select-mobile .ant-select-item {
   @apply max-lg:!px-3;
+}
+
+.ant-select-mobile .ant-select-tree {
+  @apply bg-transparent;
 }
 
 .ant-select-token {
