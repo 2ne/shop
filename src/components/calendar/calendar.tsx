@@ -629,7 +629,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                         : "text-neutral-500"
                     }
                   >
-                    0{fakeDateNumberCounter++}
+                    {fakeDateNumberCounter++}
                   </span>
                 </span>
               </div>
