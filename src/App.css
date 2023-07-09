@@ -356,7 +356,3 @@ dt {
 .ant-tree-select .ant-select-selection-item > div {
   @apply bg-transparent pr-0;
 }
-
-.ant-select-mobile.ant-tree-select-dropdown .ant-select-tree-list-holder-inner {
-  @apply gap-y-1 mt-1;
-}
