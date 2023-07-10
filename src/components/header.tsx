@@ -198,7 +198,11 @@ const Header: React.FC<HeaderProps> = ({
             onClick={toggleClassesMenu}
           >
             <span>Classes</span>
-            <DownOutlined className="ml-1.5 text-xs opacity-75" />
+            <DownOutlined
+              className={`ml-1.5 text-xs opacity-75 ${
+                classesMenu ? "" : "-rotate-90"
+              }`}
+            />
           </a>
           {classesMenu && (
             <ul className="mt-2 mb-3 ml-3 space-y-2">
@@ -208,7 +212,11 @@ const Header: React.FC<HeaderProps> = ({
                   onClick={toggleLocationMenu1}
                 >
                   <span>Little Telford</span>
-                  <DownOutlined className="ml-1.5 text-xs opacity-75" />
+                  <DownOutlined
+                    className={`ml-1.5 text-xs opacity-75 ${
+                      locationMenu1 ? "" : "-rotate-90"
+                    }`}
+                  />
                 </a>
                 {locationMenu1 && (
                   <ul className="mt-2 mb-3 ml-3 space-y-2">
@@ -266,7 +274,11 @@ const Header: React.FC<HeaderProps> = ({
                   onClick={toggleLocationMenu2}
                 >
                   <span>Newmarket</span>
-                  <DownOutlined className="ml-1.5 text-xs opacity-75" />
+                  <DownOutlined
+                    className={`ml-1.5 text-xs opacity-75 ${
+                      locationMenu2 ? "" : "-rotate-90"
+                    }`}
+                  />
                 </a>
                 {locationMenu2 && (
                   <ul className="mt-2 mb-3 ml-3 space-y-2">
