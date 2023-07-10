@@ -557,7 +557,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                   </Checkbox.Group>
                 </Panel>
               ) : (
-                <Panel header="Products" key="1">
+                <Panel header="Classes" key="1">
                   <Tree
                     checkable={true}
                     selectable={false}
