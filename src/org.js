@@ -94,6 +94,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "emerald",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -106,6 +107,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -118,6 +120,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -130,6 +133,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "red",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -141,6 +145,7 @@ export const orgEvents = {
       price: "19.50",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -153,6 +158,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "blue",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -165,6 +171,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "red",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -176,6 +183,7 @@ export const orgEvents = {
       price: "19.50",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -187,6 +195,7 @@ export const orgEvents = {
       price: "19.50",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -198,6 +207,7 @@ export const orgEvents = {
       price: "16.00",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -209,6 +219,7 @@ export const orgEvents = {
       price: "16.00",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -220,6 +231,7 @@ export const orgEvents = {
       price: "16.00",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -231,6 +243,7 @@ export const orgEvents = {
       price: "16.00",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -242,6 +255,7 @@ export const orgEvents = {
       price: "16.00",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -253,6 +267,7 @@ export const orgEvents = {
       price: "19.50",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -264,6 +279,7 @@ export const orgEvents = {
       price: "16.00",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -275,6 +291,7 @@ export const orgEvents = {
       price: "16.00",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/37597dfa-bf0b-4ed4-a623-0c8cb6b797f5",
@@ -286,6 +303,7 @@ export const orgEvents = {
       price: "25.00",
       colour: "emerald",
       productColour: "amber",
+      productGroup: "Adult Lessons",
     },
   ],
   Tuesday: [
@@ -299,6 +317,7 @@ export const orgEvents = {
       price: "19.50",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/daf56b3e-5501-4f6d-8927-ce45adf67f1d",
@@ -310,6 +329,7 @@ export const orgEvents = {
       price: "19.50",
       colour: "emerald",
       productColour: "blue",
+      productGroup: "Independent Children's Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
@@ -322,6 +342,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "yellow",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
@@ -334,6 +355,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "sky",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
@@ -346,6 +368,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "sky",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
   ],
   Wednesday: [
@@ -360,6 +383,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "blue",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -372,6 +396,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -384,6 +409,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "blue",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
@@ -396,6 +422,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "yellow",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -408,6 +435,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "blue",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -420,6 +448,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "red",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
   ],
   Thursday: [
@@ -434,6 +463,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/d55349ad-454d-4cf1-be8d-0d853386c8a2",
@@ -446,6 +476,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "lime",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
@@ -458,6 +489,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "yellow",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -470,6 +502,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -482,6 +515,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "red",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -494,6 +528,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "blue",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/c426d347-3f35-4ae8-97a8-b582739eaf4c",
@@ -506,6 +541,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "yellow",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/d55349ad-454d-4cf1-be8d-0d853386c8a2",
@@ -518,6 +554,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "lime",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -530,6 +567,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
   ],
   Friday: [
@@ -544,6 +582,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "emerald",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -556,6 +595,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/7dc3d6ba-9124-4f50-8541-ca10d41915cd",
@@ -568,6 +608,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "pink",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -580,6 +621,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "red",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -592,6 +634,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "blue",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/54b38266-2a22-4c52-bc83-fc578f811198",
@@ -604,6 +647,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "red",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
   ],
   Saturday: [
@@ -618,6 +662,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "stone",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/cafb06f1-9dc3-4dae-a1f1-24830e3f87f3",
@@ -630,6 +675,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "sky",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
     {
       img: "https://app.joinin.online/services/anonymous/photo/8728587c-ef79-4bed-8b3d-347e402cb7fa",
@@ -642,6 +688,7 @@ export const orgEvents = {
       price: "£16.00",
       colour: "blue",
       productColour: "emerald",
+      productGroup: "Adult and Child Lessons",
     },
   ],
   Sunday: [],

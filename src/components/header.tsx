@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 import { orgLogo, orgName } from "../org";
 import { useBasketContext } from "./basket/basket-context";
 import { useCheckoutContext } from "./checkout/checkout-context";
-import { Tooltip, message, Drawer, Button, Popover } from "antd";
+import { Tooltip, message, Drawer, Button, Dropdown, MenuProps } from "antd";
 import AccountModal from "./account/account-modal";
 import SignInModal from "./sign-in";
 import { DownOutlined } from "@ant-design/icons";
-import { time } from "console";
 
 export interface HeaderProps {
   loggedIn?: boolean;
@@ -32,15 +31,22 @@ const Header: React.FC<HeaderProps> = ({
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [selectedMenuKey, setSelectedMenuKey] = useState(String);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [popoverVisible, setPopoverVisible] = useState(false);
-  const [timetableMenu, setTimetableMenu] = useState(false);
+  const [classesMenu, setClassesMenu] = useState(false);
+  const [locationMenu1, setLocationMenu1] = useState(false);
+  const [locationMenu2, setLocationMenu2] = useState(false);
 
-  const toggleTimetableMenu = () => {
-    setTimetableMenu((timetableMenu) => !timetableMenu);
+  basketCount = itemCount();
+
+  const toggleClassesMenu = () => {
+    setClassesMenu((classesMenu) => !classesMenu);
   };
 
-  const closePopover = () => {
-    setPopoverVisible(false);
+  const toggleLocationMenu1 = () => {
+    setLocationMenu1((locationMenu1) => !locationMenu1);
+  };
+
+  const toggleLocationMenu2 = () => {
+    setLocationMenu2((locationMenu2) => !locationMenu2);
   };
 
   const showModal = () => {
@@ -50,8 +56,6 @@ const Header: React.FC<HeaderProps> = ({
   const hideModal = () => {
     setModalOpen(false);
   };
-
-  basketCount = itemCount();
 
   const openNav = () => {
     setIsNavOpen(true);
@@ -97,79 +101,241 @@ const Header: React.FC<HeaderProps> = ({
     setIsAccountModalOpen(false);
   };
 
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: <Link to="/Timetable">Little Thetford</Link>,
+      children: [
+        {
+          key: "1-1",
+          label: <Link to="/AdultChildLessons">Adult and Child Lessons</Link>,
+        },
+        {
+          key: "1-2",
+          label: (
+            <Link to="/AdultChildLessons">Independent Children's Lessons</Link>
+          ),
+        },
+        {
+          key: "1-3",
+          label: <Link to="/AdultChildLessons">Adult Lessons</Link>,
+        },
+        {
+          key: "1-4",
+          label: <Link to="/AdultChildLessons">Private Lessons</Link>,
+        },
+        {
+          type: "divider",
+        },
+        {
+          key: "1-5",
+          label: <Link to="/Timetable">View All</Link>,
+        },
+      ],
+    },
+    {
+      key: "2",
+      label: <Link to="/Timetable">Newmarket</Link>,
+      children: [
+        {
+          key: "2-1",
+          label: <Link to="/AdultChildLessons">Adult and Child Lessons</Link>,
+        },
+        {
+          key: "2-2",
+          label: (
+            <Link to="/AdultChildLessons">Independent Children's Lessons</Link>
+          ),
+        },
+        {
+          key: "2-3",
+          label: <Link to="/AdultChildLessons">Adult Lessons</Link>,
+        },
+        {
+          key: "2-4",
+          label: <Link to="/AdultChildLessons">Private Lessons</Link>,
+        },
+        {
+          type: "divider",
+        },
+        {
+          key: "2-5",
+          label: <Link to="/Timetable">View All</Link>,
+        },
+      ],
+    },
+  ];
+
   const navLinks = [
     {
       label: (
-        <Popover
-          content={
-            <div className="w-40 space-y-1">
-              <Link
-                onClick={closePopover}
-                to="/Timetable"
-                className="block px-3 py-1.5 font-medium rounded hover:bg-neutral-100 hover:bg-primary-text transition-all"
-              >
-                Little Telford
-              </Link>
-              <Link
-                onClick={closePopover}
-                to="/Timetable"
-                className="block px-3 py-1.5 font-medium rounded hover:bg-neutral-100 hover:bg-primary-text transition-all"
-              >
-                Newmarket
-              </Link>
-            </div>
-          }
-          trigger="click"
-          visible={popoverVisible}
-          onVisibleChange={setPopoverVisible}
+        <Dropdown
+          overlayClassName="!min-w-[10rem] !top-[64px]"
+          menu={{ items }}
+          placement="bottom"
+          arrow={{ pointAtCenter: true }}
         >
-          <span className="-my-1.5 -mx-2.5 py-1.5 px-2.5">
-            <span>Timetable</span>
+          <button
+            onClick={(e) => e.preventDefault()}
+            className="py-1.5 px-2.5 -my-1.5 -mx-2.5"
+          >
+            Classes
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
-          </span>
-        </Popover>
+          </button>
+        </Dropdown>
       ),
       to: "",
     },
     { label: "Class Finder", to: "/Finder" },
-    { label: "Shop", to: "/" },
   ];
 
   const navMobileLinks = [
     {
       label: (
         <>
-          <div
-            className="-my-1.5 -mx-2.5 py-1.5 px-2.5"
-            onClick={toggleTimetableMenu}
+          <a
+            className="block text-neutral-800 hover:text-interactive"
+            onClick={toggleClassesMenu}
           >
-            <span>Timetable</span>
+            <span>Classes</span>
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
-          </div>
-          {timetableMenu && (
-            <div className="mt-3 ml-4 space-y-3">
-              <Link
-                onClick={navClose}
-                to="/Timetable"
-                className="block text-neutral-800 hover:text-interactive"
-              >
-                Little Telford
-              </Link>
-              <Link
-                onClick={navClose}
-                to="/Timetable"
-                className="block text-neutral-800 hover:text-interactive"
-              >
-                Newmarket
-              </Link>
-            </div>
+          </a>
+          {classesMenu && (
+            <ul className="mt-2 mb-3 ml-3 space-y-2">
+              <li>
+                <a
+                  className="block text-neutral-800 hover:text-interactive"
+                  onClick={toggleLocationMenu1}
+                >
+                  <span>Little Telford</span>
+                  <DownOutlined className="ml-1.5 text-xs opacity-75" />
+                </a>
+                {locationMenu1 && (
+                  <ul className="mt-2 mb-3 ml-3 space-y-2">
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Adult and Child Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Independent Children's Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Adult Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Private Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/Timetable"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        View all
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </li>
+              <li>
+                <a
+                  className="block text-neutral-800 hover:text-interactive"
+                  onClick={toggleLocationMenu2}
+                >
+                  <span>Newmarket</span>
+                  <DownOutlined className="ml-1.5 text-xs opacity-75" />
+                </a>
+                {locationMenu2 && (
+                  <ul className="mt-2 mb-3 ml-3 space-y-2">
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Adult and Child Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Independent Children's Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Adult Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/AdultChildLessons"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        Private Lessons
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        onClick={navClose}
+                        to="/Timetable"
+                        className="block text-neutral-800 hover:text-interactive"
+                      >
+                        View all
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </li>
+            </ul>
           )}
         </>
       ),
       to: "",
     },
-    { label: "Class Finder", to: "/Finder" },
-    { label: "Shop", to: "/" },
+    {
+      label: (
+        <Link
+          onClick={navClose}
+          to="/Finder"
+          className="block text-neutral-800 hover:text-interactive"
+        >
+          Class Finder
+        </Link>
+      ),
+      to: "",
+    },
   ];
 
   const accountLinks = [
@@ -572,27 +738,20 @@ const Header: React.FC<HeaderProps> = ({
       >
         <div className="[&>*]:mb-6 -mt-1">
           <div>
-            <div className="mb-2 text-sm font-medium text-neutral-500">
-              Links
+            <div className="mb-2.5 text-sm font-medium text-neutral-500">
+              Navigation
             </div>
-            <ul>
+            <ul className="space-y-2">
               {navMobileLinks.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item.to}
-                    className="block py-1.5 text-sm transition"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
+                <li key={index}>{item.label}</li>
               ))}
             </ul>
           </div>
           {isLoggedIn && (
             <>
               <div>
-                <div className="mb-2 text-sm font-medium text-neutral-500">
-                  James Toone
+                <div className="mb-1.5 text-sm font-medium text-neutral-500">
+                  My account
                 </div>
                 <ul>
                   {accountLinks.map((item, index) => (
@@ -600,7 +759,7 @@ const Header: React.FC<HeaderProps> = ({
                       <button
                         type="button"
                         onClick={item.onclick}
-                        className="flex items-center gap-2 py-1.5 text-sm transition group"
+                        className="flex items-center gap-2 py-1 text-sm transition group"
                       >
                         <i className="group-hover:text-interactive">
                           {item.icon}
@@ -614,20 +773,20 @@ const Header: React.FC<HeaderProps> = ({
                 </ul>
               </div>
               <div>
-                <div className="mb-2 text-sm font-medium text-neutral-500">
+                <div className="mb-1.5 text-sm font-medium text-neutral-500">
                   Switch organisation
                 </div>
                 <ul className="">
                   <li>
                     <Link
                       to="/"
-                      className="block py-1.5 text-sm transition text-interactive font-medium"
+                      className="block py-1 text-sm font-medium transition text-interactive"
                     >
                       CG Swim School
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="block py-1.5 text-sm transition">
+                    <Link to="/" className="block py-1 text-sm transition">
                       Organisation 2
                     </Link>
                   </li>

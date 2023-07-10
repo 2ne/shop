@@ -52,6 +52,7 @@ export interface Event {
   price: string;
   colour?: Colour;
   productColour?: Colour;
+  productGroup?: string;
 }
 
 export interface OrgEvents {

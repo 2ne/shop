@@ -188,11 +188,13 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             <div className={`heading-sm truncate ${textColourClass}`}>
               {event.title}
             </div>
-            {singleProduct && (
-              <div className={`truncate text-sm opacity-80 ${textColourClass}`}>
-                {event.description}
-              </div>
-            )}
+            <div
+              className={`truncate text-sm opacity-80 ${
+                singleProduct ? "" : "lg:hidden"
+              } ${textColourClass}`}
+            >
+              {singleProduct ? event.description : event.productGroup}
+            </div>
           </div>
           <div className="flex items-center gap-1">
             <svg

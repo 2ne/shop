@@ -331,12 +331,7 @@ dt {
 }
 
 .ant-tree-shop .ant-tree-switcher {
-  @apply !-ml-2;
-}
-
-.ant-tree-switcher-icon,
-.ant-select-tree-switcher-icon {
-  @apply !relative !top-[-3px];
+  @apply !-ml-2 flex items-center justify-center;
 }
 
 .ant-tree-shop .ant-tree-node-content-wrapper:hover,
@@ -359,4 +354,11 @@ dt {
 
 .ant-tree-select .ant-select-selection-item > div {
   @apply bg-transparent pr-0;
+}
+
+:where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item,
+:where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown-menu-submenu .ant-dropdown-menu .ant-dropdown-menu-item,
+:where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-submenu-title,
+:where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown-menu-submenu .ant-dropdown-menu .ant-dropdown-menu-submenu-title {
+  padding: 8px 12px;
 }

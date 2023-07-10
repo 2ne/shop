@@ -62,7 +62,7 @@ const privateLessons = ["Children's Class", "Adult's Class"];
 const treeData = [
   {
     title: (
-      <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded -ml-1 truncate">
+      <div className="bg-emerald-50 text-emerald-800 px-2 rounded -ml-1 line-clamp-2 leading-[1.275] py-1">
         Adult and Child Lessons
       </div>
     ),
@@ -74,7 +74,7 @@ const treeData = [
   },
   {
     title: (
-      <div className="bg-blue-50 text-blue-800 px-1.5 rounded -ml-1 truncate">
+      <div className="bg-blue-50 text-blue-800 px-2 rounded -ml-1 line-clamp-2 leading-[1.275] py-1">
         Independent Children's Lessons
       </div>
     ),
@@ -486,6 +486,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                 price: event.price,
                 colour: event.colour,
                 productColour: event.productColour,
+                productGroup: event.productGroup,
               }}
             />
           ))
@@ -656,6 +657,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                             price: event.price,
                             colour: event.colour,
                             productColour: event.productColour,
+                            productGroup: event.productGroup,
                           }}
                         />
                       </>
