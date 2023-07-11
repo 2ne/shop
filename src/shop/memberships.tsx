@@ -13,7 +13,7 @@ function Memberships(): ReactElement {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="pb-56">
-        <ShopLayout singleProduct={true} />
+        <ShopLayout singleProduct={true} title="Memberships" />
       </Main>
       <Footer />
     </>

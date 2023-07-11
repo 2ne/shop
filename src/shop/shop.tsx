@@ -13,7 +13,7 @@ function Shop(): ReactElement {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="pb-56">
-        <ShopLayout singleProduct={false} />
+        <ShopLayout singleProduct={false} title="Shop" />
       </Main>
       <Footer />
     </>

@@ -179,14 +179,14 @@ const Header: React.FC<HeaderProps> = ({
             onClick={(e) => e.preventDefault()}
             className="py-1.5 px-2.5 -my-1.5 -mx-2.5"
           >
-            Classes
+            Sessions
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
           </button>
         </Dropdown>
       ),
       to: "",
     },
-    { label: "Memerbships", to: "/Memerbships" },
+    { label: "Memberships", to: "/Memberships" },
     { label: "Events", to: "/Events" },
     { label: "Shop", to: "/Shop" },
     /*     { label: "Class Finder", to: "/Finder" }, */
@@ -200,7 +200,7 @@ const Header: React.FC<HeaderProps> = ({
             className="block text-neutral-800 hover:text-interactive"
             onClick={toggleClassesMenu}
           >
-            <span>Classes</span>
+            <span>Sessions</span>
             <DownOutlined
               className={`ml-1.5 text-xs opacity-50 ${
                 classesMenu ? "" : "-rotate-90"

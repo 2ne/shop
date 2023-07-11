@@ -5,9 +5,10 @@ const { Panel } = Collapse;
 
 export interface ShopLayoutProps {
   singleProduct: boolean;
+  title: string;
 }
 
-const ShopLayout: React.FC<ShopLayoutProps> = ({ singleProduct }) => {
+const ShopLayout: React.FC<ShopLayoutProps> = ({ singleProduct, title }) => {
   const products = [
     {
       id: 1,
@@ -99,9 +100,13 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ singleProduct }) => {
   return (
     <>
       <div className="pb-3 mb-10 border-b border-neutral-200">
-        <h2 className="heading-lg">Shop</h2>
+        <h2 className="heading-lg">{title}</h2>
       </div>
-      <div className="hidden lg:gap-6 lg:grid lg:grid-cols-5 xl:grid-cols-6">
+      <div
+        className={`lg:gap-6 lg:grid-cols-5 xl:grid-cols-6 ${
+          singleProduct ? "block" : "lg:grid"
+        }`}
+      >
         {!singleProduct && (
           <div className="-mt-1.5">
             <div className="sticky z-10 top-2">
