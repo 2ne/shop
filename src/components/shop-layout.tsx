@@ -102,7 +102,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
   }, []);
   return (
     <>
-      <div className="pb-3 mb-10 border-b border-neutral-200">
+      <div className="mb-6 lg:pb-3 lg:border-b lg:mb-10 lg:border-neutral-200">
         <h2 className="heading-lg">{title}</h2>
       </div>
       <div
@@ -111,7 +111,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
         }`}
       >
         {!singleProduct && (
-          <div className="-mt-2.5">
+          <div className="-mt-2.5 hidden lg:block">
             <div className="sticky z-10 top-2">
               <Collapse
                 defaultActiveKey={["1"]}
@@ -140,7 +140,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
             </div>
           </div>
         )}
-        <div className="grid grid-cols-1 lg:col-span-4 xl:col-span-5 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 lg:col-span-4 xl:col-span-5 gap-x-6 gap-y-8 lg:gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <div key={product.id} className="relative group">
               {product.limitedStock && (

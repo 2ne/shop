@@ -31,14 +31,14 @@ const Header: React.FC<HeaderProps> = ({
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [selectedMenuKey, setSelectedMenuKey] = useState(String);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [classesMenu, setClassesMenu] = useState(false);
+  const [sessionsMenu, setSessionsMenu] = useState(false);
   const [locationMenu1, setLocationMenu1] = useState(false);
   const [locationMenu2, setLocationMenu2] = useState(false);
 
   basketCount = itemCount();
 
-  const toggleClassesMenu = () => {
-    setClassesMenu((classesMenu) => !classesMenu);
+  const toggleSessionsMenu = () => {
+    setSessionsMenu((sessionsMenu) => !sessionsMenu);
   };
 
   const toggleLocationMenu1 = () => {
@@ -198,16 +198,16 @@ const Header: React.FC<HeaderProps> = ({
         <>
           <a
             className="block text-neutral-800 hover:text-interactive"
-            onClick={toggleClassesMenu}
+            onClick={toggleSessionsMenu}
           >
             <span>Sessions</span>
             <DownOutlined
               className={`ml-1.5 text-xs opacity-50 ${
-                classesMenu ? "" : "-rotate-90"
+                sessionsMenu ? "" : "-rotate-90"
               }`}
             />
           </a>
-          {classesMenu && (
+          {sessionsMenu && (
             <ul className="mt-2 mb-3 ml-3 space-y-2">
               <li>
                 <a
