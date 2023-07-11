@@ -186,7 +186,10 @@ const Header: React.FC<HeaderProps> = ({
       ),
       to: "",
     },
-    { label: "Class Finder", to: "/Finder" },
+    { label: "Memerbships", to: "/Memerbships" },
+    { label: "Events", to: "/Events" },
+    { label: "Shop", to: "/Shop" },
+    /*     { label: "Class Finder", to: "/Finder" }, */
   ];
 
   const navMobileLinks = [
@@ -199,7 +202,7 @@ const Header: React.FC<HeaderProps> = ({
           >
             <span>Classes</span>
             <DownOutlined
-              className={`ml-1.5 text-xs opacity-75 ${
+              className={`ml-1.5 text-xs opacity-50 ${
                 classesMenu ? "" : "-rotate-90"
               }`}
             />
@@ -213,7 +216,7 @@ const Header: React.FC<HeaderProps> = ({
                 >
                   <span>Little Telford</span>
                   <DownOutlined
-                    className={`ml-1.5 text-xs opacity-75 ${
+                    className={`ml-1.5 text-xs opacity-50 ${
                       locationMenu1 ? "" : "-rotate-90"
                     }`}
                   />
@@ -275,7 +278,7 @@ const Header: React.FC<HeaderProps> = ({
                 >
                   <span>Newmarket</span>
                   <DownOutlined
-                    className={`ml-1.5 text-xs opacity-75 ${
+                    className={`ml-1.5 text-xs opacity-50 ${
                       locationMenu2 ? "" : "-rotate-90"
                     }`}
                   />
@@ -340,6 +343,42 @@ const Header: React.FC<HeaderProps> = ({
       label: (
         <Link
           onClick={navClose}
+          to="/Memberships"
+          className="block text-neutral-800 hover:text-interactive"
+        >
+          Memberships
+        </Link>
+      ),
+      to: "",
+    },
+    {
+      label: (
+        <Link
+          onClick={navClose}
+          to="/Events"
+          className="block text-neutral-800 hover:text-interactive"
+        >
+          Events
+        </Link>
+      ),
+      to: "",
+    },
+    {
+      label: (
+        <Link
+          onClick={navClose}
+          to="/Shop"
+          className="block text-neutral-800 hover:text-interactive"
+        >
+          Shop
+        </Link>
+      ),
+      to: "",
+    },
+    /*  {
+      label: (
+        <Link
+          onClick={navClose}
           to="/Finder"
           className="block text-neutral-800 hover:text-interactive"
         >
@@ -347,7 +386,7 @@ const Header: React.FC<HeaderProps> = ({
         </Link>
       ),
       to: "",
-    },
+    }, */
   ];
 
   const accountLinks = [

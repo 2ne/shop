@@ -10,6 +10,9 @@ import { CheckoutProvider } from "./components/checkout/checkout-context";
 import ClassFinder from "./shop/class-finder";
 import CreateAccount from "./shop/create-account";
 import Timetable from "./shop/timetable";
+import Shop from "./shop/shop";
+import Events from "./shop/events";
+import Memberships from "./shop/memberships";
 
 function App(): ReactElement {
   return (
@@ -28,6 +31,9 @@ function App(): ReactElement {
                 element={<BubbleTheSeahorse />}
               />
               <Route path="/Finder" element={<ClassFinder />} />
+              <Route path="/Shop" element={<Shop />} />
+              <Route path="/Events" element={<Events />} />
+              <Route path="/Memberships" element={<Memberships />} />
               <Route path="/Timetable" element={<Timetable />} />
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/CreateAccount" element={<CreateAccount />} />
