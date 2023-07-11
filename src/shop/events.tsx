@@ -13,7 +13,7 @@ function Events(): ReactElement {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="pb-56">
-        <ShopLayout singleProduct={true} title="Events" />
+        <ShopLayout filters={true} title="Events" />
       </Main>
       <Footer />
     </>

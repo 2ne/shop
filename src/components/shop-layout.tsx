@@ -4,11 +4,14 @@ import React, { useEffect } from "react";
 const { Panel } = Collapse;
 
 export interface ShopLayoutProps {
-  singleProduct: boolean;
+  filters: boolean;
   title: string;
 }
 
-const ShopLayout: React.FC<ShopLayoutProps> = ({ singleProduct, title }) => {
+const ShopLayout: React.FC<ShopLayoutProps> = ({
+  filters: singleProduct,
+  title,
+}) => {
   const products = [
     {
       id: 1,
@@ -103,12 +106,12 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ singleProduct, title }) => {
         <h2 className="heading-lg">{title}</h2>
       </div>
       <div
-        className={`lg:gap-6 lg:grid-cols-5 xl:grid-cols-6 ${
+        className={`lg:gap-7 lg:grid-cols-5 xl:grid-cols-6 ${
           singleProduct ? "block" : "lg:grid"
         }`}
       >
         {!singleProduct && (
-          <div className="-mt-1.5">
+          <div className="-mt-2.5">
             <div className="sticky z-10 top-2">
               <Collapse
                 defaultActiveKey={["1"]}
@@ -157,7 +160,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ singleProduct, title }) => {
               >
                 <img
                   src={product.imageSrc}
-                  className={`aspect-[3/2] mix-blend-multiply brightness-105 object-contain object-center h-full w-full group-hover:scale-[1.025] ${
+                  className={`aspect-[3/2] transition-all mix-blend-multiply brightness-105 object-contain object-center h-full w-full group-hover:scale-[1.025] ${
                     product.outOfStock ? " grayscale " : ""
                   }`}
                 />
