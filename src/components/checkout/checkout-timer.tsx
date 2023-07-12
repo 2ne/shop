@@ -22,12 +22,26 @@ const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
 
   useEffect(() => {
     if (timeLeft <= 0) {
+      document.documentElement.classList.add("checkout-timeout");
       message.destroy(); // Destroy all other messages
       message.error({
-        content: "Checkout has timed out", // Show an error message
-        duration: 0, // Make the error message persist indefinitely
+        content: (
+          <>
+            Checkout has timed out
+            <Button
+              type="link"
+              danger={true}
+              className="!p-0 !h-auto ml-2 -my-0.5"
+            >
+              Go to Basket
+            </Button>
+          </>
+        ),
+        duration: 0,
       });
-      return;
+      return () => {
+        document.documentElement.classList.remove("checkout-timeout");
+      };
     }
 
     const intervalId = setInterval(() => {

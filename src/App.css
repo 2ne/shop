@@ -362,3 +362,7 @@ dt {
 :where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown-menu-submenu .ant-dropdown-menu .ant-dropdown-menu-submenu-title {
   padding: 8px 12px;
 }
+
+.checkout-timeout #root {
+  @apply opacity-50 pointer-events-none grayscale;
+}
