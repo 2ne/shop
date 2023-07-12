@@ -104,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
   const items: MenuProps["items"] = [
     {
       key: "1",
-      label: <Link to="/Timetable">Little Thetford</Link>,
+      label: <Link to="/">Little Thetford</Link>,
       children: [
         {
           key: "1-1",
@@ -135,7 +135,7 @@ const Header: React.FC<HeaderProps> = ({
     },
     {
       key: "2",
-      label: <Link to="/Timetable">Newmarket</Link>,
+      label: <Link to="/">Newmarket</Link>,
       children: [
         {
           key: "2-1",
