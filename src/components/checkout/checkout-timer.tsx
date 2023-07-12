@@ -15,7 +15,7 @@ const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
     message.success("Timer extended by 5 minutes"); // Show a success toast
     setTimeout(() => {
       message.destroy(); // Hide the warning toast
-    }, 2000); // Delay the destroy call by 1 second to allow the success message to be shown
+    }, 2500); // Delay the destroy call by 1 second to allow the success message to be shown
     setWarningShown(false); // Reset the warningShown state to false to allow the warning toast to be shown again when the timer is less than or equal to 2 minutes
   };
 
@@ -32,7 +32,11 @@ const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
         content: (
           <>
             2 minutes left to checkout
-            <Button type="link" onClick={extendTimer} className="!p-0 ml-2">
+            <Button
+              type="link"
+              onClick={extendTimer}
+              className="!p-0 !h-auto ml-2 -my-0.5"
+            >
               Extend timer?
             </Button>
           </>
