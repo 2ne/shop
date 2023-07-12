@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../wrapper";
-import { message, Button } from "antd"; // import message and Button from antd
+import { message, Button } from "antd";
 
 interface CheckoutTimerProps {
   timer: number; // minutes
@@ -9,10 +9,11 @@ interface CheckoutTimerProps {
 const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
   const [timeLeft, setTimeLeft] = useState(timer * 60); // Convert timer to seconds
   const [warningShown, setWarningShown] = useState(false); // Add a new state to track whether the warning toast has been shown
+  const timerExtensionAmount = 5;
 
   const extendTimer = () => {
-    setTimeLeft((prevTime) => prevTime + 5 * 60); // Add 5 minutes to the timer
-    message.success("Timer extended by 5 minutes"); // Show a success toast
+    setTimeLeft((prevTime) => prevTime + timerExtensionAmount * 60); // Add timer extension amount to the timer
+    message.success(`Timer extended by ${timerExtensionAmount} minutes`); // Show a success toast with timer extension value
     setTimeout(() => {
       message.destroy(); // Hide the warning toast
     }, 2500); // Delay the destroy call by 1 second to allow the success message to be shown
@@ -20,7 +21,14 @@ const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
   };
 
   useEffect(() => {
-    if (timeLeft <= 0) return;
+    if (timeLeft <= 0) {
+      message.destroy(); // Destroy all other messages
+      message.error({
+        content: "Checkout has timed out", // Show an error message
+        duration: 0, // Make the error message persist indefinitely
+      });
+      return;
+    }
 
     const intervalId = setInterval(() => {
       setTimeLeft(timeLeft - 1);
