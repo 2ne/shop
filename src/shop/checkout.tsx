@@ -202,7 +202,7 @@ export const Checkout: React.FC = () => {
   return (
     <>
       <Header />
-      <CheckoutTimer timer={25} />
+      <CheckoutTimer timer={2.1} />
       <Main className="lg:divide-x lg:grid lg:grid-cols-4 max-lg:pb-[11rem]">
         <aside className="lg:pr-5">
           <div className="lg:sticky lg:top-4">

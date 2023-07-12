@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../wrapper";
+import { message, Button } from "antd"; // import message and Button from antd
 
 interface CheckoutTimerProps {
   timer: number; // minutes
@@ -7,6 +8,16 @@ interface CheckoutTimerProps {
 
 const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
   const [timeLeft, setTimeLeft] = useState(timer * 60); // Convert timer to seconds
+  const [warningShown, setWarningShown] = useState(false); // Add a new state to track whether the warning toast has been shown
+
+  const extendTimer = () => {
+    setTimeLeft((prevTime) => prevTime + 5 * 60); // Add 5 minutes to the timer
+    message.success("Timer extended by 5 minutes"); // Show a success toast
+    setTimeout(() => {
+      message.destroy(); // Hide the warning toast
+    }, 2000); // Delay the destroy call by 1 second to allow the success message to be shown
+    setWarningShown(false); // Reset the warningShown state to false to allow the warning toast to be shown again when the timer is less than or equal to 2 minutes
+  };
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -15,8 +26,24 @@ const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
 
+    // Add a condition to show the warning toast when only 2 minutes (120 seconds) are left
+    if (timeLeft <= 120 && !warningShown) {
+      message.warning({
+        content: (
+          <>
+            2 minutes left to checkout
+            <Button type="link" onClick={extendTimer} className="!p-0 ml-2">
+              Extend timer?
+            </Button>
+          </>
+        ),
+        duration: 0,
+      });
+      setWarningShown(true); // Set the warningShown state to true to prevent showing the warning toast again
+    }
+
     return () => clearInterval(intervalId);
-  }, [timeLeft]);
+  }, [timeLeft, warningShown]);
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
