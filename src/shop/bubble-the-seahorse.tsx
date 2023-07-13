@@ -132,14 +132,13 @@ function BubbleTheSeahorse(): ReactElement {
                   </Radio.Button>
                   <Radio.Button
                     value="date-5"
-                    className="radio-button-lg"
-                    disabled
+                    className="radio-button-lg !bg-rose-50 !text-rose-500 [&.ant-radio-button-wrapper-checked]:!border-rose-500 [&.ant-radio-button-wrapper-checked]:!ring-rose-500"
                   >
                     2nd May
                   </Radio.Button>
                   <Radio.Button
                     value="date-6"
-                    className="radio-button-lg bg-rose-100 text-rose-500"
+                    className="radio-button-lg !bg-rose-50 !text-rose-500 [&.ant-radio-button-wrapper-checked]:!border-rose-500 [&.ant-radio-button-wrapper-checked]:!ring-rose-500"
                   >
                     9th May
                   </Radio.Button>
