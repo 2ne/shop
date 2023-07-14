@@ -70,18 +70,7 @@ function Tshirt(): ReactElement {
                   special dye technique that gives each tee it's own look.
                 </p>
               </section>
-              <section className="space-y-4">
-                <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
-                  Details
-                </div>
-                <dl className="grid grid-cols-4 sm:grid-cols-5 [&>dt]:col-span-1 [&>dt]:truncate [&>dd]:col-span-3 sm:[&>dd]:col-span-4 gap-y-3 sm:gap-y-4 gap-x-2">
-                  <dt>Approval</dt>
-                  <dd>
-                    This purchase requires approval by the organisation prior to
-                    the purchase proceeding.
-                  </dd>
-                </dl>
-              </section>
+
               <section className="space-y-4 lg:contents">
                 <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:bg-white/95 lg:mt-6">
                   <div className="container lg:p-0">
@@ -96,6 +85,18 @@ function Tshirt(): ReactElement {
                     </Button>
                   </div>
                 </div>
+              </section>
+              <section className="space-y-4">
+                <div className="pb-2 border-b sm:mb-3 border-neutral-200 heading">
+                  Details
+                </div>
+                <dl className="grid grid-cols-4 sm:grid-cols-5 [&>dt]:col-span-1 [&>dt]:truncate [&>dd]:col-span-3 sm:[&>dd]:col-span-4 gap-y-3 sm:gap-y-4 gap-x-2">
+                  <dt>Approval</dt>
+                  <dd>
+                    This purchase requires approval by the organisation prior to
+                    the purchase proceeding.
+                  </dd>
+                </dl>
               </section>
             </div>
           </div>
