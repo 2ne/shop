@@ -1,6 +1,7 @@
 import { DownOutlined } from "@ant-design/icons";
 import { Checkbox, Collapse } from "antd";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 const { Panel } = Collapse;
 
 export interface ShopLayoutProps {
@@ -16,7 +17,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
     {
       id: 1,
       name: "Basic Tee",
-      href: "#",
+      href: "/Tshirt",
       imageSrc:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
       imageAlt: "Front of men's Basic Tee in black.",
@@ -176,10 +177,10 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
                         : "text-neutral-900"
                     }`}
                   >
-                    <a href={product.href}>
+                    <Link to={product.href}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
-                    </a>
+                    </Link>
                   </h3>
                 </div>
                 <p

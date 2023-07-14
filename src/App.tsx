@@ -13,6 +13,7 @@ import Timetable from "./shop/timetable";
 import Shop from "./shop/shop";
 import Events from "./shop/events";
 import Memberships from "./shop/memberships";
+import Tshirt from "./shop/t-shirt";
 
 function App(): ReactElement {
   return (
@@ -30,6 +31,7 @@ function App(): ReactElement {
                 path="/BubbleTheSeahorse"
                 element={<BubbleTheSeahorse />}
               />
+              <Route path="/Tshirt" element={<Tshirt />} />
               <Route path="/Finder" element={<ClassFinder />} />
               <Route path="/Shop" element={<Shop />} />
               <Route path="/Events" element={<Events />} />
