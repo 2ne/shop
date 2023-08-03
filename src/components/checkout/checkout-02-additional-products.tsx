@@ -1,7 +1,8 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import FormHeader from "../form-header";
 import { useBasketContext } from "../basket/basket-context";
 import { Participant } from "../../types/types";
+import { Button } from "antd";
 
 export interface CheckoutAdditionalProductsHandles {
   submitForm: () => Promise<boolean>;
@@ -21,22 +22,39 @@ const CheckoutAdditionalProducts = forwardRef<
     { onFormValidation, title, subtitle }: CheckoutAdditionalProductsProps,
     ref: React.Ref<CheckoutAdditionalProductsHandles>
   ) => {
+    const [addItemToBasket, setAddItemToBasket] = useState<boolean | null>(
+      null
+    );
     const { basketItems, addRequiredProducts } = useBasketContext();
 
     useImperativeHandle(ref, () => ({
       submitForm: async () => {
-        // Notify the parent component that the form is valid
-        onFormValidation(true);
+        // Only set the form as valid if an item has been added to the basket
+        if (addItemToBasket) {
+          onFormValidation(true);
+          console.log("Add required products:", basketItems);
 
-        // Add the linked required products from items already in the basket
-        addRequiredProducts();
-
-        console.log("Add required products:", basketItems);
-
-        // Return true to indicate that the form submission was successful
-        return true;
+          // Return true to indicate that the form submission was successful
+          return true;
+        } else {
+          onFormValidation(false);
+          setAddItemToBasket(false);
+          return false;
+        }
       },
     }));
+
+    const handleAddItem = () => {
+      setAddItemToBasket(true);
+      // Add the linked required products from items already in the basket
+      addRequiredProducts();
+    };
+
+    const basketButtonClasses =
+      addItemToBasket &&
+      "pointer-events-none !bg-emerald-600 !text-white !border-emerald-600";
+
+    const basketButtonText = addItemToBasket ? "Added" : "Add to basket";
 
     return (
       <>
@@ -72,7 +90,11 @@ const CheckoutAdditionalProducts = forwardRef<
           return (
             <div
               key={requiredProduct.id}
-              className="p-4 space-y-4 text-sm text-left border rounded-md border-neutral-200"
+              className={`p-4 space-y-4 text-sm text-left border rounded-md ${
+                addItemToBasket === false
+                  ? " border-error "
+                  : " border-neutral-200 "
+              }`}
             >
               <div className="flex gap-3 pb-4 border-b">
                 <img
@@ -105,6 +127,43 @@ const CheckoutAdditionalProducts = forwardRef<
                     </div>
                   );
                 })}
+              </div>
+              <div>
+                <Button
+                  danger={addItemToBasket === false}
+                  block
+                  className={`!transition-all !duration-500 ${basketButtonClasses}`}
+                  onClick={handleAddItem}
+                >
+                  {addItemToBasket && (
+                    <svg
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      className="mr-0.5 -ml-1"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M4.75 12A7.25 7.25 0 0112 4.75v0A7.25 7.25 0 0119.25 12v0A7.25 7.25 0 0112 19.25v0A7.25 7.25 0 014.75 12v0z"
+                      ></path>
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M9.75 12.75l.434.924a1 1 0 001.772.073L14.25 9.75"
+                      ></path>
+                    </svg>
+                  )}
+                  <span>{basketButtonText}</span>
+                </Button>
+                {addItemToBasket === false && (
+                  <div className="mt-2 text-error">Please add the product</div>
+                )}
               </div>
             </div>
           );

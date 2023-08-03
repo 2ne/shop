@@ -56,7 +56,7 @@ export const Checkout: React.FC = () => {
     {
       Component: CheckoutAdditionalProducts,
       ref: additionalProductsRef,
-      title: "Additional products",
+      title: "Required products",
       subtitle:
         "Please review the required add-ons for the items in your basket",
       buttonType: "continue",

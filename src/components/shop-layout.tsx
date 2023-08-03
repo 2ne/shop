@@ -2,6 +2,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { Checkbox, Collapse } from "antd";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { BasketItem } from "../types/types";
 const { Panel } = Collapse;
 
 export interface ShopLayoutProps {
@@ -13,84 +14,81 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
   filters: singleProduct,
   title,
 }) => {
-  const products = [
+  const products: BasketItem[] = [
     {
-      id: 1,
-      name: "Basic Tee",
-      href: "/Tshirt",
-      imageSrc:
+      id: Math.random().toString(36).substring(2, 15),
+      title: "Basic Tee",
+      link: "/Tshirt",
+      image:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      imageAlt: "Front of men's Basic Tee in black.",
       price: "£35.00",
-      description: "Black",
+      subTitle: "Black",
       limitedStock: true,
-    },
-    {
-      id: 2,
-      name: "Basic Tee",
-      href: "#",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
-      imageAlt: "Front of men's Basic Tee in white.",
-      price: "£30.00",
-      description: "White",
       outOfStock: true,
     },
     {
-      id: 3,
-      name: "Basic Tee",
-      href: "#",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
-      imageAlt: "Front of men's Basic Tee in black.",
+      id: Math.random().toString(36).substring(2, 15),
+      title: "Basic Tee",
+      link: "#",
+      image:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
       price: "£30.00",
-      description: "Charcoal",
+      subTitle: "White",
+      limitedStock: true,
     },
     {
-      id: 4,
-      name: "Artwork Tee",
-      href: "#",
-      imageSrc:
+      id: Math.random().toString(36).substring(2, 15),
+      title: "Basic Tee",
+      link: "#",
+      image:
+        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
+      price: "£30.00",
+      subTitle: "Charcoal",
+    },
+    {
+      id: Math.random().toString(36).substring(2, 15),
+      title: "Artwork Tee",
+      link: "#",
+      image:
         "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg",
-      imageAlt: "Front of men's Basic Tee in black.",
       price: "£35.00",
-      description: "Iso Dots",
+      subTitle: "Iso Dots",
     },
     {
-      id: 5,
-      name: "Zip Tote Basket",
-      href: "#",
-      imageSrc:
+      id: Math.random().toString(36).substring(2, 15),
+      title: "Zip Tote Basket",
+      link: "#",
+      image:
         "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
       price: "£140.00",
-      description: "White and black",
+      subTitle: "White and black",
     },
     {
-      id: 6,
-      name: "Zip High Wall Tote",
-      href: "#",
-      imageSrc:
+      id: Math.random().toString(36).substring(2, 15),
+      title: "Zip High Wall Tote",
+      link: "#",
+      image:
         "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-02.jpg",
       price: "£140.00",
-      description: "White and blue",
+      subTitle: "White and blue",
     },
     {
-      id: 7,
-      name: "Halfsize Tote",
-      href: "#",
-      imageSrc:
+      id: Math.random().toString(36).substring(2, 15),
+      title: "Halfsize Tote",
+      link: "#",
+      image:
         "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-03.jpg",
       price: "£140.00",
-      description: "Clay",
+      subTitle: "Clay",
     },
     {
-      id: 8,
-      name: "High Wall Tote",
-      href: "#",
-      imageSrc:
+      id: Math.random().toString(36).substring(2, 15),
+      title: "High Wall Tote",
+      link: "#",
+      image:
         "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-04.jpg",
       price: "£140.00",
-      description: "Black and orange",
+      subTitle: "Black and orange",
       outOfStock: true,
     },
   ];
@@ -144,7 +142,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
         <div className="grid grid-cols-1 lg:col-span-4 xl:col-span-5 gap-x-6 gap-y-8 lg:gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <div key={product.id} className="relative group">
-              {product.limitedStock && (
+              {product.limitedStock && !product.outOfStock && (
                 <div className="absolute z-10 px-1.5 py-0.5 text-xs font-medium text-white rounded top-2 left-2 bg-amber-500">
                   Limited Stock
                 </div>
@@ -160,7 +158,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
                 }`}
               >
                 <img
-                  src={product.imageSrc}
+                  src={product.image}
                   className={`aspect-[3/2] transition-all mix-blend-multiply brightness-105 object-contain object-center h-full w-full group-hover:scale-[1.025] ${
                     product.outOfStock ? " grayscale " : ""
                   }`}
@@ -172,14 +170,14 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
                     className={`text-sm font-medium truncate group-hover:underline ${
                       product.outOfStock
                         ? "text-rose-600"
-                        : product.limitedStock
+                        : product.limitedStock && !product.outOfStock
                         ? "text-amber-600"
                         : "text-neutral-900"
                     }`}
                   >
-                    <Link to={product.href}>
+                    <Link to={product.link}>
                       <span aria-hidden="true" className="absolute inset-0" />
-                      {product.name}
+                      {product.title}
                     </Link>
                   </h3>
                 </div>
@@ -187,7 +185,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
                   className={`pl-3 text-sm font-medium ${
                     product.outOfStock
                       ? "text-rose-600"
-                      : product.limitedStock
+                      : product.limitedStock && !product.outOfStock
                       ? "text-amber-600"
                       : "text-neutral-900"
                   }`}
@@ -196,7 +194,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
                 </p>
               </div>
               <p className="mt-0.5 text-sm truncate text-neutral-500">
-                {product.description}
+                {product.subTitle}
               </p>
             </div>
           ))}

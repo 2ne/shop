@@ -191,6 +191,7 @@ interface BasketItem {
   id: string;
   title: string;
   subTitle?: string;
+  description?: string;
   image?: string;
   dates?: string;
   price?: string;
@@ -201,6 +202,10 @@ interface BasketItem {
   requiredProduct?: BasketItem;
   isRequiredProduct?: boolean;
   emergencyContact?: EmergencyContact[];
+  limitedStock?: boolean;
+  requiresApproval?: boolean;
+  outOfStock?: boolean;
+  link: string;
 }
 
 export type {

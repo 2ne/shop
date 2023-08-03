@@ -179,17 +179,17 @@ const Header: React.FC<HeaderProps> = ({
             onClick={(e) => e.preventDefault()}
             className="py-1.5 px-2.5 -my-1.5 -mx-2.5"
           >
-            Sessions
+            Timetable
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
           </button>
         </Dropdown>
       ),
       to: "",
     },
-    { label: "Memberships", to: "/Memberships" },
-    { label: "Events", to: "/Events" },
+    // { label: "Memberships", to: "/Memberships" },
+    // { label: "Events", to: "/Events" },
     { label: "Shop", to: "/Shop" },
-    /*     { label: "Class Finder", to: "/Finder" }, */
+    // { label: "Class Finder", to: "/Finder" },
   ];
 
   const navMobileLinks = [
@@ -581,6 +581,36 @@ const Header: React.FC<HeaderProps> = ({
           )}
           {!hideButtons && (
             <div className="flex items-center gap-2 ml-auto sm:gap-3 lg:gap-2">
+              {!isCheckout && isLoggedIn && (
+                <button
+                  type="button"
+                  className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-2 lg:py-1.5 group place-items-center hover:bg-white/95"
+                >
+                  <div className="absolute grid min-w-[.75rem] h-3 sm:min-w-[1rem] sm:h-4 text-[0.5rem] sm:text-[0.65rem] text-center text-white bg-red-500 rounded-full top-0.5 right-0.5 sm:-top-0.5 sm:-right-0.5 lg:top-1 lg:right-1.5 place-items-center">
+                    <span>1</span>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="w-7 h-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M4.75 7.75a2 2 0 012-2h10.5a2 2 0 012 2v8.5a2 2 0 01-2 2H6.75a2 2 0 01-2-2v-8.5zM5 10.25h14M7.75 14.25h2.5M15.75 14.25h.5"
+                    ></path>
+                  </svg>
+                  <div className="heading-xs !text-primary_text whitespace-nowrap hidden lg:block">
+                    Payments
+                  </div>
+                </button>
+              )}
               {!isCheckout && (
                 <button
                   type="button"

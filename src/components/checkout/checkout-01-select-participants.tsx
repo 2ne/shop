@@ -259,13 +259,13 @@ const CheckoutSelectParticipants = forwardRef<
                       title={`Age: ${calculateAge(participant.dob)}`}
                       placement="left"
                     >
-                      <div className="group flex items-center">
+                      <div className="flex items-center group">
                         <Radio
                           value={participant.id}
                           disabled={!participant.meetsAgeCriteria}
                           className="!flex items-center [&>span:last-child]:block"
                         >
-                          <div className="py-1 flex items-center">
+                          <div className="flex items-center py-1">
                             <div>
                               {participant.firstName} {participant.lastName}
                               {!participant.meetsAgeCriteria && (
@@ -293,7 +293,8 @@ const CheckoutSelectParticipants = forwardRef<
               </Form.Item>
               <div>
                 <Button
-                  block
+                  type="link"
+                  className="!p-0 h-auto"
                   onClick={() => {
                     setIsAddParticipantModalOpen(true);
                   }}
