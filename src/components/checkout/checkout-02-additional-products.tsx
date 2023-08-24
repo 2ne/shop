@@ -171,33 +171,18 @@ const CheckoutAdditionalProducts = forwardRef<
                     {itemParticipants.map((participant: Participant) => {
                       return (
                         <>
-                          <div
-                            key={`${requiredProduct.id}_${participant.id}`}
-                            className="flex items-center mb-1 space-x-1"
-                          >
-                            <span className="text-neutral-500">
-                              Participant
-                            </span>
-                            <span className="text-neutral-500">·</span>
-                            <span className="font-medium">
-                              {participant.firstName} {participant.lastName}
-                            </span>
-                          </div>
-                          <div>
+                          <div key={`${requiredProduct.id}_${participant.id}`}>
+                            <label className="block mb-1 font-medium">
+                              Select memberhsip for {participant.firstName}{" "}
+                              {participant.lastName}
+                            </label>
                             <Select
                               popupClassName="ant-select-dropdown-products"
-                              showSearch
                               virtual={false}
                               className="w-full ant-select-products"
                               placeholder="Select membership..."
-                              optionFilterProp="children"
                               onChange={handleChange}
                               value={selectedLabel || undefined}
-                              filterOption={(input, option) =>
-                                option.label
-                                  .toLowerCase()
-                                  .includes(input.toLowerCase())
-                              }
                             >
                               {options.map((option) => (
                                 <Option
@@ -209,7 +194,6 @@ const CheckoutAdditionalProducts = forwardRef<
                                 </Option>
                               ))}
                             </Select>
-
                             {addItemToBasket === false && (
                               <div className="mt-2 text-error">
                                 Please add the product

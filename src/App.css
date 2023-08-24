@@ -181,19 +181,15 @@ dt {
 /* media query matches max-lg */
 @media not all and (min-width: 1024px) {
   .ant-select-products.ant-select-open {
-    @apply !fixed !top-0 !left-0 !right-0 !bg-white !p-4 !h-16;
-  }
-
-  .ant-select-products.ant-select-open .ant-select-arrow {
-    @apply !right-7;
+    @apply !opacity-0;
   }
 
   .ant-select-dropdown-products {
-    @apply !fixed !inset-0 !top-16 !min-w-full !w-full !p-0 !rounded-none !shadow-none !h-screen !h-[100dvh];
+    @apply !fixed !inset-0 !min-w-full !w-full !p-0 !rounded-none !shadow-none !h-screen !h-[100dvh];
   }
 
   .ant-select-dropdown-products .rc-virtual-list-holder {
-    @apply !max-h-[calc(100vh-4rem)] !max-h-[calc(100dvh-4rem)] !px-2 !overscroll-contain !overflow-y-scroll;
+    @apply !max-h-[100vh] !max-h-[100dvh] !p-2 !overscroll-contain !overflow-y-scroll;
     -webkit-overflow-scrolling: touch !important;
   }
 }
