@@ -193,7 +193,7 @@ dt {
   }
 
   .ant-select-dropdown-products .rc-virtual-list-holder {
-    @apply !max-h-[calc(100vh-4rem)] !max-h-[calc(100dvh-4rem)] !px-2 !overscroll-contain;
+    @apply !max-h-[calc(100vh-4rem)] !max-h-[calc(100dvh-4rem)] !px-2 !overscroll-contain !overflow-y-scroll;
     -webkit-overflow-scrolling: touch !important;
   }
 }
