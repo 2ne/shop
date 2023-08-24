@@ -191,7 +191,13 @@ dt {
 }
 
 .ant-select-dropdown-products .rc-virtual-list-holder {
-  @apply max-lg:!max-h-[calc(100vh-4rem)] max-lg:!px-2;
+  @apply max-lg:!max-h-[calc(100vh-4rem)] max-lg:!max-h-[calc(100dvh-4rem)] max-lg:!px-2;
+}
+
+@media not all and (min-width: 1024px) {
+  .ant-select-dropdown-products .rc-virtual-list-holder {
+    -webkit-overflow-scrolling: touch !important;
+  }
 }
 
 .ant-select-calendar {
