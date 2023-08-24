@@ -178,23 +178,39 @@ dt {
   @apply w-[2px];
 }
 
-.ant-select-mobile {
+.ant-select-products.ant-select-open {
+  @apply max-lg:!fixed max-lg:!top-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bg-white max-lg:!p-4 max-lg:!h-16;
+}
+
+.ant-select-products.ant-select-open .ant-select-arrow {
+  @apply max-lg:!right-7;
+}
+
+.ant-select-dropdown-products {
+  @apply max-lg:!fixed max-lg:!inset-0 max-lg:!top-16 max-lg:!min-w-full max-lg:!w-full max-lg:!p-0 max-lg:!rounded-none max-lg:!shadow-none;
+}
+
+.ant-select-dropdown-products .rc-virtual-list-holder {
+  @apply max-lg:!max-h-[calc(100vh-4rem)] max-lg:!px-2;
+}
+
+.ant-select-calendar {
   @apply max-lg:!rounded-t-md max-lg:!rounded-b-none max-lg:!fixed max-lg:!p-0 max-lg:!left-0 max-lg:!right-0 max-lg:!bottom-0 max-lg:!top-auto max-lg:!w-full max-lg:max-w-[696px] max-lg:mx-auto;
 }
 
-.ant-select-mobile:before {
+.ant-select-calendar:before {
   @apply max-lg:content-[""] max-lg:fixed max-lg:inset-0 max-lg:bg-neutral-900/50 max-lg:!z-40;
 }
 
-.ant-select-mobile > div {
+.ant-select-calendar > div {
   @apply max-lg:!bg-white max-lg:!z-50 max-lg:!relative max-lg:!py-3 max-lg:!px-1.5 max-lg:!rounded-t-md;
 }
 
-.ant-select-mobile .ant-select-item {
+.ant-select-calendar .ant-select-item {
   @apply max-lg:!px-3;
 }
 
-.ant-select-mobile .ant-select-tree {
+.ant-select-calendar .ant-select-tree {
   @apply bg-transparent;
 }
 

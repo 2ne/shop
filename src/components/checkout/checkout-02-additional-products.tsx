@@ -161,8 +161,10 @@ const CheckoutAdditionalProducts = forwardRef<
                           </div>
                           <div>
                             <Select
+                              popupClassName="ant-select-dropdown-products"
                               showSearch
-                              className="w-full"
+                              virtual={false}
+                              className="w-full ant-select-products"
                               placeholder="Select membership..."
                               optionFilterProp="children"
                               onChange={handleChange}

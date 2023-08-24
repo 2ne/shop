@@ -52,7 +52,7 @@ const CalendarWeek: React.FC = () => {
               placeholder="Class"
               onChange={handleChange}
               className="ant-select-token"
-              popupClassName="ant-select-mobile"
+              popupClassName="ant-select-calendar"
               options={[
                 { value: "bubbletheseahorse", label: "Bubble the Seahorse" },
                 { value: "cutietheclam", label: "Cutie the Clam" },
@@ -76,7 +76,7 @@ const CalendarWeek: React.FC = () => {
               placeholder="Location"
               onChange={handleChange1}
               className="ant-select-token"
-              popupClassName="ant-select-mobile"
+              popupClassName="ant-select-calendar"
               options={[{ value: "littleThetford", label: "Little Thetford" }]}
             />
             {(selectedValue || selectedValue1) && (

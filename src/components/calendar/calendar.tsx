@@ -345,7 +345,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                 }}
                 onChange={handleClassChange}
                 className="ant-select-token"
-                popupClassName="ant-select-mobile"
+                popupClassName="ant-select-calendar"
                 options={[
                   { value: "bubbletheseahorse", label: "Bubble the Seahorse" },
                   { value: "cutietheclam", label: "Cutie the Clam" },
@@ -369,7 +369,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
                 placeholder="Products"
                 treeData={treeSelectData}
                 className="ant-select-token"
-                popupClassName="ant-select-mobile"
+                popupClassName="ant-select-calendar"
                 listHeight={safeHeight}
                 value={selectedClassValue}
                 onChange={handleClassChange}
@@ -396,7 +396,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
               }}
               onChange={handleTimeOfDayChange}
               className="ant-select-token"
-              popupClassName="ant-select-mobile"
+              popupClassName="ant-select-calendar"
               options={[
                 { value: "morning", label: "Morning" },
                 { value: "afternoon", label: "Afternoon" },
@@ -417,7 +417,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
               }}
               onChange={handleAgeChange}
               className="ant-select-token"
-              popupClassName="ant-select-mobile"
+              popupClassName="ant-select-calendar"
               options={[
                 { value: "<1", label: "<1" },
                 ...Array.from({ length: 18 }, (_, i) => ({
