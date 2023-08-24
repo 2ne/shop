@@ -347,11 +347,11 @@ const CheckoutAdditionalProducts = forwardRef<
                         <div>
                           <label className="block mb-1 font-medium">
                             Select memberhsip for {participant.firstName}{" "}
-                            {participant.lastName} (More than 6 items)
+                            {participant.lastName} (More than 3 items)
                           </label>
                           <Select
                             popupClassName={
-                              optionsLong.length > 6
+                              optionsLong.length > 3
                                 ? "ant-select-dropdown-products"
                                 : ""
                             }
@@ -375,11 +375,11 @@ const CheckoutAdditionalProducts = forwardRef<
                         <div>
                           <label className="block mb-1 font-medium">
                             Select memberhsip for {participant.firstName}{" "}
-                            {participant.lastName} (Less than 6 items)
+                            {participant.lastName} (Less than 3 items)
                           </label>
                           <Select
                             popupClassName={
-                              options.length > 6
+                              options.length > 3
                                 ? "ant-select-dropdown-products"
                                 : ""
                             }
