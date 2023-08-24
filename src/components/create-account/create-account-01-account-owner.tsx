@@ -22,6 +22,7 @@ const CreateAccountOwnerForms = forwardRef<
     { onFormValidation, title, subtitle }: CreateAccountOwnerFormsProps,
     ref: React.Ref<CreateAccountOwnerFormsHandles>
   ) => {
+    const [age, setAge] = useState(0);
     const [accountOwnerForm] = Form.useForm();
     const location = useLocation();
     const email = location.state?.email;
@@ -113,6 +114,7 @@ const CreateAccountOwnerForms = forwardRef<
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
           className="text-left hide-validation-asterix"
+          requiredMark="optional"
         >
           <Form.Item
             label="Email"
@@ -145,7 +147,35 @@ const CreateAccountOwnerForms = forwardRef<
           >
             <Input autoComplete="family-name" />
           </Form.Item>
-          <DateOfBirthInput onDateChange={handleDateChange} />
+          <Form.Item
+            name="dateOfBirth"
+            initialValue={age}
+            label={
+              <div className="flex">
+                <div>Date of birth</div>
+                {age !== null && (
+                  <div className="text-gray-500">
+                    <span>
+                      <span className="mx-1">·</span>
+                      {age} year
+                    </span>
+                    <span>{age > 1 ? "s" : ""}</span>
+                    <span> old</span>
+                  </div>
+                )}
+              </div>
+            }
+            rules={[
+              {
+                required: true,
+                message: "Please enter a date of birth",
+              },
+            ]}
+            className="[&_.ant-form-item-control-input-content]:grid [&_.ant-form-item-control-input-content]:grid-cols-3"
+            extra="Example · 30/04/1970"
+          >
+            <DateOfBirthInput age={setAge} />
+          </Form.Item>
         </Form>
       </>
     );

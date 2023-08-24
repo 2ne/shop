@@ -1,3 +1,4 @@
+@import "reset.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,11 +13,6 @@
 
 .min-h-screen-custom {
   @apply min-h-[calc(100svh-8rem)];
-}
-
-.ant-btn-link,
-.link {
-  @apply font-medium text-interactive hover:underline;
 }
 
 .card {
@@ -44,7 +40,7 @@
 }
 
 .heading-xl {
-  @apply text-lg font-semibold leading-5 sm:text-xl decoration-2;
+  @apply text-lg font-semibold leading-5 sm:text-xl/5 decoration-2;
 }
 
 :where(.heading-xs, .heading-sm, .heading, .heading-lg, .heading-xl):not([class*="text-"]) {
@@ -77,31 +73,69 @@ dt {
 }
 
 .ant-btn {
-  @apply inline-flex items-center font-medium;
+  @apply inline-flex items-center font-medium shadow-sm rounded-md;
 }
 
-.ant-btn:not([class*="rounded"]) {
-  @apply rounded-md;
+.ant-btn.ant-btn-lg {
+  @apply rounded-lg;
 }
 
 .ant-btn-primary {
-  @apply bg-interactive font-medium;
+  @apply font-medium;
 }
 
-.ant-btn-block {
+.ant-btn-link,
+.link {
+  @apply font-medium hover:underline text-interactive shadow-none;
+}
+
+.ant-btn-block,
+.ant-btn-icon-only {
   @apply justify-center;
+}
+
+.ant-btn-icon-only {
+  @apply shadow-none;
 }
 
 .ant-btn-lg {
   @apply !h-10 lg:!h-[2.75rem] !text-sm sm:!text-base;
 }
 
-.ant-form .ant-form-item-label {
+.ant-form-vertical .ant-form-item {
+  @apply mb-0;
+}
+
+.ant-form-vertical .ant-form-item-required {
+  @apply flex-row;
+}
+
+.ant-form-item-required:before {
+  @apply !hidden;
+}
+
+.ant-form-vertical .ant-form-item:not(:last-child) {
+  @apply mb-6;
+}
+
+.ant-form-vertical .ant-form-item-label > label::after {
+  @apply hidden;
+}
+
+.ant-form-vertical .ant-form-item-label {
   @apply pb-1.5 font-medium text-sm;
 }
 
-.ant-form .ant-form-item-extra {
-  @apply pt-1.5 text-sm;
+.ant-form-vertical .ant-form-item-extra {
+  @apply pt-1.5 text-sm hidden;
+}
+
+.ant-form-vertical .ant-form-item-control-input + .ant-form-item-extra {
+  @apply block;
+}
+
+.ant-form-vertical .ant-form-item-explain-error {
+  @apply mt-1;
 }
 
 .ant-form-item-required {
@@ -112,12 +146,20 @@ dt {
   @apply opacity-0;
 }
 
-.ant-form-vertical .ant-form-item {
-  @apply mb-6;
+.dim-modal .ant-modal {
+  @apply brightness-90;
+}
+
+.ant-modal .ant-modal-close {
+  @apply top-5 right-5;
 }
 
 .ant-modal .ant-modal-header {
   @apply mb-6;
+}
+
+.ant-modal .ant-modal-footer .ant-btn + .ant-btn:not(.ant-dropdown-trigger) {
+  @apply ml-2.5;
 }
 
 .radio-button-lg {
@@ -129,7 +171,7 @@ dt {
 }
 
 .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
-  @apply ring-1 ring-interactive font-medium;
+  @apply ring-1 font-medium ring-interactive;
 }
 
 .ant-radio-button-wrapper.ant-radio-button-wrapper-checked:not(:first-child)::before {
@@ -177,8 +219,12 @@ dt {
   @apply !m-0;
 }
 
+.ant-drawer-basket {
+  @apply max-lg:bottom-0;
+}
+
 .ant-drawer-basket .ant-drawer-content-wrapper {
-  @apply max-lg:max-h-[calc(100%-5vh)] max-lg:!h-[500px] max-w-[696px] mx-auto;
+  @apply max-lg:max-h-[calc(100vh-var(--footer-height))] max-lg:max-h-[calc(100dvh-var(--footer-height))] max-lg:!h-[500px] max-w-[696px] mx-auto;
 }
 
 .ant-drawer-basket .ant-drawer-content {
@@ -217,8 +263,12 @@ dt {
   @apply max-sm:hidden;
 }
 
-.ant-switch {
-  @apply bg-neutral-400;
+.ant-tooltip:not(.pointer-events-auto) {
+  @apply pointer-events-none;
+}
+
+.ant-collapse-arrow {
+  @apply h-6 w-6 -mx-1;
 }
 
 :where(.rounded-md) .ant-collapse,
@@ -241,51 +291,51 @@ dt {
   @apply rounded-r;
 }
 
-.ant-upload-wrapper .ant-upload-drag {
-  @apply bg-transparent transition-[max-height] duration-200 max-h-[106px];
-}
-
-.ant-upload-wrapper .ant-upload-drag:has(+ .ant-upload-list:not(:empty)) {
-  @apply max-h-0 overflow-hidden border-none;
-}
-
-.ant-upload-wrapper .ant-upload-list:not(:empty) {
-  @apply -mt-2;
-}
-
-.ant-upload-wrapper .ant-upload-list-item-image {
-  @apply rounded-md object-cover object-center;
-}
-
-.ant-upload-wrapper .ant-upload-list-item-action {
-  @apply flex justify-center mr-1 h-7 w-7;
-}
-
-.ant-upload-wrapper .ant-upload-list .anticon-delete {
-  @apply !text-error;
-}
-
 .ant-form-item-has-error .ant-switch {
   @apply rounded-full shadow-[0_0_0_2px_white,_0_0_0_3px_theme(colors.error)];
 }
 
-@media (max-width: 1023px) {
-  .modal-full-mobile {
-    @apply !w-full !h-screen !inset-0 !max-w-none !p-0 !m-0 !rounded-none;
-  }
-
-  .modal-full-mobile .ant-modal-header {
-    @apply sticky top-0 z-10 bg-neutral-100/95 -mx-4 px-4 -my-3 py-4 mb-4 !rounded-none;
-  }
-
-  .modal-full-mobile .ant-modal-close {
-    @apply top-4 right-4 fixed;
-  }
-
-  .modal-full-mobile .ant-modal-content {
-    @apply !rounded-none !min-h-screen py-3 px-4;
-  }
+.ant-switch {
+  @apply bg-neutral-400;
 }
+
+.checkout-timeout #root {
+  @apply opacity-50 pointer-events-none grayscale;
+}
+
+.provider-londonzurich {
+  @apply h-[26px] mt-[-3px] mb-[-2px];
+}
+
+.provider-gocardless {
+  @apply h-[14px];
+}
+
+.provider-paypal {
+  @apply h-[20px] top-0 ml-[2px];
+}
+
+.ant-image {
+  @apply min-w-0 shrink-0;
+}
+
+.ant-image-preview-operations {
+  @apply bg-black/90 text-white;
+}
+
+.ant-popconfirm .ant-popconfirm-message {
+  @apply mb-1;
+}
+
+.ant-popconfirm .ant-popconfirm-description {
+  @apply mb-3;
+}
+
+.ant-divider-horizontal {
+  @apply my-3;
+}
+
+/* Phase 2 START */
 
 .ant-carousel .slick-dots li button {
   @apply h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full;
@@ -293,10 +343,6 @@ dt {
 
 .ant-carousel .slick-dots li {
   @apply !w-auto h-2 sm:h-6;
-}
-
-.bg-grid {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 
 .container-lg .container {
@@ -360,9 +406,7 @@ dt {
 :where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown-menu-submenu .ant-dropdown-menu .ant-dropdown-menu-item,
 :where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-submenu-title,
 :where(.css-dev-only-do-not-override-15yc1h0).ant-dropdown-menu-submenu .ant-dropdown-menu .ant-dropdown-menu-submenu-title {
-  padding: 8px 12px;
+  @apply py-2 px-3;
 }
 
-.checkout-timeout #root {
-  @apply opacity-50 pointer-events-none grayscale;
-}
+/* Phase 2 END */

@@ -49,14 +49,14 @@ export const Checkout: React.FC = () => {
     {
       Component: CheckoutSelectParticipants,
       ref: selectParticipantsRef,
-      title: "Select participants",
+      title: "Who are you buying for",
       subtitle: "Please select who you are purchasing each product for",
       buttonType: "continue",
     },
     {
       Component: CheckoutAdditionalProducts,
       ref: additionalProductsRef,
-      title: "Required products",
+      title: "Required items",
       subtitle:
         "Please review the required add-ons for the items in your basket",
       buttonType: "continue",
@@ -202,9 +202,9 @@ export const Checkout: React.FC = () => {
   return (
     <>
       <Header />
-      <CheckoutTimer timer={2.1} />
+      <CheckoutTimer timer={99} />
       <Main className="lg:divide-x lg:grid lg:grid-cols-4 max-lg:pb-[11rem]">
-        <aside className="lg:pr-5">
+        <aside className="lg:pr-5 max-lg:hidden">
           <div className="lg:sticky lg:top-4">
             <div className="flex items-center justify-between -mt-1.5 lg:hidden h-6 mb-2">
               {currentStep > 0 && (

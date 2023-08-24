@@ -1,153 +1,154 @@
 import React, { useState, useRef, useEffect } from "react";
 import { differenceInYears, startOfDay } from "date-fns";
-import { Input, InputRef, Form } from "antd";
+import { Input, InputRef } from "antd";
 
 interface DateOfBirthInputProps {
-  onDateChange: (
-    day: string,
-    month: string,
-    year: string,
-    age: number | null
-  ) => void;
+  onChange: (data: {
+    age: number | null;
+    dob: Date | null;
+    day: string;
+    month: string;
+    year: string;
+  }) => void;
 }
 
-const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
-  onDateChange,
-}) => {
+const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({ onChange }) => {
   const [bdayDay, setBdayDay] = useState("");
   const [bdayMonth, setBdayMonth] = useState("");
   const [bdayYear, setBdayYear] = useState("");
-  const [age, setAge] = useState<number | null>(null);
 
-  const inputDayEl = useRef<InputRef>(null);
-  const inputMonthEl = useRef<InputRef>(null);
-  const inputYearEl = useRef<InputRef>(null);
+  const inputDayEl = useRef<InputRef | null>(null);
+  const inputMonthEl = useRef<InputRef | null>(null);
+  const inputYearEl = useRef<InputRef | null>(null);
+
+  const inputs = [
+    {
+      ref: inputDayEl,
+      id: "bday-day",
+      setter: setBdayDay,
+      nextRef: inputMonthEl,
+      maxLength: 2,
+      placeholder: "DD",
+      value: bdayDay,
+    },
+    {
+      ref: inputMonthEl,
+      id: "bday-month",
+      setter: setBdayMonth,
+      nextRef: inputYearEl,
+      maxLength: 2,
+      placeholder: "MM",
+      value: bdayMonth,
+    },
+    {
+      ref: inputYearEl,
+      id: "bday-year",
+      setter: setBdayYear,
+      maxLength: 4,
+      placeholder: "YYYY",
+      value: bdayYear,
+    },
+  ];
+
+  const createDate = (
+    day: string,
+    month: string,
+    year: string
+  ): Date | null => {
+    if (
+      day &&
+      day !== "00" &&
+      month &&
+      month !== "00" &&
+      year &&
+      year.length === 4 &&
+      year !== "0000"
+    ) {
+      return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    }
+    return null;
+  };
+
+  const calculateAge = () => {
+    const birthDate = createDate(bdayDay, bdayMonth, bdayYear);
+    const today = startOfDay(new Date());
+    const calculatedAge = birthDate
+      ? differenceInYears(today, birthDate)
+      : null;
+
+    if (onChange) {
+      onChange({
+        age: calculatedAge,
+        dob: birthDate,
+        day: bdayDay,
+        month: bdayMonth,
+        year: bdayYear,
+      });
+    }
+  };
 
   useEffect(() => {
-    calculateAge();
+    if (bdayDay && bdayMonth && bdayYear) {
+      calculateAge();
+    }
   }, [bdayDay, bdayMonth, bdayYear]);
 
   const switchInputFocus = (
     value: string,
+    setState: (value: string) => void,
     currentRef: React.RefObject<InputRef>,
-    nextRef: React.RefObject<InputRef>
+    nextRef?: React.RefObject<InputRef>
   ) => {
-    if (value !== "00" && value.length > 1 && nextRef.current?.input) {
+    setState(value);
+    if (value.length === 2 && nextRef?.current?.input) {
       nextRef.current.input.focus();
     }
-  };
 
-  const calculateAge = () => {
-    if (
-      bdayDay &&
-      bdayDay !== "00" &&
-      bdayMonth &&
-      bdayMonth !== "00" &&
-      bdayYear.length === 4 &&
-      bdayYear !== "0000"
-    ) {
-      const today = startOfDay(new Date());
-      const birthDate = new Date(
-        parseInt(bdayYear),
-        parseInt(bdayMonth) - 1,
-        parseInt(bdayDay)
-      );
-      const calculatedAge = differenceInYears(today, birthDate);
-      setAge(calculatedAge);
-      onDateChange(bdayDay, bdayMonth, bdayYear, calculatedAge);
-    } else {
-      setAge(null);
-      onDateChange(bdayDay, bdayMonth, bdayYear, null);
-    }
+    calculateAge();
   };
 
   const getYearShortcut = () => {
     const thisYear = new Date().getFullYear() % 100;
     const thisCentury = Math.floor(thisYear / 10) * 10;
-    const previousCentury = Math.floor(thisYear / 10) * 10 - 1;
+    const previousCentury = thisCentury - 100;
 
-    if (bdayYear !== "0000" && bdayYear.length === 2) {
-      if (Number(bdayYear) > thisYear) {
-        setBdayYear(String(previousCentury + Number(bdayYear)));
-      } else {
-        setBdayYear(String(thisCentury + Number(bdayYear)));
-      }
+    if (bdayYear && bdayYear.length === 2) {
+      const year = Number(bdayYear) > thisYear ? previousCentury : thisCentury;
+      setBdayYear(String(year + Number(bdayYear)));
     }
   };
 
   return (
-    <Form.Item
-      label={
-        <>
-          Date of birth
-          {age !== null && (
-            <span className="text-gray-500">
-              <span>
-                <span className="mx-1">·</span>
-                {age} year
-              </span>
-              <span>{age > 1 ? "s" : ""}</span>
-              <span> old</span>
-            </span>
-          )}
-        </>
-      }
-      extra="Example · 30/04/1970"
-    >
-      <div className="grid grid-cols-3">
-        <Input
-          ref={inputDayEl}
-          aria-label="Day"
-          id="bday-day"
-          name="bday-day"
-          autoComplete="bday-day"
-          type="text"
-          inputMode="numeric"
-          maxLength={2}
-          className="block w-full rounded-l-md hover:z-10 !rounded-r-none border-gray-300 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums"
-          placeholder="DD"
-          value={bdayDay}
-          onChange={(e) => {
-            setBdayDay(e.target.value);
-            switchInputFocus(e.target.value, inputDayEl, inputMonthEl);
-          }}
-        />
-        <Input
-          ref={inputMonthEl}
-          aria-label="Month"
-          id="bday-month"
-          name="bday-month"
-          autoComplete="bday-month"
-          type="text"
-          inputMode="numeric"
-          maxLength={2}
-          className="block w-full border-gray-300 hover:z-10 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums !rounded-none"
-          placeholder="MM"
-          value={bdayMonth}
-          onChange={(e) => {
-            setBdayMonth(e.target.value);
-            switchInputFocus(e.target.value, inputMonthEl, inputYearEl);
-          }}
-        />
-        <Input
-          ref={inputYearEl}
-          aria-label="Year"
-          id="bday-year"
-          name="bday-year"
-          autoComplete="bday-year"
-          type="text"
-          inputMode="numeric"
-          maxLength={4}
-          className="block w-full rounded-r-md hover:z-10 !rounded-l-none border-gray-300 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums"
-          placeholder="YYYY"
-          value={bdayYear}
-          onBlur={() => getYearShortcut()}
-          onChange={(e) => {
-            setBdayYear(e.target.value);
-          }}
-        />
-      </div>
-    </Form.Item>
+    <>
+      {inputs.map(
+        ({ ref, id, setter, nextRef, maxLength, placeholder, value }, idx) => (
+          <Input
+            key={id}
+            ref={ref}
+            aria-label={placeholder}
+            id={id}
+            name={id}
+            autoComplete={id}
+            type="text"
+            inputMode="numeric"
+            maxLength={maxLength}
+            className={`block w-full border-gray-300 hover:z-10 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums ${
+              idx === 0
+                ? "rounded-l-md !rounded-r-none"
+                : idx === 2
+                ? "rounded-r-md !rounded-l-none"
+                : "!rounded-none"
+            }`}
+            placeholder={placeholder}
+            value={value}
+            onBlur={idx === 2 ? getYearShortcut : undefined}
+            onChange={(e) =>
+              switchInputFocus(e.target.value, setter, ref, nextRef)
+            }
+          />
+        )
+      )}
+    </>
   );
 };
 

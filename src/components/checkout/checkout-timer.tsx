@@ -14,10 +14,12 @@ const CheckoutTimer: React.FC<CheckoutTimerProps> = ({ timer }) => {
   const extendTimer = () => {
     setTimeLeft((prevTime) => prevTime + timerExtensionAmount * 60); // Add timer extension amount to the timer
     message.success(`Timer extended by ${timerExtensionAmount} minutes`); // Show a success toast with timer extension value
+    message.destroy(); // Hide the warning toast
+
+    message.success(`Checkout time extended`); // Show a success toast with timer extension value
     setTimeout(() => {
-      message.destroy(); // Hide the warning toast
+      message.destroy();
     }, 2500); // Delay the destroy call by 1 second to allow the success message to be shown
-    setWarningShown(false); // Reset the warningShown state to false to allow the warning toast to be shown again when the timer is less than or equal to 2 minutes
   };
 
   useEffect(() => {

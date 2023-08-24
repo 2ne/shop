@@ -38,7 +38,7 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
       width={364}
       maskClosable={false}
       open={isModalOpen}
-      title="Add Participant"
+      title="Add person"
       okText="Add"
       cancelText="Cancel"
       onCancel={onCancel}
@@ -49,6 +49,7 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
         name="AddParticipantForm"
         layout="vertical"
         className="hide-validation-asterix"
+        requiredMark="optional"
       >
         <Form.Item
           label="First name"
@@ -64,7 +65,11 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
         >
           <Input />
         </Form.Item>
-        <Form.Item label="Date of birth" extra="Example · 31/04/1970">
+        <Form.Item
+          label="Date of birth"
+          extra="Example · 31/04/1970"
+          required={true}
+        >
           <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only">
             <Form.Item
               name="dobDD"

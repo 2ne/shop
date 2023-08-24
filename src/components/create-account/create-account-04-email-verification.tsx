@@ -91,6 +91,7 @@ const EmailVerificationForms = forwardRef<
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
           className="text-left hide-validation-asterix"
+          requiredMark="optional"
         >
           <Form.Item label="Verification PIN">
             <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only !w-full">

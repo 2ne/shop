@@ -79,6 +79,7 @@ const CreateAccountPasswordForms = forwardRef<
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
           className="text-left hide-validation-asterix"
+          requiredMark="optional"
         >
           <Form.Item
             label="Set password"

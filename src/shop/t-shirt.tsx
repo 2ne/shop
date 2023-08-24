@@ -131,7 +131,7 @@ function Tshirt(): ReactElement {
           >
             <img
               src={item.image}
-              className={`aspect-[3/2] transition-all mix-blend-multiply brightness-105 object-contain object-center h-full w-full group-hover:scale-[1.025] ${
+              className={`aspect-[3/2] transition-all mix-blend-multiply object-contain object-center h-full w-full group-hover:scale-[1.025] ${
                 item.outOfStock ? " grayscale " : ""
               }`}
             />

@@ -52,17 +52,9 @@ export const CreateAccountForm: React.FC = () => {
       subtitle: "Secure your account and protect your personal information.",
       buttonType: "createAccount",
     },
-    {
-      Component: EmailVerificationForms,
-      ref: emailVerificationRef,
-      title: "Email verification",
-      subtitle:
-        "Account created succesfully. Please check your email. We sent a verification link to jtoone@loveadmin.com",
-      buttonType: "verifyAccount",
-    },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2, 3]); // Define which steps are required (stepData[index])
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
 
@@ -157,7 +149,7 @@ export const CreateAccountForm: React.FC = () => {
       <Header />
       <Breadcrumb items={breadcrumbItems} />
       <Main className="pb-24 lg:divide-x lg:grid lg:grid-cols-6 xl:grid-cols-7 xl:pb-12">
-        <aside className="lg:pr-5 md:col-span-2 lg:col-span-2">
+        <aside className="lg:pr-5 max-lg:hidden md:col-span-2 lg:col-span-2">
           <div className="lg:sticky lg:top-4">
             <div className="flex items-center justify-between -mt-1.5 lg:hidden h-6 mb-2">
               {currentStep > 0 && (

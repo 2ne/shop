@@ -189,7 +189,7 @@ const Header: React.FC<HeaderProps> = ({
     // { label: "Memberships", to: "/Memberships" },
     // { label: "Events", to: "/Events" },
     { label: "Shop", to: "/Shop" },
-    // { label: "Class Finder", to: "/Finder" },
+    { label: "Class Finder", to: "/Finder" },
   ];
 
   const navMobileLinks = [
@@ -375,7 +375,7 @@ const Header: React.FC<HeaderProps> = ({
       ),
       to: "",
     },
-    /*  {
+    {
       label: (
         <Link
           onClick={navClose}
@@ -386,7 +386,7 @@ const Header: React.FC<HeaderProps> = ({
         </Link>
       ),
       to: "",
-    }, */
+    },
   ];
 
   const accountLinks = [
@@ -559,7 +559,7 @@ const Header: React.FC<HeaderProps> = ({
               className="block !w-auto max-h-[3.5rem] max-w-[5rem] sm:max-h-[4rem] sm:max-w-[8rem] rounded"
               loading="lazy"
             />
-            <h1 className="!text-primary_text heading-xl line-clamp-3 group-hover:underline">
+            <h1 className="!text-primary_text heading-xl line-clamp-3">
               {name}
             </h1>
           </Link>
@@ -570,7 +570,7 @@ const Header: React.FC<HeaderProps> = ({
                   <li key={index}>
                     <Link
                       to={item.to}
-                      className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95 font-medium transition"
+                      className="heading-xs !text-primary_text whitespace-nowrap rounded-md py-1.5 px-2.5 hover:bg-white/95   font-medium transition"
                     >
                       {item.label}
                     </Link>
@@ -586,7 +586,7 @@ const Header: React.FC<HeaderProps> = ({
                   type="button"
                   className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-2 lg:py-1.5 group place-items-center hover:bg-white/95"
                 >
-                  <div className="absolute grid min-w-[.75rem] h-3 sm:min-w-[1rem] sm:h-4 text-[0.5rem] sm:text-[0.65rem] text-center text-white bg-red-500 rounded-full top-0.5 right-0.5 sm:-top-0.5 sm:-right-0.5 lg:top-1 lg:right-1.5 place-items-center">
+                  <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-0.5 -right-0.5 lg:top-1 lg:right-1.5 place-items-center">
                     <span>1</span>
                   </div>
                   <svg
@@ -614,11 +614,11 @@ const Header: React.FC<HeaderProps> = ({
               {!isCheckout && (
                 <button
                   type="button"
-                  className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
+                  className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95  "
                   onClick={openBasket}
                 >
                   {basketCount && basketCount > 0 ? (
-                    <div className="absolute grid min-w-[.75rem] h-3 sm:min-w-[1rem] sm:h-4 text-[0.5rem] sm:text-[0.65rem] text-center text-white bg-red-500 rounded-full top-0.5 right-0.5 sm:-top-0.5 sm:-right-0.5 lg:top-1 lg:right-1.5 place-items-center">
+                    <div className="absolute grid min-w-[1rem] h-4 text-[0.65rem] text-center text-white bg-red-500 rounded-full -top-0.5 -right-0.5 lg:top-1 lg:right-1.5 place-items-center">
                       <span>{basketCount}</span>
                     </div>
                   ) : null}
@@ -661,7 +661,7 @@ const Header: React.FC<HeaderProps> = ({
                 <>
                   <button
                     type="button"
-                    className="relative hidden lg:grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
+                    className="relative hidden lg:grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95  "
                     onClick={handleLogin}
                   >
                     <svg
@@ -703,7 +703,7 @@ const Header: React.FC<HeaderProps> = ({
                       showMyAccountModal();
                     }}
                     type="button"
-                    className="relative hidden lg:grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
+                    className="relative hidden lg:grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95  "
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -733,7 +733,7 @@ const Header: React.FC<HeaderProps> = ({
                 <button
                   onClick={openNav}
                   type="button"
-                  className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:hidden lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95"
+                  className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:hidden lg:px-3 lg:py-1.5 group place-items-center hover:bg-white/95  "
                 >
                   <svg
                     width="24"

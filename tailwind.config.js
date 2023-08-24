@@ -48,5 +48,8 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  corePlugins: {
+    preflight: false,
+  },
   plugins: [require("@tailwindcss/container-queries")],
 };

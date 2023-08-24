@@ -145,7 +145,7 @@ const SignInModal: React.FC<SignInProps> = ({
           >
             <div className="relative">
               <Form.Item
-                className={userExists ? "!mb-4" : " "}
+                className={userExists ? "!mb-4" : "!mb-6"}
                 name="email"
                 rules={[
                   {

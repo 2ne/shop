@@ -218,7 +218,7 @@ const CheckoutSelectParticipants = forwardRef<
           {basketItemsExcludingRequired.map((item, index) => (
             <div
               key={item.id}
-              className="p-4 space-y-4 border rounded-md border-neutral-200 [&:has(.ant-form-item-has-error)]:border-error"
+              className="text-sm p-4 space-y-4 rounded-md relative bg-white shadow ring-1 ring-black ring-opacity-5 text-left [&:has(.ant-form-item-has-error)]:ring-error"
             >
               <div className="flex gap-3 pb-4 border-b">
                 <img
@@ -246,10 +246,8 @@ const CheckoutSelectParticipants = forwardRef<
               </div>
               <Form.Item
                 name={`participant_${index}`}
-                label="Select a participant"
-                rules={[
-                  { required: true, message: "Please select a participant" },
-                ]}
+                label="Select a person"
+                rules={[{ required: true, message: "Please select a person" }]}
                 validateTrigger={false}
               >
                 <Radio.Group className="block">
@@ -299,7 +297,7 @@ const CheckoutSelectParticipants = forwardRef<
                     setIsAddParticipantModalOpen(true);
                   }}
                 >
-                  Add new participant
+                  Add new person
                 </Button>
                 <AddParticipantModal
                   openModal={isAddParticipantModalOpen}
