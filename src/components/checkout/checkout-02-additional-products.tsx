@@ -179,7 +179,7 @@ const CheckoutAdditionalProducts = forwardRef<
                             <Select
                               popupClassName="ant-select-dropdown-products"
                               virtual={false}
-                              className="w-full ant-select-products"
+                              className="w-full"
                               placeholder="Select membership..."
                               onChange={handleChange}
                               value={selectedLabel || undefined}

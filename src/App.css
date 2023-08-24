@@ -180,10 +180,6 @@ dt {
 
 /* media query matches max-lg */
 @media not all and (min-width: 1024px) {
-  .ant-select-products.ant-select-open {
-    @apply !opacity-0;
-  }
-
   .ant-select-dropdown-products {
     @apply !fixed !inset-0 !min-w-full !w-full !p-0 !rounded-none !shadow-none !h-screen !h-[100dvh];
   }
