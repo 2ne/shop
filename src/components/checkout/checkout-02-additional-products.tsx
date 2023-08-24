@@ -62,26 +62,50 @@ const CheckoutAdditionalProducts = forwardRef<
     const titles = ["Annual Title", "Monthly Title"];
     const values = ["annual", "monthly"];
 
-    const options = Array.from({ length: 100 }, (_, index) => {
-      const isAnnual = index % 2 === 0;
-      const title = isAnnual ? titles[0] : titles[1];
-      const value = isAnnual ? values[0] : values[1];
-
-      return {
-        value: value,
-        label: title,
+    const options = [
+      {
+        value: "annual",
+        label: "Annual Title",
         content: (
           <div className="flex gap-4 py-1 text-sm">
             <div className="flex-grow min-w-0">
-              <div className="truncate">{title}</div>
+              <div className="truncate">Annual Title</div>
               <div className="truncate text-neutral-500">Subtitle</div>
               <div className="truncate text-neutral-500">Age</div>
             </div>
             <div className="text-right">Price</div>
           </div>
         ),
-      };
-    });
+      },
+      {
+        value: "monthly",
+        label: "Monthly Title",
+        content: (
+          <div className="flex gap-4 py-1 text-sm">
+            <div className="flex-grow min-w-0">
+              <div className="truncate">Monthly Title</div>
+              <div className="truncate text-neutral-500">Subtitle</div>
+              <div className="truncate text-neutral-500">Age</div>
+            </div>
+            <div className="text-right">Price</div>
+          </div>
+        ),
+      },
+      {
+        value: "weekly",
+        label: "Weekly Title",
+        content: (
+          <div className="flex gap-4 py-1 text-sm">
+            <div className="flex-grow min-w-0">
+              <div className="truncate">Weekly Title</div>
+              <div className="truncate text-neutral-500">Subtitle</div>
+              <div className="truncate text-neutral-500">Age</div>
+            </div>
+            <div className="text-right">Price</div>
+          </div>
+        ),
+      },
+    ];
 
     const handleChange = (value, option) => {
       setSelectedLabel(option.label);
