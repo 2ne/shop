@@ -129,7 +129,7 @@ const Header: React.FC<HeaderProps> = ({
         },
         {
           key: "1-5",
-          label: <Link to="/Timetable">View All</Link>,
+          label: <Link to="/Calendar">View All</Link>,
         },
       ],
     },
@@ -160,7 +160,7 @@ const Header: React.FC<HeaderProps> = ({
         },
         {
           key: "2-5",
-          label: <Link to="/Timetable">View All</Link>,
+          label: <Link to="/Calendar">View All</Link>,
         },
       ],
     },
@@ -179,7 +179,7 @@ const Header: React.FC<HeaderProps> = ({
             onClick={(e) => e.preventDefault()}
             className="py-1.5 px-2.5 -my-1.5 -mx-2.5"
           >
-            Timetable
+            Calendar
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
           </button>
         </Dropdown>
@@ -262,7 +262,7 @@ const Header: React.FC<HeaderProps> = ({
                     <li>
                       <Link
                         onClick={navClose}
-                        to="/Timetable"
+                        to="/Calendar"
                         className="block text-neutral-800 hover:text-interactive"
                       >
                         View all
@@ -324,7 +324,7 @@ const Header: React.FC<HeaderProps> = ({
                     <li>
                       <Link
                         onClick={navClose}
-                        to="/Timetable"
+                        to="/Calendar"
                         className="block text-neutral-800 hover:text-interactive"
                       >
                         View all

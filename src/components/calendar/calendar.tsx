@@ -295,7 +295,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
           <h2 className="heading-lg">
             {singleProduct
               ? "Adult and Child Lessons"
-              : "Little Telford Timetable"}
+              : "Little Telford Calendar"}
           </h2>
         </div>
         <div className="relative hidden h-8 mx-auto lg:block">

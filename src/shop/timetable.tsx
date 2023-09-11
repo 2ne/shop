@@ -3,9 +3,9 @@ import Breadcrumb from "../components/breadcrumb";
 import Header from "../components/header";
 import Main from "../components/main";
 import Calendar from "../components/calendar/calendar";
-function Timetable(): ReactElement {
+function Calendar(): ReactElement {
   const breadcrumbItems = [
-    { label: "Little Telford Timetable", link: "/Timetable" },
+    { label: "Little Telford Calendar", link: "/Calendar" },
   ];
 
   return (
@@ -19,4 +19,4 @@ function Timetable(): ReactElement {
   );
 }
 
-export default Timetable;
+export default Calendar;
