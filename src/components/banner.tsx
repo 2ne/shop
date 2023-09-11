@@ -45,7 +45,7 @@ const Banner: React.FC = () => {
                       <div className="line-clamp-2">{item.title}</div>
                     </h2>
                     <p className="mt-1 text-base text-center md:text-xl md:mt-2 xl:mt-4 xl:text-xl text-white/95">
-                      <span className="line-clamp-2 sm:line-clamp-4">
+                      <span className="line-clamp-3 sm:line-clamp-4">
                         {item.description}
                       </span>
                     </p>
