@@ -14,7 +14,7 @@ export const orgBanners = [
     img: "https://i.ibb.co/d0DTDdY/swimming-crash-courses.jpg",
     title: "Crash Courses",
     description:
-      "Suitable for all swim levels, focusing on boosting confidence & technique. From £30/session.",
+      "Suitable for swimmers of any level, we concentrate on improving confidence and technique. Prices start from £30 a session.",
     link: "/BubbleTheSeahorse",
   },
   {
