@@ -9,11 +9,11 @@ import Checkout from "./shop/checkout";
 import { CheckoutProvider } from "./components/checkout/checkout-context";
 import ClassFinder from "./shop/class-finder";
 import CreateAccount from "./shop/create-account";
-import Calendar from "./shop/calendar";
 import Shop from "./shop/shop";
 import Events from "./shop/events";
 import Memberships from "./shop/memberships";
 import Tshirt from "./shop/t-shirt";
+import CalendarPage from "./shop/calendar";
 
 function App(): ReactElement {
   return (
@@ -36,7 +36,7 @@ function App(): ReactElement {
               <Route path="/Shop" element={<Shop />} />
               <Route path="/Events" element={<Events />} />
               <Route path="/Memberships" element={<Memberships />} />
-              <Route path="/Calendar" element={<Calendar />} />
+              <Route path="/Calendar" element={<CalendarPage />} />
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/CreateAccount" element={<CreateAccount />} />
               <Route path="*" element={<Home />} />

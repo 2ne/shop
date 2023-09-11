@@ -200,7 +200,7 @@ const Header: React.FC<HeaderProps> = ({
             className="block text-neutral-800 hover:text-interactive"
             onClick={toggleSessionsMenu}
           >
-            <span>Sessions</span>
+            <span>Calendar</span>
             <DownOutlined
               className={`ml-1.5 text-xs opacity-50 ${
                 sessionsMenu ? "" : "-rotate-90"

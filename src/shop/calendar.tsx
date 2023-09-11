@@ -3,7 +3,7 @@ import Breadcrumb from "../components/breadcrumb";
 import Header from "../components/header";
 import Main from "../components/main";
 import Calendar from "../components/calendar/calendar";
-function Calendar(): ReactElement {
+function CalendarPage(): ReactElement {
   const breadcrumbItems = [
     { label: "Little Telford Calendar", link: "/Calendar" },
   ];
@@ -19,4 +19,4 @@ function Calendar(): ReactElement {
   );
 }
 
-export default Calendar;
+export default CalendarPage;
