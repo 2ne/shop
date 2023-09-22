@@ -140,13 +140,29 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
   };
 
   const getYearShortcut = () => {
-    const thisYear = new Date().getFullYear() % 100;
-    const thisCentury = Math.floor(thisYear / 10) * 10;
-    const previousCentury = thisCentury - 100;
+    setBdayYear(`${convertToFourDigitYear(bdayYear)}`);
+  };
 
-    if (bdayYear && bdayYear.length === 2) {
-      const year = Number(bdayYear) > thisYear ? previousCentury : thisCentury;
-      setBdayYear(String(year + Number(bdayYear)));
+  // Function to convert two-digit year to four-digit year
+  const convertToFourDigitYear = (twoDigitYear: any) => {
+    const currentYear = new Date().getFullYear();
+    const validYearRange = currentYear - 99;
+
+    // Parse the two-digit year as an integer
+    const parsedTwoDigitYear = parseInt(twoDigitYear, 10);
+
+    if (
+      !isNaN(parsedTwoDigitYear) &&
+      parsedTwoDigitYear >= 0 &&
+      parsedTwoDigitYear <= 99
+    ) {
+      if (parsedTwoDigitYear <= currentYear % 100) {
+        return currentYear - (currentYear % 100) + parsedTwoDigitYear;
+      } else {
+        return currentYear - (currentYear % 100) - 100 + parsedTwoDigitYear;
+      }
+    } else {
+      return "Invalid Input";
     }
   };
 
