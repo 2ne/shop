@@ -233,7 +233,6 @@ const CreateAccountOwnerForms = forwardRef<
             className="[&_.ant-form-item-control-input-content]:grid [&_.ant-form-item-control-input-content]:grid-cols-3"
             extra="Example · 30/04/1970"
           >
-            {/* <div style={{display: 'flex', width: '100%'}}> */}
             <DateOfBirthInput
               setAge={setAge}
               dateOfBirth={dateOfBirth}
@@ -242,10 +241,6 @@ const CreateAccountOwnerForms = forwardRef<
               isMonthInvalid={isMonthInvalid}
               isYearInvalid={isYearInvalid}
             />
-            {/* </div> */}
-
-            {/* using this input to triggers the error  */}
-            {/* <Input type="date" style={{display: 'none'}} /> */}
           </Form.Item>
         </Form>
       </>
