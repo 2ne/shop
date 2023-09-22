@@ -3,6 +3,8 @@ import { differenceInYears, startOfDay } from "date-fns";
 import { Input, InputRef } from "antd";
 
 interface DateOfBirthInputProps {
+  setAge: any;
+  dateOfBirth: any;
   onChange: (data: {
     age: number | null;
     dob: Date | null;
@@ -10,13 +12,24 @@ interface DateOfBirthInputProps {
     month: string;
     year: string;
   }) => void;
+  isDayInvalid: boolean;
+  isMonthInvalid: boolean;
+  isYearInvalid: boolean;
 }
 
-const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({ onChange }) => {
+const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
+  setAge,
+  dateOfBirth,
+  onChange,
+  isDayInvalid,
+  isMonthInvalid,
+  isYearInvalid,
+}) => {
   const [bdayDay, setBdayDay] = useState("");
   const [bdayMonth, setBdayMonth] = useState("");
   const [bdayYear, setBdayYear] = useState("");
 
+  console.log("bdayDay", bdayDay, "bdayMonth", bdayMonth);
   const inputDayEl = useRef<InputRef | null>(null);
   const inputMonthEl = useRef<InputRef | null>(null);
   const inputYearEl = useRef<InputRef | null>(null);
@@ -70,36 +83,59 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({ onChange }) => {
   };
 
   const calculateAge = () => {
-    const birthDate = createDate(bdayDay, bdayMonth, bdayYear);
+    const birthDate = createDate(
+      dateOfBirth.day,
+      dateOfBirth.month,
+      dateOfBirth.year
+    );
+    console.log("birth date", birthDate);
     const today = startOfDay(new Date());
     const calculatedAge = birthDate
       ? differenceInYears(today, birthDate)
       : null;
 
-    if (onChange) {
-      onChange({
-        age: calculatedAge,
-        dob: birthDate,
-        day: bdayDay,
-        month: bdayMonth,
-        year: bdayYear,
-      });
-    }
+    setAge(calculatedAge);
   };
 
   useEffect(() => {
-    if (bdayDay && bdayMonth && bdayYear) {
-      calculateAge();
-    }
-  }, [bdayDay, bdayMonth, bdayYear]);
+    calculateAge();
+  }, [dateOfBirth.day, dateOfBirth.month, dateOfBirth.year]);
 
   const switchInputFocus = (
+    id: string,
     value: string,
     setState: (value: string) => void,
     currentRef: React.RefObject<InputRef>,
     nextRef?: React.RefObject<InputRef>
   ) => {
+    if (id === "bday-day") {
+      const updatedValue = {
+        ...dateOfBirth,
+        day: value,
+      };
+      onChange(updatedValue);
+    }
+
+    if (id === "bday-month") {
+      const updatedValue = {
+        ...dateOfBirth,
+        month: value,
+      };
+      onChange(updatedValue);
+    }
+
+    if (id === "bday-year") {
+      const updatedValue = {
+        ...dateOfBirth,
+        year: value,
+      };
+      onChange(updatedValue);
+    }
+
     setState(value);
+
+    console.log("tyoe of", typeof value);
+
     if (value.length === 2 && nextRef?.current?.input) {
       nextRef.current.input.focus();
     }
@@ -132,7 +168,27 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({ onChange }) => {
             type="text"
             inputMode="numeric"
             maxLength={maxLength}
-            className={`block w-full border-gray-300 hover:z-10 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums ${
+            className={`block w-full 
+            
+            ${
+              id === "bday-day" && isDayInvalid
+                ? `border-[red] hover:border-[red] focus:border-[red]`
+                : ""
+            } ${isDayInvalid && id == "bday-month" ? "border-s-[red]" : ""} 
+
+            ${
+              id === "bday-month" && isMonthInvalid
+                ? `border-[red] hover:border-[red] focus:border-[red]`
+                : ""
+            } ${isMonthInvalid && id == "bday-year" ? "border-s-[red]" : ""}  
+
+            ${
+              id === "bday-year" && isYearInvalid
+                ? `border-[red] hover:border-[red] focus:border-[red]`
+                : ""
+            } ${isYearInvalid && id == "bday-month" ? "border-e-[red]" : ""}  
+            
+            hover:z-10 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums ${
               idx === 0
                 ? "rounded-l-md !rounded-r-none"
                 : idx === 2
@@ -143,7 +199,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({ onChange }) => {
             value={value}
             onBlur={idx === 2 ? getYearShortcut : undefined}
             onChange={(e) =>
-              switchInputFocus(e.target.value, setter, ref, nextRef)
+              switchInputFocus(id, e.target.value, setter, ref, nextRef)
             }
           />
         )

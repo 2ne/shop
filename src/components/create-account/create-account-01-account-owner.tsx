@@ -3,6 +3,7 @@ import { Empty, Form, Input, Space } from "antd";
 import FormHeader from "../form-header";
 import { useLocation } from "react-router-dom";
 import DateOfBirthInput from "../dob-input";
+const FormItem = Form.Item;
 
 export interface CreateAccountOwnerFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -24,38 +25,100 @@ const CreateAccountOwnerForms = forwardRef<
   ) => {
     const [age, setAge] = useState(0);
     const [accountOwnerForm] = Form.useForm();
+    const [getFieldDecorator] = Form.useForm();
     const location = useLocation();
     const email = location.state?.email;
+    // const [isAgeNotValid, setIsAgeNotValid] = useState(true);
+    const [isDayInvalid, setIsDayInvalid] = useState(false);
+    const [isMonthInvalid, setIsMonthInvalid] = useState(false);
+    const [isYearInvalid, setIsYearInvalid] = useState(false);
+    const thisYear = new Date().getFullYear();
+    const [isAfterSubmit, setIsAfterSubmit] = useState(false);
+
+    console.log("this year", thisYear);
+
+    // console.log("accountOwnerForm", accountOwnerForm)
+
     const [dateOfBirth, setDateOfBirth] = useState<{
       day: string;
       month: string;
       year: string;
-      age: number | null;
     }>({
       day: "",
       month: "",
       year: "",
-      age: null,
     });
 
-    const handleDateChange = (
-      day: string,
-      month: string,
-      year: string,
-      age: number | null
-    ) => {
-      setDateOfBirth({ day, month, year, age });
-      console.log("Date of Birth changed:", { day, month, year, age });
+    const handleDateChange = (day: string, month: string, year: string) => {
+      setDateOfBirth({ day, month, year });
+      // console.log("Date of Birth changed:", { day, month, year, age });
+    };
+
+    // const handleDateOfBirthValidation
+
+    const customDateValidator = (value: any) => {
+      if (isAfterSubmit) {
+        if (
+          dateOfBirth.day == "" &&
+          dateOfBirth.month == "" &&
+          dateOfBirth.year == ""
+        ) {
+          setIsDayInvalid(true);
+          setIsMonthInvalid(true);
+          setIsYearInvalid(true);
+          return Promise.reject("Please enter a date of birth");
+        }
+        if (
+          dateOfBirth.day !== "" &&
+          dateOfBirth.month == "" &&
+          dateOfBirth.year == ""
+        ) {
+          return Promise.reject("Complete Date of Birth is required.");
+        }
+        if (parseInt(dateOfBirth.day) >= 1 && parseInt(dateOfBirth.day) <= 31) {
+          Promise.resolve();
+          setIsDayInvalid(false);
+        } else {
+          setIsDayInvalid(true);
+          return Promise.reject("Day must be between 01 and 31.");
+        }
+        if (
+          parseInt(dateOfBirth.month) >= 0 &&
+          parseInt(dateOfBirth.month) <= 12
+        ) {
+          Promise.resolve();
+          setIsMonthInvalid(false);
+        } else {
+          setIsMonthInvalid(true);
+          return Promise.reject("Month must be between 01 and 12.");
+        }
+
+        if (
+          parseInt(dateOfBirth.year) >= 1900 &&
+          parseInt(dateOfBirth.year) <= thisYear
+        ) {
+          Promise.resolve();
+          setIsYearInvalid(false);
+        } else {
+          setIsYearInvalid(true);
+          return Promise.reject(
+            "Enter a valid year (e.g., between 1900 and current year)."
+          );
+        }
+      }
+      return Promise.resolve();
     };
 
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
+        setIsAfterSubmit(true);
         try {
           // Validate all form fields
           await accountOwnerForm.validateFields();
           // If validation is successful, submit the form
           accountOwnerForm.submit();
+          console.log("age", age);
           // Notify the parent component that the form is valid
           onFormValidation(true);
           // Return true to indicate that the form submission was successful
@@ -63,6 +126,7 @@ const CreateAccountOwnerForms = forwardRef<
         } catch (error) {
           // Log the validation error
           console.log("Validation failed:", error);
+          console.log("age", age);
           // Notify the parent component that the form is not valid
           onFormValidation(false);
           // Return false to indicate that the form submission failed
@@ -77,7 +141,7 @@ const CreateAccountOwnerForms = forwardRef<
     };
 
     const onDetailsFinishFailed = (errorInfo: any) => {
-      console.log(errorInfo);
+      console.log("error info", errorInfo);
     };
 
     return (
@@ -149,7 +213,7 @@ const CreateAccountOwnerForms = forwardRef<
           </Form.Item>
           <Form.Item
             name="dateOfBirth"
-            initialValue={age}
+            initialValue={dateOfBirth}
             label={
               <div className="flex">
                 <div>Date of birth</div>
@@ -165,16 +229,24 @@ const CreateAccountOwnerForms = forwardRef<
                 )}
               </div>
             }
-            rules={[
-              {
-                required: true,
-                message: "Please enter a date of birth",
-              },
-            ]}
+            rules={[{ validator: customDateValidator }]}
+            validateStatus="success"
             className="[&_.ant-form-item-control-input-content]:grid [&_.ant-form-item-control-input-content]:grid-cols-3"
             extra="Example · 30/04/1970"
           >
-            <DateOfBirthInput age={setAge} />
+            {/* <div style={{display: 'flex', width: '100%'}}> */}
+            <DateOfBirthInput
+              setAge={setAge}
+              dateOfBirth={dateOfBirth}
+              onChange={setDateOfBirth}
+              isDayInvalid={isDayInvalid}
+              isMonthInvalid={isMonthInvalid}
+              isYearInvalid={isYearInvalid}
+            />
+            {/* </div> */}
+
+            {/* using this input to triggers the error  */}
+            {/* <Input type="date" style={{display: 'none'}} /> */}
           </Form.Item>
         </Form>
       </>
