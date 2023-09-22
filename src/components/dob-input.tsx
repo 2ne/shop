@@ -29,7 +29,6 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
   const [bdayMonth, setBdayMonth] = useState("");
   const [bdayYear, setBdayYear] = useState("");
 
-  console.log("bdayDay", bdayDay, "bdayMonth", bdayMonth);
   const inputDayEl = useRef<InputRef | null>(null);
   const inputMonthEl = useRef<InputRef | null>(null);
   const inputYearEl = useRef<InputRef | null>(null);
@@ -88,7 +87,6 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
       dateOfBirth.month,
       dateOfBirth.year
     );
-    console.log("birth date", birthDate);
     const today = startOfDay(new Date());
     const calculatedAge = birthDate
       ? differenceInYears(today, birthDate)
@@ -133,8 +131,6 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
     }
 
     setState(value);
-
-    console.log("tyoe of", typeof value);
 
     if (value.length === 2 && nextRef?.current?.input) {
       nextRef.current.input.focus();
