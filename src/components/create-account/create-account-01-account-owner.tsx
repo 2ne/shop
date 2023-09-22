@@ -35,7 +35,7 @@ const CreateAccountOwnerForms = forwardRef<
     const thisYear = new Date().getFullYear();
     const [isAfterSubmit, setIsAfterSubmit] = useState(false);
 
-    console.log("this year", thisYear);
+    // console.log("this year", thisYear);
 
     // console.log("accountOwnerForm", accountOwnerForm)
 
@@ -126,7 +126,6 @@ const CreateAccountOwnerForms = forwardRef<
         } catch (error) {
           // Log the validation error
           console.log("Validation failed:", error);
-          console.log("age", age);
           // Notify the parent component that the form is not valid
           onFormValidation(false);
           // Return false to indicate that the form submission failed
