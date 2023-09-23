@@ -245,6 +245,7 @@ const CreateAccountOwnerForms = forwardRef<
                 )}
               </div>
             }
+            required={true}
             rules={[{ validator: customDateValidator }]}
             validateStatus="success"
             className="[&_.ant-form-item-control-input-content]:grid [&_.ant-form-item-control-input-content]:grid-cols-3"
