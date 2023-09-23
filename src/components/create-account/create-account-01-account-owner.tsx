@@ -44,7 +44,7 @@ const CreateAccountOwnerForms = forwardRef<
       year: "",
     });
 
-    const customDateValidator = (value: any) => {
+    const dateOfBirthValidator = (value: any) => {
       if (isAfterSubmit) {
         // Check if all date fields are empty
         if (
@@ -230,9 +230,8 @@ const CreateAccountOwnerForms = forwardRef<
               </div>
             }
             required={true}
-            rules={[{ validator: customDateValidator }]}
+            rules={[{ validator: dateOfBirthValidator }]}
             validateStatus="success"
-            className="[&_.ant-form-item-control-input-content]:grid [&_.ant-form-item-control-input-content]:grid-cols-3"
             extra="Example · 30/04/1970"
           >
             <DateOfBirthInput

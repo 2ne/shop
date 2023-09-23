@@ -174,7 +174,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
   };
 
   return (
-    <>
+    <div className="grid grid-cols-3">
       {inputs.map(
         ({ ref, id, setter, nextRef, maxLength, placeholder, value }, idx) => (
           <Input
@@ -223,7 +223,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
           />
         )
       )}
-    </>
+    </div>
   );
 };
 
