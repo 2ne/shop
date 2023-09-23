@@ -207,7 +207,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
                 : ""
             } ${isYearInvalid && id == "bday-month" ? "border-r-error" : ""}  
             
-            hover:z-10 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums ${
+            hover:z-10 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-neutral-400 tabular-nums ${
               idx === 0
                 ? "rounded-l-md !rounded-r-none"
                 : idx === 2
