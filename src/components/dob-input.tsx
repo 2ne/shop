@@ -192,21 +192,21 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
             
             ${
               id === "bday-day" && isDayInvalid
-                ? `border-[red] hover:border-[red] focus:border-[red]`
+                ? `border-error hover:border-error focus:border-error`
                 : ""
-            } ${isDayInvalid && id == "bday-month" ? "border-s-[red]" : ""} 
+            } ${isDayInvalid && id == "bday-month" ? "border-l-error" : ""} 
 
             ${
               id === "bday-month" && isMonthInvalid
-                ? `border-[red] hover:border-[red] focus:border-[red]`
+                ? `border-error hover:border-error focus:border-error`
                 : ""
-            } ${isMonthInvalid && id == "bday-year" ? "border-s-[red]" : ""}  
+            } ${isMonthInvalid && id == "bday-year" ? "border-l-error" : ""}  
 
             ${
               id === "bday-year" && isYearInvalid
-                ? `border-[red] hover:border-[red] focus:border-[red]`
+                ? `border-error hover:border-error focus:border-error`
                 : ""
-            } ${isYearInvalid && id == "bday-month" ? "border-e-[red]" : ""}  
+            } ${isYearInvalid && id == "bday-month" ? "border-r-error" : ""}  
             
             hover:z-10 focus:z-20 even:-ml-px last:ml-[-2px] last:w-[calc(100%+2px)] placeholder:text-gray-400 tabular-nums ${
               idx === 0

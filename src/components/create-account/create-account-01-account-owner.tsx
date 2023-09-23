@@ -1,9 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { Empty, Form, Input, Space } from "antd";
+import { Form, Input } from "antd";
 import FormHeader from "../form-header";
 import { useLocation } from "react-router-dom";
 import DateOfBirthInput from "../dob-input";
-const FormItem = Form.Item;
 
 export interface CreateAccountOwnerFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -25,7 +24,6 @@ const CreateAccountOwnerForms = forwardRef<
   ) => {
     const [age, setAge] = useState(0);
     const [accountOwnerForm] = Form.useForm();
-    const [getFieldDecorator] = Form.useForm();
     const location = useLocation();
     const email = location.state?.email;
     const [isDayInvalid, setIsDayInvalid] = useState(false);
@@ -46,78 +44,66 @@ const CreateAccountOwnerForms = forwardRef<
       year: "",
     });
 
-    const handleDateChange = (day: string, month: string, year: string) => {
-      setDateOfBirth({ day, month, year });
-      // console.log("Date of Birth changed:", { day, month, year, age });
-    };
-
-    // const handleDateOfBirthValidation
-
     const customDateValidator = (value: any) => {
       if (isAfterSubmit) {
+        // Check if all date fields are empty
         if (
-          dateOfBirth.day == "" &&
-          dateOfBirth.month == "" &&
-          dateOfBirth.year == ""
+          dateOfBirth.day === "" &&
+          dateOfBirth.month === "" &&
+          dateOfBirth.year === ""
         ) {
           setIsDayInvalid(true);
           setIsMonthInvalid(true);
           setIsYearInvalid(true);
           return Promise.reject("Please enter a date of birth");
         }
-        if (
-          dateOfBirth.day !== "" &&
-          dateOfBirth.month == "" &&
-          dateOfBirth.year == ""
-        ) {
-          return Promise.reject("Complete Date of Birth is required.");
-        }
+
+        // Day validation
         if (parseInt(dateOfBirth.day) >= 1 && parseInt(dateOfBirth.day) <= 31) {
-          Promise.resolve();
           setIsDayInvalid(false);
         } else {
           setIsDayInvalid(true);
           return Promise.reject("Day must be between 01 and 31.");
         }
+
+        // Month validation
         if (
-          parseInt(dateOfBirth.month) >= 0 &&
+          parseInt(dateOfBirth.month) >= 1 &&
           parseInt(dateOfBirth.month) <= 12
         ) {
-          Promise.resolve();
           setIsMonthInvalid(false);
         } else {
           setIsMonthInvalid(true);
           return Promise.reject("Month must be between 01 and 12.");
         }
 
+        // Year validation
         if (
           parseInt(dateOfBirth.year) >= 1900 &&
           parseInt(dateOfBirth.year) <= thisYear
         ) {
-          Promise.resolve();
           setIsYearInvalid(false);
         } else {
           setIsYearInvalid(true);
-          return Promise.reject("Year must be between 1900 and current year.");
+          return Promise.reject(
+            "Year must be between 1900 and the current year."
+          );
         }
 
-        if (parseInt(dateOfBirth.year) == thisYear) {
+        // Additional check for the current year
+        if (parseInt(dateOfBirth.year) === thisYear) {
           if (parseInt(dateOfBirth.month) > thisMonth) {
             setIsMonthInvalid(true);
-            return Promise.reject("Enter a valid month (This is future date).");
-          } else {
-            setIsMonthInvalid(false);
-            Promise.resolve();
+            return Promise.reject(
+              "Enter a valid month. (This is a future date)"
+            );
           }
-        }
-
-        if (parseInt(dateOfBirth.month) == thisMonth) {
-          if (parseInt(dateOfBirth.day) > today) {
+          if (
+            parseInt(dateOfBirth.month) === thisMonth &&
+            parseInt(dateOfBirth.day) > today
+          ) {
             setIsDayInvalid(true);
-            return Promise.reject("Enter a valid day (This is future date).");
-          } else {
-            setIsDayInvalid(false);
-            Promise.resolve();
+            return Promise.reject("Enter a valid day. (This is a future date)");
           }
         }
       }
