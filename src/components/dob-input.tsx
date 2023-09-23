@@ -154,7 +154,6 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
   // Function to convert two-digit year to four-digit year
   const convertToFourDigitYear = (twoDigitYear: any) => {
     const currentYear = new Date().getFullYear();
-    const validYearRange = currentYear - 99;
 
     // Parse the two-digit year as an integer
     const parsedTwoDigitYear = parseInt(twoDigitYear, 10);
