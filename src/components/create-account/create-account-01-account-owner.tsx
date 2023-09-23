@@ -98,9 +98,7 @@ const CreateAccountOwnerForms = forwardRef<
           setIsYearInvalid(false);
         } else {
           setIsYearInvalid(true);
-          return Promise.reject(
-            "Enter a valid year (e.g., between 1900 and current year)."
-          );
+          return Promise.reject("Year must be between 1900 and current year.");
         }
 
         if (parseInt(dateOfBirth.year) == thisYear) {
