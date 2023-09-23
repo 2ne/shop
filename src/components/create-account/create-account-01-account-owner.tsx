@@ -218,7 +218,7 @@ const CreateAccountOwnerForms = forwardRef<
               <div className="flex">
                 <div>Date of birth</div>
                 {age !== null && (
-                  <div className="text-gray-500">
+                  <div className="text-neutral-500">
                     <span>
                       <span className="mx-1">·</span>
                       {age} year
