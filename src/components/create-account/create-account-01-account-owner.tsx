@@ -28,16 +28,13 @@ const CreateAccountOwnerForms = forwardRef<
     const [getFieldDecorator] = Form.useForm();
     const location = useLocation();
     const email = location.state?.email;
-    // const [isAgeNotValid, setIsAgeNotValid] = useState(true);
     const [isDayInvalid, setIsDayInvalid] = useState(false);
     const [isMonthInvalid, setIsMonthInvalid] = useState(false);
     const [isYearInvalid, setIsYearInvalid] = useState(false);
     const thisYear = new Date().getFullYear();
+    const thisMonth = new Date().getMonth();
+    const today = new Date().getDate();
     const [isAfterSubmit, setIsAfterSubmit] = useState(false);
-
-    // console.log("this year", thisYear);
-
-    // console.log("accountOwnerForm", accountOwnerForm)
 
     const [dateOfBirth, setDateOfBirth] = useState<{
       day: string;
@@ -104,6 +101,26 @@ const CreateAccountOwnerForms = forwardRef<
           return Promise.reject(
             "Enter a valid year (e.g., between 1900 and current year)."
           );
+        }
+
+        if (parseInt(dateOfBirth.year) == thisYear) {
+          if (parseInt(dateOfBirth.month) > thisMonth) {
+            setIsMonthInvalid(true);
+            return Promise.reject("Enter a valid month (This is future date).");
+          } else {
+            setIsMonthInvalid(false);
+            Promise.resolve();
+          }
+        }
+
+        if (parseInt(dateOfBirth.month) == thisMonth) {
+          if (parseInt(dateOfBirth.day) > today) {
+            setIsDayInvalid(true);
+            return Promise.reject("Enter a valid day (This is future date).");
+          } else {
+            setIsDayInvalid(false);
+            Promise.resolve();
+          }
         }
       }
       return Promise.resolve();

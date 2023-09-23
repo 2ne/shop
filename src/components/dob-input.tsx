@@ -140,7 +140,15 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
   };
 
   const getYearShortcut = () => {
-    setBdayYear(`${convertToFourDigitYear(bdayYear)}`);
+    if (bdayYear && bdayYear.length === 2) {
+      const fullYear = convertToFourDigitYear(bdayYear);
+      setBdayYear(`${fullYear}`);
+      const updatedValue = {
+        ...dateOfBirth,
+        year: `${fullYear}`,
+      };
+      onChange(updatedValue);
+    }
   };
 
   // Function to convert two-digit year to four-digit year
