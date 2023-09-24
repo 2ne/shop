@@ -38,6 +38,26 @@ const initialState: FinderState = {
 const Finder: React.FC = () => {
   const [form] = Form.useForm();
   const [state, setState] = useState<FinderState>(initialState);
+  const [isDayInvalid, setIsDayInvalid] = useState(false);
+  const [isMonthInvalid, setIsMonthInvalid] = useState(false);
+  const [isYearInvalid, setIsYearInvalid] = useState(false);
+  const thisYear = new Date().getFullYear();
+  const thisMonth = new Date().getMonth();
+  const today = new Date().getDate();
+  const [isAfterSubmit, setIsAfterSubmit] = useState(true);
+  const [userAge, setUserAge] = useState(0);
+
+  const [dateOfBirth, setDateOfBirth] = useState<{
+    day: string;
+    month: string;
+    year: string;
+  }>({
+    day: "",
+    month: "",
+    year: "",
+  });
+
+  console.log("date of birth", dateOfBirth, userAge);
 
   const handleDOBChange = (data: {
     day: string;
@@ -97,6 +117,71 @@ const Finder: React.FC = () => {
     state;
   const { day, month, year, age } = dobInfo;
 
+  const dateOfBirthValidator = (value: any) => {
+    console.log("here");
+    if (isAfterSubmit) {
+      // Check if all date fields are empty
+      if (
+        dateOfBirth.day === "" &&
+        dateOfBirth.month === "" &&
+        dateOfBirth.year === ""
+      ) {
+        setIsDayInvalid(true);
+        setIsMonthInvalid(true);
+        setIsYearInvalid(true);
+        return Promise.reject("Please enter a date of birth");
+      }
+
+      // Day validation
+      if (parseInt(dateOfBirth.day) >= 1 && parseInt(dateOfBirth.day) <= 31) {
+        setIsDayInvalid(false);
+      } else {
+        setIsDayInvalid(true);
+        return Promise.reject("Day must be between 01 and 31.");
+      }
+
+      // Month validation
+      if (
+        parseInt(dateOfBirth.month) >= 1 &&
+        parseInt(dateOfBirth.month) <= 12
+      ) {
+        setIsMonthInvalid(false);
+      } else {
+        setIsMonthInvalid(true);
+        return Promise.reject("Month must be between 01 and 12.");
+      }
+
+      // Year validation
+      if (
+        parseInt(dateOfBirth.year) >= 1900 &&
+        parseInt(dateOfBirth.year) <= thisYear
+      ) {
+        setIsYearInvalid(false);
+      } else {
+        setIsYearInvalid(true);
+        return Promise.reject(
+          "Year must be between 1900 and the current year."
+        );
+      }
+
+      // Additional check for the current year
+      if (parseInt(dateOfBirth.year) === thisYear) {
+        if (parseInt(dateOfBirth.month) > thisMonth) {
+          setIsMonthInvalid(true);
+          return Promise.reject("Enter a valid month. (This is a future date)");
+        }
+        if (
+          parseInt(dateOfBirth.month) === thisMonth &&
+          parseInt(dateOfBirth.day) > today
+        ) {
+          setIsDayInvalid(true);
+          return Promise.reject("Enter a valid day. (This is a future date)");
+        }
+      }
+    }
+    return Promise.resolve();
+  };
+
   return (
     <div className="items-center mb-8 lg:mb-20 lg:flex lg:justify-between lg:gap-16">
       <div className="shrink-0 w-full lg:max-w-[22rem] relative lg:mt-[-5vh]">
@@ -138,42 +223,20 @@ const Finder: React.FC = () => {
                           )}
                         </div>
                       }
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter a date of birth",
-                        },
-                        {
-                          validator: (_, value) => {
-                            if (day && (Number(day) < 1 || Number(day) > 31)) {
-                              return Promise.reject("Day must be between 1-31");
-                            }
-                            if (
-                              month &&
-                              (Number(month) < 1 || Number(month) > 12)
-                            ) {
-                              return Promise.reject(
-                                "Month must be between 1-12"
-                              );
-                            }
-                            const currentYear = new Date().getFullYear();
-                            if (
-                              year &&
-                              (Number(year) < 1900 ||
-                                Number(year) > currentYear)
-                            ) {
-                              return Promise.reject(
-                                `Year must be between 1900 and ${currentYear}`
-                              );
-                            }
-                            return Promise.resolve();
-                          },
-                        },
-                      ]}
-                      className="[&_.ant-form-item-control-input-content]:grid [&_.ant-form-item-control-input-content]:grid-cols-3"
+                      required={true}
+                      rules={[{ validator: dateOfBirthValidator }]}
+                      validateStatus="success"
+                      // className="[&_.ant-form-item-control-input-content]:grid [&_.ant-form-item-control-input-content]:grid-cols-3"
                       extra="Example · 30/04/1970"
                     >
-                      <DateOfBirthInput onChange={handleDOBChange} />
+                      <DateOfBirthInput
+                        setAge={setUserAge}
+                        dateOfBirth={dateOfBirth}
+                        onChange={setDateOfBirth}
+                        isDayInvalid={isDayInvalid}
+                        isMonthInvalid={isMonthInvalid}
+                        isYearInvalid={isYearInvalid}
+                      />
                     </Form.Item>
                     <Form.Item
                       name="skillLevel"
