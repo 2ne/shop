@@ -106,6 +106,8 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
     currentRef: React.RefObject<InputRef>,
     nextRef?: React.RefObject<InputRef>
   ) => {
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
     if (id === "bday-day") {
       const updatedValue = {
         ...dateOfBirth,
@@ -132,7 +134,7 @@ const DateOfBirthInput: React.FC<DateOfBirthInputProps> = ({
 
     setState(value);
 
-    if (value.length === 2 && nextRef?.current?.input) {
+    if (isTouchDevice && value.length === 2 && nextRef?.current?.input) {
       nextRef.current.input.focus();
     }
 

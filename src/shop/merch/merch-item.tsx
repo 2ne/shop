@@ -1,40 +1,30 @@
 import { ReactElement, useEffect, useState } from "react";
-import Breadcrumb from "../components/breadcrumb";
-import Header from "../components/header";
-import Main from "../components/main";
+import Breadcrumb from "../../components/breadcrumb";
+import Header from "../../components/header";
+import Main from "../../components/main";
 import { Button } from "antd";
-import { useBasketContext } from "../components/basket/basket-context";
+import { useBasketContext } from "../../components/basket/basket-context";
 import { InfoCircleFilled } from "@ant-design/icons";
-import { BasketItem } from "../types/types";
+import { BasketItem } from "../../types/types";
+import MediaCarousel from "../media-carousel";
 
-function Tshirt(): ReactElement {
+type MerchItemProps = {
+  item: BasketItem;
+  breadcrumbItems: Array<{ label: string; link: string }>;
+  media: Array<{ url: string; type: string }>;
+};
+
+const MerchItem = ({
+  item,
+  breadcrumbItems,
+  media,
+}: MerchItemProps): ReactElement => {
   const [basketIsClicked, setBasketIsClicked] = useState(false);
-
-  const breadcrumbItems = [
-    { label: "Shop", link: "/Shop" },
-    { label: "T Shirt", link: "/Tshirt" },
-  ];
 
   const { openBasket, isOpen, addItem } = useBasketContext();
 
-  const item: BasketItem = {
-    id: Math.random().toString(36).substring(2, 15),
-    image:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    title: "Basic Tee",
-    subTitle: "Black",
-    description:
-      "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.",
-    price: "£16.00",
-    limitedStock: true,
-    outOfStock: true,
-    link: "#",
-    requiresApproval: true,
-  };
-
   const handleBasketClick = () => {
     setBasketIsClicked(true);
-
     setTimeout(() => {
       setBasketIsClicked(false);
     }, 4000);
@@ -54,7 +44,6 @@ function Tshirt(): ReactElement {
 
   const basketButtonClasses =
     basketIsClicked && "pointer-events-none !bg-emerald-600";
-
   const basketButtonText = basketIsClicked ? "Added" : "Add to basket";
 
   return (
@@ -97,6 +86,7 @@ function Tshirt(): ReactElement {
                   <p>{item.description}</p>
                 </section>
               )}
+
               <section className="space-y-4 lg:contents">
                 <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:bg-white/95 lg:mt-6">
                   <div className="container lg:p-0">
@@ -112,6 +102,36 @@ function Tshirt(): ReactElement {
                     </Button>
                   </div>
                 </div>
+                {!item.outOfStock && !item.limitedStock && (
+                  <div className="flex sm:justify-center">
+                    <div className="inline-flex items-center py-1 px-2.5 pr-4 rounded-full bg-emerald-50">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="flex-shrink-0 w-7 h-7 text-emerald-500"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M7.75 12.75l2.25 2.5 6.25-6.5"
+                        ></path>
+                      </svg>
+                      <p className="ml-1 text-sm text-emerald-600">In stock</p>
+                    </div>
+                  </div>
+                )}
+                {item.limitedStock && !item.outOfStock && (
+                  <div className="flex sm:justify-center">
+                    <div className="inline-flex items-center py-1.5 px-3.5 rounded-full bg-amber-50">
+                      <p className="text-sm text-amber-600">Limited stock</p>
+                    </div>
+                  </div>
+                )}
               </section>
               {item.requiresApproval && (
                 <section>
@@ -124,17 +144,8 @@ function Tshirt(): ReactElement {
               )}
             </div>
           </div>
-          <div
-            className={`max-lg:row-[2] lg:col-[1] lg:row-[1] grid rounded-md lg:sticky lg:top-6 place-items-center self-start aspect-[3/2] bg-neutral-100 max-lg:mb-6 relative ${
-              item.outOfStock ? "bg-rose-50" : ""
-            }`}
-          >
-            <img
-              src={item.image}
-              className={`aspect-[3/2] transition-all mix-blend-multiply object-contain object-center h-full w-full group-hover:scale-[1.025] ${
-                item.outOfStock ? " grayscale " : ""
-              }`}
-            />
+          <div className="max-lg:row-[2] lg:col-[1] lg:row-[1] max-lg:mb-6 relative">
+            <MediaCarousel media={media} outOfStock={item.outOfStock} />
             {item.limitedStock && !item.outOfStock && (
               <div className="absolute z-10 px-1.5 py-0.5 text-xs font-medium text-white rounded top-2 left-2 bg-amber-500">
                 Limited Stock
@@ -150,6 +161,6 @@ function Tshirt(): ReactElement {
       </Main>
     </>
   );
-}
+};
 
-export default Tshirt;
+export default MerchItem;

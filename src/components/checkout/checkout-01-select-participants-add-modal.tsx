@@ -1,5 +1,6 @@
-import React from "react";
-import { Form, Input, Modal, Space } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Modal } from "antd";
+import DateOfBirthInput from "../dob-input";
 
 export interface AddParticipantValues {
   firstName: string;
@@ -21,8 +22,90 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
   onModalCancel: onCancel,
 }) => {
   const [AddParticipantForm] = Form.useForm();
+  const [age, setAge] = useState(0);
+  const [isDayInvalid, setIsDayInvalid] = useState(false);
+  const [isMonthInvalid, setIsMonthInvalid] = useState(false);
+  const [isYearInvalid, setIsYearInvalid] = useState(false);
+  const thisYear = new Date().getFullYear();
+  const thisMonth = new Date().getMonth();
+  const today = new Date().getDate();
+  const [isAfterSubmit, setIsAfterSubmit] = useState(false);
+  const [dateOfBirth, setDateOfBirth] = useState<{
+    day: string;
+    month: string;
+    year: string;
+  }>({
+    day: "",
+    month: "",
+    year: "",
+  });
+
+  const dateOfBirthValidator = (value: any) => {
+    if (isAfterSubmit) {
+      // Check if all date fields are empty
+      if (
+        dateOfBirth.day === "" &&
+        dateOfBirth.month === "" &&
+        dateOfBirth.year === ""
+      ) {
+        setIsDayInvalid(true);
+        setIsMonthInvalid(true);
+        setIsYearInvalid(true);
+        return Promise.reject("Please enter a date of birth");
+      }
+
+      // Day validation
+      if (parseInt(dateOfBirth.day) >= 1 && parseInt(dateOfBirth.day) <= 31) {
+        setIsDayInvalid(false);
+      } else {
+        setIsDayInvalid(true);
+        return Promise.reject("Day must be between 01 and 31.");
+      }
+
+      // Month validation
+      if (
+        parseInt(dateOfBirth.month) >= 1 &&
+        parseInt(dateOfBirth.month) <= 12
+      ) {
+        setIsMonthInvalid(false);
+      } else {
+        setIsMonthInvalid(true);
+        return Promise.reject("Month must be between 01 and 12.");
+      }
+
+      // Year validation
+      if (
+        parseInt(dateOfBirth.year) >= 1900 &&
+        parseInt(dateOfBirth.year) <= thisYear
+      ) {
+        setIsYearInvalid(false);
+      } else {
+        setIsYearInvalid(true);
+        return Promise.reject(
+          "Year must be between 1900 and the current year."
+        );
+      }
+
+      if (parseInt(dateOfBirth.year) === thisYear) {
+        if (parseInt(dateOfBirth.month) - 1 > thisMonth) {
+          // Subtract 1 to make it 0-indexed
+          setIsMonthInvalid(true);
+          return Promise.reject("Enter a valid month. (This is a future date)");
+        }
+        if (
+          parseInt(dateOfBirth.month) - 1 === thisMonth && // Subtract 1 to make it 0-indexed
+          parseInt(dateOfBirth.day) > today
+        ) {
+          setIsDayInvalid(true);
+          return Promise.reject("Enter a valid day. (This is a future date)");
+        }
+      }
+    }
+    return Promise.resolve();
+  };
 
   const handleFormSubmit = () => {
+    setIsAfterSubmit(true);
     AddParticipantForm.validateFields()
       .then((values) => {
         onSave(values as AddParticipantValues);
@@ -66,65 +149,36 @@ const AddParticipantModal: React.FC<AddParticipantModalProps> = ({
           <Input />
         </Form.Item>
         <Form.Item
-          label="Date of birth"
-          extra="Example · 31/04/1970"
+          name="dateOfBirth"
+          initialValue={dateOfBirth}
+          label={
+            <div className="flex">
+              <div>Date of birth</div>
+              {age !== null && (
+                <div className="text-neutral-500">
+                  <span>
+                    <span className="mx-1">·</span>
+                    {age} year
+                  </span>
+                  <span>{age > 1 ? "s" : ""}</span>
+                  <span> old</span>
+                </div>
+              )}
+            </div>
+          }
           required={true}
+          rules={[{ validator: dateOfBirthValidator }]}
+          validateStatus="success"
+          extra="Example · 30/04/1970"
         >
-          <Space.Compact className="-space-x-px [&_.ant-form-item-label]:sr-only">
-            <Form.Item
-              name="dobDD"
-              label="Day"
-              rules={[
-                { required: true, message: "Please enter the day" },
-                {
-                  pattern: /^(0?[1-9]|[12][0-9]|3[01])$/,
-                  message: "Days · 1-31",
-                },
-              ]}
-              validateTrigger={false}
-              className="!mb-0 flex-1"
-            >
-              <Input inputMode="numeric" maxLength={2} placeholder="DD" />
-            </Form.Item>
-            <Form.Item
-              name="dobMM"
-              label="Month"
-              rules={[
-                { required: true, message: "Please enter the month" },
-                {
-                  pattern: /^(0?[1-9]|1[012])$/,
-                  message: "Months · 1-12",
-                },
-              ]}
-              validateTrigger={false}
-              className="!mb-0 flex-1"
-            >
-              <Input inputMode="numeric" maxLength={2} placeholder="MM" />
-            </Form.Item>
-            <Form.Item
-              name="dobYYYY"
-              label="Year"
-              rules={[
-                { required: true, message: "Please enter the year" },
-                {
-                  pattern: /^(19|20)\d{2}$/,
-                  message: "Years · 1900-2099",
-                },
-                {
-                  validator: (_, value) => {
-                    const currentYear = new Date().getFullYear();
-                    return value > currentYear
-                      ? Promise.reject("Year cannot be in the future")
-                      : Promise.resolve();
-                  },
-                },
-              ]}
-              validateTrigger={false}
-              className="!mb-0 flex-1"
-            >
-              <Input inputMode="numeric" maxLength={4} placeholder="YYYY" />
-            </Form.Item>
-          </Space.Compact>
+          <DateOfBirthInput
+            setAge={setAge}
+            dateOfBirth={dateOfBirth}
+            onChange={setDateOfBirth}
+            isDayInvalid={isDayInvalid}
+            isMonthInvalid={isMonthInvalid}
+            isYearInvalid={isYearInvalid}
+          />
         </Form.Item>
       </Form>
     </Modal>

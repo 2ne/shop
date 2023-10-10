@@ -195,6 +195,7 @@ interface BasketItem {
   image?: string;
   dates?: string;
   price?: string;
+  priceQuantity?: string;
   cost?: string;
   billing?: string;
   participants?: Participant[];
@@ -206,6 +207,9 @@ interface BasketItem {
   requiresApproval?: boolean;
   outOfStock?: boolean;
   link: string;
+  coach?: string;
+  coachDescription?: string;
+  coachImage?: string;
 }
 
 export type {

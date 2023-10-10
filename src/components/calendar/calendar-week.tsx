@@ -52,18 +52,18 @@ const CalendarWeek: React.FC = () => {
               placeholder="Class"
               onChange={handleChange}
               className="ant-select-token"
-              popupClassName="ant-select-calendar"
+              popupClassName="ant-select-mobile"
               options={[
+                { value: "smileytheturle", label: "Smiley the Turtle" },
                 { value: "bubbletheseahorse", label: "Bubble the Seahorse" },
-                { value: "cutietheclam", label: "Cutie the Clam" },
+                { value: "carltheclownfish", label: "Carl the Clownfish" },
                 {
                   value: "danyythedolphin",
                   label: "Danny the Dolphin (SEND)",
                 },
-                { value: "ollietheoctopus", label: "Ollie the Octopus" },
-                { value: "smileytheturle", label: "Smiley the Turtle" },
+                { value: "jellythejellyfish", label: "Jelly the Jellyfish" },
+
                 { value: "snappythecrab", label: "Snappy the Crab" },
-                { value: "swishytheseal", label: "Swishy the Seal" },
                 {
                   value: "twinklethestarfish",
                   label: "Twinkle The Starfish ",
@@ -76,7 +76,7 @@ const CalendarWeek: React.FC = () => {
               placeholder="Location"
               onChange={handleChange1}
               className="ant-select-token"
-              popupClassName="ant-select-calendar"
+              popupClassName="ant-select-mobile"
               options={[{ value: "littleThetford", label: "Little Thetford" }]}
             />
             {(selectedValue || selectedValue1) && (
@@ -159,6 +159,7 @@ const CalendarWeek: React.FC = () => {
               price: event.price,
               colour: event.colour,
             }}
+            singleProduct={false}
           />
         ))}
       </div>
@@ -186,6 +187,7 @@ const CalendarWeek: React.FC = () => {
                     price: event.price,
                     colour: event.colour,
                   }}
+                  singleProduct={false}
                 />
               ))}
             </div>

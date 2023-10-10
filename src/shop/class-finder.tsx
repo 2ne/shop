@@ -10,7 +10,7 @@ function ClassFinder(): ReactElement {
     <>
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <Main className="grid">
+      <Main className="grid lg:!py-10">
         <Finder />
       </Main>
       <Footer />

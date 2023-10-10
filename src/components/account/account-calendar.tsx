@@ -5,8 +5,7 @@ const events = [
     id: 1,
     date: "Tuesday at 10:00 - 11:00 on May 10th",
     name: "Bubble the Seahorse",
-    imageUrl:
-      "https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
+    imageUrl: "./src/assets/seahorse.jpg",
     location: "Quarterway House, Ely Rd, Little Thetford",
     status: "Paid",
     participant: "Jacob Toone",
@@ -15,8 +14,7 @@ const events = [
     id: 1,
     date: "Tuesday at 10:00 - 11:00 on May 17th",
     name: "Bubble the Seahorse",
-    imageUrl:
-      "https://images.unsplash.com/photo-1651614158095-b98b6c1da74b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
+    imageUrl: "./src/assets/seahorse.jpg",
     location: "Quarterway House, Ely Rd, Little Thetford",
 
     status: "Awaiting payment",
@@ -36,7 +34,7 @@ const AccountCalendar: React.FC = () => {
             <img
               src={event.imageUrl}
               alt=""
-              className="flex-none object-cover object-center rounded-md h-14 w-14"
+              className="flex-none object-contain object-center rounded-md h-14 w-14"
             />
             <div className="flex-auto -mt-1">
               <div className="font-medium">{event.name}</div>

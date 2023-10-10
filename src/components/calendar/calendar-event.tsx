@@ -175,7 +175,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
       >
         {!event.hideImage && singleProduct && (
           <img
-            className={`mt-0.5 max-lg:mb-0.5 aspect-[3/2] object-cover object-center mx-auto max-lg:col-span-1 max-lg:rounded-l-[calc(0.375rem-0.125rem)] lg:rounded-t-[calc(0.375rem-0.125rem)] ${
+            className={`mt-0.5 max-lg:mb-0.5 aspect-[3/2] object-contain object-center mx-auto max-lg:col-span-1 max-lg:rounded-l-[calc(0.375rem-0.125rem)] lg:rounded-t-[calc(0.375rem-0.125rem)] ${
               event.colour ? " mix-blend-multiply " : " "
             }`}
             src={event.img}

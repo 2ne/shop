@@ -5,6 +5,7 @@ module.exports = {
     letterSpacing: {
       tight: "-0.011em",
       normal: "0",
+      wide: "0.011em",
     },
     container: {
       center: true,
@@ -15,12 +16,12 @@ module.exports = {
         lg: "1024px",
         xl: "1280px",
       },
-      transitionDuration: {
-        DEFAULT: "200ms", // to match ant design defaults
-      },
-      transitionTimingFunction: {
-        DEFAULT: "cubic-bezier(0.645, 0.045, 0.355, 1)", // to match ant design defaults
-      },
+    },
+    transitionDuration: {
+      DEFAULT: "200ms", // to match ant design defaults
+    },
+    transitionTimingFunction: {
+      DEFAULT: "cubic-bezier(0.645, 0.045, 0.355, 1)", // to match ant design defaults
     },
     extend: {
       colors: {

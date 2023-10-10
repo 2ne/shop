@@ -1,167 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Checkbox,
-  Collapse,
-  DatePicker,
-  Select,
-  Tree,
-  TreeSelect,
-} from "antd";
+import { Button, DatePicker, message } from "antd";
 import { orgEvents, orgClassEvents, Event } from "../../org";
 import CalendarEvent from "./calendar-event";
 import {
   CalendarOutlined,
-  DownOutlined,
   LeftOutlined,
   RightOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
-const { Panel } = Collapse;
-
-function useViewportHeightPercentage(percentage: number) {
-  const [height, setHeight] = useState(window.innerHeight * (percentage / 100));
-
-  useEffect(() => {
-    const handleResize = () => {
-      setHeight(window.innerHeight * (percentage / 100));
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Clean up event listener on component unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, [percentage]);
-
-  return height;
-}
-
-const adultAndChildLessons = [
-  "Bubble the Seahorse",
-  "Cutie the Clam",
-  "Danny the Dolphin",
-  "Ollie the Octopus",
-  "Smiley the Turtle",
-  "Snappy the Crab",
-  "Swishy the Seal",
-  "Twinkle the Starfish",
-];
-
-const independentChildrensLessons = [
-  "Stage 1",
-  "Stage 2",
-  "Stage 3",
-  "Stage 4",
-  "Stage 5",
-];
-
-const adultLessons = ["Beginner", "Intermediate", "Advanced"];
-
-const privateLessons = ["Children's Class", "Adult's Class"];
-
-const treeData = [
-  {
-    title: (
-      <div className="bg-emerald-50 text-emerald-800 px-2 rounded -ml-1 line-clamp-2 leading-[1.275] py-1">
-        Adult and Child Lessons
-      </div>
-    ),
-    key: "adultChild",
-    children: adultAndChildLessons.map((product, index) => ({
-      title: product,
-      key: `adultChild-${index}`,
-    })),
-  },
-  {
-    title: (
-      <div className="bg-blue-50 text-blue-800 px-2 rounded -ml-1 line-clamp-2 leading-[1.275] py-1">
-        Independent Children's Lessons
-      </div>
-    ),
-    key: "independantChild",
-    children: independentChildrensLessons.map((product, index) => ({
-      title: product,
-      key: `independantChild-${index}`,
-    })),
-  },
-  {
-    title: (
-      <div className="bg-amber-50 text-amber-800 px-1.5 rounded -ml-1 truncate">
-        Adult Lessons
-      </div>
-    ),
-    key: "adult",
-    children: adultLessons.map((product, index) => ({
-      title: product,
-      key: `adult-${index}`,
-    })),
-  },
-  {
-    title: (
-      <div className="bg-rose-50 text-rose-800 px-1.5 rounded -ml-1 truncate">
-        Private Lessons
-      </div>
-    ),
-    key: "private",
-    children: privateLessons.map((product, index) => ({
-      title: product,
-      key: `private-${index}`,
-    })),
-  },
-];
-
-const treeSelectData = [
-  {
-    value: "Adult and Child Lessons",
-    title: (
-      <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded -ml-1 truncate">
-        Adult and Child Lessons
-      </div>
-    ),
-    children: adultAndChildLessons.map((product, index) => ({
-      value: `adultChild-${index}`,
-      title: product,
-    })),
-  },
-  {
-    value: "Independent Children's Lessons",
-    title: (
-      <div className="bg-blue-50 text-blue-800 px-1.5 rounded -ml-1 truncate">
-        Independent Children's Lessons
-      </div>
-    ),
-    children: independentChildrensLessons.map((product, index) => ({
-      value: `independantChild-${index}`,
-      title: product,
-    })),
-  },
-  {
-    value: "Adult Lessons",
-    title: (
-      <div className="bg-amber-50 text-amber-800 px-1.5 rounded -ml-1 truncate">
-        Adult Lessons
-      </div>
-    ),
-    children: adultLessons.map((product, index) => ({
-      value: `adult-${index}`,
-      title: product,
-    })),
-  },
-  {
-    value: "Private Lessons",
-    title: (
-      <div className="bg-rose-50 text-rose-800 px-1.5 rounded -ml-1 truncate">
-        Private Lessons
-      </div>
-    ),
-    children: privateLessons.map((product, index) => ({
-      value: `private-${index}`,
-      title: product,
-    })),
-  },
-];
-
-type SelectedValue = string | undefined;
+import CalendarFilters from "./calendar-filters";
 
 export interface CalendarProps {
   singleProduct: boolean;
@@ -170,16 +17,6 @@ export interface CalendarProps {
 const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
   const [date, setDate] = useState(dayjs());
   const [open, setOpen] = useState(false);
-  const safeHeight = useViewportHeightPercentage(75);
-
-  const handleOpenChange = (open: boolean) => {
-    setOpen(open);
-  };
-
-  const handleDateChange = (value: any) => {
-    setDate(value);
-    setOpen(false);
-  };
 
   useEffect(() => {
     document.documentElement.classList.add("container-lg");
@@ -189,44 +26,9 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
     };
   }, []);
 
-  const addClassToHTML = () => {
-    document.documentElement.classList.add("max-lg:overflow-hidden");
-  };
-
-  const removeClassFromHTML = () => {
-    document.documentElement.classList.remove("max-lg:overflow-hidden");
-  };
-
-  const [selectedClassValue, setSelectedClassValue] =
-    useState<SelectedValue>(undefined);
-  const [selectedTimeOfDayValue, setSelectedTimeOfDayValue] =
-    useState<SelectedValue>(undefined);
-  const [selectedLocationValue, setSelectedLocationValue] =
-    useState<SelectedValue>(undefined);
-  const [selectedAgeValue, setSelectedAgeValue] =
-    useState<SelectedValue>(undefined);
-
-  const handleReset = () => {
-    setSelectedClassValue(undefined);
-    setSelectedTimeOfDayValue(undefined);
-    setSelectedLocationValue(undefined);
-    setSelectedAgeValue(undefined);
-  };
-
-  const handleClassChange = (value: string) => {
-    setSelectedClassValue(value);
-  };
-
-  const handleTimeOfDayChange = (value: string) => {
-    setSelectedTimeOfDayValue(value);
-  };
-
-  const handleLocationChange = (value: string) => {
-    setSelectedLocationValue(value);
-  };
-
-  const handleAgeChange = (value: string) => {
-    setSelectedAgeValue(value);
+  const handleDateChange = (value: any) => {
+    setDate(value);
+    setOpen(false);
   };
 
   const [activeDay, setActiveDay] = useState<string>(
@@ -242,6 +44,10 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
     "Saturday",
     "Sunday",
   ];
+
+  const handleOpenChange = (open: boolean) => {
+    setOpen(open);
+  };
 
   const previousDay = () => {
     const index = daysOfWeek.indexOf(activeDay);
@@ -291,13 +97,15 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
   return (
     <>
       <div className="mb-0.5 lg:-mt-3 lg:py-3 lg:mb-6 lg:flex lg:items-end lg:border-b lg:border-neutral-200 lg:sticky lg:top-0 lg:z-20 lg:bg-white/95 ring-2 ring-white/95">
+        {/* shared title */}
         <div className="flex-grow w-full">
           <h2 className="heading-lg">
             {singleProduct
               ? "Adult and Child Lessons"
-              : "Little Telford Calendar"}
+              : "Little Telford Timetable"}
           </h2>
         </div>
+        {/* desktop datepicker */}
         <div className="relative hidden h-8 mx-auto lg:block">
           <DatePicker
             value={date}
@@ -318,6 +126,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
             {date.format(monthYearFormat)}
           </Button>
         </div>
+        {/* desktop date navigation */}
         <div className="items-center justify-end flex-grow hidden w-full gap-2 lg:flex">
           <Button
             className="justify-center"
@@ -328,287 +137,63 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
             icon={<RightOutlined className="w-3 h-3 text-neutral-600" />}
           ></Button>
         </div>
-        <div className="max-lg:overflow-x-auto lg:hidden max-lg:z-30 max-lg:bg-white/95 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:ml-auto max-lg:py-2.5 max-lg:border-t max-lg:border-black/10">
-          <div className="container flex lg:flex-wrap items-center gap-2 lg:gap-2.5 lg:p-0">
-            {singleProduct ? (
-              <Select
-                listHeight={safeHeight}
-                value={selectedClassValue}
-                allowClear={true}
-                placeholder="Class"
-                onDropdownVisibleChange={(open) => {
-                  if (open) {
-                    addClassToHTML();
-                  } else {
-                    removeClassFromHTML();
-                  }
-                }}
-                onChange={handleClassChange}
-                className="ant-select-token"
-                popupClassName="ant-select-calendar"
-                options={[
-                  { value: "bubbletheseahorse", label: "Bubble the Seahorse" },
-                  { value: "cutietheclam", label: "Cutie the Clam" },
-                  {
-                    value: "danyythedolphin",
-                    label: "Danny the Dolphin (SEND)",
-                  },
-                  { value: "ollietheoctopus", label: "Ollie the Octopus" },
-                  { value: "smileytheturle", label: "Smiley the Turtle" },
-                  { value: "snappythecrab", label: "Snappy the Crab" },
-                  { value: "swishytheseal", label: "Swishy the Seal" },
-                  {
-                    value: "twinklethestarfish",
-                    label: "Twinkle The Starfish ",
-                  },
-                ]}
-              />
-            ) : (
-              <TreeSelect
-                allowClear
-                placeholder="Products"
-                treeData={treeSelectData}
-                className="ant-select-token"
-                popupClassName="ant-select-calendar"
-                listHeight={safeHeight}
-                value={selectedClassValue}
-                onChange={handleClassChange}
-                onDropdownVisibleChange={(open) => {
-                  if (open) {
-                    addClassToHTML();
-                  } else {
-                    removeClassFromHTML();
-                  }
-                }}
-              />
-            )}
-            <Select
-              listHeight={safeHeight}
-              value={selectedTimeOfDayValue}
-              allowClear={true}
-              placeholder="Time of day"
-              onDropdownVisibleChange={(open) => {
-                if (open) {
-                  addClassToHTML();
-                } else {
-                  removeClassFromHTML();
-                }
-              }}
-              onChange={handleTimeOfDayChange}
-              className="ant-select-token"
-              popupClassName="ant-select-calendar"
-              options={[
-                { value: "morning", label: "Morning" },
-                { value: "afternoon", label: "Afternoon" },
-                { value: "evening", label: "Evening" },
-              ]}
-            />
-            <Select
-              listHeight={safeHeight}
-              value={selectedAgeValue}
-              allowClear={true}
-              placeholder="Age"
-              onDropdownVisibleChange={(open) => {
-                if (open) {
-                  addClassToHTML();
-                } else {
-                  removeClassFromHTML();
-                }
-              }}
-              onChange={handleAgeChange}
-              className="ant-select-token"
-              popupClassName="ant-select-calendar"
-              options={[
-                { value: "<1", label: "<1" },
-                ...Array.from({ length: 18 }, (_, i) => ({
-                  value: `${i + 1}`,
-                  label: `${i + 1}`,
-                })),
-                { value: ">18", label: ">18" },
-              ]}
-            />
-            {(selectedClassValue ||
-              selectedLocationValue ||
-              selectedTimeOfDayValue ||
-              selectedAgeValue) && (
-              <Button
-                type="link"
-                onClick={handleReset}
-                className="!bg-white !-ml-2 lg:hidden"
-                title="Clear filters"
-              >
-                Clear
-              </Button>
-            )}
+      </div>
+      <div className="contents lg:gap-6 lg:grid lg:grid-cols-5 xl:grid-cols-6">
+        <CalendarFilters singleProduct={singleProduct} />
+        {/* mobile date navigation */}
+        <div className="sticky top-0 z-20 flex items-center gap-2 py-3.5 mb-2 bg-gradient-to-b from-white/95 lg:hidden">
+          <Button
+            onClick={previousDay}
+            className="justify-center !bg-white"
+            icon={<LeftOutlined className="w-3 h-3 text-neutral-600" />}
+          ></Button>
+          <div className="flex-grow text-center">
+            <Button className="!bg-white" block icon={<CalendarOutlined />}>
+              {activeDay} {fakeDateNumberCounter} July
+            </Button>
           </div>
+          <Button
+            onClick={nextDay}
+            className="justify-center !bg-white"
+            icon={<RightOutlined className="w-3 h-3 text-neutral-600" />}
+          ></Button>
         </div>
-      </div>
-      <div className="sticky top-0 z-20 flex items-center gap-2 py-3.5 mb-2 bg-gradient-to-b from-white/95 lg:hidden">
-        <Button
-          onClick={previousDay}
-          className="justify-center !bg-white"
-          icon={<LeftOutlined className="w-3 h-3 text-neutral-600" />}
-        ></Button>
-        <div className="flex-grow text-center">
-          <Button className="!bg-white" block icon={<CalendarOutlined />}>
-            {activeDay} {fakeDateNumberCounter} July
-          </Button>
-        </div>
-        <Button
-          onClick={nextDay}
-          className="justify-center !bg-white"
-          icon={<RightOutlined className="w-3 h-3 text-neutral-600" />}
-        ></Button>
-      </div>
-      <div className="grid grid-cols-1 gap-2.5 p-px lg:hidden">
-        {(singleProduct
-          ? orgClassEvents[activeDay]
-          : orgEvents[activeDay] || []
-        ).length > 0 ? (
-          (singleProduct
+        {/* mobile events */}
+        <div className="grid grid-cols-1 gap-2.5 p-px lg:hidden">
+          {(singleProduct
             ? orgClassEvents[activeDay]
-            : orgEvents[activeDay]
-          ).map((event: Event, index: number) => (
-            <CalendarEvent
-              singleProduct={singleProduct}
-              key={`${index}`}
-              activeDay={activeDay}
-              index={index}
-              event={{
-                img: event.img,
-                hideImage: event.hideImage,
-                title: event.title,
-                description: event.description,
-                link: event.link,
-                address: event.address,
-                startTime: event.startTime,
-                endTime: event.endTime,
-                price: event.price,
-                colour: event.colour,
-                productColour: event.productColour,
-                productGroup: event.productGroup,
-              }}
-            />
-          ))
-        ) : (
-          <NoEventsToday />
-        )}
-      </div>
-
-      <div className="hidden lg:gap-6 lg:grid lg:grid-cols-5 xl:grid-cols-6">
-        <div className="-mt-1.5">
-          <div className="sticky z-10 top-16">
-            <Collapse
-              defaultActiveKey={["1", "2"]}
-              ghost
-              bordered={false}
-              className="select-none ant-collapse-calendar"
-              expandIconPosition="end"
-              expandIcon={({ isActive }) => (
-                <DownOutlined
-                  className="!text-neutral-500"
-                  rotate={isActive ? 180 : 0}
-                />
-              )}
-            >
-              {singleProduct ? (
-                <Panel header="Class" key="1">
-                  <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
-                    <Checkbox value="Bubble the Seahorse">
-                      <div className="bg-yellow-50 text-yellow-800 px-1.5 rounded truncate">
-                        Bubble the Seahorse
-                      </div>
-                    </Checkbox>
-                    <Checkbox value="Cutie the Clam">
-                      <div className="bg-lime-50 text-lime-800 px-1.5 rounded truncate">
-                        Cutie the Clam
-                      </div>
-                    </Checkbox>
-                    <Checkbox value="Danny the Dolphin">
-                      <div className="bg-sky-50 text-sky-800 px-1.5 rounded truncate">
-                        Danny the Dolphin
-                      </div>
-                    </Checkbox>
-                    <Checkbox value="Ollie the Octopus">
-                      <div className="bg-pink-50 text-pink-800 px-1.5 rounded truncate">
-                        Ollie the Octopus
-                      </div>
-                    </Checkbox>
-                    <Checkbox value="Smiley the Turtle">
-                      <div className="bg-emerald-50 text-emerald-800 px-1.5 rounded truncate">
-                        Smiley the Turtle
-                      </div>
-                    </Checkbox>
-                    <Checkbox value="Snappy the Crab">
-                      <div className="bg-red-50 text-red-800 px-1.5 rounded truncate">
-                        Snappy the Crab
-                      </div>
-                    </Checkbox>
-                    <Checkbox value="Swishy the Seal">
-                      <div className="bg-stone-50 text-stone-800 px-1.5 rounded truncate">
-                        Swishy the Seal
-                      </div>
-                    </Checkbox>
-                    <Checkbox value="Twinkle the Starfish">
-                      <div className="bg-blue-50 text-blue-800 px-1.5 rounded truncate">
-                        Twinkle the Starfish
-                      </div>
-                    </Checkbox>
-                  </Checkbox.Group>
-                </Panel>
-              ) : (
-                <Panel header="Classes" key="1">
-                  <Tree
-                    checkable={true}
-                    selectable={false}
-                    treeData={treeData}
-                    className="ant-tree-shop"
-                  />
-                </Panel>
-              )}
-              <Panel header="Time of day" key="2">
-                <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
-                  <Checkbox value="Morning">
-                    <div className="truncate">
-                      <span>Morning</span>
-                      <span className="text-neutral-500"> · 00:00 - 12:00</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Afternoon">
-                    <div className="truncate">
-                      <span>Afternoon</span>
-                      <span className="text-neutral-500"> · 12:00 - 18:00</span>
-                    </div>
-                  </Checkbox>
-                  <Checkbox value="Evening">
-                    <div className="truncate">
-                      <span>Evening</span>
-                      <span className="text-neutral-500"> · 18:00 - 00:00</span>
-                    </div>
-                  </Checkbox>
-                </Checkbox.Group>
-              </Panel>
-              <Panel header="Age" key="4">
-                <Checkbox.Group className="grid items-center grid-cols-4 gap-y-2.5">
-                  {[
-                    { value: "<1", label: "<1" },
-                    ...Array.from({ length: 18 }, (_, i) => ({
-                      value: `${i + 1}`,
-                      label: `${i + 1}`,
-                    })),
-                    { value: ">18", label: ">18" },
-                  ].map(({ value, label }) => (
-                    <Checkbox key={value} value={value}>
-                      <div className="relative -ml-px text-xs -top-px">
-                        <span>{label}</span>
-                      </div>
-                    </Checkbox>
-                  ))}
-                </Checkbox.Group>
-              </Panel>
-            </Collapse>
-          </div>
+            : orgEvents[activeDay] || []
+          ).length > 0 ? (
+            (singleProduct
+              ? orgClassEvents[activeDay]
+              : orgEvents[activeDay]
+            ).map((event: Event, index: number) => (
+              <CalendarEvent
+                singleProduct={singleProduct}
+                key={`${index}`}
+                activeDay={activeDay}
+                index={index}
+                event={{
+                  img: event.img,
+                  hideImage: event.hideImage,
+                  title: event.title,
+                  description: event.description,
+                  link: event.link,
+                  address: event.address,
+                  startTime: event.startTime,
+                  endTime: event.endTime,
+                  price: event.price,
+                  colour: event.colour,
+                  productColour: event.productColour,
+                  productGroup: event.productGroup,
+                }}
+              />
+            ))
+          ) : (
+            <NoEventsToday />
+          )}
         </div>
+        {/* desktop events */}
         <div className="hidden w-full gap-2 -mt-3 lg:col-span-4 xl:col-span-5 lg:flex">
           {daysOfWeek.map((day) => (
             <div key={day} className="max-w-[25%] w-full min-w-0">

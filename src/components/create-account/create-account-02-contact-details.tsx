@@ -1,8 +1,13 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { Button, Form, Input, Modal, Space } from "antd";
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
+import { AutoComplete, Form, Input } from "antd";
 import FormHeader from "../form-header";
-import AddressModal, { AddressValues } from "../address-modal";
-import classNames from "classnames";
+import { countries, Country } from "../countries";
+import { SearchOutlined } from "@ant-design/icons";
 
 export interface CreateAccountContactDetailsFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -27,39 +32,39 @@ const CreateAccountContactDetailsForms = forwardRef<
     ref: React.Ref<CreateAccountContactDetailsFormsHandles>
   ) => {
     const [contactDetailsForm] = Form.useForm();
-    const [formModal, setFormModal] = useState(false);
+    const [displayCountry, setDisplayCountry] = useState("United Kingdom");
 
-    const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
-    const [modalAddressValues, setModalAddressValues] =
-      useState<AddressValues>();
-    const [isValidAddress, setIsValidAddress] = useState(true);
-
-    const showFormModal = () => {
-      setFormModal(true);
-    };
-
-    const formModalCancel = () => {
-      setFormModal(false);
+    useEffect(() => {
+      contactDetailsForm.setFieldsValue({
+        countryName: "United Kingdom",
+      });
+    }, []);
+    const checkCountry = () => {
+      const validCountry = countries.some(
+        (country: Country) => country.label === displayCountry
+      );
+      return validCountry;
     };
 
     useImperativeHandle(ref, () => ({
-      // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
       submitForm: async () => {
         try {
-          // Validate all form fields
+          if (!checkCountry()) {
+            contactDetailsForm.setFields([
+              {
+                name: "countryName",
+                errors: ["Please select a valid country"],
+              },
+            ]);
+            return false;
+          }
           await contactDetailsForm.validateFields();
-          // If validation is successful, submit the form
           contactDetailsForm.submit();
-          // Notify the parent component that the form is valid
           onFormValidation(true);
-          // Return true to indicate that the form submission was successful
           return true;
         } catch (error) {
-          // Log the validation error
           console.log("Validation failed:", error);
-          // Notify the parent component that the form is not valid
           onFormValidation(false);
-          // Return false to indicate that the form submission failed
           return false;
         }
       },
@@ -72,12 +77,6 @@ const CreateAccountContactDetailsForms = forwardRef<
 
     const onDetailsFinishFailed = (errorInfo: any) => {
       console.log(errorInfo);
-    };
-
-    const onSave = (values: any) => {
-      contactDetailsForm.setFieldsValue({ ...values });
-      setModalAddressValues(values);
-      setIsAddressModalOpen(false);
     };
 
     return (
@@ -112,12 +111,12 @@ const CreateAccountContactDetailsForms = forwardRef<
           name="contactDetailsForm"
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
-          className="text-left hide-validation-asterix"
+          className="relative p-4 pb-5 text-sm text-left bg-white rounded-md shadow hide-validation-asterix ring-1 ring-black ring-opacity-5"
           requiredMark="optional"
         >
           <Form.Item
             label="Mobile number"
-            name="tel"
+            name="phone"
             rules={[
               {
                 required: true,
@@ -125,87 +124,106 @@ const CreateAccountContactDetailsForms = forwardRef<
               },
             ]}
           >
-            <Input type="tel" />
+            <Input type="tel" name="phone" />
           </Form.Item>
-          <Form.Item label="Address">
-            <Form.Item
-              name="addressLineOne"
-              rules={[{ required: true, message: "" }]}
-              hidden
-            >
-              <Input readOnly />
-            </Form.Item>
-            <Form.Item
-              name="addressLineTwo"
-              rules={[{ required: false }]}
-              hidden
-            >
-              <Input readOnly />
-            </Form.Item>
-            <Form.Item
-              name="townCity"
-              rules={[{ required: true, message: "" }]}
-              hidden
-            >
-              <Input readOnly />
-            </Form.Item>
-            <Form.Item
-              name="postcode"
-              rules={[{ required: true, message: "" }]}
-              hidden
-            >
-              <Input readOnly />
-            </Form.Item>
-            <Button
-              block={true}
-              onClick={() => {
-                setIsAddressModalOpen(true);
-              }}
-              className={classNames({
-                "border border-solid": true,
-                "border-primary-500 text-primary-600 hover:text-primary-500 hover:underline":
-                  !modalAddressValues && isValidAddress,
-                "border-danger-500 text-danger-500 hover:text-danger-400 hover:underline":
-                  !modalAddressValues && !isValidAddress,
-                "border-neutral-300 justify-start hover:bg-white hover:border-primary-500":
-                  modalAddressValues && isValidAddress,
-              })}
-            >
-              {!modalAddressValues ? (
-                "Add address"
-              ) : (
-                <div className="-ml-1 truncate">
-                  <span>{modalAddressValues.addressLineOne}, </span>
-                  {modalAddressValues.addressLineTwo && (
-                    <span>{modalAddressValues.addressLineTwo}, </span>
-                  )}
-                  <span>{modalAddressValues.townCity}, </span>
-                  <span>{modalAddressValues.postcode}</span>
-                </div>
-              )}
-            </Button>
-            {!modalAddressValues && !isValidAddress && (
-              <div className="ant-form-item-explain-error">
-                Please add an address
-              </div>
-            )}
-            <AddressModal
-              openModal={isAddressModalOpen}
-              onModalSave={onSave}
-              onModalCancel={() => {
-                setIsAddressModalOpen(false);
+          <Form.Item
+            className="max-lg:mt-6 [&_.ant-select-selector]:!p-0 [&_.ant-select-selection-search]:!inset-0 [&_input]:!px-[11px] [&_input]:!rounded-[5px] [&_.ant-select-selection-placeholder]:!px-[11px]"
+            label="Country"
+            name="countryName"
+            rules={[{ required: true, message: "Please select a country" }]}
+          >
+            <AutoComplete
+              placement="bottomLeft"
+              autoComplete="new-password"
+              value={displayCountry}
+              showSearch
+              placeholder="Search for country..."
+              suffixIcon={<SearchOutlined />}
+              allowClear={true}
+              options={countries.map((country: Country) => ({
+                value: country.label,
+                label: (
+                  <div className="flex items-center gap-2.5 truncate">
+                    <div>{country.map}</div>
+                    <div>{country.label}</div>
+                  </div>
+                ),
+              }))}
+              filterOption={(inputValue, option) =>
+                option?.value
+                  .toLowerCase()
+                  .includes(inputValue.toLowerCase()) || false
+              }
+              onSelect={(value, option) => {
+                if (option) {
+                  setDisplayCountry(option.value as string);
+                  contactDetailsForm.setFieldsValue({
+                    countryName: option.value,
+                  });
+                }
               }}
             />
           </Form.Item>
+          <Form.Item
+            label="Address line 1"
+            name="addressLineOne"
+            rules={[{ required: true, message: "Please enter address line 1" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Address line 2" name="addressLineTwo">
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Town or city"
+            name="town"
+            rules={[{ required: true, message: "Please enter a town or city" }]}
+          >
+            <Input />
+          </Form.Item>
+          <div className="grid-cols-2 gap-5 sm:grid">
+            <Form.Item
+              className="lg:!mb-0"
+              label="County"
+              name="county"
+              rules={[{ required: true, message: "Please enter a county" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              className="!mb-0"
+              label="Postcode"
+              name="postcode"
+              rules={[{ required: true, message: "Please enter postcode" }]}
+            >
+              <Input />
+            </Form.Item>
+          </div>
+          {/* Used when the address is in the AddressModal <Button
+            block={true}
+            className={classNames({
+              "border border-solid": true,
+              "border-primary-500 text-primary-600 hover:text-primary-500 hover:underline":
+                !contactDetailsForm && isValidAddress,
+              "!border-rose-500 !text-rose-500 hover:!text-rose-600 hover:underline":
+                !contactDetailsForm && !isValidAddress,
+              "border-neutral-300 justify-start hover:bg-white hover:border-primary-500":
+                contactDetailsForm && isValidAddress,
+            })}
+          >
+            {!contactDetailsForm ? (
+              "Add address"
+            ) : (
+              <div className="-ml-1 truncate">
+                <span>{contactDetailsForm.addressLineOne}, </span>
+                {contactDetailsForm.town && (
+                  <span>{contactDetailsForm.county}, </span>
+                )}
+                <span>{contactDetailsForm.postcode}</span>
+              </div>
+            )}
+          </Button> */}
         </Form>
-        <Modal
-          title="Terms and Conditions"
-          open={formModal}
-          onCancel={formModalCancel}
-          footer={null}
-        >
-          SHOW FORM HERE
-        </Modal>
       </>
     );
   }

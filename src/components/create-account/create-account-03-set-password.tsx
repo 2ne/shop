@@ -1,7 +1,8 @@
-import React, { forwardRef, useImperativeHandle } from "react";
-import { Form, Input } from "antd";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
+import { Checkbox, Form, Input } from "antd";
 import FormHeader from "../form-header";
 import { Link } from "react-router-dom";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 export interface CreateAccountPasswordFormsHandles {
   submitForm: () => Promise<boolean>;
@@ -22,6 +23,16 @@ const CreateAccountPasswordForms = forwardRef<
     ref: React.Ref<CreateAccountPasswordFormsHandles>
   ) => {
     const [setPasswordForm] = Form.useForm();
+    const [acceptTermsConditions, setAcceptTermsConditions] = useState(false);
+    const [acceptMarketing, setAcceptMarketing] = useState(false);
+
+    const handleTermsChange = (e: CheckboxChangeEvent) => {
+      setAcceptTermsConditions(e.target.checked);
+    };
+
+    const handleMarketingChange = (e: CheckboxChangeEvent) => {
+      setAcceptMarketing(e.target.checked);
+    };
 
     useImperativeHandle(ref, () => ({
       // The 'submitForm' function is exposed to the parent component (checkout) via the ref so it can be called externally to trigger form validation and submission
@@ -78,22 +89,57 @@ const CreateAccountPasswordForms = forwardRef<
           name="setPasswordForm"
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
-          className="text-left hide-validation-asterix"
+          className="relative p-4 text-sm text-left bg-white rounded-md shadow hide-validation-asterix ring-1 ring-black ring-opacity-5"
           requiredMark="optional"
         >
           <Form.Item
+            className="!mb-2"
             label="Set password"
-            name="setPassword"
+            name="new-password"
             rules={[{ required: true, message: "Please enter a password" }]}
           >
-            <Input.Password />
+            <Input.Password name="new-password" autoComplete="new-password" />
           </Form.Item>
-          <div className="sub-heading-sm">
-            By clicking Create account you confirm that you agree to our{" "}
-            <Link to="#" className="link">
-              Terms & Conditions.
-            </Link>
-          </div>
+          <Form.Item
+            name="acceptTermsConditions"
+            valuePropName="checked"
+            className="!mb-0"
+            rules={[
+              {
+                required: true,
+                validator: async (_, value) => {
+                  if (!value) {
+                    return Promise.reject(
+                      new Error("Please accept terms to create an account")
+                    );
+                  }
+                  return Promise.resolve();
+                },
+              },
+            ]}
+          >
+            <Checkbox
+              onChange={handleTermsChange}
+              checked={acceptTermsConditions}
+            >
+              I agree with the{" "}
+              <Link to="https://ant.design" target="_blank" className="link">
+                Terms & Conditions
+              </Link>
+            </Checkbox>
+          </Form.Item>
+          <Form.Item
+            className="!mb-0"
+            name="acceptMarketing"
+            valuePropName="checked"
+          >
+            <Checkbox
+              onChange={handleMarketingChange}
+              checked={acceptMarketing}
+            >
+              Receive updates from JoinIn
+            </Checkbox>
+          </Form.Item>
         </Form>
       </>
     );

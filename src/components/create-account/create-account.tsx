@@ -17,6 +17,7 @@ import Header from "../header";
 import Main from "../main";
 import Steps from "../steps";
 import Wrapper from "../wrapper";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const CreateAccountForm: React.FC = () => {
   const accountOwnerRef = useRef<CreateAccountOwnerFormsHandles>(null);
@@ -52,24 +53,42 @@ export const CreateAccountForm: React.FC = () => {
       subtitle: "Secure your account and protect your personal information.",
       buttonType: "createAccount",
     },
+    {
+      Component: EmailVerificationForms,
+      ref: emailVerificationRef,
+      title: "Email verification",
+      subtitle:
+        "Account created succesfully. Please check your email. We sent a verification link to jtoone@loveadmin.com",
+      buttonType: "verifyAccount",
+    },
   ];
 
-  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2]); // Define which steps are required (stepData[index])
+  const [activeSteps, setActiveSteps] = useState<number[]>([0, 1, 2]);
+  const [visibleSteps, setVisibleSteps] = useState<number[]>([0, 1, 2]);
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
+  const [hideSteps, setHideSteps] = useState(false);
 
   const renderStepComponent = (stepIndex: number) => {
     const { Component, ref, title, subtitle } = stepsData[stepIndex];
     return (
-      <Component
-        key={stepIndex}
-        ref={ref}
-        title={title}
-        subtitle={subtitle}
-        onFormValidation={(isValid: boolean) =>
-          updateValidationStatus(stepIndex, isValid)
-        }
-      />
+      <>
+        <Component
+          key={stepIndex}
+          ref={ref}
+          title={title}
+          subtitle={subtitle}
+          onFormValidation={(isValid: boolean) =>
+            updateValidationStatus(stepIndex, isValid)
+          }
+        />
+        <div className="pt-2 mt-4 max-lg:hidden lg:mt-6">
+          <FormButton
+            onClick={submitCurrentForm}
+            buttonType={stepsData[currentStep].buttonType as FormButtonType}
+          />
+        </div>
+      </>
     );
   };
 
@@ -136,19 +155,31 @@ export const CreateAccountForm: React.FC = () => {
   };
 
   const handleNext = () => {
-    if (currentStep < activeSteps.length - 1) {
+    if (currentStep < visibleSteps.length) {
       setCurrentStep(currentStep + 1);
-      scrollToTop;
+      scrollToTop();
+      if (currentStep === 2) {
+        setActiveSteps([3]); // Set only the 4th step as active
+        setVisibleSteps([3]); // Show only the 4th step
+        setCurrentStep(0); // Reset the current step to match the index in the new activeSteps array
+        setHideSteps(true);
+      }
     }
   };
 
   const totalSteps = stepsData.length;
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, translateY: -20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{
+        duration: 0.5,
+      }}
+    >
       <Header />
       <Breadcrumb items={breadcrumbItems} />
-      <Main className="pb-24 lg:divide-x lg:grid lg:grid-cols-6 xl:grid-cols-7 xl:pb-12">
+      <Main className="grid pb-24 lg:divide-x lg:grid-cols-6 xl:grid-cols-7 xl:pb-12">
         <aside className="lg:pr-5 max-lg:hidden md:col-span-2 lg:col-span-2">
           <div className="lg:sticky lg:top-4">
             <div className="flex items-center justify-between -mt-1.5 lg:hidden h-6 mb-2">
@@ -180,7 +211,7 @@ export const CreateAccountForm: React.FC = () => {
                 <span className="text-neutral-500">
                   <span className="mx-1.5">·</span>
                   <span>
-                    Step {currentStep + 1} of {totalSteps}
+                    Step {currentStep + 1} of {visibleSteps.length}
                   </span>
                 </span>
               </div>
@@ -189,34 +220,36 @@ export const CreateAccountForm: React.FC = () => {
                 payments while experiencing our swift checkout and paperless
                 solution.
               </div>
+
               <Steps
                 currentStep={currentStep}
                 furthestStep={furthestStep}
                 steps={stepsData.map((step) => ({ title: step.title }))}
                 handleStepClick={handleStepClick}
+                visibleSteps={visibleSteps}
               />
             </div>
           </div>
         </aside>
         <section className="lg:px-5 lg:col-span-4 xl:col-span-5 lg:text-center">
           <div className="lg:max-w-[22rem] lg:m-auto">
-            {activeSteps.map((stepIndex, index) => (
-              <div
-                key={index}
-                className={
-                  currentStep === index ? "space-y-4 lg:space-y-6" : "hidden"
-                }
-              >
-                {/* hiding inactive components but rendering them to preserve state during inital dev JT */}
-                {renderStepComponent(stepIndex)}
-              </div>
-            ))}
-            <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
-              <FormButton
-                onClick={submitCurrentForm}
-                buttonType={stepsData[currentStep].buttonType as FormButtonType}
-              />
-            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              {activeSteps.map(
+                (stepIndex, index) =>
+                  currentStep === index && (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, translateY: 20 }}
+                      animate={{ opacity: 1, translateY: 0 }}
+                      exit={{ opacity: 0, translateY: -20 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-4 lg:space-y-6"
+                    >
+                      {renderStepComponent(stepIndex)}
+                    </motion.div>
+                  )
+              )}
+            </AnimatePresence>
           </div>
         </section>
       </Main>
@@ -228,7 +261,7 @@ export const CreateAccountForm: React.FC = () => {
           />
         </Wrapper>
       </footer>
-    </>
+    </motion.div>
   );
 };
 

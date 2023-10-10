@@ -17,88 +17,74 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
   const products: BasketItem[] = [
     {
       id: Math.random().toString(36).substring(2, 15),
-      title: "Basic Tee",
-      link: "/Tshirt",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      title: "PROGEAR® Swim Goggles",
+      link: "/Goggles",
+      image: "./src/assets/goggles.png",
       price: "£35.00",
-      subTitle: "Black",
+      subTitle: "Blue",
       limitedStock: true,
       outOfStock: true,
     },
     {
       id: Math.random().toString(36).substring(2, 15),
-      title: "Basic Tee",
-      link: "#",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
+      title: "Essential Swim Shorts",
+      link: "/Shorts",
+      image: "./src/assets/shorts.png",
       price: "£30.00",
-      subTitle: "White",
+      subTitle: "Red and blue",
       limitedStock: true,
     },
     {
       id: Math.random().toString(36).substring(2, 15),
-      title: "Basic Tee",
-      link: "#",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
-      price: "£30.00",
-      subTitle: "Charcoal",
+      title: "Speedo Silicone Solid Swim Cap",
+      link: "/Swimcap",
+      image: "./src/assets/hat.jpg",
+      price: "£15.00",
+      subTitle: "Black",
     },
     {
       id: Math.random().toString(36).substring(2, 15),
-      title: "Artwork Tee",
-      link: "#",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg",
+      title: "Spider-Man Hooded Towel",
+      link: "/Towel",
+      image: "./src/assets/towel.jpg",
       price: "£35.00",
-      subTitle: "Iso Dots",
+      subTitle: "100% Cotton",
     },
     {
       id: Math.random().toString(36).substring(2, 15),
       title: "Zip Tote Basket",
-      link: "#",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
+      link: "/Bag1",
+      image: "./src/assets/bag-1.jpg",
       price: "£140.00",
       subTitle: "White and black",
     },
     {
       id: Math.random().toString(36).substring(2, 15),
       title: "Zip High Wall Tote",
-      link: "#",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-02.jpg",
+      link: "/Bag2",
+      image: "./src/assets/bag-2.jpg",
       price: "£140.00",
       subTitle: "White and blue",
     },
     {
       id: Math.random().toString(36).substring(2, 15),
       title: "Halfsize Tote",
-      link: "#",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-03.jpg",
+      link: "/Bag3",
+      image: "./src/assets/bag-3.jpg",
       price: "£140.00",
       subTitle: "Clay",
     },
     {
       id: Math.random().toString(36).substring(2, 15),
       title: "High Wall Tote",
-      link: "#",
-      image:
-        "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-04.jpg",
+      link: "/Bag4",
+      image: "./src/assets/bag-4.jpg",
       price: "£140.00",
       subTitle: "Black and orange",
       outOfStock: true,
     },
   ];
-  useEffect(() => {
-    document.documentElement.classList.add("container-lg");
 
-    return () => {
-      document.documentElement.classList.remove("container-lg");
-    };
-  }, []);
   return (
     <>
       <div className="mb-6 lg:pb-3 lg:border-b lg:mb-10 lg:border-neutral-200">
@@ -127,8 +113,11 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
               >
                 <Panel header="Products" key="1">
                   <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
-                    <Checkbox value="T Shirts">
-                      <div className="truncate">T Shirts</div>
+                    <Checkbox value="Goggles">
+                      <div className="truncate">Goggles</div>
+                    </Checkbox>
+                    <Checkbox value="Swimwear">
+                      <div className="truncate">Swimwear</div>
                     </Checkbox>
                     <Checkbox value="Tote Bags">
                       <div className="truncate">Tote Bags</div>
@@ -159,9 +148,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({
               >
                 <img
                   src={product.image}
-                  className={`aspect-[3/2] transition-all mix-blend-multiply object-contain object-center h-full w-full group-hover:scale-[1.025] ${
-                    product.outOfStock ? " grayscale " : ""
-                  }`}
+                  className="aspect-[3/2] transition-all mix-blend-multiply object-contain object-center h-full w-full group-hover:scale-[1.025]"
                 />
               </div>
               <div className="flex justify-between mt-3">

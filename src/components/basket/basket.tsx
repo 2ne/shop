@@ -1,8 +1,9 @@
-import { Alert, Button, Modal, Select, Tooltip } from "antd";
+import { Alert, Button, Tooltip } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBasketContext } from "./basket-context";
 import { useCheckoutContext } from "../checkout/checkout-context";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const BasketTotals: React.FC = () => (
   <div className="grid grid-cols-2 [&>*:nth-child(even)]:text-right gap-y-1.5 text-sm">
@@ -18,14 +19,27 @@ const Basket: React.FC = () => {
   const { isCheckout } = useCheckoutContext();
   const { closeBasket, basketItems, removeItem } = useBasketContext();
   const navigate = useNavigate();
+  const [count, setCount] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
   };
 
   const goToCheckout = () => {
     closeBasket();
     navigate("/Checkout");
+  };
+
+  const handleRemoveItem = (id: string) => {
+    removeItem(id);
+    setCount(1);
   };
 
   /* CHECKOUT ERROR  Modal.error({
@@ -99,7 +113,7 @@ const Basket: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className={`object-cover w-16 h-16 rounded ${
+                    className={`object-contain w-16 h-16 rounded ${
                       itemError ? " grayscale " : ""
                     }`}
                   />
@@ -124,30 +138,77 @@ const Basket: React.FC = () => {
                     )}
                   </div>
                   {!isCheckout && (
-                    <div className="mt-auto mb-0.5 pt-1 flex">
-                      <div className="flex items-center mr-3 font-medium">
-                        <div className="mr-1">Quantity</div>
-                        <Select
-                          defaultValue="1"
-                          style={{ width: 46 }}
-                          bordered={false}
+                    <div className="mt-auto mb-0.5 pt-2 flex">
+                      <div className="flex items-center p-0.5 mr-2.5 border rounded-full border-neutral-200">
+                        <Button
+                          onClick={decrement}
+                          icon={
+                            <svg
+                              width="24"
+                              height="24"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              className="w-5 h-5 text-neutral-600"
+                            >
+                              <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="1.5"
+                                d="M18.25 12.25H5.75"
+                              ></path>
+                            </svg>
+                          }
+                          type="text"
+                          className={`hover:!bg-neutral-100 !rounded-full ${
+                            isAnimating ? "pointer-events-none" : ""
+                          }`}
                           size="small"
-                          className="[&_.ant-select-selection-item]:font-medium"
-                          onChange={handleChange}
-                          options={[
-                            { value: "1", label: "1" },
-                            { value: "2", label: "2" },
-                            { value: "3", label: "3" },
-                            { value: "4", label: "4" },
-                            { value: "5", label: "5" },
-                          ]}
-                        />
+                        ></Button>
+                        <AnimatePresence initial={false} mode="wait">
+                          <motion.div
+                            key={count}
+                            initial={{ opacity: 0, translateY: 4 }}
+                            animate={{ opacity: 1, translateY: 0 }}
+                            exit={{ opacity: 0, translateY: -4 }}
+                            transition={{ duration: 0.125 }}
+                            className="w-8 text-xs font-medium text-center"
+                            onAnimationStart={() => setIsAnimating(true)}
+                            onAnimationComplete={() => setIsAnimating(false)}
+                          >
+                            {count}
+                          </motion.div>
+                        </AnimatePresence>
+                        <Button
+                          onClick={increment}
+                          icon={
+                            <svg
+                              width="24"
+                              height="24"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              className="w-5 h-5 text-neutral-600"
+                            >
+                              <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="1.5"
+                                d="M12 5.75v12.5M18.25 12H5.75"
+                              ></path>
+                            </svg>
+                          }
+                          type="text"
+                          className={`hover:!bg-neutral-100 !rounded-full ${
+                            isAnimating ? "pointer-events-none" : ""
+                          }`}
+                          size="small"
+                        ></Button>
                       </div>
-
                       <Tooltip title="Remove item" placement="right">
                         <button
                           type="button"
-                          onClick={() => removeItem(item.id)}
+                          onClick={() => handleRemoveItem(item.id)}
                           className="grid transition-colors rounded-full w-7 h-7 place-items-center hover:bg-neutral-200"
                         >
                           <svg
@@ -227,7 +288,12 @@ const Basket: React.FC = () => {
                       <dt>Price</dt>
                       <dd>
                         <span className="tabular-nums">{item.price}</span>
-                        <span className="text-neutral-500"> · per session</span>
+                        {item.priceQuantity === "session" && (
+                          <span className="text-neutral-500">
+                            {" "}
+                            · per session
+                          </span>
+                        )}
                       </dd>
                     </>
                   )}
@@ -247,8 +313,12 @@ const Basket: React.FC = () => {
                       </dd>
                     </>
                   )}
-                  <dt>Coach</dt>
-                  <dd>Michael Phelps</dd>
+                  {item.coach && (
+                    <>
+                      <dt>Coach</dt>
+                      <dd>Michael Phelps</dd>
+                    </>
+                  )}
                 </dl>
               )}
             </div>

@@ -34,7 +34,7 @@ export const FormButton: React.FC<FormButtonProps> = ({
       buttonClass = "!bg-emerald-500 hover:!bg-emerald-400";
       break;
     case "verifyAccount":
-      text = "Verify Account";
+      text = "Verify account";
       break;
     default:
       text = "Continue";

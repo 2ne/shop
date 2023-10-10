@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useState } from "react";
 import FormHeader from "../form-header";
 import { useBasketContext } from "../basket/basket-context";
 import { Participant } from "../../types/types";
-import { Select } from "antd";
+import { Button, Select } from "antd";
 const { Option } = Select;
 
 export interface CheckoutAdditionalProductsHandles {
@@ -57,229 +57,34 @@ const CheckoutAdditionalProducts = forwardRef<
 
     const basketButtonText = addItemToBasket ? "Added" : "Add to basket";
 
-    const [selectedLabel, setSelectedLabel] = useState(null);
+    const [selectedProductLabel, setSelectedProductLabel] = useState(null);
 
     const titles = ["Annual Title", "Monthly Title"];
     const values = ["annual", "monthly"];
 
-    const options = [
-      {
-        value: "annual",
-        label: "Annual Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Annual Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "monthly",
-        label: "Monthly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Monthly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "weekly",
-        label: "Weekly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Weekly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-    ];
+    const options = Array.from({ length: 100 }, (_, index) => {
+      const isAnnual = index % 2 === 0;
+      const title = isAnnual ? titles[0] : titles[1];
+      const value = isAnnual ? values[0] : values[1];
 
-    const optionsLong = [
-      {
-        value: "annual",
-        label: "Annual Title",
+      return {
+        value: value,
+        label: title,
         content: (
           <div className="flex gap-4 py-1 text-sm">
             <div className="flex-grow min-w-0">
-              <div className="truncate">Annual Title</div>
+              <div className="truncate">{title}</div>
               <div className="truncate text-neutral-500">Subtitle</div>
               <div className="truncate text-neutral-500">Age</div>
             </div>
             <div className="text-right">Price</div>
           </div>
         ),
-      },
-      {
-        value: "monthly",
-        label: "Monthly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Monthly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "weekly",
-        label: "Weekly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Weekly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "annual",
-        label: "Annual Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Annual Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "monthly",
-        label: "Monthly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Monthly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "weekly",
-        label: "Weekly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Weekly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "annual",
-        label: "Annual Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Annual Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "monthly",
-        label: "Monthly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Monthly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "weekly",
-        label: "Weekly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Weekly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "annual",
-        label: "Annual Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Annual Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "monthly",
-        label: "Monthly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Monthly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-      {
-        value: "weekly",
-        label: "Weekly Title",
-        content: (
-          <div className="flex gap-4 py-1 text-sm">
-            <div className="flex-grow min-w-0">
-              <div className="truncate">Weekly Title</div>
-              <div className="truncate text-neutral-500">Subtitle</div>
-              <div className="truncate text-neutral-500">Age</div>
-            </div>
-            <div className="text-right">Price</div>
-          </div>
-        ),
-      },
-    ];
+      };
+    });
 
-    const handleChange = (value, option) => {
-      setSelectedLabel(option.label);
+    const handleSelectProductChange = (value: any, option: any) => {
+      setSelectedProductLabel(option.label);
     };
 
     return (
@@ -338,76 +143,91 @@ const CheckoutAdditionalProducts = forwardRef<
                   </div>
                 </div>
                 <div>
-                  {itemParticipants.map((participant: Participant) => {
-                    return (
-                      <div
-                        key={`${requiredProduct.id}_${participant.id}`}
-                        className="space-y-4"
-                      >
-                        <div>
-                          <label className="block mb-1 font-medium">
-                            Select memberhsip for {participant.firstName}{" "}
-                            {participant.lastName} (More than 3 items)
-                          </label>
-                          <Select
-                            popupClassName={
-                              optionsLong.length > 3
-                                ? "ant-select-dropdown-products"
-                                : ""
-                            }
-                            virtual={false}
-                            className="w-full"
-                            placeholder="Select membership..."
-                            onChange={handleChange}
-                            value={selectedLabel || undefined}
+                  <div>
+                    {itemParticipants.map((participant: Participant) => {
+                      return (
+                        <>
+                          <div
+                            key={`${requiredProduct.id}_${participant.id}`}
+                            className="flex items-center mb-1 space-x-1"
                           >
-                            {optionsLong.map((option) => (
-                              <Option
-                                key={option.value}
-                                value={option.value}
-                                label={option.label}
-                              >
-                                {option.content}
-                              </Option>
-                            ))}
-                          </Select>
-                        </div>
-                        <div>
-                          <label className="block mb-1 font-medium">
-                            Select memberhsip for {participant.firstName}{" "}
-                            {participant.lastName} (Less than 3 items)
-                          </label>
-                          <Select
-                            popupClassName={
-                              options.length > 3
-                                ? "ant-select-dropdown-products"
-                                : ""
-                            }
-                            virtual={false}
-                            className="w-full"
-                            placeholder="Select membership..."
-                            onChange={handleChange}
-                            value={selectedLabel || undefined}
-                          >
-                            {options.map((option) => (
-                              <Option
-                                key={option.value}
-                                value={option.value}
-                                label={option.label}
-                              >
-                                {option.content}
-                              </Option>
-                            ))}
-                          </Select>
-                        </div>
-                        {addItemToBasket === false && (
-                          <div className="mt-2 text-error">
-                            Please add the product
+                            <span className="text-neutral-500">
+                              Participant
+                            </span>
+                            <span className="text-neutral-500">·</span>
+                            <span className="font-medium">
+                              {participant.firstName} {participant.lastName}
+                            </span>
                           </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                          <div>
+                            <Select
+                              showSearch
+                              className="w-full"
+                              placeholder="Select membership..."
+                              placement="bottomLeft"
+                              optionFilterProp="children"
+                              onChange={handleSelectProductChange}
+                              value={selectedProductLabel || undefined}
+                              filterOption={(input, option) =>
+                                option.label
+                                  .toLowerCase()
+                                  .includes(input.toLowerCase())
+                              }
+                            >
+                              {options.map((option) => (
+                                <Option
+                                  key={option.value}
+                                  value={option.value}
+                                  label={option.label}
+                                >
+                                  {option.content}
+                                </Option>
+                              ))}
+                            </Select>
+                            <div className="mt-4">
+                              <Button
+                                danger={addItemToBasket === false}
+                                block
+                                className={`!transition-all !duration-500 ${basketButtonClasses}`}
+                                onClick={handleAddItem}
+                              >
+                                {addItemToBasket && (
+                                  <svg
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    className="mr-0.5 -ml-1"
+                                  >
+                                    <path
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="1.5"
+                                      d="M4.75 12A7.25 7.25 0 0112 4.75v0A7.25 7.25 0 0119.25 12v0A7.25 7.25 0 0112 19.25v0A7.25 7.25 0 014.75 12v0z"
+                                    ></path>
+                                    <path
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="1.5"
+                                      d="M9.75 12.75l.434.924a1 1 0 001.772.073L14.25 9.75"
+                                    ></path>
+                                  </svg>
+                                )}
+                                <span>{basketButtonText}</span>
+                              </Button>
+                            </div>
+                            {addItemToBasket === false && (
+                              <div className="mt-2 text-error">
+                                Please add the product
+                              </div>
+                            )}
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </>

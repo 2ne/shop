@@ -8,6 +8,16 @@ const Skills = [
       "Can they move sideways for a distance of 5 metres?",
       "Can they scoop the water and wash the face?",
     ],
+    media: [
+      {
+        type: "video",
+        src: "./src/assets/enter-pool.mp4",
+      },
+      {
+        type: "video",
+        src: "./src/assets/swimming.mp4",
+      },
+    ],
   },
   {
     level: 2,

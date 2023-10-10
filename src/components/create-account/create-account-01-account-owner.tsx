@@ -90,16 +90,16 @@ const CreateAccountOwnerForms = forwardRef<
           );
         }
 
-        // Additional check for the current year
         if (parseInt(dateOfBirth.year) === thisYear) {
-          if (parseInt(dateOfBirth.month) > thisMonth) {
+          if (parseInt(dateOfBirth.month) - 1 > thisMonth) {
+            // Subtract 1 to make it 0-indexed
             setIsMonthInvalid(true);
             return Promise.reject(
               "Enter a valid month. (This is a future date)"
             );
           }
           if (
-            parseInt(dateOfBirth.month) === thisMonth &&
+            parseInt(dateOfBirth.month) - 1 === thisMonth && // Subtract 1 to make it 0-indexed
             parseInt(dateOfBirth.day) > today
           ) {
             setIsDayInvalid(true);
@@ -119,7 +119,6 @@ const CreateAccountOwnerForms = forwardRef<
           await accountOwnerForm.validateFields();
           // If validation is successful, submit the form
           accountOwnerForm.submit();
-          console.log("age", age);
           // Notify the parent component that the form is valid
           onFormValidation(true);
           // Return true to indicate that the form submission was successful
@@ -177,7 +176,7 @@ const CreateAccountOwnerForms = forwardRef<
           name="accountOwnerForm"
           onFinish={onDetailsFinish}
           onFinishFailed={onDetailsFinishFailed}
-          className="text-left hide-validation-asterix"
+          className="relative p-4 text-sm text-left bg-white rounded-md shadow hide-validation-asterix ring-1 ring-black ring-opacity-5"
           requiredMark="optional"
         >
           <Form.Item

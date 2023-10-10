@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
             <img
               src={orgLogo}
               alt={orgName + " Logo"}
-              className="block max-h-[2.5rem] sm:max-h-[3.5rem] rounded mr-2.5 sm:mr-3"
+              className="block max-h-[2.5rem] sm:max-h-[3.5rem] max-w-[5rem] rounded mr-2.5 sm:mr-3"
               loading="lazy"
             />
             <span className="self-center font-semibold sm:text-lg whitespace-nowrap text-interactive">

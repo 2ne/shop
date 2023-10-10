@@ -13,6 +13,7 @@ export interface HeaderProps {
   loggedIn?: boolean;
   basketCount?: number;
   hideButtons?: boolean;
+  paymentsDue?: boolean;
   name?: string;
   logo?: string;
 }
@@ -21,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({
   loggedIn,
   basketCount,
   hideButtons,
+  paymentsDue,
   name = orgName,
   logo = orgLogo,
 }) => {
@@ -129,7 +131,7 @@ const Header: React.FC<HeaderProps> = ({
         },
         {
           key: "1-5",
-          label: <Link to="/Calendar">View All</Link>,
+          label: <Link to="/Timetable">View All</Link>,
         },
       ],
     },
@@ -160,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({
         },
         {
           key: "2-5",
-          label: <Link to="/Calendar">View All</Link>,
+          label: <Link to="/Timetable">View All</Link>,
         },
       ],
     },
@@ -179,7 +181,7 @@ const Header: React.FC<HeaderProps> = ({
             onClick={(e) => e.preventDefault()}
             className="py-1.5 px-2.5 -my-1.5 -mx-2.5"
           >
-            Calendar
+            Timetable
             <DownOutlined className="ml-1.5 text-xs opacity-75" />
           </button>
         </Dropdown>
@@ -190,6 +192,7 @@ const Header: React.FC<HeaderProps> = ({
     // { label: "Events", to: "/Events" },
     { label: "Shop", to: "/Shop" },
     { label: "Class Finder", to: "/Finder" },
+    { label: "Contact", to: "/Contact" },
   ];
 
   const navMobileLinks = [
@@ -200,7 +203,7 @@ const Header: React.FC<HeaderProps> = ({
             className="block text-neutral-800 hover:text-interactive"
             onClick={toggleSessionsMenu}
           >
-            <span>Calendar</span>
+            <span>Timetable</span>
             <DownOutlined
               className={`ml-1.5 text-xs opacity-50 ${
                 sessionsMenu ? "" : "-rotate-90"
@@ -262,7 +265,7 @@ const Header: React.FC<HeaderProps> = ({
                     <li>
                       <Link
                         onClick={navClose}
-                        to="/Calendar"
+                        to="/Timetable"
                         className="block text-neutral-800 hover:text-interactive"
                       >
                         View all
@@ -324,7 +327,7 @@ const Header: React.FC<HeaderProps> = ({
                     <li>
                       <Link
                         onClick={navClose}
-                        to="/Calendar"
+                        to="/Timetable"
                         className="block text-neutral-800 hover:text-interactive"
                       >
                         View all
@@ -339,30 +342,7 @@ const Header: React.FC<HeaderProps> = ({
       ),
       to: "",
     },
-    {
-      label: (
-        <Link
-          onClick={navClose}
-          to="/Memberships"
-          className="block text-neutral-800 hover:text-interactive"
-        >
-          Memberships
-        </Link>
-      ),
-      to: "",
-    },
-    {
-      label: (
-        <Link
-          onClick={navClose}
-          to="/Events"
-          className="block text-neutral-800 hover:text-interactive"
-        >
-          Events
-        </Link>
-      ),
-      to: "",
-    },
+
     {
       label: (
         <Link
@@ -383,6 +363,18 @@ const Header: React.FC<HeaderProps> = ({
           className="block text-neutral-800 hover:text-interactive"
         >
           Class Finder
+        </Link>
+      ),
+      to: "",
+    },
+    {
+      label: (
+        <Link
+          onClick={navClose}
+          to="/Contact"
+          className="block text-neutral-800 hover:text-interactive"
+        >
+          Contact
         </Link>
       ),
       to: "",
@@ -556,7 +548,7 @@ const Header: React.FC<HeaderProps> = ({
             <img
               src={logo}
               alt={name + " Logo"}
-              className="block !w-auto max-h-[3.5rem] max-w-[5rem] sm:max-h-[4rem] sm:max-w-[8rem] rounded"
+              className="block !w-auto max-h-[3.5rem] max-w-[5rem] sm:max-h-[4rem] sm:max-w-[6rem] rounded"
               loading="lazy"
             />
             <h1 className="!text-primary_text heading-xl line-clamp-3">
@@ -581,7 +573,7 @@ const Header: React.FC<HeaderProps> = ({
           )}
           {!hideButtons && (
             <div className="flex items-center gap-2 ml-auto sm:gap-3 lg:gap-2">
-              {!isCheckout && isLoggedIn && (
+              {!isCheckout && isLoggedIn && paymentsDue && (
                 <button
                   type="button"
                   className="relative grid px-2 py-1.5 text-center transition-colors rounded-md lg:px-2 lg:py-1.5 group place-items-center hover:bg-white/95"
@@ -814,14 +806,11 @@ const Header: React.FC<HeaderProps> = ({
         onClose={navClose}
         open={isNavOpen}
         rootClassName={
-          "[&>.ant-drawer-content-wrapper]:max-w-full [&>.ant-drawer-content-wrapper]:!w-full sm:[&>.ant-drawer-content-wrapper]:!w-[360px]"
+          "[&>.ant-drawer-content-wrapper]:max-w-full [&>.ant-drawer-content-wrapper]:!w-full sm:[&>.ant-drawer-content-wrapper]:!w-[360px] [&_.ant-drawer-header]:border-0"
         }
       >
         <div className="[&>*]:mb-6 -mt-1">
           <div>
-            <div className="mb-2.5 text-sm font-medium text-neutral-500">
-              Navigation
-            </div>
             <ul className="space-y-2">
               {navMobileLinks.map((item, index) => (
                 <li key={index}>{item.label}</li>

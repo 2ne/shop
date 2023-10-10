@@ -1,13 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Modal,
-  Button,
-  Input,
-  Form,
-  Collapse,
-  Typography,
-  message,
-} from "antd";
+import { Modal, Button, Input, Form, message } from "antd";
 import type { InputRef } from "antd";
 import {
   UserOutlined,
@@ -16,8 +8,9 @@ import {
 } from "@ant-design/icons";
 import { orgLogo, orgName } from "../org";
 import { useNavigate } from "react-router-dom";
-const { Panel } = Collapse;
-const { Paragraph } = Typography;
+import { AnimatePresence } from "framer-motion";
+import { Motion } from "./framer-motion-custom";
+import SignInFAQModal from "./sign-in-faq";
 
 interface SignInProps {
   isOpen: boolean;
@@ -121,7 +114,7 @@ const SignInModal: React.FC<SignInProps> = ({
             <img
               src={orgLogo}
               alt={orgName + " Logo"}
-              className="w-12 h-16 mx-auto"
+              className="object-contain w-16 h-16 mx-auto"
               loading="lazy"
             />
           </div>
@@ -158,24 +151,27 @@ const SignInModal: React.FC<SignInProps> = ({
                   },
                 ]}
                 help={
-                  newUser &&
-                  !userExists && (
-                    <div className="mt-1 mb-4 text-sm">
-                      No JoinIn account found. Try a different email or{" "}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          navigate("/CreateAccount", {
-                            state: { email: email },
-                          });
-                          onClose();
-                        }}
-                        className="link"
-                      >
-                        create a JoinIn account.
-                      </button>
-                    </div>
-                  )
+                  <AnimatePresence>
+                    {newUser && !userExists && (
+                      <Motion animation="heightInOut">
+                        <div className="mt-1 mb-4 text-sm">
+                          No JoinIn account found. Try a different email or{" "}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              navigate("/CreateAccount", {
+                                state: { email: email },
+                              });
+                              onClose();
+                            }}
+                            className="link"
+                          >
+                            create a JoinIn account.
+                          </button>
+                        </div>
+                      </Motion>
+                    )}
+                  </AnimatePresence>
                 }
                 validateStatus={newUser ? "error" : ""}
               >
@@ -199,24 +195,29 @@ const SignInModal: React.FC<SignInProps> = ({
                 ></Button>
               )}
             </div>
-            {userExists && (
-              <Form.Item
-                name="password"
-                help={
-                  passwordValidation && "Your email or password is incorrect"
-                }
-                validateStatus={passwordValidation ? "error" : ""}
-              >
-                <Input.Password
-                  ref={passwordRef}
-                  prefix={<LockOutlined className="w-5 text-neutral-600" />}
-                  placeholder="Password"
-                  className="[&>input.ant-input]:!shadow-[0_0_0_20px_white_inset] [&>input.ant-input:focus]:!shadow-[0_0_0_20px_white_inset]"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Form.Item>
-            )}
-
+            <AnimatePresence>
+              {userExists && (
+                <Motion animation="heightInOut">
+                  <Form.Item
+                    name="password"
+                    help={
+                      passwordValidation &&
+                      "Your email or password is incorrect"
+                    }
+                    validateStatus={passwordValidation ? "error" : ""}
+                    className="!mb-6"
+                  >
+                    <Input.Password
+                      ref={passwordRef}
+                      prefix={<LockOutlined className="w-5 text-neutral-600" />}
+                      placeholder="Password"
+                      className="[&>input.ant-input]:!shadow-[0_0_0_20px_white_inset] [&>input.ant-input:focus]:!shadow-[0_0_0_20px_white_inset]"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Form.Item>
+                </Motion>
+              )}
+            </AnimatePresence>
             <Form.Item className="!mb-0">
               <Button key="submit" type="primary" block htmlType="submit">
                 Continue
@@ -255,7 +256,7 @@ const SignInModal: React.FC<SignInProps> = ({
             <img
               src={orgLogo}
               alt={orgName + " Logo"}
-              className="w-12 h-16 mx-auto"
+              className="object-contain h-16 mx-auto w-15"
               loading="lazy"
             />
           </div>
@@ -302,95 +303,10 @@ const SignInModal: React.FC<SignInProps> = ({
           </Form>
         </div>
       </Modal>
-      <Modal
-        title="Trouble signing in?"
-        open={signInFAQOpen}
-        onOk={() => setSignInFAQOpen(false)}
-        onCancel={() => setSignInFAQOpen(false)}
-        footer={null}
-        className="w-full max-w-xl"
-      >
-        <Collapse size="small" className="mb-1">
-          <Panel
-            header="How do I know if I have an existing JoinIn account?"
-            key="1"
-          >
-            <Paragraph>
-              If you've received an email from an organisation using JoinIn,
-              you'll have a JoinIn account already. The email address that was
-              contacted will be used for logging in. If you try to create an
-              account again using the same email address, you will get an error
-              telling you there is an account with that email address already
-              and requesting that you login.
-            </Paragraph>
-          </Panel>
-          <Panel
-            header="My email or password is not being recognised, what do I do?"
-            key="2"
-          >
-            <Paragraph>
-              If you attempt to log in and you get the error “Login failed,
-              Incorrect credentials” it means that either your email or password
-              has not been recognised.
-            </Paragraph>
-            <Paragraph>
-              If you know you have an account with this email, try a different
-              password.
-            </Paragraph>
-            <Paragraph>
-              Selecting Reset password and entering your email address will send
-              a link to that email, where you can set a new password.
-            </Paragraph>
-            <Paragraph>
-              If your email address was entered correctly and the email is not
-              in your junk or spam folders, it may be because you do not have an
-              account with that email address. To confirm that this email
-              address is the one your account was created with, you can try to
-              search for an old email from LoveAdmin. If you cannot find any
-              contact from LoveAdmin to any email address you own, please
-              contact the organisation directly to see if you are on their
-              system.
-            </Paragraph>
-          </Panel>
-          <Panel header="How do I create a JoinIn account?" key="3">
-            <Paragraph>
-              When you checkout a product from an organisation's shop page, you
-              will be prompted to sign in or create an account. To create an
-              account, select “Create account”. A form collecting basic account
-              information will then appear.
-            </Paragraph>
-            <Paragraph>
-              If you are purchasing a product on behalf of someone else, please
-              note that the “Create account” form must be filled out with your
-              details and not those of the child or dependant. As you continue
-              with the checkout process after signing in, you will then be
-              prompted to add the child or dependant's details.
-            </Paragraph>
-          </Panel>
-          <Panel header="How do I reset my password?" key="4">
-            <Paragraph>
-              If you cannot remember your password and would like to reset it,
-              click “Reset password” on the login screen and follow the
-              instructions that arrive in the subsequent email.
-            </Paragraph>
-          </Panel>
-          <Panel
-            header="Why am I not receiving an email when trying to reset my password?"
-            key="5"
-          >
-            <Paragraph>
-              If your email address was entered correctly and the email is not
-              in your junk or spam folders, it may be because you do not have an
-              account with that email address. To confirm that this email
-              address is the one your account was created with, you can try to
-              search for an old email from LoveAdmin. If you cannot find any
-              contact from LoveAdmin to any email address you own, please
-              contact the organisation directly to see if you are on their
-              system.
-            </Paragraph>
-          </Panel>
-        </Collapse>
-      </Modal>
+      <SignInFAQModal
+        isOpen={signInFAQOpen}
+        onClose={() => setSignInFAQOpen(false)}
+      />
     </>
   );
 };

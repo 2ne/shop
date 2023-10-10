@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { orgName } from "../org";
 
 const About: React.FC = () => {
   const [readMore, setReadMore] = useState(false);
@@ -12,12 +13,12 @@ const About: React.FC = () => {
     <div className="rounded-md shadow shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10 p-0.5">
       <div className="md:flex md:gap-8 lg:gap-10 p-4 sm:p-6 md:p-10 lg:p-14 lg:pb-12 bg-neutral-100 rounded-[calc(0.375rem-0.125rem)]">
         <img
-          src="https://www.cgswimschool.com/images/christine.jpg"
+          src="../src/assets/coach.jpg"
           className="object-cover object-center md:mb-8 border-[0.125rem] ring-1 ring-neutral-200 border-white rounded-full w-20 h-20 md:w-32 md:h-32 lg:w-44 lg:h-44 aspect-square max-md:mx-auto"
         />
         <div className="contents md:block">
           <h2 className="mb-2.5 text-lg font-bold md:mb-4 md:-mt-1 text-neutral-800 md:text-xl max-md:text-center max-md:mt-2">
-            Welcome to CG Swim School
+            Welcome to {orgName}
           </h2>
           <div className="h-[2px] mb-2.5 md:mb-4 bg-white border-t border-solid border-neutral-200"></div>
           <p className="lg:hidden">

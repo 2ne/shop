@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 
 interface Step {
@@ -9,6 +10,7 @@ interface StepsProps {
   furthestStep: number;
   steps: Step[];
   handleStepClick: (stepIndex: number) => void;
+  visibleSteps?: number[];
 }
 
 function classNames(...classes: string[]) {
@@ -20,11 +22,15 @@ const Steps: React.FC<StepsProps> = ({
   furthestStep,
   steps,
   handleStepClick,
+  visibleSteps,
 }) => {
   return (
     <nav aria-label="Progress">
       <ol role="list" className="overflow-hidden">
         {steps.map((step, index) => {
+          if (visibleSteps && !visibleSteps.includes(index)) {
+            return null;
+          }
           const isActive = index === currentStep;
           const isCompleted = index < furthestStep;
           const isClickable = index <= furthestStep;
@@ -35,13 +41,20 @@ const Steps: React.FC<StepsProps> = ({
               key={index}
               className={classNames(
                 index !== steps.length - 1 ? "pb-8" : "",
-                "relative"
+                "relative [&:last-child>div]:hidden"
               )}
             >
               {isActiveAndCompleted ? (
                 <>
                   {index !== steps.length - 1 ? (
-                    <div
+                    <motion.div
+                      initial={{ height: 0 }}
+                      animate={{ height: "auto" }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 40,
+                      }}
                       className="absolute left-3.5 top-8 rounded-full -ml-px mt-0.5 bottom-0.5 w-0.5 bg-interactive"
                       aria-hidden="true"
                     />
@@ -58,7 +71,14 @@ const Steps: React.FC<StepsProps> = ({
                   >
                     <span className="flex items-center h-8">
                       <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
-                        <svg
+                        <motion.svg
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 40,
+                          }}
                           width="24"
                           height="24"
                           viewBox="0 0 24 24"
@@ -74,7 +94,7 @@ const Steps: React.FC<StepsProps> = ({
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           ></path>
-                        </svg>
+                        </motion.svg>
                       </span>
                     </span>
                     <span className="flex items-center h-8 min-w-0 ml-3">
@@ -95,7 +115,14 @@ const Steps: React.FC<StepsProps> = ({
               ) : isCompleted ? (
                 <>
                   {index !== steps.length - 1 ? (
-                    <div
+                    <motion.div
+                      initial={{ height: 0 }}
+                      animate={{ height: "auto" }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 40,
+                      }}
                       className="absolute left-3.5 top-8 rounded-full -ml-px mt-0.5 bottom-0.5 w-0.5 bg-interactive"
                       aria-hidden="true"
                     />
@@ -112,7 +139,14 @@ const Steps: React.FC<StepsProps> = ({
                   >
                     <span className="flex items-center h-8">
                       <span className="relative z-10 flex items-center justify-center transition-colors border-2 rounded-full w-7 h-7 border-interactive bg-interactive group-hover:bg-interactive/80">
-                        <svg
+                        <motion.svg
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 40,
+                          }}
                           width="24"
                           height="24"
                           viewBox="0 0 24 24"
@@ -128,7 +162,7 @@ const Steps: React.FC<StepsProps> = ({
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           ></path>
-                        </svg>
+                        </motion.svg>
                       </span>
                     </span>
                     <span className="flex items-center h-8 min-w-0 ml-3">
@@ -167,7 +201,16 @@ const Steps: React.FC<StepsProps> = ({
                   >
                     <span className="flex items-center h-8" aria-hidden="true">
                       <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-interactive group-hover:border-interactive/80">
-                        <span className="h-2.5 w-2.5 rounded-full bg-interactive" />
+                        <motion.span
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 40,
+                          }}
+                          className="h-2.5 w-2.5 rounded-full bg-interactive"
+                        />
                       </span>
                     </span>
                     <span className="flex items-center h-8 min-w-0 ml-3">
@@ -204,9 +247,7 @@ const Steps: React.FC<StepsProps> = ({
                     }}
                   >
                     <span className="flex items-center h-8" aria-hidden="true">
-                      <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400">
-                        <span className="h-2.5 w-2.5 rounded-full bg-transparent  transition-colors group-hover:bg-neutral-300" />
-                      </span>
+                      <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400"></span>
                     </span>
                     <span className="flex items-center h-8 min-w-0 ml-3">
                       <span className="text-sm font-medium text-neutral-500">
