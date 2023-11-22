@@ -222,7 +222,7 @@ const Finder: React.FC = () => {
                         name="age"
                         label={
                           <>
-                            Age{" "}
+                            Participant age{" "}
                             <span className="text-neutral-500">· Required</span>
                           </>
                         }

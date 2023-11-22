@@ -220,11 +220,11 @@ const CheckoutSelectParticipants = forwardRef<
               key={item.id}
               className="text-sm p-4 space-y-4 rounded-md relative bg-white shadow ring-1 ring-black ring-opacity-5 text-left [&:has(.ant-form-item-has-error)]:ring-error"
             >
-              <div className="flex gap-3 pb-4 border-b">
+              <div className="flex items-center gap-3 pb-4 border-b">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="object-cover w-16 h-16 rounded"
+                  className="object-contain object-center w-16 h-auto max-h-[4rem] rounded"
                 />
                 <div className="grid items-center flex-1 min-w-0 text-sm">
                   <div>

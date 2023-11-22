@@ -71,7 +71,11 @@ const CheckoutAdditionalProducts = forwardRef<
         value: value,
         label: title,
         content: (
-          <div className="flex gap-4 py-1 text-sm">
+          <div className="flex gap-4 py-1 text-sm item">
+            <img
+              src="../src/assets/seahorse.jpg"
+              className="object-contain object-center w-12 h-12 my-auto rounded mix-blend-multiply"
+            />
             <div className="flex-grow min-w-0">
               <div className="truncate">{title}</div>
               <div className="truncate text-neutral-500">Subtitle</div>
@@ -126,11 +130,11 @@ const CheckoutAdditionalProducts = forwardRef<
                   addItemToBasket === false ? " ring-error " : " ring-black "
                 }`}
               >
-                <div className="flex gap-3 pb-4 border-b">
+                <div className="flex items-center gap-3 pb-4 border-b">
                   <img
                     src={requiredProduct.image}
                     alt={requiredProduct.title}
-                    className="object-cover w-16 h-16 rounded"
+                    className="object-contain object-center w-16 h-auto max-h-[4rem] rounded"
                   />
                   <div className="grid items-center flex-1 min-w-0">
                     <div>

@@ -31,7 +31,6 @@ function useViewportHeightPercentage(percentage: number) {
   return height;
 }
 
-const formatter = (value?: number) => `${value ?? 0} years old`;
 type SelectedValue = string | undefined;
 
 export interface CalendarFiltersProps {
@@ -39,10 +38,11 @@ export interface CalendarFiltersProps {
 }
 
 const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
-  const [currentAge, setCurrentAge] = useState<number | null>(null);
+  const [currentAge, setCurrentAge] = useState<[number, number]>([0, 18]);
   const [currentLocation, setCurrentLocation] = useState<CheckboxValueType[]>(
     []
   );
+  const [availability, setAvailability] = useState<CheckboxValueType[]>([]);
   const [currentLevel, setCurrentLevel] = useState<CheckboxValueType[]>([]);
   const [selectedClassValue, setSelectedClassValue] =
     useState<SelectedValue>(undefined);
@@ -58,9 +58,14 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
     const params = new URLSearchParams(search);
 
     // Handle 'age' parameter
-    const ageValue = params.get("age");
-    const updatedAge = ageValue ? parseInt(ageValue, 10) : null;
-    setCurrentAge(updatedAge);
+    const ageValue = "0"; // Replace this with params.get("age");
+    const updatedAge = ageValue ? parseInt(ageValue, 0) : null;
+
+    if (updatedAge !== null) {
+      setCurrentAge([updatedAge, currentAge[1]]);
+    } else {
+      setCurrentAge([0, 18]);
+    }
 
     // Handle 'location' parameter
     const locationValue = params.get("location");
@@ -105,19 +110,16 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
     );
   }, [currentAge, currentLocation, currentLevel]);
 
-  const handleAgeSelectChange = (value: SelectedValue) => {
-    const numValue = value ? parseInt(value, 10) : null;
-    setCurrentAge(numValue);
-  };
-
-  const handleAgeInputChange = (value: number | null) => {
-    setCurrentAge(value);
-  };
-
   const handleLocationChange = (
     checkedValues: React.SetStateAction<CheckboxValueType[]>
   ) => {
     setCurrentLocation(checkedValues);
+  };
+
+  const handleAvailabilityChange = (
+    checkedValues: React.SetStateAction<CheckboxValueType[]>
+  ) => {
+    setAvailability(checkedValues);
   };
 
   const handleLevelChange = (
@@ -138,7 +140,7 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
     setSelectedClassValue(undefined);
     setSelectedTimeOfDayValue(undefined);
     setSelectedLocationValue(undefined);
-    setCurrentAge(null);
+    setCurrentAge([0, 18]);
   };
 
   const handleClassChange = (value: string) => {
@@ -206,7 +208,7 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
               }}
             />
           )}
-          <Select
+          {/* NEEDS WORK   <Select
             listHeight={safeHeight}
             allowClear={true}
             placeholder="Age"
@@ -218,7 +220,6 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
               }
             }}
             value={currentAge !== null ? currentAge.toString() : null}
-            onChange={handleAgeSelectChange}
             className="ant-select-token"
             popupClassName="ant-select-mobile"
             options={[
@@ -229,7 +230,7 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
               })),
               { value: ">18", label: ">18" },
             ]}
-          />
+          /> */}
           <Select
             listHeight={safeHeight}
             allowClear={true}
@@ -359,7 +360,10 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
                   Age{" "}
                   {currentAge !== null && (
                     <span className="text-neutral-600">
-                      · {currentAge} years old
+                      ·{" "}
+                      {currentAge[0] === currentAge[1]
+                        ? `${currentAge[0]} years old`
+                        : `${currentAge[0]} to ${currentAge[1]} years old`}
                     </span>
                   )}
                 </>
@@ -368,12 +372,12 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
             >
               <div className="-mt-2">
                 <Slider
-                  value={currentAge !== null ? currentAge : 0}
-                  onChange={handleAgeInputChange}
+                  marks={{ 0: "0", 18: "18+" }}
                   min={0}
                   max={18}
-                  className="flex-grow mr-2.5 [&_.ant-slider-rail]:bg-neutral-200"
-                  tooltip={{ formatter }}
+                  defaultValue={currentAge}
+                  onChange={(value) => setCurrentAge(value as [number, number])}
+                  range={true}
                 />
               </div>
             </Panel>
@@ -391,7 +395,18 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
                 </Checkbox>
               </Checkbox.Group>
             </Panel>
-            <Panel header="Level" key="4">
+            <Panel header="Availability" key="4">
+              <Checkbox.Group
+                value={availability}
+                onChange={handleAvailabilityChange}
+                className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0"
+              >
+                <Checkbox value="">
+                  <div className="truncate">Has spaces left</div>
+                </Checkbox>
+              </Checkbox.Group>
+            </Panel>
+            <Panel header="Level" key="5">
               <Checkbox.Group
                 value={currentLevel}
                 onChange={handleLevelChange}
@@ -411,7 +426,7 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
                 ))}
               </Checkbox.Group>
             </Panel>
-            <Panel header="Time of day" key="5">
+            <Panel header="Time of day" key="6">
               <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
                 <Checkbox value="Morning">
                   <div className="truncate">
@@ -429,6 +444,20 @@ const CalendarFilters: React.FC<CalendarFiltersProps> = ({ singleProduct }) => {
                   <div className="truncate">
                     <span>Evening</span>
                     <span className="text-neutral-500"> · 18:00 - 00:00</span>
+                  </div>
+                </Checkbox>
+              </Checkbox.Group>
+            </Panel>
+            <Panel header="Coach" key="7">
+              <Checkbox.Group className="space-y-1.5 block [&_.ant-checkbox]:shrink-0 [&_.ant-checkbox-wrapper]:flex [&_.ant-checkbox-wrapper>span]:min-w-0">
+                <Checkbox value="MichaelPhelps">
+                  <div className="truncate">
+                    <span>Michael Phelps</span>
+                  </div>
+                </Checkbox>
+                <Checkbox value="AdamPeaty">
+                  <div className="truncate">
+                    <span>Adam Peaty</span>
                   </div>
                 </Checkbox>
               </Checkbox.Group>

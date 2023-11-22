@@ -9,7 +9,7 @@ import { WarningFilled } from "@ant-design/icons";
 import MediaCarousel from "./media-carousel";
 
 function BubbleTheSeahorse(): ReactElement {
-  const [showMessage, setShowMessage] = useState(false);
+  const [noSpaces, setNoSpaces] = useState(false);
   const [basketIsClicked, setBasketIsClicked] = useState(false);
 
   const breadcrumbItems = [
@@ -135,9 +135,9 @@ function BubbleTheSeahorse(): ReactElement {
                       e.target.value === "date-5" ||
                       e.target.value === "date-6"
                     ) {
-                      setShowMessage(true);
+                      setNoSpaces(true);
                     } else {
-                      setShowMessage(false);
+                      setNoSpaces(false);
                     }
                   }}
                 >
@@ -189,13 +189,13 @@ function BubbleTheSeahorse(): ReactElement {
             <section className="space-y-4 lg:contents">
               <div className="z-30 max-lg:py-3 max-lg:border-t border-t-black/10 max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 lg:sticky lg:top-4 sm:max-lg:py-4 max-lg:bg-white/95 lg:mt-10">
                 <div className="container lg:p-0">
-                  {showMessage && (
+                  {noSpaces && (
                     <div className="cursor-not-allowed flex gap-3 px-4 py-2 justify-center lg:py-2.5 text-white rounded-md bg-rose-500 ">
                       <WarningFilled />
                       <span>No spaces availbile</span>
                     </div>
                   )}
-                  {!showMessage && (
+                  {!noSpaces && (
                     <Button
                       size="large"
                       type="primary"
@@ -232,6 +232,13 @@ function BubbleTheSeahorse(): ReactElement {
                 </dd>
                 <dt>Time</dt>
                 <dd>Every Tuesday at 11:30 - 12:00</dd>
+                <dt>Schedule</dt>
+                <dd>
+                  4th April - August 5th 2023 -{" "}
+                  <button type="button" className="link">
+                    View
+                  </button>
+                </dd>
                 <dt>Address</dt>
                 <dd>Quarterway House, Ely Rd, Little Thetford</dd>
                 <dt>Billing</dt>

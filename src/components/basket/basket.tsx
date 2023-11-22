@@ -108,12 +108,12 @@ const Basket: React.FC = () => {
               key={item.id}
               className="grid gap-4 py-5 first-of-type:pt-0 only-of-type:py-0 last-of-type:pb-0"
             >
-              <div className="flex gap-3.5">
+              <div className="flex gap-3.5 items-center">
                 {item.image && (
                   <img
                     src={item.image}
                     alt={item.title}
-                    className={`object-contain w-16 h-16 rounded ${
+                    className={`object-contain object-center w-16 h-auto max-h-[4rem] rounded ${
                       itemError ? " grayscale " : ""
                     }`}
                   />

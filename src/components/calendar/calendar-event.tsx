@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Event } from "../../org";
+import { CalendarOutlined } from "@ant-design/icons";
 
 interface CalendarEventProps {
   key: string;
@@ -154,8 +155,16 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
           <div>Evening</div>
         </div>
       );
+    } else if (time === 0) {
+      timePeriod = "allDay";
+      timeJSX = (
+        <div className="flex items-center lg:justify-center gap-1.5 text-sm text-neutral-400">
+          <CalendarOutlined />
+          <div>All day</div>
+        </div>
+      );
     } else {
-      return null;
+      return;
     }
 
     return (
